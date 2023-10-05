@@ -19,5 +19,5 @@ Start the Apache server by clicking the "Start" button next to "Apache" in the X
 Open your web browser.
 Visit http://localhost/alambana/.
 
-Now, you should be able to access the alambana website locally on your system using XAMPP. Please make sure that the website files are structured correctly within the alambanafoundation.org folder inside the htdocs directory. 
+Now, you should be able to access the alambana website locally on your system using XAMPP. Please make sure that the website files are structured correctly within the alambana folder inside the htdocs directory. 
 
