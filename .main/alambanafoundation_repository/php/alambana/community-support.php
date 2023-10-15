@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
@@ -29,7 +30,7 @@
   ================================================== -->
 <script src="js/modernizr.js"></script><!-- Modernizr -->
 </head>
-<body class="single-cause">
+<body>
 <!--[if lt IE 7]>
 	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
@@ -173,10 +174,10 @@
     </div>
     <!-- Hero Area -->
     <div class="hero-area">
-    	<div class="page-banner parallax" style="background-image:url(images/inside8.jpg);">
+    	<div class="page-banner parallax" style="background-image:url(images/parallax6.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
-        			<h1 class="block-title">Education</h1>
+        			<h1 class="block-title">Our Causes</h1>
                 </div>
             </div>
         </div>
@@ -187,79 +188,96 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-8 content-block">
-                    	<h3>Help rebuild Nepal</h3>
-                    	<div class="post-media">
-                        	<img src="images/cause-detail6.jpg" alt="">
-                        </div>
-                        <span class="label label-default">Cause progress</span>
-                        <div class="progress">
-                            <div style="width: 88%;" class="progress-bar progress-bar-primary" data-appear-progress-animation="88%" data-appear-animation-delay="100"> <span class="progress-bar-tooltip">88%</span> </div>
-                        </div>
-                       	<div class="pull-left">Raised <strong>$176000</strong></div>
-                       	<div class="pull-right">Goal <strong class="accent-color">$200000</strong></div>
-                        <div class="spacer-20"></div>
-                        <div class="row">
-                        	<div class="col-md-5 col-sm-5">
-                        		<p class="lead">Nepal has been seriously devastated by the recent earthquake. Over 8,000 people have died (with death toll rising), thousands more are injured, and countless more have been displaced. Many homes, temples, and public monuments have been destroyed throughout the affected areas.</p>
-                      		</div>
-                            <div class="col-md-7 col-sm-7">
-                                <ul class="list-group">
-                          			<li class="list-group-item">Total Donors<span class="badge">2000</span></li>
-                          			<li class="list-group-item">Days left to fundraising<span class="badge">10</span></li>
-                          			<li class="list-group-item">Countries helping<span class="badge">130</span></li>
-                          		</ul>
-                               	<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
-                            </div>
-                        </div>
-                        <p>Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec.</p>
-                        <img src="images/nepal.jpg" alt="" class="align-left">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, efficitur a fermen tum sed, suscipit sit amet arcu. Ut ut finibus tortor, eu ultrices turpis. Mauris vitae elit nec diam elementum elementum. Mauris ante quam, consequat ac nibh placerat, lacinia sollicitudin mi. Duis facilisis nibh quam, sit amet interdum tellus sollicitudin tempor. Curabitur aliquam erat in nisl lobortis, ut pellentesque lectus viverra.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, efficitur a fermen tum sed, suscipit sit amet arcu. Ut ut finibus tortor, eu ultrices turpis. Mauris vitae elit nec diam elementum elementum. Mauris ante quam, consequat ac nibh placerat, lacinia sollicitudin mi. Duis facilisis nibh quam, sit amet interdum tellus sollicitudin tempor. Curabitur aliquam erat in nisl lobortis, ut pellentesque lectus viverra. Aenean sodales aliquet arcu at aliquam. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec.</p>
+                        <ul class="causes-list cause-page-listing">
+                            <li class="causes-list-item cause-item">
+                            	<div class="row">
+                                	<div class="col-md-4 col-sm-4 list-thumb">
+                                        <a href="single-cause.php">
+                                            <img src="images/causeg1.jpg" alt="">
+                                        </a>
+                                       	<div class="cause-progress"><a class="cProgress" data-complete="88" data-color="F23827" data-toggle="tooltip" data-original-title="10 days left" data-placement="left"><strong></strong></a></div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="cause-list-item-cont">
+                                            <h3 class="post-title"><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectet adipiscing elit. Nam malesuada dapi bus diam, ut fringilla purus efficitur  eget...</p>
+                                            <div class="meta-data">Donated $26400 / <span class="cause-target">$30000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="causes-list-item cause-item">
+                            	<div class="row">
+                                	<div class="col-md-4 col-sm-4 list-thumb">
+                                        <a href="single-cause.php">
+                                            <img src="images/causeg2.jpg" alt="">
+                                        </a>
+                                       	<div class="cause-progress"><a class="cProgress" data-complete="52" data-color="F6BB42" data-toggle="tooltip" data-original-title="25 days left" data-placement="left"><strong></strong></a></div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="cause-list-item-cont">
+                                            <h3 class="post-title"><a href="single-cause.php">Help relocate the refugees</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectet adipiscing elit. Nam malesuada dapi bus diam, ut fringilla purus efficitur  eget...</p>
+                                            <div class="meta-data">Donated $21840 / <span class="cause-target">$40000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="causes-list-item cause-item">
+                            	<div class="row">
+                                	<div class="col-md-4 col-sm-4 list-thumb">
+                                        <a href="single-cause.php">
+                                            <img src="images/causeg5.jpg" alt="">
+                                        </a>
+                                       	<div class="cause-progress"><a class="cProgress" data-complete="75" data-color="8CC152" data-toggle="tooltip" data-original-title="65 days left" data-placement="left"><strong></strong></a></div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="cause-list-item-cont">
+                                            <h3 class="post-title"><a href="single-cause.php">Save tigers from poachers</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectet adipiscing elit. Nam malesuada dapi bus diam, ut fringilla purus efficitur  eget...</p>
+                                            <div class="meta-data">Donated $15000 / <span class="cause-target">$20000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="causes-list-item cause-item">
+                            	<div class="row">
+                                	<div class="col-md-4 col-sm-4 list-thumb">
+                                        <a href="single-cause.php">
+                                            <img src="images/causeg6.jpg" alt="">
+                                        </a>
+                                       	<div class="cause-progress"><a class="cProgress" data-complete="88" data-color="8CC152" data-toggle="tooltip" data-original-title="70 days left" data-placement="left"><strong></strong></a></div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="cause-list-item-cont">
+                                            <h3 class="post-title"><a href="single-cause.php">Help rebuild Nepal</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectet adipiscing elit. Nam malesuada dapi bus diam, ut fringilla purus efficitur  eget...</p>
+                                            <div class="meta-data">Donated $176000 / <span class="cause-target">$200000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- Page Pagination -->
+                        <nav>
+                       		<ul class="pagination pagination-lg">
+                              	<li>
+                                	<a href="#" aria-label="Previous">
+                                  		<span aria-hidden="true">&laquo;</span>
+                                	</a>
+                              	</li>
+                              	<li class="active"><a href="#">1</a></li>
+                              	<li><a href="#">2</a></li>
+                              	<li><a href="#">3</a></li>
+                              	<li>
+                                	<a href="#" aria-label="Next">
+                                  		<span aria-hidden="true">&raquo;</span>
+                                	</a>
+                              	</li>
+                        	</ul>
+                       	</nav>
                     </div>
-                    
-                    <!-- Sidebar -->
                     <div class="col-md-4 sidebar-block">
-                        <!-- Latest Events -->
-                    	<div class="widget events-calendar-widget">
-                          	<h3 class="widgettitle">Upcoming Events</h3>
-                            <div class="events-calendar-widget-body">
-                                <ul class="events-compact-list">
-                                	<li class="event-list-item">	
-                                    	<span class="event-date">
-                                        	<span class="date">14</span>
-                                            <span class="month">Jan</span>
-                                            <span class="year">2016</span>
-                                        </span>
-                                        <div class="event-list-cont">
-                                            <span class="meta-data">Thursday, 11:20 AM</span>
-                                        	<h4 class="post-title"><a href="#">Summer Camp: Students Get Together</a></h4>
-                                        </div>
-                                    </li>
-                                	<li class="event-list-item">
-                                    	<span class="event-date">
-                                        	<span class="date">18</span>
-                                            <span class="month">Jan</span>
-                                            <span class="year">2016</span>
-                                        </span>
-                                        <div class="event-list-cont">
-                                            <span class="meta-data">Monday, 07:00 PM</span>
-                                        	<h4 class="post-title"><a href="#">Fundraising for meals</a></h4>
-                                        </div>
-                                    </li>
-                                	<li class="event-list-item">
-                                    	<span class="event-date">
-                                        	<span class="date">26</span>
-                                            <span class="month">Feb</span>
-                                            <span class="year">2016</span>
-                                        </span>
-                                        <div class="event-list-cont">
-                                            <span class="meta-data">Friday, 01:00 PM</span>
-                                        	<h4 class="post-title"><a href="#">Green Environment</a></h4>
-                                        </div>
-                                    </li>
-                                </ul>
-                           	</div>
-                        </div>
                         <div class="widget sidebar-widget widget_categories">
                         	<h3 class="widgettitle">Cause Categories</h3>
                             <ul>
@@ -272,7 +290,7 @@
                             </ul>
                         </div>
                         <div class="widget recent_posts">
-                          	<h3 class="widgettitle">Latest Posts</h3>
+                           	<h3 class="widgettitle">Latest Posts</h3>
                             <ul>
                                 <li>
                                     <a href="single-post.php" class="media-box">
@@ -296,6 +314,41 @@
                                     <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="widget widget_testimonials">
+                        	<h3 class="widgettitle">Stories of change</h3>
+                            <div class="carousel-wrapper">
+                                <div class="row">
+                                    <ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1">
+                                        <li class="item">
+                                            <div class="testimonial-block">
+                                                <blockquote>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                                </blockquote>
+                                                <div class="testimonial-avatar"><img src="images/story1.jpg" alt="" width="70" height="70"></div>
+                                                <div class="testimonial-info">
+                                                    <div class="testimonial-info-in">
+                                                        <strong>Ada Ajimobi</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item">
+                                            <div class="testimonial-block">
+                                                <blockquote>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                                </blockquote>
+                                                <div class="testimonial-avatar"><img src="images/story2.jpg" alt="" width="70" height="70"></div>
+                                                <div class="testimonial-info">
+                                                    <div class="testimonial-info-in">
+                                                        <strong>Chloe Lévesque</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -380,7 +433,7 @@
     	<div class="modal-content">
       		<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<div class="row">
+                <div class="row">
                     <div class="col-md-6 col-sm-6 donate-amount-option">
                         <h4>Choose an amount</h4>
                         <ul class="predefined-amount">

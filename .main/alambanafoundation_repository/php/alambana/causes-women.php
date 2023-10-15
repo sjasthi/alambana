@@ -51,41 +51,27 @@
                 <div class="header-info-col"><i class="fa fa-phone"></i>  +91 (81-ALAMBANA)</div>
                 <ul class="sf-menu dd-menu pull-right" role="menu">
                     <li><a href="index.php">Home</a>
-                            <ul>
-                                <li><a href="index2.php">Home version 2</a></li>
-                                <li><a href="index3.php">Home version 3</a></li>
-                                <li><a href="index.php">Header Styles</a>
-                                    <ul>
-                                        <li><a href="index.php">Style 1 (Default)</a></li>
-                                        <li><a href="header-style2.php">Style 2</a></li>
-                                        <li><a href="header-style3.php">Style 3</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                            </li>
                     <li><a href="about.php">About</a>
                     	<ul>
                     		<li><a href="about.php">Introduction</a></li>
                     		<li><a href="team.php">Team</a></li>
                     		<li><a href="our-impact.php">Our Impact</a></li>
-                    		<li><a href="careers.php">Careers</a></li>
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="causes.php">Community Support</a>
+                    <li><a href="community-support.php">Community Support</a>
                     	<ul>
-                    		<li><a href="causes.php">Eudcation</a></li>
-                    		<li><a href="causes-grid.php">Hunger Relief</a></li>
-                    		<li><a href="single-cause.php">Women Empowerment</a></li>
-							<li><a href="single-cause.php">Community Development</a></li>
+                    		<li><a href="causes-education.php">Education</a></li>
+                    		<li><a href="causes-hunger.php">Hunger Relief</a></li>
+                    		<li><a href="causes-women.php">Women Empowerment</a></li>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>
                     	<ul>
-                    		<li><a href="events.php">Events List</a></li>
                     		<li><a href="events-grid.php">Events Grid</a></li>
                     		<li><a href="events-calendar.php">Events Calendar</a></li>
-                    		<li><a href="single-event.php">Single Event</a></li>
+							<li><a href="community-event.php">Community Events</a></li>
                         </ul>
                     </li>
                     <li><a href="gallery-caption-2cols.php">Gallery</a>
@@ -106,7 +92,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Mega Menu</a>
+                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
                         <ul class="dropdown">
                             <li>
                                 <div class="megamenu-container container">
@@ -192,7 +178,7 @@
     	<div class="page-banner parallax" style="background-image:url(images/women.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
-        			<h1 class="block-title">Our Causes</h1>
+        			<h1 class="block-title">Woman Empower</h1>
                 </div>
             </div>
         </div>
@@ -231,7 +217,7 @@
                                     </div>
                                     <div class="col-md-8 col-sm-8">
                                         <div class="cause-list-item-cont">
-                                            <h3 class="post-title"><a href="single-cause.php">Community Support and Resources</a></h3>
+                                            <h3 class="post-title"><a href="community-support.php">Community Support and Resources</a></h3>
                                             <p>Connect women with resources and support groups.</p>
                                             <div class="meta-data">Donated $21840 / <span class="cause-target">$40000</span></div>
                                         </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
@@ -45,44 +46,31 @@
                     <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
                     <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
                 </div>
-                <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> 1800-9090-8089</div>
+             	<a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                <div class="header-info-col"><i class="fa fa-phone"></i> +91 (81-ALAMBANA)</div>
                 <ul class="sf-menu dd-menu pull-right" role="menu">
                     <li><a href="index.php">Home</a>
-                            <ul>
-                                <li><a href="index2.php">Home version 2</a></li>
-                                <li><a href="index3.php">Home version 3</a></li>
-                                <li><a href="index.php">Header Styles</a>
-                                    <ul>
-                                        <li><a href="index.php">Style 1 (Default)</a></li>
-                                        <li><a href="header-style2.php">Style 2</a></li>
-                                        <li><a href="header-style3.php">Style 3</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                            </li>
                     <li><a href="about.php">About</a>
                     	<ul>
                     		<li><a href="about.php">Introduction</a></li>
                     		<li><a href="team.php">Team</a></li>
                     		<li><a href="our-impact.php">Our Impact</a></li>
-                    		<li><a href="careers.php">Careers</a></li>
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="causes.php">Causes</a>
+                    <li><a href="community-support.php">Community Support</a>
                     	<ul>
-                    		<li><a href="causes.php">Causes List</a></li>
-                    		<li><a href="causes-grid.php">Causes Grid</a></li>
-                    		<li><a href="single-cause.php">Single Cause</a></li>
+                    		<li><a href="causes-education.php">Education</a></li>
+                    		<li><a href="causes-hunger.php">Hunger Relief</a></li>
+                    		<li><a href="causes-women.php">Women Empowerment</a></li>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>
                     	<ul>
-                    		<li><a href="events.php">Events List</a></li>
                     		<li><a href="events-grid.php">Events Grid</a></li>
                     		<li><a href="events-calendar.php">Events Calendar</a></li>
-                    		<li><a href="single-event.php">Single Event</a></li>
+							<li><a href="community-event.php">Community Events</a></li>
                         </ul>
                     </li>
                     <li><a href="gallery-caption-2cols.php">Gallery</a>
@@ -103,7 +91,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Mega Menu</a>
+                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
                         <ul class="dropdown">
                             <li>
                                 <div class="megamenu-container container">
@@ -189,7 +177,7 @@
     	<div class="page-banner parallax" style="background-image:url(images/parallax6.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
-        			<h1 class="block-title">About us</h1>
+        			<h1 class="block-title">Hunger</h1>
                 </div>
             </div>
         </div>
@@ -198,167 +186,117 @@
     <div id="main-container">
     	<div class="content">
         	<div class="container">
-        		<div class="row">
-                	<div class="col-md-4 col-sm-4">
-                        <div class="icon-box ibox-plain">
-                            <div class="ibox-icon">
-                                <i class="fa fa-windows"></i>
-                            </div>
-                            <h3>Boxed &amp; Wide Layouts</h3>
-                            <p>2 layout choices for Wide screen and Boxed layout with option to set patterns and images as background.</p>
-                        </div>
-                        <div class="spacer-20"></div>
-                        <div class="icon-box ibox-plain">
-                            <div class="ibox-icon">
-                                <i class="fa fa-navicon"></i>
-                            </div>
-                            <h3>Megamenu</h3>
-                            <p>The main menu is ready for the multi columns mega menu which can have any kind of HTML/TEXT inside.</p>
-                        </div>
-                        <div class="spacer-20"></div>
-                        <div class="icon-box ibox-plain">
-                            <div class="ibox-icon">
-                                <i class="fa fa-twitter"></i>
-                            </div>
-                            <h3>Twitter Widget</h3>
-                            <p>An easy to use Twitter feeds plugin is included in the template which can fetch any number of Tweets from your account.</p>
-                        </div>
-                   	</div>
-                    <div class="col-md-8 col-sm-8">
-                    	<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                        <div class="row">
-                        	<div class="col-md-4 col-sm-4">
-                            	<div class="grid-item">
-                                	<img src="images/event1.jpg" alt="">
-                                    <div class="grid-item-content">
-                                    	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        	<div class="col-md-4 col-sm-4">
-                            	<div class="grid-item">
-                                	<img src="images/event4.jpg" alt="">
-                                    <div class="grid-item-content">
-                                    	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        	<div class="col-md-4 col-sm-4">
-                            	<div class="grid-item">
-                                	<img src="images/event5.jpg" alt="">
-                                    <div class="grid-item-content">
-                                    	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               	</div>
-                
-                <div class="cta">
-                 	<a href="causes.php" class="btn btn-primary pull-right">Donate Now</a>
-                	<p>Let's start doing your bit for the world. Donate a little.</p>
+                <div class="grid-filter">
+                    <ul class="nav nav-pills sort-source" data-sort-id="gallery" data-option-key="filter">
+                        <li data-option-value="*" class="active"><a href="#"><i class="fa fa-th"></i> <span>Show All</span></a></li>
+                        <li data-option-value=".education"><a href="#"><span>Education</span></a></li>
+                        <li data-option-value=".wild-life"><a href="#"><span>Wild Life</span></a></li>
+                        <li data-option-value=".environment"><a href="#"><span>Environment</span></a></li>
+                        <li data-option-value=".water"><a href="#"><span>Water</span></a></li>
+                        <li data-option-value=".human-rights"><a href="#"><span>Human Rights</span></a></li>
+                        <li data-option-value=".small-business"><a href="#"><span>Small Business</span></a></li>
+                    </ul>
                 </div>
-                <div class="spacer-30"></div>
-                
                 <div class="row">
-                	<div class="col-md-5 col-sm-5">
-                		<h2>Our Staff &amp; Volunteers</h2>
-                        <hr class="sm">
-                       	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                    </div>
-                    <div class="col-md-7 col-sm-7">
-                    	<div class="row">
-                        	<div class="col-ms-4 col-sm-4 col-xs-4">
-                                <ul class="carets">
-                                    <li>Adamu Makinwa</li>
-                                    <li>Casper Lundin</li>
-                                    <li>Thomas Gagné</li>
-                                    <li>Christina Morgan </li>
-                                    <li>Markovics Zoltán </li>
-                                    <li>Jacolien Hendriks</li>
-                                </ul>
+                    <ul class="sort-destination isotope gallery-items" data-sort-id="gallery">
+                        <li class="col-md-4 col-sm-6 grid-item cause-grid-item small-business format-standard">
+                        	<div class="grid-item-inner">
+                                <a href="single-cause.php" class="media-box">
+                                    <img src="images/causeg1.jpg" alt="">
+                                </a>
+                                <div class="grid-item-content">
+                                 	<a class="cProgress" data-complete="88" data-color="F23827" data-toggle="tooltip" data-original-title="10 days left"><strong></strong></a>
+                                    <h3 class="post-title"><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h3>
+                                   	<div class="meta-data">Donated $26400 / <span class="cause-target">$30000</span></div>
+                                 	<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                                </div>
                            	</div>
-                        	<div class="col-ms-4 col-sm-4 col-xs-4">
-                                <ul class="carets">
-                                    <li>Isabela Barboza </li>
-                                    <li>Juhani Virtanen </li>
-                                    <li>Phan Châu</li>
-                                    <li>Kuzey Ünal</li>
-                                    <li>Juan Rubio</li>
-                                    <li>Marko Mlakar</li>
-                                </ul>
+                        </li>
+                        <li class="col-md-4 col-sm-6 grid-item cause-grid-item human-rights format-standard">
+                        	<div class="grid-item-inner">
+                                <a href="single-cause.php" class="media-box">
+                                    <img src="images/causeg2.jpg" alt="">
+                                </a>
+                                <div class="grid-item-content">
+                                 	<a class="cProgress" data-complete="52" data-color="F6BB42" data-toggle="tooltip" data-original-title="25 days left"><strong></strong></a>
+                                    <h3 class="post-title"><a href="single-cause.php">Help relocate the refugees</a></h3>
+                                   	<div class="meta-data">Donated $21840 / <span class="cause-target">$40000</span></div>
+                                 	<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                                </div>
                            	</div>
-                        	<div class="col-ms-4 col-sm-4 col-xs-4">
-                                <ul class="carets">
-                                    <li>Kelly Lambert</li>
-                                    <li>Walid Ahelluc</li>
-                                    <li>Ernst Graf</li>
-                                    <li>Lore Smets</li>
-                                    <li>Camiel de Graaf</li>
-                                    <li>Ladislau Berindei</li>
-                                </ul>
+                        </li>
+                        <li class="col-md-4 col-sm-6 grid-item cause-grid-item wild-life format-standard">
+                        	<div class="grid-item-inner">
+                                <a href="single-cause.php" class="media-box">
+                                    <img src="images/causeg5.jpg" alt="">
+                                </a>
+                                <div class="grid-item-content">
+                                 	<a class="cProgress" data-complete="75" data-color="8CC152" data-toggle="tooltip" data-original-title="65 days left"><strong></strong></a>
+                                    <h3 class="post-title"><a href="single-cause.php">Save tigers from poachers</a></h3>
+                                   	<div class="meta-data">Donated $15000 / <span class="cause-target">$20000</span></div>
+                                 	<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                                </div>
                            	</div>
-                        </div>
-                    </div>
+                        </li>
+                        <li class="col-md-4 col-sm-6 grid-item cause-grid-item human-rights environment format-standard">
+                        	<div class="grid-item-inner">
+                                <a href="single-cause.php" class="media-box">
+                                    <img src="images/causeg6.jpg" alt="">
+                                </a>
+                                <div class="grid-item-content">
+                                 	<a class="cProgress" data-complete="88" data-color="8CC152" data-toggle="tooltip" data-original-title="70 days left"><strong></strong></a>
+                                    <h3 class="post-title"><a href="single-cause.php">Help rebuild Nepal</a></h3>
+                                   	<div class="meta-data">Donated $176000 / <span class="cause-target">$200000</span></div>
+                                 	<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                                </div>
+                           	</div>
+                        </li>
+                        <li class="col-md-4 col-sm-6 grid-item cause-grid-item human-rights education format-standard">
+                        	<div class="grid-item-inner">
+                                <a href="single-cause.php" class="media-box">
+                                    <img src="images/causeg3.jpg" alt="">
+                                </a>
+                                <div class="grid-item-content">
+                                 	<a class="cProgress" data-complete="20" data-color="8CC152" data-toggle="tooltip" data-original-title="102 days left"><strong></strong></a>
+                                    <h3 class="post-title"><a href="single-cause.php">Education for everyone</a></h3>
+                                   	<div class="meta-data">Donated $4000 / <span class="cause-target">$20000</span></div>
+                                 	<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                                </div>
+                           	</div>
+                        </li>
+                        <li class="col-md-4 col-sm-6 grid-item cause-grid-item water environment human-rights format-standard">
+                        	<div class="grid-item-inner">
+                                <a href="single-cause.php" class="media-box">
+                                    <img src="images/causeg4.jpg" alt="">
+                                </a>
+                                <div class="grid-item-content">
+                                 	<a class="cProgress" data-complete="50" data-color="8CC152" data-toggle="tooltip" data-original-title="105 days left"><strong></strong></a>
+                                    <h3 class="post-title"><a href="single-cause.php">Save water initiative</a></h3>
+                                   	<div class="meta-data">Donated $5000 / <span class="cause-target">$10000</span></div>
+                                 	<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                                </div>
+                           	</div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="spacer-20"></div>
-                <div class="row">
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Tayri awragh</h3>
-                                    <span class="meta-data">CEO/Founder</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/post1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Howard Porter</h3>
-                                    <span class="meta-data">Education Campaigns Manager</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff2.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Ayoub Ameqran</h3>
-                                    <span class="meta-data">Environment Campaigns Manager</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                </div>
+                <!-- Page Pagination -->
+                <nav>
+                    <ul class="pagination pagination-lg">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
@@ -394,8 +332,18 @@
                 </div>
             	<div class="col-md-4 col-sm-4">
                 	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">We are on Twitter</h4>
-                        <div class="twitter-widget" data-tweets-count="2"></div>
+                    	<h4 class="widgettitle">Contact Us</h4>
+                        <p style="color: white;">
+                            Alambana Foundation - India Office<br>
+                            4-222 Super Bazar Road<br>
+                            Proddatur, 516360<br>
+                            Andhra Pradesh, India<br>
+                            +91 81-25262262
+                        </p>
+                        
+                        <p>Email: <a href="mailto:admin@alambanafoundation.org" style="color: white;">admin@alambanafoundation.org</a></p>
+   
+                       <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
                     </div>
                 </div>
             </div>
@@ -407,7 +355,7 @@
         	<div class="row">
             	<div class="col-md-6 col-sm-6">
                 	<div class="copyrights-col-left">
-                    	<p>&copy; 2016 Born to Give. All Rights Reserved</p>
+                    	<p>&copy; 2023 Alambana Foundation. All Rights Reserved</p>
                     </div>
                 </div>
             	<div class="col-md-6 col-sm-6"></div>
@@ -421,7 +369,87 @@
            	</div>
       	</div>
   	</div>
+  	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
+</div>
   	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
+<!-- Donate Form Modal -->
+<div class="modal fade" id="DonateModal" tabindex="-1" role="dialog" data-backdrop="static">
+  	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<div class="row">
+                    <div class="col-md-6 col-sm-6 donate-amount-option">
+                        <h4>Choose an amount</h4>
+                        <ul class="predefined-amount">
+                            <li><label><input type="radio" name="donation-amount">$10</label></li>
+                            <li><label><input type="radio" name="donation-amount">$20</label></li>
+                            <li><label><input type="radio" name="donation-amount">$30</label></li>
+                            <li><label><input type="radio" name="donation-amount">$50</label></li>
+                            <li><label><input type="radio" name="donation-amount">$100</label></li>
+                        </ul>
+                    </div>
+                    <span class="donation-choice-breaker">Or</span>
+                    <div class="col-md-6 col-sm-6 donate-amount-option">
+                        <h4>Enter your own</h4>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">$</span>
+                            <input type="number" class="form-control">
+                        </div>
+                    </div>
+               	</div>
+      		</div>
+      		<div class="modal-body">
+       			<div class="row">
+                	<div class="col-md-6 col-sm-6 donation-form-infocol">
+                    	<h4>Address</h4>
+                        <input type="text" class="form-control" placeholder="Address line 1">
+                        <input type="text" class="form-control" placeholder="Address line 2">
+       					<div class="row">
+                			<div class="col-md-8 col-sm-8 col-xs-8">
+                        		<input type="text" class="form-control" placeholder="State/City">
+                            </div>
+                			<div class="col-md-4 col-sm-4 col-xs-4">
+                        		<input type="text" class="form-control" placeholder="Zipcode">
+                            </div>
+                    	</div>
+       					<div class="row">
+                			<div class="col-md-3 col-sm-3 col-xs-3">
+                        		<label>Country</label>
+                            </div>
+                			<div class="col-md-9 col-sm-9 col-xs-9">
+                                <select class="selectpicker">
+                                    <option>United States</option>
+                                    <option>Australia</option>
+                                    <option>Netherlands</option>
+                                </select>
+                            </div>
+                    	</div>
+                    </div>
+                	<div class="col-md-6 col-sm-6 donation-form-infocol">
+                    	<h4>Personal info</h4>
+       					<div class="row">
+                			<div class="col-md-6 col-sm-6 col-xs-6">
+                        		<input type="text" class="form-control" placeholder="First name">
+                            </div>
+                			<div class="col-md-6 col-sm-6 col-xs-6">
+                        		<input type="text" class="form-control" placeholder="Last name">
+                            </div>
+                    	</div>
+                        <input type="text" class="form-control" placeholder="Email address">
+                        <input type="text" class="form-control" placeholder="Phone no.">
+                        <label class="checkbox"><input type="checkbox"> Register me on this website</label>
+                    </div>
+                 </div>
+      		</div>
+      		<div class="modal-footer text-align-center">
+        		<button type="button" class="btn btn-primary">Make your donation now</button>
+                <div class="spacer-20"></div>
+                <p class="small">Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi.</p>
+      		</div>
+    	</div>
+  	</div>
+</div>
 <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
 <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- PrettyPhoto Plugin -->
 <script src="js/ui-plugins.js"></script> <!-- UI Plugins -->
