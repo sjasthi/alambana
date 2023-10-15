@@ -1,4 +1,4 @@
-<?php
+ <?php
 include 'dbconnect.php';
 
 ?>
@@ -55,43 +55,30 @@ include 'dbconnect.php';
                     <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
                 </div>
                 <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> 1800-9090-8089</div>
+                <div class="header-info-col"><i class="fa fa-phone"></i> +91 (81-ALAMBANA)</div>
                 <ul class="sf-menu dd-menu pull-right" role="menu">
                     <li><a href="index.php">Home</a>
-                            <ul>
-                                <li><a href="index2.php">Home version 2</a></li>
-                                <li><a href="index3.php">Home version 3</a></li>
-                                <li><a href="index.php">Header Styles</a>
-                                    <ul>
-                                        <li><a href="index.php">Style 1 (Default)</a></li>
-                                        <li><a href="header-style2.php">Style 2</a></li>
-                                        <li><a href="header-style3.php">Style 3</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                            </li>
                     <li><a href="about.php">About</a>
                     	<ul>
                     		<li><a href="about.php">Introduction</a></li>
                     		<li><a href="team.php">Team</a></li>
                     		<li><a href="our-impact.php">Our Impact</a></li>
-                    		<li><a href="careers.php">Careers</a></li>
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="causes.php">Causes</a>
+                    <li><a href="community-support.php">Community Support</a>
                     	<ul>
-                    		<li><a href="causes.php">Causes List</a></li>
-                    		<li><a href="causes-grid.php">Causes Grid</a></li>
-                    		<li><a href="single-cause.php">Single Cause</a></li>
+                    		<li><a href="causes-education.php">Education</a></li>
+                    		<li><a href="causes-hunger.php">Hunger Relief</a></li>
+                    		<li><a href="causes-women.php">Women Empowerment</a></li>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>
                     	<ul>
-                    		<li><a href="events.php">Events List</a></li>
                     		<li><a href="events-grid.php">Events Grid</a></li>
                     		<li><a href="events-calendar.php">Events Calendar</a></li>
-                    		<li><a href="single-event.php">Single Event</a></li>
+							<li><a href="community-event.php">Community Events</a></li>
                         </ul>
                     </li>
                     <li><a href="gallery-caption-2cols.php">Gallery</a>
@@ -112,7 +99,7 @@ include 'dbconnect.php';
                             </li>
                         </ul>
                     </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Mega Menu</a>
+                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
                         <ul class="dropdown">
                             <li>
                                 <div class="megamenu-container container">
@@ -368,8 +355,18 @@ include 'dbconnect.php';
                 </div>
             	<div class="col-md-4 col-sm-4">
                 	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">We are on Twitter</h4>
-                        <div class="twitter-widget" data-tweets-count="2"></div>
+                    	<h4 class="widgettitle">Contact Us</h4>
+                        <p style="color: white;">
+                            Alambana Foundation - India Office<br>
+                            4-222 Super Bazar Road<br>
+                            Proddatur, 516360<br>
+                            Andhra Pradesh, India<br>
+                            +91 81-25262262
+                        </p>
+                        
+                        <p>Email: <a href="mailto:admin@alambanafoundation.org" style="color: white;">admin@alambanafoundation.org</a></p>
+   
+                       <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
                     </div>
                 </div>
             </div>
@@ -381,7 +378,7 @@ include 'dbconnect.php';
         	<div class="row">
             	<div class="col-md-6 col-sm-6">
                 	<div class="copyrights-col-left">
-                    	<p>&copy; 2016 Born to Give. All Rights Reserved</p>
+                    	<p>&copy; 2023 Alambana Foundation. All Rights Reserved</p>
                     </div>
                 </div>
             	<div class="col-md-6 col-sm-6"></div>
@@ -395,6 +392,8 @@ include 'dbconnect.php';
            	</div>
       	</div>
   	</div>
+  	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
+</div>
   	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
 <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
 <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- PrettyPhoto Plugin -->

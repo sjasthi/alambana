@@ -82,18 +82,18 @@ if(!isset($_SESSION)) {
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="causes.php">Community Support</a>
+                    <li><a href="community-support.php">Community Support</a>
                     	<ul>
                     		<li><a href="causes-education.php">Education</a></li>
                     		<li><a href="causes-hunger.php">Hunger Relief</a></li>
                     		<li><a href="causes-women.php">Women Empowerment</a></li>
-                            <li><a href="causes-community.php">Community Development</a></li>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>
                     	<ul>
                     		<li><a href="events-grid.php">Events Grid</a></li>
                     		<li><a href="events-calendar.php">Events Calendar</a></li>
+							<li><a href="community-event.php">Community Events</a></li>
                         </ul>
                     </li>
                     <li><a href="gallery-caption-2cols.php">Gallery</a>
