@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2023 at 09:47 PM
+-- Generation Time: Oct 18, 2023 at 02:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,7 +42,32 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, `Modified_Time`, `Created_Time`) VALUES
-(1, 'Blog_title_test', 'Blog_Author_test', 'This is a blog test for description.', 'link_test', NULL, '2023-10-16 14:08:04');
+(1, 'A1', 'A1', 'test test test1', '', '2023-10-17 18:58:14', '2023-10-17 18:58:14'),
+(2, 'A2', 'A2', 'test test test2', '', '2023-10-17 18:58:14', '2023-10-17 18:58:14'),
+(3, 'A3', 'A3', 'test test test3', '', '2023-10-17 18:58:14', '2023-10-17 18:58:14'),
+(4, 'A4', 'A4', 'test test test4', '', '2023-10-17 18:58:14', '2023-10-17 18:58:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_pictures`
+--
+
+CREATE TABLE `blog_pictures` (
+  `Picture_Id` int(11) NOT NULL,
+  `Blog_Id` int(11) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blog_pictures`
+--
+
+INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
+(1, 1, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
+(2, 2, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
+(3, 3, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
+(4, 4, 'images/blog_pictures/652ebd26a63459.77716501.jpg');
 
 --
 -- Indexes for dumped tables
@@ -55,6 +80,12 @@ ALTER TABLE `blogs`
   ADD PRIMARY KEY (`Blog_Id`);
 
 --
+-- Indexes for table `blog_pictures`
+--
+ALTER TABLE `blog_pictures`
+  ADD PRIMARY KEY (`Picture_Id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -62,7 +93,13 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `blog_pictures`
+--
+ALTER TABLE `blog_pictures`
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
