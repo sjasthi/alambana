@@ -1,24 +1,39 @@
 <?php
-include 'dbconnect.php';
+$Title = $_POST['Title'];
+$Description = $_POST['Description'];
+$Video_Link = $_POST['Video_Link'];
+$Event_Date = $_POST['Event_Date'];
+$Created_Time = date('Y-m-d H:i:s');
+$Modified_Time = $Created_Time;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $event_name = $_POST['event_name'];
-    $event_date = $_POST['event_date'];
-    $event_description = $_POST['event_description'];
-    $event_image = $_POST['event_image'];
+// SQL query to insert data into the events table
+$sql = "INSERT INTO events (Title, Description, Video_Link, Event_Date, Created_Time, Modified_Time)
+        VALUES ('$Title', '$Description', '$Video_Link', '$Event_Date', '$Created_Time', '$Modified_Time')";
 
-    $stmt = $conn->prepare("INSERT INTO events (Event_Name, Event_Date, Event_Description, Event_Image) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$event_name, $event_date, $event_description, $event_image]);
+    mysqli_query($connection, $sql);
+    // Get the ID of the last inserted record
+    $Event_ID = mysqli_insert_id($connection);
 
-    echo "Event added successfully!";
-}
+    // Handle event picture uploads 
+    $fileCount = count($_FILES['Location']['name']);
+    if ($fileCount > 0) {
+        for ($i = 0; $i < $fileCount; $i++) {
+            $fileTmpName = $_FILES['Location']['tmp_name'][$i];
+            $fileType = $_FILES['Location']['type'][$i];
+            $guid = uniqid();
+            $extension = pathinfo($_FILES['Location']['name'][$i], PATHINFO_EXTENSION);
+            $FileLocation = $guid . '.' . $extension;
+            $destination = 'images/event_pictures/' . $FileLocation;
+
+            // SQL query to insert event picture data into the event_pictures table
+            $sql = "INSERT INTO event_pictures (Event_Id, Location) VALUES ('$Event_ID', '$destination')";
+            mysqli_query($connection, $sql);
+            move_uploaded_file($fileTmpName, $destination);
+        }
+    }
+
+    // Close the database connection
+    mysqli_close($connection);
+    header("Location: admin_events.php"); 
 
 ?>
-
-<form action="add_event.php" method="post">
-    Event Name: <input type="text" name="event_name"><br>
-    Event Date: <input type="date" name="event_date"><br>
-    Event Description: <textarea name="event_description"></textarea><br>
-    Event Image URL: <input type="text" name="event_image"><br>
-    <input type="submit" value="Add Event">
-</form>

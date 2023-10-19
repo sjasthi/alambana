@@ -105,3 +105,72 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+--
+-- TABLE STRUCTURE FOR TABLE 'events'
+
+CREATE TABLE `events`(
+  `Event_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(100) DEFAULT NULL,
+  `Description` text DEFAULT NULL,
+  `Video_Link` varchar(200) DEFAULT NULL,
+  `Event_Date` datetime DEFAULT NULL,
+  'Created_Time' datetime DEFAULT NULL,
+  'Modified_Time' datetime DEFAULT NULL,
+  PRIMARY KEY (`Event_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table `events`
+INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`) VALUES
+(1, 'Event 1', 'Description for Event 1', ' ', '2023-10-18 10:00:00', '2023-10-18 09:00:00', '2023-10-18 09:30:00'),
+(2, 'Event 2', 'Description for Event 2', ' ', '2023-10-19 14:00:00', '2023-10-19 13:00:00', '2023-10-19 13:30:00');
+
+
+
+  -- Create the event_pictures table
+CREATE TABLE `event_pictures` (
+  `Picture_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Event_Id` int(11) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Picture_Id`),
+  FOREIGN KEY (`Event_Id`) REFERENCES `events` (`Event_Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- Insert data into the event_pictures table
+INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
+(1, 'images/event_pictures/event1_picture.jpg'),
+(1, 'images/event_pictures/event1_picture_2.jpg'),
+(2, 'images/event_pictures/event2_picture.jpg'),
+(3, 'images/event_pictures/event3_picture.jpg');
+
+
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`Event_Id`);
+
+  --
+-- Indexes for table `blog_pictures`
+--
+ALTER TABLE `event_pictures`
+  ADD PRIMARY KEY (`Event_Id`);
+
+  --
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `events`
+  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `blog_pictures`
+--
+ALTER TABLE `event_pictures`
+  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
