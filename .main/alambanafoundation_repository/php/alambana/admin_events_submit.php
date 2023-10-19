@@ -77,3 +77,4 @@ if (!mysqli_query($connection, $sql)) {
 <form method="POST" id="edit_event_form" action="admin_edit_event.php">
     <?php echo "<input type=\"hidden\" name=\"Event_Id\" value=\"$Event_Id\">"; ?>
 </form>
+

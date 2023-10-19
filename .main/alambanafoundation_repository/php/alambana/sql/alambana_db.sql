@@ -113,16 +113,17 @@ COMMIT;
 --
 -- TABLE STRUCTURE FOR TABLE 'events'
 
-CREATE TABLE `events`(
+CREATE TABLE `events` (
   `Event_Id` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(100) DEFAULT NULL,
   `Description` text DEFAULT NULL,
   `Video_Link` varchar(200) DEFAULT NULL,
   `Event_Date` datetime DEFAULT NULL,
-  'Created_Time' datetime DEFAULT NULL,
-  'Modified_Time' datetime DEFAULT NULL,
+  `Created_Time` datetime DEFAULT NULL,
+  `Modified_Time` datetime DEFAULT NULL,
   PRIMARY KEY (`Event_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- Dumping data for table `events`
 INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`) VALUES
@@ -133,11 +134,9 @@ INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_D
 
   -- Create the event_pictures table
 CREATE TABLE `event_pictures` (
-  `Picture_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Picture_Id` int(11) NOT NULL,
   `Event_Id` int(11) DEFAULT NULL,
-  `Location` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`Picture_Id`),
-  FOREIGN KEY (`Event_Id`) REFERENCES `events` (`Event_Id`) ON DELETE CASCADE
+  `Location` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -147,30 +146,3 @@ INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
 (1, 'images/event_pictures/event1_picture_2.jpg'),
 (2, 'images/event_pictures/event2_picture.jpg'),
 (3, 'images/event_pictures/event3_picture.jpg');
-
-
-
---
--- Indexes for table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`Event_Id`);
-
-  --
--- Indexes for table `blog_pictures`
---
-ALTER TABLE `event_pictures`
-  ADD PRIMARY KEY (`Event_Id`);
-
-  --
--- AUTO_INCREMENT for table `blogs`
---
-ALTER TABLE `events`
-  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `blog_pictures`
---
-ALTER TABLE `event_pictures`
-  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
