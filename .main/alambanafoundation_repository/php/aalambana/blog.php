@@ -251,20 +251,12 @@
       </div>
     </div>
 
-
-
-
-
-      <!-- Site Footer -->
-      <?php load_common_page_footer() ?>
-      <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    </div>
-
+    <!-- Site Footer -->
+    <?php load_common_page_footer() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
     <!-- Style Switcher Start -->
     <?php style_switcher() ?>
 
 </body>
-
 </html>

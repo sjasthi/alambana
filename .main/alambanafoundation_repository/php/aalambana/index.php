@@ -14,6 +14,9 @@
 <!-- Basic Page Needs
   ================================================== -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- Include the favicon.ico file -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <title>Aalambana Foundation - Empowering Dreams through Education</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -430,54 +433,48 @@
     </div>
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
+    <!-- Donate Form Modal -->
+    <?php donate_dialog() ?>
+    <!-- Libraries Loader -->
+    <?php lib() ?>
+    <!-- Style Switcher Start -->
+    <?php style_switcher() ?>
+    
+    <script type="text/javascript">
 
-  	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
-</div>
+    // FrontPage Time Counter
+    var expiryDate = $('#counter').data('date');
+    var target = new Date(expiryDate),
+    finished = false,
+    availiableExamples = {
+        set15daysFromNow: 15 * 24 * 60 * 60 * 1000,
+        set5minFromNow  : 5 * 60 * 1000,
+        set1minFromNow  : 1 * 60 * 1000
+    };
+    function callback(event) {
+        $this = $(this);
+        switch(event.type) {
+            case "seconds":
+            case "minutes":
+            case "hours":
+            case "days":
+            case "weeks":
+            case "daysLeft":
+                $this.find('div span#'+event.type).php(event.value);
+                if(finished) {
+                    $this.fadeTo(0, 1);
+                    finished = false;
+                }
 
-<!-- Donate Form Modal -->
-<?php donate_dialog() ?>
-<!-- Libraries Loader -->
-<?php lib() ?>
+                break;
+            case "finished":
+                $this.fadeTo('slow', .5);
+                finished = true;
+                break;
+        }
+    }
+    $('#counter').countdown(target.valueOf(), callback);
+    </script>
 
-<script type="text/javascript">
-
-// FrontPage Time Counter
-var expiryDate = $('#counter').data('date');
-var target = new Date(expiryDate),
-finished = false,
-availiableExamples = {
-	set15daysFromNow: 15 * 24 * 60 * 60 * 1000,
-	set5minFromNow  : 5 * 60 * 1000,
-	set1minFromNow  : 1 * 60 * 1000
-};
-function callback(event) {
-	$this = $(this);
-	switch(event.type) {
-		case "seconds":
-		case "minutes":
-		case "hours":
-		case "days":
-		case "weeks":
-		case "daysLeft":
-			$this.find('div span#'+event.type).php(event.value);
-			if(finished) {
-				$this.fadeTo(0, 1);
-				finished = false;
-			}
-
-			break;
-		case "finished":
-			$this.fadeTo('slow', .5);
-			finished = true;
-			break;
-	}
-}
-$('#counter').countdown(target.valueOf(), callback);
-</script>
-<script src="style-switcher/js/jquery_cookie.js"></script>
-<script src="style-switcher/js/script.js"></script>
-
-<!-- Style Switcher Start -->
-<?php style_switcher() ?>
 </body>
 </html>
