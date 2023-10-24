@@ -19,24 +19,25 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     echo '
         <!-- Shared Site Libraries -->
         <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
-        <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- Maginific Popup Plugin -->
+        <script src="js/bootstrap.js"></script> <!-- UI -->
         <script src="js/ui-plugins.js"></script> <!-- UI Plugins -->
         <script src="js/helper-plugins.js"></script> <!-- Helper Plugins -->
-        <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script> <!-- Owl Carousel -->
-        <script src="js/bootstrap.js"></script> <!-- UI -->
         <script src="js/init.js"></script> <!-- All Scripts -->
-        <script src="vendor/flexslider/js/jquery.flexslider.js"></script> <!-- FlexSlider -->
         <script src="js/circle-progress.js"></script> <!-- Circle Progress Bars -->
+        <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- Maginific Popup Plugin -->
         <script src="vendor/countdown/js/jquery.countdown.min.js"></script> <!-- Jquery Timer -->
+        <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script> <!-- Owl Carousel -->
+        <script src="vendor/flexslider/js/jquery.flexslider.js"></script> <!-- FlexSlider -->
 
         <!-- Switcher Libraries -->
         <script src="style-switcher/js/jquery_cookie.js"></script>
         <script src="style-switcher/js/script.js"></script>
 
         <!-- Calendar Moment Function -->
+        <script src="vendor/fullcalendar/fullcalendar.min.js"></script>
         <script src="vendor/fullcalendar/lib/moment.min.js"></script><!-- Calendar Moment Function -->
         <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- PrettyPhoto Plugin -->
-        <script src="vendor/fullcalendar/fullcalendar.min.js"></script>
+        
 
     ';
   }
