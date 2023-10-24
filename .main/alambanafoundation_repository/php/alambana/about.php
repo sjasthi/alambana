@@ -1,3 +1,15 @@
+
+<?php
+
+  if(!isset($_SESSION)) { 
+      session_start();
+  } 
+
+  include 'global_content.php';
+?>
+
+
+
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
@@ -35,142 +47,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <div class="site-header-wrapper">
-        <!-- Site Header -->
-        <header class="site-header">
-            <div class="container">
-                <div class="site-logo">
-                    <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
-                    <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199" height="30"></a>
-                    <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
-                    <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
-                </div>
-                <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> +91 (81-ALAMBANA)</div>
-                <ul class="sf-menu dd-menu pull-right" role="menu">
-                    <li><a href="index.php">Home</a>
-                            </li>
-                    <li><a href="about.php">About</a>
-                    	<ul>
-                    		<li><a href="about.php">Introduction</a></li>
-                    		<li><a href="team.php">Team</a></li>
-                    		<li><a href="our-impact.php">Our Impact</a></li>
-                    		<li><a href="contact.php">Contact</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="community-support.php">Community Support</a>
-                    	<ul>
-                    		<li><a href="causes-education.php">Education</a></li>
-                    		<li><a href="causes-hunger.php">Hunger Relief</a></li>
-                    		<li><a href="causes-women.php">Women Empowerment</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="events.php">Events</a>
-                    	<ul>
-                    		<li><a href="events-grid.php">Events Grid</a></li>
-                    		<li><a href="events-calendar.php">Events Calendar</a></li>
-							<li><a href="community-event.php">Community Events</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery-caption-2cols.php">Gallery</a>
-                    	<ul>
-                    		<li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
-                                <ul>
-                                    <li><a href="gallery-caption-2cols.php">2 Columns</a></li>
-                                    <li><a href="gallery-caption-3cols.php">3 Columns</a></li>
-                                    <li><a href="gallery-caption-4cols.php">4 Columns</a></li>
-                                </ul>
-                            </li>
-                    		<li><a href="gallery-2cols.php">Gallery without Caption</a>
-                                <ul>
-                                    <li><a href="gallery-2cols.php">2 Columns</a></li>
-                                    <li><a href="gallery-3cols.php">3 Columns</a></li>
-                                    <li><a href="gallery-4cols.php">4 Columns</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
-                        <ul class="dropdown">
-                            <li>
-                                <div class="megamenu-container container">
-                                    <div class="row">
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
-                                            <ul class="sub-menu">
-                                                <li><a href="shortcodes.php">Shortcodes</a></li>
-                                                <li><a href="typography.php">Typography</a></li>
-                                                <li><a href="privacy-policy.php">Privacy policy</a></li>
-                                                <li><a href="payment-terms.php">Payment terms</a></li>
-                                                <li><a href="refund-policy.php">Refund policy</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-newspaper-o"></i> Latest news</span>
-                                        	<div class="widget recent_posts">
-                                            	<ul>
-                                                	<li>
-                                                    	<a href="single-post.php" class="media-box">
-                                                            <img src="images/post1.jpg" alt="">
-                                                        </a>
-                                                		<h5><a href="single-post.php">A single person can change million lives</a></h5>
-                                                		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                    </li>
-                                                	<li>
-                                                    	<a href="single-post.php" class="media-box">
-                                                            <img src="images/post3.jpg" alt="">
-                                                        </a>
-                                                		<h5><a href="single-post.php">Donate your woolens this winter</a></h5>
-                                                		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-microphone"></i> Latest causes</span>
-                                            <ul class="widget_recent_causes">
-                                                <li>
-                                                    <a href="#" class="cause-thumb">
-                                                        <img src="images/cause1.jpg" alt="" class="img-thumbnail">
-                                                        <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                                            <strong></strong>
-                                                        </div>
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
-                                                    <span class="meta-data">10 days left to achieve</span>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="cause-thumb">
-                                                        <img src="images/cause5.jpg" alt="" class="img-thumbnail">
-                                                        <div class="cProgress" data-complete="75" data-color="42b8d4">
-                                                            <strong></strong>
-                                                        </div>
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
-                                                    <span class="meta-data">32 days left to achieve</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-star"></i> Featured Video</span> 
-                                            <div class="fw-video"><iframe src="https://player.vimeo.com/video/62947247" width="500" height="275"></iframe></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                      	</ul>
-                  	</li>
-                    <li><a href="blog.php">Blog</a>
-                        <ul class="dropdown">
-                            <li><a href="blog.php">Blog Classic</a></li>
-                            <li><a href="blog-grid.php">Blog Grid</a></li>
-                            <li><a href="single-post.php">Single Post</a></li>
-                        </ul>
-                    </li>
-              	</ul>
-            </div>
-        </header>
-    </div>
+    <?php load_common_page_header() ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" style="background-image:url(images/parallax6.jpg);">

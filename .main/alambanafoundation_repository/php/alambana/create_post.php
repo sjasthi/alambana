@@ -11,7 +11,7 @@ $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABA
 if ($connection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+# Field Entries
 if (isset($_POST['create_post'])) {
   $title = addslashes($_POST['title']);
   $author = addslashes($_POST['author']);
@@ -36,6 +36,7 @@ if (isset($_POST['create_post'])) {
     }
   }
 
+  // Modification to MySQL Database
   $sql = "INSERT INTO blogs VALUES (
 		NULL,
 		'$title',

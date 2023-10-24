@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 02:49 AM
+-- Generation Time: Oct 24, 2023 at 02:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -69,6 +69,45 @@ INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
 (3, 3, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
 (4, 4, 'images/blog_pictures/652ebd26a63459.77716501.jpg');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_story`
+--
+
+CREATE TABLE `blog_story` (
+  `Story_Id` int(11) NOT NULL,
+  `Blog_Id` int(11) DEFAULT NULL,
+  `Paragraph` text NOT NULL,
+  `About_Author` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blog_story`
+--
+
+INSERT INTO `blog_story` (`Story_Id`, `Blog_Id`, `Paragraph`, `About_Author`) VALUES
+(6, 3, 'GGG', 'ggg'),
+(7, 4, 'DDDDDDDDDDDD', 'ddd'),
+(16, 1, 'ZZZZZZZZZZZZZZdd', 'ZZ1555'),
+(20, 2, 'r', 'rr');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `Event_Id` int(11) NOT NULL,
+  `Title` int(100) DEFAULT NULL,
+  `Description` text DEFAULT NULL,
+  `Video_Link` varchar(255) DEFAULT NULL,
+  `Event_Date` datetime DEFAULT NULL,
+  `Create_Time` datetime DEFAULT NULL,
+  `Modified_Time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -86,6 +125,18 @@ ALTER TABLE `blog_pictures`
   ADD PRIMARY KEY (`Picture_Id`);
 
 --
+-- Indexes for table `blog_story`
+--
+ALTER TABLE `blog_story`
+  ADD PRIMARY KEY (`Story_Id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`Event_Id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -93,56 +144,27 @@ ALTER TABLE `blog_pictures`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `blog_pictures`
 --
 ALTER TABLE `blog_pictures`
   MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `blog_story`
+--
+ALTER TABLE `blog_story`
+  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-
---
--- TABLE STRUCTURE FOR TABLE 'events'
-
-CREATE TABLE `events` (
-  `Event_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Title` varchar(100) DEFAULT NULL,
-  `Description` text DEFAULT NULL,
-  `Video_Link` varchar(200) DEFAULT NULL,
-  `Event_Date` datetime DEFAULT NULL,
-  `Created_Time` datetime DEFAULT NULL,
-  `Modified_Time` datetime DEFAULT NULL,
-  PRIMARY KEY (`Event_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
--- Dumping data for table `events`
-INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`) VALUES
-(1, 'Event 1', 'Description for Event 1', ' ', '2023-10-18 10:00:00', '2023-10-18 09:00:00', '2023-10-18 09:30:00'),
-(2, 'Event 2', 'Description for Event 2', ' ', '2023-10-19 14:00:00', '2023-10-19 13:00:00', '2023-10-19 13:30:00');
-
-
-
-  -- Create the event_pictures table
-CREATE TABLE `event_pictures` (
-  `Picture_Id` int(11) NOT NULL,
-  `Event_Id` int(11) DEFAULT NULL,
-  `Location` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
--- Insert data into the event_pictures table
-INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
-(1, 'images/event_pictures/event1_picture.jpg'),
-(1, 'images/event_pictures/event1_picture_2.jpg'),
-(2, 'images/event_pictures/event2_picture.jpg'),
-(3, 'images/event_pictures/event3_picture.jpg');
