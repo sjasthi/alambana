@@ -4,9 +4,8 @@
       session_start();
   } 
 
-  include 'global_content.php';
+  include 'shared_resources.php';
 ?>
-
 
 
 <!DOCTYPE HTML>

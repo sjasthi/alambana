@@ -4,7 +4,7 @@
       session_start();
   } 
 
-  include 'global_content.php';
+  include 'shared_resources.php';
   include 'blog_fill.php';
 ?>
 
@@ -14,7 +14,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Alambana - Blogs</title>
+  <title>Aalambana - Blogs</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="author" content="">

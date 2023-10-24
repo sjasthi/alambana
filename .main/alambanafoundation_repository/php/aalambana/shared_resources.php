@@ -8,7 +8,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
   if ($status == PHP_SESSION_NONE) {
     session_start();
   }
-
+ 
   //*************************************/
   // Create Common Library Loader(s)
 
@@ -53,7 +53,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
                 </div>
              	<a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> +91 (81-ALAMBANA)</div>
+                <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>
                 <ul class="sf-menu dd-menu pull-right" role="menu">
                     <li><a href="index.php">Home</a>
                             <!-- <ul>
@@ -206,18 +206,18 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         	<div class="row">
             	<div class="col-md-4 col-sm-4">
                 	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">About Alambana Foundation</h4>
+                    	<h4 class="widgettitle">About Aalambana Foundation</h4>
                         <p><img src="images/logo.png" alt=""></p>
                         <p>Our mission is to provide access to education to financially disadvantaged students in order to transform their lives. By empowering disadvantaged individuals,
                              we hope to help close the socio-economic gap in India, creating a more just and united society.</p>
                         
                         <ul class="social-icons-rounded social-icons-colored">
-                            <li class="facebook"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li class="facebook"><a href="https://www.facebook.com/aalambanafb"><i class="fa fa-facebook-f"></i></a></li>
                             <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                             <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                            <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li class="instagram"><a href="https://www.instagram.com/aalambana.foundation/?igshid=klesjehfy70r"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -236,14 +236,14 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                 	<div class="widget footer_widget">
                     	<h4 class="widgettitle">Contact Us</h4>
                         <p style="color: white;">
-                            Alambana Foundation - India Office<br>
-                            4-222 Super Bazar Road<br>
-                            Proddatur, 516360<br>
-                            Andhra Pradesh, India<br>
-                            +91 81-25262262
+                            Aalambana Foundation - CA Office<br>
+                            561 Orion Rd.<br>
+                            Tustin CA 92782<br>
+                            Californa, United States<br>
+                            (951) 821-6051
                         </p>
                         
-                        <p>Email: <a href="mailto:admin@alambanafoundation.org" style="color: white;">admin@alambanafoundation.org</a></p>
+                        <p>Email: <a href="mailto:aalambanafoundation@gmail.com" style="color: white;">aalambanafoundation@gmail.com</a></p>
    
                        <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
                     </div>
@@ -257,8 +257,15 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         	<div class="row">
             	<div class="col-md-6 col-sm-6">
                 	<div class="copyrights-col-left">
-                    	<p>&copy; 2023 Alambana Foundation. All Rights Reserved</p>
+                        <p>&copy; <span id="current-year"></span> Aalambana Foundation. All Rights Reserved</p>
                     </div>
+                    <script>
+                        // Get the current year
+                        var currentYear = new Date().getFullYear();
+                        
+                        // Set the current year in the HTML content
+                        document.getElementById("current-year").textContent = currentYear;
+                    </script>
                 </div>
             	<div class="col-md-6 col-sm-6"></div>
                 	<div class="copyrights-col-right">

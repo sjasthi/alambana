@@ -6,7 +6,6 @@ if ($status == PHP_SESSION_NONE) {
   session_start();
 }
 
-
 function create_post_story($blogId) {
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 
