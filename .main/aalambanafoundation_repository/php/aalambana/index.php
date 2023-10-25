@@ -41,7 +41,7 @@
 
 <!-- SCRIPTS
   ================================================== -->
-<script src="js/modernizr.js"></script><!-- Modernizr -->
+<?php load_common_page_scripts() ?>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -431,14 +431,6 @@
             </div>
         </div>
     </div>
-    <!-- Site Footer -->
-    <?php load_common_page_footer() ?>
-    <!-- Donate Form Modal -->
-    <?php donate_dialog() ?>
-    <!-- Libraries Loader -->
-    <?php lib() ?>
-    <!-- Style Switcher Start -->
-    <?php style_switcher() ?>
     
     <script type="text/javascript">
 
@@ -475,6 +467,15 @@
     }
     $('#counter').countdown(target.valueOf(), callback);
     </script>
+
+    <!-- Site Footer -->
+    <?php load_common_page_footer() ?>
+    <!-- Donate Form Modal -->
+    <?php donate_dialog() ?>
+    <!-- Libraries Loader -->
+    <?php lib() ?>
+    <!-- Style Switcher Start -->
+    <?php style_switcher() ?>
 
 </body>
 </html>

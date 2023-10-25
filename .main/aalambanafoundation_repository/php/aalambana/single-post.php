@@ -4,7 +4,7 @@
       session_start();
   } 
 
-  include 'global_content.php';
+  include 'shared_resources.php';
   include 'blog_fill.php';
   include 'create_post_story.php';
   include 'edit_post_story.php';
@@ -40,17 +40,24 @@
 <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
 <!-- SCRIPTS
   ================================================== -->
-<script src="js/modernizr.js"></script><!-- Modernizr -->
-<script>
-
+  <?php load_common_page_scripts() ?>
+  <!-- MODIFY POST-->
+    <script>
         let show_edit_form = () => {
-          let form = document.getElementById("blog_creation_form");
-          let show_button = document.getElementById("form_show_button");
-          form.removeAttribute("hidden");
-          show_button.setAttribute("hidden", "hidden");
+            let form = document.getElementById("blog_modifiy_form");
+            let show_button = document.getElementById("form_show_button");
+            form.removeAttribute("hidden");
+            show_button.setAttribute("hidden", "hidden");
         }
-        
-      </script>
+        function delete_blog_post() {
+        var confirmation = confirm("Are you sure you want to delete this post?");
+        if (confirmation) {
+
+            // Redirect to the PHP script that handles post deletion
+            window.location.href = "delete_post.php?blog_id=<?php echo $blogId; ?>";
+        }
+    }
+    </script>
 </head>
 <body class="single-post">
 <!--[if lt IE 7]>
@@ -65,7 +72,7 @@
     	<div class="page-banner parallax" style="background-image:url(images/inside8.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
-        			<h1 class="block-title">Blog</h1>
+        			<h1 class="block-title">Title - <?php echo getTitleFromDatabase($blogId);?></h1>
                 </div>
             </div>
         </div>
@@ -78,13 +85,12 @@
                 <!--?php
                             if (isset($_SESSION['role'])) {
                             if ($_SESSION['role'] == 'admin') {
-                                echo '<button id="form_show_button" onclick="show_form();">Create Post</button>';
+                                echo '<button id="form_show_button" onclick="show_new_post_form();">Create Post</button>';
                             }
                             }
                         ?-->
                 <!-- Blog Create Post Button -->
                 <?php
-
                 // Check if the blog_id exists
                 $isBlogExists = checkIfBlogPostExists($blogId);
 
@@ -92,7 +98,8 @@
                     $aboutAuthor = getAboutFromDatabase($blogId);
                     $storyDescription = getParagraphFromDatabase($blogId);
                     // Blog exists, modify button name and function
-                    echo '<button id="form_show_button" onclick="show_edit_form();">Edit Post Story</button>';                    
+                    echo '<button id="form_show_button" onclick="show_edit_form();">Edit Post Story</button>';
+                    
                     $formAction = edit_post_story($blogId); // Set the form action for editing
                     $submitAction = "update_post_story";
 
@@ -100,14 +107,15 @@
                     $aboutAuthor =  '';
                     $storyDescription = '';
                     // Blog doesn't exist, default button name and function
-                    echo '<button id="form_show_button" onclick="show_edit_form();">Create Post Story</button>';                    
+                    echo '<button id="form_show_button" onclick="show_edit_form();">Create Post Story</button>';
                     $formAction = create_post_story($blogId); // Set the form action for creating
                     $submitAction = "create_post_story";
-                }
+
+                }echo '<button id="delete_post_button" onclick="delete_blog_post();">Delete Post</button>'; // Add the Delete Post button
                 ?>
                 <br><br>
                 <!-- Blog Form (Initially hidden) [Activates on button click] -->
-                <form id="blog_creation_form" action="<?php echo $formAction; ?>" method="POST" enctype="multipart/form-data" hidden="hidden">
+                <form id="blog_modifiy_form" action="<?php echo $formAction; ?>" method="POST" enctype="multipart/form-data" hidden="hidden">
                     <div id="blog_creation_left">
                         <label>Blog</label>
                         <label for="paragraph">Paragraph</label>

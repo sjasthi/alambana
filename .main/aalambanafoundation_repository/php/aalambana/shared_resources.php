@@ -42,12 +42,49 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     ';
   }
 
+  //*************************************/
+  // Common Page Scripts
+  # Site Scripts
+  function load_common_page_scripts() {
+
+    # Modernizr to detect support for HTML5 features like Canvas, CSS3 properties, or SVG.
+    echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
+
+    # Create New Blog Form
+    echo '
+        <script>
+            // New Blog Form Script
+            function show_new_post_form() {
+                var targetPage = "new_blog_entry.php";
+    
+                if (!isOnCurrentPage(targetPage)) {
+                    redirectToPage(targetPage);
+                } else {
+                    // show_form() logic 
+                    let form = document.getElementById("blog_creation_form");
+                    let show_button = document.getElementById("form_show_button");
+                    form.removeAttribute("hidden");
+                    show_button.setAttribute("hidden", "hidden");
+                }
+            }
+    
+            function isOnCurrentPage(page) {
+                // Check if the current URL contains the specified page
+                return window.location.href.includes(page);
+            }
+    
+            function redirectToPage(page) {
+                window.location.href = page; // Redirect to the specified page
+            }
+        </script>';
+    
+  }
 
   //*************************************/
   // Common Page Elements
   # Header Page Menu Element
   function load_common_page_header() {
-    
+
     # Site Header Wrapper / Menu Catagories
     echo '
     
@@ -57,6 +94,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         <header class="site-header">
             <div class="container">
                 <div class="site-logo">
+                    
                     <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
                     <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199" height="30"></a>
                     <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
@@ -191,9 +229,8 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                   	</li>
                     <li><a href="blog.php">Blog</a>
                         <ul class="dropdown">
-                            <li><a href="blog.php">Blog Classic</a></li>
-                            <li><a href="blog-grid.php">Blog Grid</a></li>
-                            <li><a href="single-post.php">Single Post</a></li>
+                            <li><a href="blog-grid.php">Browse Blogs</a></li>
+                            <li><a href="#" onclick="show_new_post_form()">Create Post</a></li>
                         </ul>
                     </li>
               	</ul>
@@ -235,10 +272,10 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                 	<div class="widget footer_widget widget_links">
                     	<h4 class="widgettitle">Blogroll</h4>
                         <ul>
-                        	<li><a href="#">Become a volunteer</a></li>
-                        	<li><a href="#">Our mission</a></li>
-                        	<li><a href="#">Success stories</a></li>
-                        	<li><a href="#">Meet our team</a></li>
+                        	<li><a href="our-impact.php">Become a volunteer</a></li>
+                        	<li><a href="about.php">Our mission</a></li>
+                        	<li><a href="community-event.php">Success stories</a></li>
+                        	<li><a href="team.php">Meet our team</a></li>
                         </ul>
                     </div>
                 </div>
@@ -380,6 +417,8 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
   }
  
 
+
+  
   //*************************************/
   // Extended Functions
   # Style Switcher Start

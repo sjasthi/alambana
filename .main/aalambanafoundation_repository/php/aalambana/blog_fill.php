@@ -32,21 +32,20 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         if ($number_of_posts == $MAX_POSTS) {
           break;
         }
-        $TOC_Entry .= '<li><a onclick="scrollToPost(\'' . $row['Blog_Id'] . '\')">' . $row['Title'] . '</a></li>';
+        $TOC_Entry .= '<li><a href="single-post.php?blog_id=' . $row['Blog_Id'] . '">' . $row['Title'] . '</a></li>';
         
         $number_of_posts++;
       }
 
       $TOC_Header = 
-      '<div>
+      '
         <div id="blog_TOC">
           <h3 id="TOC_title">Table of Contents</h3>
           <ul>';
 
       $TOC_Closing =
           '</ul>
-        </div>
-      <div>';
+        </div>';
 
       echo $TOC_Header.$TOC_Entry.$TOC_Closing;
     } else {
@@ -382,7 +381,57 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
           <div class="tab-content">
             <div id="Trecent" class="tab-pane active">
               <div class="widget recent_posts">
-                <ul> '.$blog_body_tabs;
+                <ul> '.$blog_body_tabs.
+                '</ul>
+              </div>
+            </div>
+            <div id="Tpopular" class="tab-pane">
+                <div class="widget recent_posts">
+                    <ul>
+                        <li>
+                            <a href="https://demo1.imithemes.com/html/born-to-give/single-post.html" class="media-box">
+                                <img src="./post2.jpg" alt="">
+                            </a>
+                            <h5><a href="https://demo1.imithemes.com/html/born-to-give/single-post.html">How to survive the tough path of life</a></h5>
+                            <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
+                        </li>
+                        <li>
+                            <a href="https://demo1.imithemes.com/html/born-to-give/single-post.html" class="media-box">
+                                <img src="./post1.jpg" alt="">
+                            </a>
+                            <h5><a href="https://demo1.imithemes.com/html/born-to-give/single-post.html">A single person can change million lives</a></h5>
+                            <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
+                        </li>
+                        <li>
+                            <a href="https://demo1.imithemes.com/html/born-to-give/single-post.html" class="media-box">
+                                <img src="./post3.jpg" alt="">
+                            </a>
+                            <h5><a href="https://demo1.imithemes.com/html/born-to-give/single-post.html">Donate your woolens this winter</a></h5>
+                            <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="Tcomments" class="tab-pane">
+                <div class="tag-cloud">
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Water</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Students</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">NYC</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Education</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Poverty</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Food</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Poor</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Business</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Love</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Help</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Savings</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Winter</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Soul</a>
+                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Power</a>
+                </div>
+            </div>
+        </div>
+    </div>';
 
     } else {
       echo "0 results";
@@ -390,6 +439,39 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     $connection->close();
   }
   
+
+
+# fetch Title
+function getTitleFromDatabase($blogId) {
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+  // Check connection
+  if ($connection->connect_error) {
+      die("Connection failed: " . $connection->connect_error);
+  }
+
+  // Prepare SQL query to fetch Title based on blogId
+  $sql = "SELECT Title FROM blogs WHERE Blog_Id = $blogId";
+
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+      // Fetch the Title from the database
+      $row = $result->fetch_assoc();
+      $title = $row['Title'];
+  } else {
+      // If no matching blogId found, return an empty string or handle it as per your requirement
+      $title = "";
+  }
+
+  // Close the connection
+  $connection->close();
+
+  return $title;
+}
+
+
 # fetch Story Paragraph
 function getParagraphFromDatabase($blogId) {
     // Create connection

@@ -36,7 +36,7 @@
 <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
 <!-- SCRIPTS
   ================================================== -->
-<script src="js/modernizr.js"></script><!-- Modernizr -->
+  <?php load_common_page_scripts() ?>
 </head>
 <body>
 <!--[if lt IE 7]>
