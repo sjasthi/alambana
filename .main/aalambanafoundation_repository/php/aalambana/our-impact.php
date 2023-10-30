@@ -61,8 +61,9 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-8 content-block">
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                        <p>Donec vel mauris quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                        <p>To date, Aalambana Foundation has made charitable donations that total more than $30,000. Some of the organizations that we support includes OC Food Bank, Wound Walk OC, Grandma’s House of Hope, Orange County Rescue Mission, South County Outreach, Nagai Narayanji Memorial Foundation and many others
+
+By funding orphanages, meals, grocercies, enrichment, back to school drives, food drives, enrichment, development activities, medical camps, mentoring and education programs and providing scholarships, Aalambana Foundation is making a positive and lasting impact on communities across many urban and rural areas</p>
                         <h3>There are multiple ways you can help others to change their lives</h3>
                         <ul class="checks">
                         	<li>Start a workplace campaign</li>

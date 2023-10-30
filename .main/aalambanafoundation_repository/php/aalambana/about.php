@@ -89,7 +89,7 @@
                         </div>
                    	</div>
                     <div class="col-md-8 col-sm-8">
-                    	<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                    	<p class="lead">Aalambana Foundation is a 501 (c)(3)  non-profit organization, founded in April 2020, with a focus on women empowerment, supporting socioeconomically disadvantaged children, and community betterment activities.</p>
                         <div class="row">
                         	<div class="col-md-4 col-sm-4">
                             	<div class="grid-item">

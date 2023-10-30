@@ -59,8 +59,7 @@
     <div id="main-container">
     	<div class="content">
         	<div class="container">
-            	<h2>Management Team</h2>
-               	<p class="accent-color lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+            	<h2>AALAMBANA FOUNDATION CORE TEAM</h2>
                 <div class="spacer-20"></div>
                 <div class="row">
                 	<div class="col-md-4 col-sm-4">
@@ -68,15 +67,7 @@
                             <div class="grid-item-inner">
                               	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
                               	<div class="grid-item-content">
-                                	<h3>Tayri awragh</h3>
-                                    <span class="meta-data">CEO/Founder</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                	<h3>Varma Alluri</h3>
                               	</div>
                             </div>
                        	</div>
@@ -84,17 +75,9 @@
                 	<div class="col-md-4 col-sm-4">
                     	<div class="grid-item grid-staff-item">
                             <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/post1.jpg" alt=""></div>
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
                               	<div class="grid-item-content">
-                                	<h3>Howard Porter</h3>
-                                    <span class="meta-data">Education Campaigns Manager</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                	<h3>Ram Yalamanchili</h3>
                               	</div>
                             </div>
                        	</div>
@@ -102,17 +85,129 @@
                 	<div class="col-md-4 col-sm-4">
                     	<div class="grid-item grid-staff-item">
                             <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff2.jpg" alt=""></div>
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
                               	<div class="grid-item-content">
-                                	<h3>Ayoub Ameqran</h3>
-                                    <span class="meta-data">Environment Campaigns Manager</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                	<h3>Raju Vatsavai</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Rohan Chava</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Mounika Tiruvaipati</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Deepa Agrawal</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Ravi Tiruvaipati</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Surya Gangireddy</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Suresh Mallina</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Aparna Alluri</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Prathyusha Yalamanchili</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Sarada Kotnani</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Bhavana Reddy</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Swetha Gangireddy</h3>
+                              	</div>
+                            </div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    	<div class="grid-item grid-staff-item">
+                            <div class="grid-item-inner">
+                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
+                              	<div class="grid-item-content">
+                                	<h3>Ajay Chava</h3>
                               	</div>
                             </div>
                        	</div>
@@ -162,101 +257,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-wrapper">
-                        <div class="row">
-                            <ul class="owl-carousel carousel-fw" data-columns="6" data-autoplay="" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="6" data-items-desktop-small="4" data-items-tablet="3" data-items-mobile="2">
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff5.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Elsa Wahlgren</h3>
-                                                <span class="meta-data">Graphic Designer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff6.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Arjun Rathore</h3>
-                                                <span class="meta-data">Volunteer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff7.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Grace Ajimobi</h3>
-                                                <span class="meta-data">Volunteer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff8.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Majda Novak</h3>
-                                                <span class="meta-data">Accountant</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff9.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Alisha Hunt</h3>
-                                                <span class="meta-data">Volunteer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff10.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Robin Schmidt</h3>
-                                                <span class="meta-data">Volunteer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff11.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Emma Paquette</h3>
-                                                <span class="meta-data">Volunteer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item grid-staff-item grid-staff-item-compact">
-                                        <div class="grid-item-inner">
-                                            <div class="media-box"><img src="images/staff4.jpg" alt=""></div>
-                                            <div class="grid-item-content">
-                                                <h3>Claudio Damico</h3>
-                                                <span class="meta-data">Volunteer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    
            	</div>
             <div class="accent-bg padding-tb20 cta-fw">
     			<div class="container">
