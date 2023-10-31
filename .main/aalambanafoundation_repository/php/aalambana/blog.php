@@ -1,11 +1,20 @@
 <?php
+if (!isset($_SESSION)) { 
+    session_start();
+} 
 
-  if(!isset($_SESSION)) { 
-      session_start();
-  } 
+include 'shared_resources.php';
+include 'blog_fill.php';
 
-  include 'shared_resources.php';
-  include 'blog_fill.php';
+$current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensures the variable is an integer for security
+
+
+// Check if the current page is blog.php and current_page parameter is not set
+if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page'])) {
+    // Redirect to the same page with the current_page parameter
+    header('Location: blog.php?current_page#1' );//. $current_page);
+    exit(); // Ensure script stops execution after redirection
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -37,6 +46,15 @@
   <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
   <!-- SCRIPTS
   ================================================== -->
+  <script> 
+  window.onload = function() {
+  if (window.location.pathname.includes("blog.php") && !window.location.search.includes("current_page")) {
+    // Assuming you have the updated value of current_page in a variable called currentPage
+    //window.location.href = "blog.php?current_page=" + 1;
+    
+  }
+}
+  </script>
   <?php load_common_page_scripts() ?>
 </head>
 
@@ -100,7 +118,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 content-block">
-                        
+                        <!-- Blog Page List --> <?php fill_blog_page_list(); ?>
                         <!-- Blog Page Fill --> <?php fill_blog(); ?>
                         <!-- Page Pagination --> <?php fill_blog_pagination(); ?>
 
@@ -168,7 +186,7 @@
               </div>
           </div>
       </div>
-  
+
     
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>

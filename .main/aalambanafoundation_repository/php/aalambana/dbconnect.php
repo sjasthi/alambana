@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'alambana_db';
+$dbname = 'aalambana_db';
 $username = 'root';
 $password = '';
 
