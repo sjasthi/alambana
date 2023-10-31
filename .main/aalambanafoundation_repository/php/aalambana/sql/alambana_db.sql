@@ -165,6 +165,44 @@ ALTER TABLE `events`
   MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_pictures`
+--
+
+CREATE TABLE `event_pictures` (
+  `Picture_Id` int(11) NOT NULL,
+  `Event_Id` int(11) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `event_pictures` (`Picture_Id`, `Event_Id`, `Location`) VALUES
+(1, 1, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
+(2, 2, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
+(3, 3, 'images/blog_pictures/652ebd26a63459.77716501.jpg'),
+(4, 4, 'images/blog_pictures/652ebd26a63459.77716501.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Indexes for table `event_pictures`
+--
+
+ALTER TABLE `event_pictures`
+  ADD PRIMARY KEY (`Picture_Id`);
+
+-- --------------------------------------------------------
+
+--
+-- AUTO_INCREMENT for table `event_pictures`
+--
+
+ALTER TABLE `event_pictures`
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

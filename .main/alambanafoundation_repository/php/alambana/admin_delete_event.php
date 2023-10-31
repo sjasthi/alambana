@@ -1,5 +1,5 @@
 <?php
-// adding new event  
+// deleting an event  
 if (isset($_POST["Event_Id"])) {
 
     require 'db_configuration.php'; // Include your database configuration file

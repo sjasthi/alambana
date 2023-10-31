@@ -51,6 +51,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
 
     # Create New Blog Form
+    
     echo '
         <script>
             // New Blog Form Script
@@ -79,6 +80,42 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         </script>';
     
   }
+
+  function load_event_page_scripts() {
+    # Modernizr to detect support for HTML5 features like Canvas, CSS3 properties, or SVG.
+    echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
+
+    # New Event Form Script
+   # Create New Event Form
+  
+echo '
+<script>
+    // New Event Form Script
+    function show_new_event_form() {
+        var targetPage = "new_event_entry.php";
+
+        if (!isOnCurrentPage(targetPage)) {
+            redirectToPage(targetPage);
+        } else {
+            // show_form() logic 
+            let form = document.getElementById("event_creation_form");
+            let show_button = document.getElementById("form_show_button");
+            form.removeAttribute("hidden");
+            show_button.setAttribute("hidden", "hidden");
+        }
+    }
+
+    function isOnCurrentPage(page) {
+        // Check if the current URL contains the specified page
+        return window.location.href.includes(page);
+    }
+
+    function redirectToPage(page) {
+        window.location.href = page; // Redirect to the specified page
+    }
+</script>';
+  }
+
 
   //*************************************/
   // Common Page Elements

@@ -50,7 +50,7 @@
     	<div class="page-banner parallax" style="background-image:url(images/inside9.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
-        			<h1 class="block-title">Upcoming Events</h1>
+        			<h1 class="block-title">Past Events</h1>
                 </div>
             </div>
         </div>
