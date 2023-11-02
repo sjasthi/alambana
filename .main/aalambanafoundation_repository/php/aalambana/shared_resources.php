@@ -2,7 +2,7 @@
 
 use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
-  //require 'db_configuration.php';
+  require 'db_configuration.php';
 
   $status = session_status();
   if ($status == PHP_SESSION_NONE) {
@@ -12,9 +12,27 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
   //*************************************/
   // Create Common Library Loader(s)
 
-  function css() {;}
+  # CSS References
+  function css() {
+    echo '
+        <link href="css/loginForm.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
+        <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
+        <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
+        <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
+        <link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+        <!-- Color Style -->
+        <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
+        <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+    ';}
 
-  # Libraries Loader
+  # Libraries (JavaScript)
   function lib() {
     echo '
         <!-- Shared Site Libraries -->
@@ -51,7 +69,6 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
 
     # Create New Blog Form
-    
     echo '
         <script>
             // New Blog Form Script
@@ -81,55 +98,78 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     
   }
 
-  function load_event_page_scripts() {
-    # Modernizr to detect support for HTML5 features like Canvas, CSS3 properties, or SVG.
-    echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
-
-    # New Event Form Script
-   # Create New Event Form
-  
-echo '
-<script>
-    // New Event Form Script
-    function show_new_event_form() {
-        var targetPage = "new_event_entry.php";
-
-        if (!isOnCurrentPage(targetPage)) {
-            redirectToPage(targetPage);
-        } else {
-            // show_form() logic 
-            let form = document.getElementById("event_creation_form");
-            let show_button = document.getElementById("form_show_button");
-            form.removeAttribute("hidden");
-            show_button.setAttribute("hidden", "hidden");
-        }
-    }
-
-    function isOnCurrentPage(page) {
-        // Check if the current URL contains the specified page
-        return window.location.href.includes(page);
-    }
-
-    function redirectToPage(page) {
-        window.location.href = page; // Redirect to the specified page
-    }
-</script>';
-  }
-
-
   //*************************************/
   // Common Page Elements
   # Header Page Menu Element
-  function load_common_page_header() {
+  function load_common_page_header($headType=1) {
 
     # Site Header Wrapper / Menu Catagories
     echo '
+    <style>
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .site-header-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px; /* Adjust padding as needed */
+    }
+
+    .site-logo {
+        /* Your site logo styles here */
+        display: flex;
+        align-items: center;
+        margin-right: 20px; /* Adjust margin-right for spacing between logo and other elements */
+    }
     
-    <!-- Site Header Wrapper -->
-    <div class="site-header-wrapper">
-        <!-- Site Header -->
+    .header-info-col {
+        /* Adjust styles for the phone number */
+        padding: 5px 100px; /* Adjust padding as needed */
+        font-size: 14px; /* Adjust font size as needed */
+        margin-left: 20px; /* Add margin for spacing between sign-in button and other elements */
+        margin-top: 5px; Adjust margin-top to move the button down */
+        background-color: transparent; /* Set background color to transparent */
+        border: none; /* Remove border */
+        text-decoration: none; /* Remove underline style for links */
+        cursor: pointer; /* Set cursor to pointer for better user experience */
+    }
+    
+    .fa-signin {
+        /* Adjust styles for the sign-in button container */
+        margin-right: 20px; /* Add margin for spacing between sign-in button and other elements */
+        background-color: transparent; /* Set background color to transparent */
+        border: none; /* Remove border */
+        color: #333; /* Set text color */
+        text-decoration: none; /* Remove underline style for links */
+        cursor: pointer; /* Set cursor to pointer for better user experience */
+    }
+    
+    .small-button {
+        padding: 1px 40px; /* Adjust padding as needed */
+        font-size: 14px; /* Adjust font size as needed */
+        margin-left: 20px; /* Add margin for spacing between sign-in button and other elements */
+        margin-top: 5px; Adjust margin-top to move the button down */
+        background-color: transparent; /* Set background color to transparent */
+        border: none; /* Remove border */
+        color: #333; /* Set text color */
+        text-decoration: none; /* Remove underline style for links */
+        cursor: pointer; /* Set cursor to pointer for better user experience */
+    }
+    </style>
+
+    <!-- Site Header Wrapper -->';
+    
+    if($headType==1) {echo '<div class="site-header-wrapper">';} # Default Menu Bar (Transparent)
+    if($headType==2) {echo '<div class="site-header-bar accent-bg padding-tb20 cta-fw">';} # Solid Menu Bar
+    echo'<!-- Site Header -->
         <header class="site-header">
-            <div class="container">
+            <div class="header-container">
+            <!-- Site Logo Image -->
                 <div class="site-logo">
                     
                     <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
@@ -137,23 +177,11 @@ echo '
                     <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
                     <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
                 </div>
-             	<a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>
-                <ul class="sf-menu dd-menu pull-right" role="menu">
-                    <li><a href="index.php">Home</a>
-                            <!-- <ul>
-                                <li><a href="index2.php">Home version 2</a></li> -->
-                                <!-- <li><a href="index3.php">Home version 3</a></li> -->
-                                <!-- <li><a href="index.php">Header Styles</a></li>
-
-                                    <ul>
-                                        <li><a href="index.php">Style 1 (Default)</a></li>
-                                        <li><a href="header-style2.php">Style 2</a></li>
-                                        <li><a href="header-style3.php">Style 3</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li> -->
+             	
+                <!-- Site Main Menu -->
+                <ul class="sf-menu dd-menu pull-left" role="menu">
+                    
+                    <li><a href="index.php">Home</a></li> 
                     <li><a href="about.php">About</a>
                     	<ul>
                     		<li><a href="about.php">Introduction</a></li>
@@ -162,7 +190,7 @@ echo '
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="community-support.php">Community Support</a>
+                    <li><a href="community-support.php">Community</a>
                     	<ul>
                     		<li><a href="causes-education.php">Education</a></li>
                     		<li><a href="causes-hunger.php">Hunger Relief</a></li>
@@ -271,6 +299,30 @@ echo '
                         </ul>
                     </li>
               	</ul>
+
+                <!-- Site Phone Number -->
+                <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>  
+                
+                <!-- Site Sign On Button -->
+                <div class="fa-signin accent-bg padding-tb8 cta-fw">';
+                if (isset($_SESSION['role'])){ // Verify SESSION
+                    // Only Users Logged In
+                    if ($_SESSION['role'] == 'user') {
+                        echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['first_name'] . ')</a>';
+                    }
+                    // Admin Logged In
+                    elseif ($_SESSION['role'] == 'admin') {
+                        echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['role'] . ')</a>';
+                        echo '<a href="admin.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Admin</a>';
+                    }
+                }
+                else {// None.
+                    echo '<a href="loginForm.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Sign in</a>';
+                }
+
+                echo '
+                </div>          
             </div>
         </header>
     </div>

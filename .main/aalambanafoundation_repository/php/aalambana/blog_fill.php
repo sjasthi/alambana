@@ -2,7 +2,7 @@
 
 use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
-  require 'db_configuration.php';
+  //require 'db_configuration.php';
   //require 'update_current_page.php';
 
   $status = session_status();
@@ -386,7 +386,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                 // **********************************
                 // NAV Page Selection algorithm    
                 function show_page(selectedPage) {
-                    //alert("currentPage: " + (selectedPage))
+                    alert("currentPage: " + (selectedPage))
                     var totalNumberOfPages = '. $number_of_pages .'
                     
                     // Limit selectedPage within the range of available pages
@@ -405,7 +405,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                 // Re-index Blog Pages
                                 var currentPage = getCurrentPageNumber(); // Get the current page number from PHP
                                 var direction =  (setPageVisible) - currentPage;
-                                setCurrentPageButton(setPageVisible, totalNumberOfPages) 
+                                updatePaginationButtons(setPageVisible, totalNumberOfPages) 
 
                                 // Re-index TOC
                                 var tocArray = ' . json_encode($TOC_Array) . '; // Passing as array json; not string script
@@ -420,17 +420,25 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                         }
                     }
                 }
-
-                function setCurrentPageButton(currentPageNumber, totalNumberOfPages) {
+                // Button1 Page Link Event Listener
+                /* document.getElementById("BlogPage3Button").addEventListener("click", function(event) {
+                    updatePageLink(event, function(currentPageNumber) {
+                        return Math.max(currentPageNumber, 1); // Ensure the page number does not go below 1
+                    });
+                }); */
+                
+                function updatePaginationButtons(currentPageNumber, totalNumberOfPages) {
                   var maxNavigationRange = ( currentPageNumber + 2 );
                   var navNumber = 1;
+                  var pageButton;
                   for (var nextPageNumber = currentPageNumber + 0; nextPageNumber <= maxNavigationRange; nextPageNumber++) {
-                    //alert("navNumber: " + (navNumber) + " |  nextPageNumber: " + (nextPageNumber));
+                    alert("navNumber: " + (navNumber) + " |  nextPageNumber: " + (nextPageNumber));
                     if(maxNavigationRange > totalNumberOfPages ) { break;}
-                      var pageButton = document.getElementById("BlogPage" + navNumber + "Button");
+                    //if(navNumber > 3) { break;)
+                      pageButton = document.getElementById("BlogPage" + navNumber + "Button");
                       pageButton.onclick = function() { show_page(nextPageNumber);};
                       pageButton.textContent = "Page " + nextPageNumber;
-                      pageButton.href = "#" + nextPageNumber;
+                      pageButton.href = "#" + (nextPageNumber);
                       navNumber++;
                   }
                 }
@@ -472,13 +480,13 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
             echo '<nav>
               <ul class="pagination pagination-lg">
                 <li>
-                  <a id="prevousPageLink" onclick="show_page(getCurrentPageNumber())" href="#" aria-label="Previous">
+                  <a id="prevousPageLink" onclick="" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>'.
             $blog_body_pagination. 
             '<li>
-               <a id="nextPageLink" onclick="show_page(getCurrentPageNumber() )" href="#" aria-label="Next">
+               <a id="nextPageLink" onclick="" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

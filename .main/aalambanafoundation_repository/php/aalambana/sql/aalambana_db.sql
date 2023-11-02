@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2023 at 01:59 AM
+-- Generation Time: Nov 02, 2023 at 11:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -51,7 +51,6 @@ INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, 
 (32, 'Blog Title3', 'Author3', 'Description3', '', '2023-10-26 15:49:30', '2023-10-26 15:49:30'),
 (33, 'Blog Title8', 'Author8', 'Description8', '', '2023-10-26 17:53:54', '2023-10-26 17:53:54'),
 (34, 'Blog Title9', 'Author9', 'Description9', '', '2023-10-26 17:54:32', '2023-10-26 17:54:32'),
-(35, 'Blog Title0', 'Author0', 'Description0', 'https://youtu.be/k9em7Ey00xQ', '2023-10-26 18:06:00', '2023-10-26 18:06:00'),
 (36, 'Blog Title10', 'Author10', 'Description10', '', '2023-10-27 00:45:45', '2023-10-27 00:45:45'),
 (37, 'Blog Title11', 'Author11', 'Description11', '', '2023-10-27 00:46:12', '2023-10-27 00:46:12'),
 (38, 'Blog Title12', 'Author12', 'Description12', '', '2023-10-27 00:46:43', '2023-10-27 00:46:43');
@@ -82,7 +81,6 @@ INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
 (15, 32, 'images/blog_pictures/653a6e6ac89d49.28070896.jpg'),
 (16, 33, 'images/blog_pictures/653a8b928d5797.54334947.jpg'),
 (17, 34, 'images/blog_pictures/653a8bb88fb2f0.31269026.jpg'),
-(18, 35, 'images/blog_pictures/653a8e6830f2f3.01510065.gif'),
 (19, 36, 'images/blog_pictures/653aec19e43e64.17197132.jpg'),
 (20, 37, 'images/blog_pictures/653aec345f00e0.67092487.jpg');
 
@@ -115,6 +113,43 @@ CREATE TABLE `events` (
   `Modified_Time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `hash` varchar(200) NOT NULL,
+  `active` varchar(10) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `modified_time` date NOT NULL,
+  `created_time` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`, `role`, `modified_time`, `created_time`) VALUES
+(1, 'Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(2, 'Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(3, 'Ahala', '', 'ahala@abcd.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(4, 'SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(5, 'Happy', 'Josyula', 'happy@abcd.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(6, 'ics499', '12345', 'ics499@abcd.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(9, 'admin', 'admin', 'admin@admin.com', '$2y$10$6gPbUgQrTQjjUWWz2NwjNu3B3.fcZ9W.LkRL11CJar5UO3gCU1Mby', 'yes', 'admin', '0000-00-00', '0000-00-00'),
+(10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', '0000-00-00', '0000-00-00'),
+(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$I2fp1ZFLTiKhonjteDCpBuI3i/o0s1H6CBgSeSyuc7PKexyamapgG', '81448138f5', 'user', '0000-00-00', '0000-00-00'),
+(12, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$VLTZlUKTCGnkKsmMhrikOuzp1cB76ixaoIy4HPOMHWVrmXTTer55G', '8dd48d6a2e', 'user', '0000-00-00', '0000-00-00'),
+(13, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$KYCYI.XEPt2d/XPVnzUV8OVsOFao/3rIHBBxr.DCBixyUgLpprCxS', '5737c6ec2e', 'user', '0000-00-00', '0000-00-00'),
+(14, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$5o2DpsNy92iFJ4Cyktqi3.waUl6IwNfXm2fx8Y5yiVHP27ue.B7dG', '352fe25daf', 'user', '0000-00-00', '0000-00-00'),
+(15, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$qI8NV39nOXSMEgxJOh.3P.BBBjCJEwKfijSADdUd6uKcMrodbeE4u', '8e98d81f82', 'user', '0000-00-00', '0000-00-00');
+
 --
 -- Indexes for dumped tables
 --
@@ -144,6 +179,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`Event_Id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -170,6 +211,12 @@ ALTER TABLE `blog_story`
 --
 ALTER TABLE `events`
   MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

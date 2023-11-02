@@ -7,7 +7,7 @@ if ($status == PHP_SESSION_NONE) {
 }
 
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
+// should use $db global in db_configuration.php
 if ($connection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
