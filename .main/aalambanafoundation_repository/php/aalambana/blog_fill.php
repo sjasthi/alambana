@@ -263,7 +263,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         MAX_VISIBLE_POSTS = parseInt(selectedValue);
         
         // Pass PHP variables to JavaScript variables
-        alert("currentPage: " + MAX_VISIBLE_POSTS);
+        //alert("currentPage: " + MAX_VISIBLE_POSTS);
 
         fetchBlogContent()
     
@@ -386,7 +386,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                 // **********************************
                 // NAV Page Selection algorithm    
                 function show_page(selectedPage) {
-                    alert("currentPage: " + (selectedPage))
+                    //alert("currentPage: " + (selectedPage))
                     var totalNumberOfPages = '. $number_of_pages .'
                     
                     // Limit selectedPage within the range of available pages
@@ -432,7 +432,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                   var navNumber = 1;
                   var pageButton;
                   for (var nextPageNumber = currentPageNumber + 0; nextPageNumber <= maxNavigationRange; nextPageNumber++) {
-                    alert("navNumber: " + (navNumber) + " |  nextPageNumber: " + (nextPageNumber));
+                    //alert("navNumber: " + (navNumber) + " |  nextPageNumber: " + (nextPageNumber));
                     if(maxNavigationRange > totalNumberOfPages ) { break;}
                     //if(navNumber > 3) { break;)
                       pageButton = document.getElementById("BlogPage" + navNumber + "Button");
