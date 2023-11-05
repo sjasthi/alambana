@@ -16,7 +16,7 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <title>Change This Title With BLOG TItle!!!</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -65,7 +65,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
 
     <!-- Banner Area -->
     <div class="hero-area">

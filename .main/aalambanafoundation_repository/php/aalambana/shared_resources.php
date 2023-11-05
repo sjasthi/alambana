@@ -105,6 +105,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
     # Site Header Wrapper / Menu Catagories
     echo '
+	
     <style>
 
     .header-container {
@@ -190,11 +191,12 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="community-support.php">Community</a>
+                    <li><a href="community-service.php">Community</a>
                     	<ul>
                     		<li><a href="causes-education.php">Education</a></li>
                     		<li><a href="causes-hunger.php">Hunger Relief</a></li>
                     		<li><a href="causes-women.php">Women Empowerment</a></li>
+							<li><a href="community-service.php">Community Service</a>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>

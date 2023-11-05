@@ -1,10 +1,19 @@
+<?php
+
+  if(!isset($_SESSION)) { 
+      session_start();
+  } 
+
+  include 'shared_resources.php';
+?>
+
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Born to give - Charity/Crowdfunding HTML5 Template</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Change This Title With BLOG TItle!!!</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -35,155 +44,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <div class="site-header-wrapper">
-        <!-- Site Header -->
-        <header class="site-header">
-            <div class="container">
-                <div class="site-logo">
-                    <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
-                    <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199" height="30"></a>
-                    <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
-                    <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
-                </div>
-                <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> 1800-9090-8089</div>
-                <ul class="sf-menu dd-menu pull-right" role="menu">
-                    <li><a href="index.php">Home</a>
-                            <ul>
-                                <li><a href="index2.php">Home version 2</a></li>
-                                <li><a href="index3.php">Home version 3</a></li>
-                                <li><a href="index.php">Header Styles</a>
-                                    <ul>
-                                        <li><a href="index.php">Style 1 (Default)</a></li>
-                                        <li><a href="header-style2.php">Style 2</a></li>
-                                        <li><a href="header-style3.php">Style 3</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    <li><a href="about.php">About</a>
-                    	<ul>
-                    		<li><a href="about.php">Introduction</a></li>
-                    		<li><a href="team.php">Team</a></li>
-                    		<li><a href="our-impact.php">Our Impact</a></li>
-                    		<li><a href="careers.php">Careers</a></li>
-                    		<li><a href="contact.php">Contact</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="causes.php">Causes</a>
-                    	<ul>
-                    		<li><a href="causes.php">Causes List</a></li>
-                    		<li><a href="causes-grid.php">Causes Grid</a></li>
-                    		<li><a href="single-cause.php">Single Cause</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="events.php">Events</a>
-                    	<ul>
-                    		<li><a href="events.php">Events List</a></li>
-                    		<li><a href="events-grid.php">Events Grid</a></li>
-                    		<li><a href="events-calendar.php">Events Calendar</a></li>
-                    		<li><a href="single-event.php">Single Event</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery-caption-2cols.php">Gallery</a>
-                    	<ul>
-                    		<li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
-                                <ul>
-                                    <li><a href="gallery-caption-2cols.php">2 Columns</a></li>
-                                    <li><a href="gallery-caption-3cols.php">3 Columns</a></li>
-                                    <li><a href="gallery-caption-4cols.php">4 Columns</a></li>
-                                </ul>
-                            </li>
-                    		<li><a href="gallery-2cols.php">Gallery without Caption</a>
-                                <ul>
-                                    <li><a href="gallery-2cols.php">2 Columns</a></li>
-                                    <li><a href="gallery-3cols.php">3 Columns</a></li>
-                                    <li><a href="gallery-4cols.php">4 Columns</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Mega Menu</a>
-                        <ul class="dropdown">
-                            <li>
-                                <div class="megamenu-container container">
-                                    <div class="row">
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
-                                            <ul class="sub-menu">
-                                                <li><a href="shortcodes.php">Shortcodes</a></li>
-                                                <li><a href="typography.php">Typography</a></li>
-                                                <li><a href="privacy-policy.php">Privacy policy</a></li>
-                                                <li><a href="payment-terms.php">Payment terms</a></li>
-                                                <li><a href="refund-policy.php">Refund policy</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-newspaper-o"></i> Latest news</span>
-                                        	<div class="widget recent_posts">
-                                            	<ul>
-                                                	<li>
-                                                    	<a href="single-post.php" class="media-box">
-                                                            <img src="images/post1.jpg" alt="">
-                                                        </a>
-                                                		<h5><a href="single-post.php">A single person can change million lives</a></h5>
-                                                		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                    </li>
-                                                	<li>
-                                                    	<a href="single-post.php" class="media-box">
-                                                            <img src="images/post3.jpg" alt="">
-                                                        </a>
-                                                		<h5><a href="single-post.php">Donate your woolens this winter</a></h5>
-                                                		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-microphone"></i> Latest causes</span>
-                                            <ul class="widget_recent_causes">
-                                                <li>
-                                                    <a href="#" class="cause-thumb">
-                                                        <img src="images/cause1.jpg" alt="" class="img-thumbnail">
-                                                        <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                                            <strong></strong>
-                                                        </div>
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
-                                                    <span class="meta-data">10 days left to achieve</span>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="cause-thumb">
-                                                        <img src="images/cause5.jpg" alt="" class="img-thumbnail">
-                                                        <div class="cProgress" data-complete="75" data-color="42b8d4">
-                                                            <strong></strong>
-                                                        </div>
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
-                                                    <span class="meta-data">32 days left to achieve</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-star"></i> Featured Video</span> 
-                                            <div class="fw-video"><iframe src="https://player.vimeo.com/video/62947247" width="500" height="275"></iframe></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                      	</ul>
-                  	</li>
-                    <li><a href="blog.php">Blog</a>
-                        <ul class="dropdown">
-                            <li><a href="blog.php">Blog Classic</a></li>
-                            <li><a href="blog-grid.php">Blog Grid</a></li>
-                            <li><a href="single-post.php">Single Post</a></li>
-                        </ul>
-                    </li>
-              	</ul>
-            </div>
-        </header>
-    </div>
+    <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" style="background-image:url(images/inside9.jpg);">
@@ -309,64 +170,8 @@
         </div>
     </div>
     <!-- Site Footer -->
-    <div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">
-    	<div class="container">
-        	<div class="row">
-            	<div class="col-md-4 col-sm-4">
-                	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">About Born to Give</h4>
-                        <p><img src="images/logo.png" alt=""></p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                        <ul class="social-icons-rounded social-icons-colored">
-                            <li class="facebook"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                            <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                            <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            	<div class="col-md-4 col-sm-4">
-                	<div class="widget footer_widget widget_links">
-                    	<h4 class="widgettitle">Blogroll</h4>
-                        <ul>
-                        	<li><a href="#">Become a volunteer</a></li>
-                        	<li><a href="#">Our mission</a></li>
-                        	<li><a href="#">Success stories</a></li>
-                        	<li><a href="#">Meet our team</a></li>
-                        </ul>
-                    </div>
-                </div>
-            	<div class="col-md-4 col-sm-4">
-                	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">We are on Twitter</h4>
-                        <div class="twitter-widget" data-tweets-count="2"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Site Footer -->
-    <div class="site-footer-bottom">
-    	<div class="container">
-        	<div class="row">
-            	<div class="col-md-6 col-sm-6">
-                	<div class="copyrights-col-left">
-                    	<p>&copy; 2016 Born to Give. All Rights Reserved</p>
-                    </div>
-                </div>
-            	<div class="col-md-6 col-sm-6"></div>
-                	<div class="copyrights-col-right">
-                    	<ul class="footer-menu">
-                        	<li><a href="privacy-policy.php">Privacy policy</a></li>
-                        	<li><a href="payment-terms.php">Payment terms</a></li>
-                        	<li><a href="refund-policy.php">Refund policy</a></li>
-                        </ul>
-                    </div>
-           	</div>
-      	</div>
-  	</div>
+	<?php load_common_page_footer() ?>
+
   	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
 <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
 <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- PrettyPhoto Plugin -->

@@ -12,8 +12,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Born to give - Charity/Crowdfunding HTML5 Template</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Contact Us</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -44,7 +44,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" style="background-image:url(images/inside7.jpg);">
@@ -62,19 +62,20 @@
             	<div class="row">
                 	<div class="col-md-3 col-sm-3 col-xs-6">
                     	<h4 class="block-title">Our Locations</h4>
-                        <a href="mailto:help@borntogive.com">help@borntogive.com</a>
-                        <a href="http://imithemes.com">http://borntogive.com</a>
+                        <a href="mailto:help@borntogive.com">aalambanafoundation@gmail.com</a>
+						<!-- if need this will implement
+                        <a href="http://imithemes.com">http://borntogive.com</a> -->
                     </div>
                 	<div class="col-md-3 col-sm-3 col-xs-6">
                         <address>
-                            2500 CityWest Blvd.<br>
-                            Suite 300 Houston,<br>
-                            Texas - 77042<br>
+                            561 Orion Rd.<br>
+                            Tustin,<br>
+                            CA - 92782<br>
                             USA
                             <br><br>
-                            <strong>TEL:</strong> 1-800-7878-09<br>
-                            <strong>FAX:</strong> 1-800-7878-08
+                            <strong>TEL:</strong> (951) 821-6051<br>
                         </address>
+					<!-- If more location then use these: 
                     </div>
                 	<div class="col-md-3 col-sm-3 col-xs-6">
                         <address>
@@ -98,6 +99,7 @@
                             <strong>FAX:</strong> 1-800-7878-08
                         </address>
                     </div>
+					-->
                 </div>
             </div>
             <div class="spacer-75"></div>

@@ -12,8 +12,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Born to give - Charity/Crowdfunding HTML5 Template</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Education</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -44,7 +44,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" style="background-image:url(images/inside8.jpg);">

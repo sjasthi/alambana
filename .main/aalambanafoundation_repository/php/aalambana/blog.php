@@ -22,7 +22,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
 <head>
   <!-- Basic Page Needs
   ================================================== -->
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>Aalambana - Blogs</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -67,7 +67,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
   <div class="body">
     
     <!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     
     <!-- Banner Area -->
     <div class="hero-area">
