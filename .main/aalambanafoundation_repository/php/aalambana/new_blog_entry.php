@@ -84,31 +84,34 @@
                         }
                       ?-->
               <!-- Blog Form (Initially hidden) [Activates on button click] -->
+             
+                
+                  
+
+                  <a href="blog-grid.php" class="btn btn-primary btn-lg">Go to Blogs</a>
+                  <h1>Create a new Blog</h1>
               <form id="blog_creation_form" action="create_post.php" method="POST" enctype="multipart/form-data" hidden="hidden">
-                <div id=blog_creation_left>
+                <div class="form-group">
                   <label>Blog Title</label>
-                  <br>
-                  <input type="text" name="title" maxlength=100 required>
-                  <br>
+                  <input type="text" class="form-control" name="title" maxlength=100 required>
+                  </div>
+                  <div class="form-group">
                   <label for="description">Description</label>
-                  <br>
-                  <textarea name="description" rows=9 cols=50 required></textarea>
+                  <textarea class="form-control" name="description" rows="5" required></textarea>
                 </div>
-                <div id=blog_creation_right>
+                <div class="form-group">
                   <label for="author">Author</label>
-                  <br>
-                  <input type="text" name="author" maxlength=50 required>
-                  <br>
-                  <label>Image(s)</label>`
-                  <br>
-                  <input type="file" name="file[]" accept="image/*" multiple="multiple">
-                  <br>
-                  <label>Video Link</label>
-                  <br>
-                  <input type="text" name="video_link" maxlength=100 placeholder="Optional">
+                  <input type="text" class="form-control" name="author" maxlength=50 required>
                 </div>
-                <br>
-                <input type="submit" name="create_post" value="Publish">
+              <div class="form-group">
+                <label>Image(s)</label>`
+                  <input type="file" class="form-control" name="file[]" accept="image/*" multiple="multiple">
+                      </div>
+                      <div class="form-group">
+                  <label>Video Link</label>
+                  <input type="text" class="form-control" name="video_link" maxlength=100 placeholder="Optional">
+                </div>
+                <button type="submit" class="btn btn-primary">Publish</button>
               </form>
               
               
