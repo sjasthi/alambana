@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2023 at 11:26 PM
+-- Generation Time: Nov 07, 2023 at 02:33 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -42,18 +42,27 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, `Modified_Time`, `Created_Time`) VALUES
-(22, 'B5', 'A4', 'D5', '', '2023-10-24 02:52:00', '2023-10-24 02:52:00'),
-(26, 'T9', 'A9', 'D9', '', '2023-10-25 02:34:05', '2023-10-25 02:34:05'),
-(27, 'T1', 'A1', 'D1', '', '2023-10-25 03:24:00', '2023-10-25 03:24:00'),
-(28, 'T3', 'A3', 'D3', '', '2023-10-25 16:15:24', '2023-10-25 16:15:24'),
-(30, 'Blog Title1', 'Author1', 'Description1', '', '2023-10-26 15:44:14', '2023-10-26 15:44:14'),
-(31, 'Blog Title2', 'Author2', 'Description2', '', '2023-10-26 15:48:59', '2023-10-26 15:48:59'),
-(32, 'Blog Title3', 'Author3', 'Description3', '', '2023-10-26 15:49:30', '2023-10-26 15:49:30'),
-(33, 'Blog Title8', 'Author8', 'Description8', '', '2023-10-26 17:53:54', '2023-10-26 17:53:54'),
-(34, 'Blog Title9', 'Author9', 'Description9', '', '2023-10-26 17:54:32', '2023-10-26 17:54:32'),
-(36, 'Blog Title10', 'Author10', 'Description10', '', '2023-10-27 00:45:45', '2023-10-27 00:45:45'),
-(37, 'Blog Title11', 'Author11', 'Description11', '', '2023-10-27 00:46:12', '2023-10-27 00:46:12'),
-(38, 'Blog Title12', 'Author12', 'Description12', '', '2023-10-27 00:46:43', '2023-10-27 00:46:43');
+(39, 'Blog Title1', 'Author1', 'Description1', 'https://youtu.be/k9em7Ey00xQ', '2023-11-06 20:33:09', '2023-11-06 20:33:09'),
+(40, 'Blog Title2', 'Author2', 'Description2', '', '2023-11-06 20:33:37', '2023-11-06 20:33:37'),
+(41, 'Blog Title3', 'Author3', 'Description3', '', '2023-11-06 20:34:08', '2023-11-06 20:34:08'),
+(42, 'Blog Title4', 'Author4', 'Description4', '', '2023-11-06 20:34:37', '2023-11-06 20:34:37'),
+(43, 'Blog Title5', 'Author5', 'Description5', '', '2023-11-06 20:35:24', '2023-11-06 20:35:24'),
+(44, 'Blog Title6', 'Author6', 'Description6', '', '2023-11-06 20:35:46', '2023-11-06 20:35:46'),
+(45, 'Blog Title7', 'Author7', 'Description7', '', '2023-11-06 20:36:11', '2023-11-06 20:36:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_comments`
+--
+
+CREATE TABLE `blog_comments` (
+  `Comment_Id` int(11) NOT NULL,
+  `Blog_Id` int(11) DEFAULT NULL,
+  `Paragraph` text NOT NULL,
+  `Created_Time` timestamp NULL DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,17 +81,13 @@ CREATE TABLE `blog_pictures` (
 --
 
 INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
-(6, 22, 'images/blog_pictures/65371530989501.90488542.jpg'),
-(9, 26, 'images/blog_pictures/6538627d343777.61810942.jpg'),
-(10, 27, 'images/blog_pictures/65386e301700c8.47196175.jpg'),
-(11, 28, 'images/blog_pictures/653922fc26c3f9.52815194.jpg'),
-(13, 30, 'images/blog_pictures/653a6d2e0afa26.08642205.jpg'),
-(14, 31, 'images/blog_pictures/653a6e4b5f4bc8.42880896.jpg'),
-(15, 32, 'images/blog_pictures/653a6e6ac89d49.28070896.jpg'),
-(16, 33, 'images/blog_pictures/653a8b928d5797.54334947.jpg'),
-(17, 34, 'images/blog_pictures/653a8bb88fb2f0.31269026.jpg'),
-(19, 36, 'images/blog_pictures/653aec19e43e64.17197132.jpg'),
-(20, 37, 'images/blog_pictures/653aec345f00e0.67092487.jpg');
+(21, 39, 'images/blog_pictures/65493f752f6947.00110101.jpg'),
+(22, 40, 'images/blog_pictures/65493f91c4f978.64073287.jpg'),
+(23, 41, 'images/blog_pictures/65493fb0147a34.50160538.jpg'),
+(24, 42, 'images/blog_pictures/65493fcd93bd00.75092656.jpg'),
+(25, 43, 'images/blog_pictures/65493ffc9b0a39.52529038.jpg'),
+(26, 44, 'images/blog_pictures/654940129a4f76.32594610.jpg'),
+(27, 45, 'images/blog_pictures/6549402b13df46.83020739.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,6 +101,15 @@ CREATE TABLE `blog_story` (
   `Paragraph` text NOT NULL,
   `About_Author` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blog_story`
+--
+
+INSERT INTO `blog_story` (`Story_Id`, `Blog_Id`, `Paragraph`, `About_Author`) VALUES
+(22, 39, 'Blog Paragraph1', 'Author Description1'),
+(23, 45, 'Blog Paragraph7', 'Author Description7'),
+(24, 44, 'Blog Paragraph6', 'Author Description6');
 
 -- --------------------------------------------------------
 
@@ -150,6 +164,35 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`,
 (14, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$5o2DpsNy92iFJ4Cyktqi3.waUl6IwNfXm2fx8Y5yiVHP27ue.B7dG', '352fe25daf', 'user', '0000-00-00', '0000-00-00'),
 (15, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$qI8NV39nOXSMEgxJOh.3P.BBBjCJEwKfijSADdUd6uKcMrodbeE4u', '8e98d81f82', 'user', '0000-00-00', '0000-00-00');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_photos`
+--
+
+CREATE TABLE `user_photos` (
+  `Picture_Id` int(11) NOT NULL,
+  `Blog_Id` int(11) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_photos`
+--
+
+INSERT INTO `user_photos` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
+(6, 22, 'images/blog_pictures/65371530989501.90488542.jpg'),
+(9, 26, 'images/blog_pictures/6538627d343777.61810942.jpg'),
+(10, 27, 'images/blog_pictures/65386e301700c8.47196175.jpg'),
+(11, 28, 'images/blog_pictures/653922fc26c3f9.52815194.jpg'),
+(13, 30, 'images/blog_pictures/653a6d2e0afa26.08642205.jpg'),
+(14, 31, 'images/blog_pictures/653a6e4b5f4bc8.42880896.jpg'),
+(15, 32, 'images/blog_pictures/653a6e6ac89d49.28070896.jpg'),
+(16, 33, 'images/blog_pictures/653a8b928d5797.54334947.jpg'),
+(17, 34, 'images/blog_pictures/653a8bb88fb2f0.31269026.jpg'),
+(19, 36, 'images/blog_pictures/653aec19e43e64.17197132.jpg'),
+(20, 37, 'images/blog_pictures/653aec345f00e0.67092487.jpg');
+
 --
 -- Indexes for dumped tables
 --
@@ -159,6 +202,12 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`,
 --
 ALTER TABLE `blogs`
   ADD PRIMARY KEY (`Blog_Id`);
+
+--
+-- Indexes for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+  ADD PRIMARY KEY (`Comment_Id`);
 
 --
 -- Indexes for table `blog_pictures`
@@ -185,6 +234,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Indexes for table `user_photos`
+--
+ALTER TABLE `user_photos`
+  ADD PRIMARY KEY (`Picture_Id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -192,19 +247,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `blog_pictures`
 --
 ALTER TABLE `blog_pictures`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `blog_story`
 --
 ALTER TABLE `blog_story`
-  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -217,6 +278,12 @@ ALTER TABLE `events`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `user_photos`
+--
+ALTER TABLE `user_photos`
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
