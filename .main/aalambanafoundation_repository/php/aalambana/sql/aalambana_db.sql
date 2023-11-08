@@ -123,7 +123,7 @@ CREATE TABLE `events` (
   `Description` text DEFAULT NULL,
   `Video_Link` varchar(255) DEFAULT NULL,
   `Event_Date` datetime DEFAULT NULL,
-  `Create_Time` datetime DEFAULT NULL,
+  `Created_Time` datetime DEFAULT NULL,
   `Modified_Time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
