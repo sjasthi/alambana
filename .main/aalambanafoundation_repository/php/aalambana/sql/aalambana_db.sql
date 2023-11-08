@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 02:33 AM
+-- Generation Time: Nov 08, 2023 at 03:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -130,6 +130,25 @@ CREATE TABLE `events` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event_pictures`
+--
+
+CREATE TABLE `event_pictures` (
+  `Event_Id` int(11) NOT NULL,
+  `Location` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_pictures`
+--
+
+INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
+(1, 'images/event_pictures/654abb793cf0d.'),
+(2, 'images/event_pictures/654abb9ccf77a.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -228,6 +247,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`Event_Id`);
 
 --
+-- Indexes for table `event_pictures`
+--
+ALTER TABLE `event_pictures`
+  ADD PRIMARY KEY (`Event_Id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -272,6 +297,12 @@ ALTER TABLE `blog_story`
 --
 ALTER TABLE `events`
   MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `event_pictures`
+--
+ALTER TABLE `event_pictures`
+  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

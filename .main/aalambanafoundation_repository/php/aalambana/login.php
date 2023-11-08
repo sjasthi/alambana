@@ -38,7 +38,7 @@ else { // User exists
             $_SESSION['role'] = $user['role'];
             $_SESSION['logged_in'] = true;
             if ($_SESSION['role'] == "admin"){
-                header("location: admin.php");
+                header("location: admin_panel.php");
             }
             else {
                 header("location: index.php");

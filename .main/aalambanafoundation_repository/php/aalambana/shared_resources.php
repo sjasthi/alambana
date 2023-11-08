@@ -8,14 +8,20 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
   if ($status == PHP_SESSION_NONE) {
     session_start();
   }
+
+
+  
  
   //*************************************/
   // Create Common Library Loader(s)
 
   # CSS References
-  function css() {
+  function css($pageClass=0) {
+
+    // [Default]
     echo '
-        <link href="css/loginForm.css" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
@@ -27,10 +33,29 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
         <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
         <link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+
         <!-- Color Style -->
         <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
         <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
-    ';}
+
+    ';
+    
+    // Login CSS
+    if($pageClass==1){
+        echo '
+        <link href="css/loginForm.css" rel="stylesheet">
+        ';
+    }
+    // Admin CSS
+    if($pageClass==2){
+        echo '
+            <link href="css/admin_panel.css" rel="stylesheet" type="text/css">
+            <link href="css/" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+        ';
+    }
+    
+    
+  }
 
   # Libraries (JavaScript)
   function lib() {
@@ -105,7 +130,6 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
     # Site Header Wrapper / Menu Catagories
     echo '
-	
     <style>
 
     .header-container {
@@ -154,7 +178,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         padding: 1px 40px; /* Adjust padding as needed */
         font-size: 14px; /* Adjust font size as needed */
         margin-left: 20px; /* Add margin for spacing between sign-in button and other elements */
-        margin-top: 5px; Adjust margin-top to move the button down */
+        margin-top: 5px; /* Adjust margin-top to move the button down */
         background-color: transparent; /* Set background color to transparent */
         border: none; /* Remove border */
         color: #333; /* Set text color */
@@ -191,12 +215,11 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     		<li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="community-service.php">Community</a>
+                    <li><a href="community-support.php">Community</a>
                     	<ul>
                     		<li><a href="causes-education.php">Education</a></li>
                     		<li><a href="causes-hunger.php">Hunger Relief</a></li>
                     		<li><a href="causes-women.php">Women Empowerment</a></li>
-							<li><a href="community-service.php">Community Service</a>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>
@@ -312,11 +335,12 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     // Only Users Logged In
                     if ($_SESSION['role'] == 'user') {
                         echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['first_name'] . ')</a>';
+                        echo '<a href="profilesettings.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Profilo</a>';
                     }
                     // Admin Logged In
                     elseif ($_SESSION['role'] == 'admin') {
                         echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['role'] . ')</a>';
-                        echo '<a href="admin.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Admin</a>';
+                        echo '<a href="admin_panel.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Admin</a>';
                     }
                 }
                 else {// None.
@@ -334,13 +358,14 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
    
   }
   # Footer Page Element
-  function load_common_page_footer() {
+  function load_common_page_footer($footType=1) {
 
     echo '
     
-    <!-- Site Footer -->
-    <div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">
-    	<div class="container">
+    <!-- Site Footer -->';
+    if($footType==1) {echo '<div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">';} # Dynamic Footer Placement [Default]
+    if($footType==2) {echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';} # Static Footer 
+    echo '	<div class="container">
         	<div class="row">
             	<div class="col-md-4 col-sm-4">
                 	<div class="widget footer_widget">
@@ -506,8 +531,35 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     </div>
     ';
   }
- 
 
+  //*************************************/
+  // Admin Controls
+  # Side Menu
+  function admin_side_menu(){
+    echo ' 
+    <div class="a-side-menu">
+        <div class="a-brand-name">
+            <h1>Admin Panel</h1>
+        </div>
+        <ul>
+            <li><a href="admin_panel.php" img src="" alt="">Dashboard</a></li>
+            <li><a href="admin_events.php" img src="" alt="">Events</a></li>
+            <li><a href="admin_panel.php" img src="" alt="">Blogs</a></li>
+            <li><a href="admin_panel.php" img src="" alt="">Users</a></li>
+            <li><a href="admin_panel.php" img src="" alt="">Causes</a></li>
+            <li><a href="admin_panel.php" img src="" alt="">Help</a></li>
+            <li><a href="admin_panel.php" img src="" alt="">Settings</a></li>
+        </ul>
+    </div>
+    ';
+  }
+
+
+  # Fav Icon
+  function generateFaviconLink() {
+    echo ' <!-- Include the favicon.ico file -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">';
+  }
 
   
   //*************************************/

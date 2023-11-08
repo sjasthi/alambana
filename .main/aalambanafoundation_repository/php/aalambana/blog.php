@@ -22,7 +22,9 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
 <head>
   <!-- Basic Page Needs
   ================================================== -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- Include the favicon.ico file -->
+  <?php generateFaviconLink() ?>
   <title>Aalambana - Blogs</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -59,15 +61,11 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
 </head>
 
 <body>
-  <!--[if lt IE 7]>
-	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-<![endif]-->
-
 
   <div class="body">
     
     <!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php load_common_page_header() ?>
     
     <!-- Banner Area -->
     <div class="hero-area">

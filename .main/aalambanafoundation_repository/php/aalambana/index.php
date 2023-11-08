@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <!-- Include the favicon.ico file -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<?php generateFaviconLink() ?>
 <title>Aalambana Foundation - Empowering Dreams through Education</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -53,7 +53,7 @@
                             	<div class="flex-caption-cell">
                                 	<div class="flex-caption-text text-align-center">
                                         <h2>Make the world to smile</h2>
-                                        <a href="causes.php" class="btn btn-warning">Start the change</a>
+                                        <a href="community-support.php" class="btn btn-warning">Start the change</a>
                                     </div>
                                	</div>
                           	</div>
@@ -67,7 +67,7 @@
                             	<div class="flex-caption-cell">
                                 	<div class="flex-caption-text text-align-center">
                                         <h2>Make a difference for people<br>who needs it the most</h2>
-                                        <a href="causes.php" class="btn btn-primary">Start with a little</a>
+                                        <a href="community-support.php" class="btn btn-primary">Start with a little</a>
                                     </div>
                                	</div>
                           	</div>
@@ -96,7 +96,7 @@
     </div>
     <div class="accent-bg padding-tb20 cta-fw">
         <div class="container">
-            <a href="#" class="btn btn-default btn-ghost btn-light btn-rounded pull-right">Become a volunteer</a>
+            <a href="community-support.php" class="btn btn-default btn-ghost btn-light btn-rounded pull-right">Become a volunteer</a>
             <h4>Let's start doing your bit for the world. Join us as a Volunteer</h4>
         </div>
     </div>

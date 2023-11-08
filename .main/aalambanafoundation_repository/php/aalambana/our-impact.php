@@ -12,7 +12,7 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Our Impact</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -44,7 +44,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php load_common_page_header() ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" style="background-image:url(images/inside7.jpg);">
@@ -61,9 +61,8 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-8 content-block">
-                        <p>To date, Aalambana Foundation has made charitable donations that total more than $30,000. Some of the organizations that we support includes OC Food Bank, Wound Walk OC, Grandma’s House of Hope, Orange County Rescue Mission, South County Outreach, Nagai Narayanji Memorial Foundation and many others
-
-By funding orphanages, meals, grocercies, enrichment, back to school drives, food drives, enrichment, development activities, medical camps, mentoring and education programs and providing scholarships, Aalambana Foundation is making a positive and lasting impact on communities across many urban and rural areas</p>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                        <p>Donec vel mauris quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
                         <h3>There are multiple ways you can help others to change their lives</h3>
                         <ul class="checks">
                         	<li>Start a workplace campaign</li>
@@ -84,7 +83,7 @@ By funding orphanages, meals, grocercies, enrichment, back to school drives, foo
                             	<input type="text" class="form-control">
                             	<label>Amount (in USD)</label>
                                 <input type="text" class="form-control" placeholder="$">
-                                <button class="btn btn-default btn-ghost btn-light btn-rounded btn-block">Donate</button>
+                                <a href="#" class="btn btn-default btn-ghost btn-light btn-rounded btn-block" data-toggle="modal" data-target="#DonateModal">Donate </a>
                             </form>
                         </div>
                     </div>
@@ -173,6 +172,8 @@ By funding orphanages, meals, grocercies, enrichment, back to school drives, foo
     </div>
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
+    <!-- Donate Form Modal -->
+    <?php donate_dialog() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
     <!-- Style Switcher Start -->

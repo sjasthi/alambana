@@ -98,7 +98,7 @@
                     $aboutAuthor = getAboutFromDatabase($blogId);
                     $storyDescription = getParagraphFromDatabase($blogId);
                     // Blog exists, modify button name and function
-                    echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Edit Post Story</button>';
+                    echo '<button id="form_show_button" onclick="show_edit_form();">Edit Post Story</button>';
                     
                     $formAction = edit_post_story($blogId); // Set the form action for editing
                     $submitAction = "update_post_story";
@@ -107,11 +107,11 @@
                     $aboutAuthor =  '';
                     $storyDescription = '';
                     // Blog doesn't exist, default button name and function
-                    echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Create Post Story</button>';
+                    echo '<button id="form_show_button" onclick="show_edit_form();">Create Post Story</button>';
                     $formAction = create_post_story($blogId); // Set the form action for creating
                     $submitAction = "create_post_story";
 
-                }echo '<button type="submit" class="btn btn-primary btn-lg" id="delete_post_button;" style="margin-left: 10px;" onclick="delete_blog_post();">Delete Post</button>'; // Add the Delete Post button
+                }echo '<button id="delete_post_button" onclick="delete_blog_post();">Delete Post</button>'; // Add the Delete Post button
                 ?>
                 <br><br>
                 <!-- Blog Form (Initially hidden) [Activates on button click] -->
@@ -127,7 +127,7 @@
                         <br>
                         <textarea type="text" name="about_author" maxlength="128" required rows="3" cols="50"><?php echo htmlspecialchars($aboutAuthor); ?></textarea><br><br>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-lg" name="<?php echo $submitAction; ?>" value="Publish">
+                    <input type="submit" name="<?php echo $submitAction; ?>" value="Publish">
                 </form>
 
                 

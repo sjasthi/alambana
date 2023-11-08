@@ -15,8 +15,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>About Us</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Born to give - Charity/Crowdfunding HTML5 Template</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -47,7 +47,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php load_common_page_header() ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" style="background-image:url(images/parallax6.jpg);">
@@ -89,7 +89,7 @@
                         </div>
                    	</div>
                     <div class="col-md-8 col-sm-8">
-                    	<p class="lead">Aalambana Foundation is a 501 (c)(3)  non-profit organization, founded in April 2020, with a focus on women empowerment, supporting socioeconomically disadvantaged children, and community betterment activities.</p>
+                    	<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
                         <div class="row">
                         	<div class="col-md-4 col-sm-4">
                             	<div class="grid-item">
@@ -120,7 +120,7 @@
                	</div>
                 
                 <div class="cta">
-                 	<a href="causes.php" class="btn btn-primary pull-right">Donate Now</a>
+                <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
                 	<p>Let's start doing your bit for the world. Donate a little.</p>
                 </div>
                 <div class="spacer-30"></div>
@@ -228,8 +228,11 @@
     </div>
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
+    <!-- Donate Form Modal -->
+    <?php donate_dialog() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
+    
     <!-- Style Switcher Start -->
     <?php style_switcher() ?>
 </body>

@@ -1,10 +1,18 @@
-<?php
+<?php 
+    ob_start();
+    if(!isset($_SESSION)) { 
+        session_start();
+    } 
 
-  if(!isset($_SESSION)) { 
-      session_start();
-  } 
+    if ($_SESSION['role'] != 'admin'){
+        header('Location:index.php'); 
+    }
 
-  include 'shared_resources.php';
+    #require 'bin/functions.php';
+    #require 'db_configuration.php';
+    include('shared_resources.php'); 
+    
+    ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +20,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- Include the favicon.ico file -->
+<?php generateFaviconLink() ?>
 <title>Admin Panel</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -23,170 +32,169 @@
 <meta name="format-detection" content="telephone=no">
 <!-- CSS
   ================================================== -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<link href="css/admin_panel.css" rel="stylesheet" type="text/css">
-<link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
-<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-<link href="css/" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
-<!-- Color Style -->
-<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+<?php css(2) ?>
+
 <!-- SCRIPTS
   ================================================== -->
   <?php load_common_page_scripts() ?>
+  
 </head>
 <body>
     
-    <div class="side-menu">
-        <div class="brand-name">
-            <h1>Admin</h1>
+    
+    </style>
+    <!-- Site Header Wrapper -->
+    <?php load_common_page_header(2) ?>
+    <!-- Main Content -->
+    <div id="admin-container-id">
+    	<div class="admin-content">
+        	<div class="admin-container">
+            	<div class="row">
+
+                    <!-- Admin Side Menu Panel -->
+                    <?php admin_side_menu() ?>
+                    <div class="a-container">
+                        <div class="header">
+                            <div class="nav">
+                                <div class="search">
+                                    <input type="text" placeholder="Search..">
+                                    <button type="submit"><img src="search.png" alt=""></button>
+                                </div>
+                                <div class="user">
+                                    <a href="#" class="btn" style="padding: 5px 25px; margin-left: 30px; margin-right: 50px;">Add New</a>
+                                    <img src="notifications.png" alt="">
+                                    <div class="img-case">
+                                        <img src="user.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="cards">
+                                <div class="card" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
+                                    <div class="box">
+                                        <h1>2194</h1>
+                                        <h3>Blogs</h3>
+                                    </div>
+                                    <div class="icon-case">
+                                        <img src="students.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
+                                    <div class="box">
+                                        <h1>53</h1>
+                                        <h3>Events</h3>
+                                    </div>
+                                    <div class="icon-case">
+                                        <img src="teachers.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
+                                    <div class="box">
+                                        <h1>5</h1>
+                                        <h3>Users</h3>
+                                    </div>
+                                    <div class="icon-case">
+                                        <img src="schools.png" alt="">
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            <div class="content-2">
+                                <div class="box">
+                                    <div class="title">
+                                        <h2>Recent Blogs</h2>
+                                        <a href="#" class="btn">View All</a>
+                                    </div>
+                                    <table>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Topic</th>
+                                            <th>Amount</th>
+                                            <th>Option</th>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>St. James College</td>
+                                            <td>$120</td>
+                                            <td><a href="#" class="btn">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>St. James College</td>
+                                            <td>$120</td>
+                                            <td><a href="#" class="btn">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>St. James College</td>
+                                            <td>$120</td>
+                                            <td><a href="#" class="btn">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>St. James College</td>
+                                            <td>$120</td>
+                                            <td><a href="#" class="btn">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>St. James College</td>
+                                            <td>$120</td>
+                                            <td><a href="#" class="btn">View</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>St. James College</td>
+                                            <td>$120</td>
+                                            <td><a href="#" class="btn">View</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="new-students">
+                                    <div class="title">
+                                        <h2>New Users</h2>
+                                        <a href="#" class="btn">View All</a>
+                                    </div>
+                                    <table>
+                                        <tr>
+                                            <th>Profile</th>
+                                            <th>Name</th>
+                                            <th>option</th>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="user.png" alt=""></td>
+                                            <td>John Steve Doe</td>
+                                            <td><img src="info.png" alt=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="user.png" alt=""></td>
+                                            <td>John Steve Doe</td>
+                                            <td><img src="info.png" alt=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="user.png" alt=""></td>
+                                            <td>John Steve Doe</td>
+                                            <td><img src="info.png" alt=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="user.png" alt=""></td>
+                                            <td>John Steve Doe</td>
+                                            <td><img src="info.png" alt=""></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-        <ul>
-            <li><img src="" alt="">&nbsp; <span> Dashboard</span> </li>
-            <li><img src="" alt="">&nbsp;<span>Events</span> </li>
-            <li><img src="" alt="">&nbsp;<span>Blogs</span> </li>
-            <li><img src="" alt="">&nbsp;<span>Users</span> </li>
-            <li><img src="" alt="">&nbsp;<span>Causes</span> </li>
-            <li><img src="" alt="">&nbsp; <span>Help</span></li>
-            <li><img src="" alt="">&nbsp;<span>Settings</span> </li>
-        </ul>
     </div>
-    <div class="container">
-        <div class="header">
-            <div class="nav">
-                <div class="search">
-                    <input type="text" placeholder="Search..">
-                    <button type="submit"><img src="search.png" alt=""></button>
-                </div>
-                <div class="user">
-                    <a href="#" class="btn">Add New</a>
-                    <img src="notifications.png" alt="">
-                    <div class="img-case">
-                        <img src="user.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content">
-            <div class="cards">
-                <div class="card">
-                    <div class="box">
-                        <h1>2194</h1>
-                        <h3>Blogs</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="students.png" alt="">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="box">
-                        <h1>53</h1>
-                        <h3>Events</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="teachers.png" alt="">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="box">
-                        <h1>5</h1>
-                        <h3>Users</h3>
-                    </div>
-                    <div class="icon-case">
-                        <img src="schools.png" alt="">
-                    </div>
-                </div>
-            
-            </div>
-            <div class="content-2">
-                <div class="recent-payments">
-                    <div class="title">
-                        <h2>Recent Blogs</h2>
-                        <a href="#" class="btn">View All</a>
-                    </div>
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Topic</th>
-                            <th>Amount</th>
-                            <th>Option</th>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>St. James College</td>
-                            <td>$120</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>St. James College</td>
-                            <td>$120</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>St. James College</td>
-                            <td>$120</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>St. James College</td>
-                            <td>$120</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>St. James College</td>
-                            <td>$120</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>St. James College</td>
-                            <td>$120</td>
-                            <td><a href="#" class="btn">View</a></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="new-students">
-                    <div class="title">
-                        <h2>New Users</h2>
-                        <a href="#" class="btn">View All</a>
-                    </div>
-                    <table>
-                        <tr>
-                            <th>Profile</th>
-                            <th>Name</th>
-                            <th>option</th>
-                        </tr>
-                        <tr>
-                            <td><img src="user.png" alt=""></td>
-                            <td>John Steve Doe</td>
-                            <td><img src="info.png" alt=""></td>
-                        </tr>
-                        <tr>
-                            <td><img src="user.png" alt=""></td>
-                            <td>John Steve Doe</td>
-                            <td><img src="info.png" alt=""></td>
-                        </tr>
-                        <tr>
-                            <td><img src="user.png" alt=""></td>
-                            <td>John Steve Doe</td>
-                            <td><img src="info.png" alt=""></td>
-                        </tr>
-                        <tr>
-                            <td><img src="user.png" alt=""></td>
-                            <td>John Steve Doe</td>
-                            <td><img src="info.png" alt=""></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Site Footer -->
+    <?php load_common_page_footer(2) ?>
+    <!-- Libraries Loader -->
+    <?php lib() ?>
 </body>
 </html>

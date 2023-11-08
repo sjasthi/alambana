@@ -25,7 +25,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <!-- Include the favicon.ico file -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<?php generateFaviconLink() ?>
 <title>Register/Login Form</title>
 <meta name="description" content="">
 <meta name="keywords" content="">

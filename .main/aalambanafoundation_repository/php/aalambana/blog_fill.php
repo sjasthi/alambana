@@ -64,6 +64,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     }
     $connection->close();
   }
+
   # Blog Page Fill
   function fill_blog() {
     global $MAX_VISIBLE_POSTS;
@@ -120,7 +121,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                         </a> '.$blog_video_link . '
                   </div>
                   <div class="col-md-8 col-sm-8">
-                      <h3><a href="single-post.php">' . $row['Title'] . '</a></h3>
+                      <h3><a href="single-post.php?blog_id=' . $row['Blog_Id'] . '">' . $row['Title'] . '</a></h3>
                       <span class="meta-data grid-item-meta"><i class="fa fa-calendar"></i>  
                       By: ' . $row['Author'] . ', Posted on ' . $row['Created_Time'] . '</span>
                       <div class="grid-item-excerpt">
@@ -147,6 +148,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     }
     $connection->close();
   }
+
   # Blog Page Fill Story
   function fill_blog_story($blogId) {
     // Create connection
@@ -239,7 +241,6 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     }
     $connection->close();
   }
-
 
   # Page List Items
   function fill_blog_page_list(){
@@ -515,6 +516,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     }
     $connection->close();
   }
+  
   # Page Tabs Menu
   function fill_blog_tabs() {
     global $MAX_VISIBLE_POSTS;
@@ -668,8 +670,6 @@ function getTitleFromDatabase($blogId) {
 
   return $title;
 }
-
-
 # fetch Story Paragraph
 function getParagraphFromDatabase($blogId) {
     // Create connection

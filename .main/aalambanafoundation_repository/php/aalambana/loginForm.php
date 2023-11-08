@@ -28,7 +28,7 @@ ob_flush();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <!-- Include the favicon.ico file -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<?php generateFaviconLink() ?>
 <title>Register/Login Form</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -39,7 +39,7 @@ ob_flush();
 <meta name="format-detection" content="telephone=no">
 <!-- CSS
 ================================================== -->
-<?php css() ?>
+<?php css(1) ?>
 
 <!-- SCRIPTS
   ================================================== -->
@@ -48,13 +48,13 @@ ob_flush();
   
       <!-- Site Header Wrapper -->
       <?php load_common_page_header(2) ?>
- 
+    
   <div class="form">
 
-    <div class="tab-content">
+    <div class="tab-content" style="margin-top: 100px; margin-bottom: 100px;">
 
       <div id="login">
-        <h1 id="welcomeText">Welcome Back!</h1>
+        <h1 id="welcomeText" style="margin-left: 50px; margin-right: 0px;">Welcome Back!</h1>
 
         <form action="loginForm.php" method="post" autocomplete="off">
 
@@ -73,7 +73,7 @@ ob_flush();
             <input type="password" required autocomplete="off" name="password" />
           </div>
           <div class="btnContainer">
-            <button class="button button-block" name="login" />Log In</button>
+            <button class="btn-primary" style="padding: 5px 25px; margin-left: 120px; margin-right: 50px;" name="login" />Log In</button>
             <a href="confirmEmail.php">Forgot password</a>
           </div>
         </form>
@@ -115,7 +115,7 @@ ob_flush();
             <input type="password" required autocomplete="off" name='password' />
           </div>
 
-          <button class="button button-block" name="register">Register</button>
+          <button class="btn-primary" style="padding: 5px 25px; margin-left: 230px; margin-right: 50px;"  name="register">Register</button>
 
         </form>
 
