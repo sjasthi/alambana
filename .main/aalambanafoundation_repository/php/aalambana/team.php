@@ -4,6 +4,7 @@
       session_start();
   } 
 
+  include 'team_fill.php';
   include 'shared_resources.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
@@ -106,163 +107,15 @@
 			}
 		});
 	</script>
-    <!-- Main Content -->
-    <div id="main-container">
+     <!-- Main Content -->
+     <div id="main-container">
     	<div class="content">
         	<div class="container">
             	<h2>AALAMBANA FOUNDATION CORE TEAM</h2>
                 <div class="spacer-20"></div>
                 <div class="row">
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Varma Alluri</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Ram Yalamanchili</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Raju Vatsavai</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Rohan Chava</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Mounika Tiruvaipati</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Deepa Agrawal</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Ravi Tiruvaipati</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Surya Gangireddy</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Suresh Mallina</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Aparna Alluri</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Prathyusha Yalamanchili</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Sarada Kotnani</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Bhavana Reddy</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Swetha Gangireddy</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Ajay Chava</h3>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
+                    <!--Function goes here-->
+                    <?php getCoreTeamInfo(); ?>
                 </div>
            	</div>
          	<div class="spacer-75"></div>
@@ -271,7 +124,7 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-5">
                             <h2 class="block-title">Our Staff &amp; Volunteers</h2>
-                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
+                            <p>tytytytytytytyttytytytytyt, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
                         </div>
                         <div class="col-md-7 col-sm-7">
                             <div class="row">
