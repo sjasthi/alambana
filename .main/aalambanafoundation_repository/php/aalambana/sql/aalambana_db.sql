@@ -119,7 +119,7 @@ INSERT INTO `blog_story` (`Story_Id`, `Blog_Id`, `Paragraph`, `About_Author`) VA
 
 CREATE TABLE `events` (
   `Event_Id` int(11) NOT NULL,
-  `Title` int(100) DEFAULT NULL,
+  `Title` varchar(100) DEFAULT NULL,
   `Description` text DEFAULT NULL,
   `Video_Link` varchar(255) DEFAULT NULL,
   `Event_Date` datetime DEFAULT NULL,
