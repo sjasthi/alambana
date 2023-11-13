@@ -16,7 +16,7 @@
 <!-- Basic Page Needs
   ================================================== -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Events</title>
+<title>Events Calendar</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -67,7 +67,7 @@
     <?php load_common_page_header(2) ?>
     <!-- Banner Area -->
     <div class="hero-area">
-    	<div class="page-banner parallax"  id="banner" style="background-image:url(images/inside9.jpg);">
+    	<div class="page-banner parallax" id="banner" style="background-image:url(images/inside9.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
         			<h1 class="block-title">Past Events</h1>
@@ -87,7 +87,7 @@
 		const banner = document.getElementById('banner');
 
 		// Retrieve the stored image URL from local storage on page load
-		const storedImageUrl = localStorage.getItem('pastEventBanner');
+		const storedImageUrl = localStorage.getItem('eventCalenderBanner');
 		if (storedImageUrl) {
 			banner.style.backgroundImage = `url(${storedImageUrl})`;
 		}
@@ -100,7 +100,7 @@
 					banner.style.backgroundImage = `url(${e.target.result})`;
 
 					// Store the selected image URL for Page 1 in local storage
-					localStorage.setItem('pastEventBanner', e.target.result);
+					localStorage.setItem('eventCalenderBanner', e.target.result);
 				};
 				reader.readAsDataURL(file);
 			}

@@ -6,6 +6,10 @@
   } 
 
   include 'shared_resources.php';
+   
+  if (isset($_SESSION['role'])) {
+    $userRole = $_SESSION['role'];
+  }
 ?>
 
 
@@ -15,8 +19,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Born to give - Charity/Crowdfunding HTML5 Template</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>About Us</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -40,6 +44,24 @@
 <!-- SCRIPTS
   ================================================== -->
   <?php load_common_page_scripts() ?>
+  
+  <style>
+        /* Style for the custom button label */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+
+        /* Hide the actual file input element */
+        #imageUpload {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -47,17 +69,51 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
     <div class="hero-area">
-    	<div class="page-banner parallax" style="background-image:url(images/parallax6.jpg);">
+    	<div class="page-banner parallax" id="banner"  style="background-image:url(images/parallax6.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
         			<h1 class="block-title">About us</h1>
+					 <?php
+                        if (isset($userRole) && $userRole === "admin") {
+                            // Display the "Change Image" button for admin users
+							echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+                            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+                        }
+                        ?>
                 </div>
             </div>
         </div>
     </div>
+	
+	<script>
+		const imageUpload = document.getElementById('imageUpload');
+		const banner = document.getElementById('banner');
+
+		// Retrieve the stored image URL from local storage on page load
+		const storedImageUrl = localStorage.getItem('aboutBanner');
+		if (storedImageUrl) {
+			banner.style.backgroundImage = `url(${storedImageUrl})`;
+		}
+
+		imageUpload.addEventListener('change', function () {
+			const file = imageUpload.files[0];
+			if (file && file.type.startsWith('image/')) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					banner.style.backgroundImage = `url(${e.target.result})`;
+
+					// Store the selected image URL for Page 1 in local storage
+					localStorage.setItem('aboutBanner', e.target.result);
+				};
+				reader.readAsDataURL(file);
+			}
+		});
+	</script>
+
+
     <!-- Main Content -->
     <div id="main-container">
     	<div class="content">
@@ -89,7 +145,7 @@
                         </div>
                    	</div>
                     <div class="col-md-8 col-sm-8">
-                    	<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+						<p class="lead">Aalambana Foundation is a 501 (c)(3)  non-profit organization, founded in April 2020, with a focus on women empowerment, supporting socioeconomically disadvantaged children, and community betterment activities.</p>
                         <div class="row">
                         	<div class="col-md-4 col-sm-4">
                             	<div class="grid-item">
@@ -120,7 +176,7 @@
                	</div>
                 
                 <div class="cta">
-                <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
+                 	<a href="causes.php" class="btn btn-primary pull-right">Donate Now</a>
                 	<p>Let's start doing your bit for the world. Donate a little.</p>
                 </div>
                 <div class="spacer-30"></div>
@@ -228,11 +284,8 @@
     </div>
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
-    <!-- Donate Form Modal -->
-    <?php donate_dialog() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
-    
     <!-- Style Switcher Start -->
     <?php style_switcher() ?>
 </body>

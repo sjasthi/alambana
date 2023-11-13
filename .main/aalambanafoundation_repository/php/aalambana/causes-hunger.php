@@ -5,6 +5,10 @@
   } 
 
   include 'shared_resources.php';
+  
+  if (isset($_SESSION['role'])) {
+    $userRole = $_SESSION['role'];
+  }
 ?>
 
 <!DOCTYPE HTML>
@@ -12,8 +16,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Born to give - Charity/Crowdfunding HTML5 Template</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Hunger</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -37,6 +41,24 @@
 <!-- SCRIPTS
   ================================================== -->
   <?php load_common_page_scripts() ?>
+  
+  <style>
+        /* Style for the custom button label */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+
+        /* Hide the actual file input element */
+        #imageUpload {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -44,22 +66,79 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
+	
     <div class="hero-area">
-    	<div class="page-banner parallax" style="background-image:url(images/parallax6.jpg);">
-        	<div class="container">
-            	<div class="page-banner-text">
-        			<h1 class="block-title">Hunger</h1>
+        <div class="page-banner parallax" id="banner" style="background-image:url(images/parallax6.jpg);">
+            <div class="container">
+                <div class="page-banner-text">
+                    <h1 class="block-title">Hunger</h1>
+                        <?php
+                        if (isset($userRole) && $userRole === "admin") {
+                            // Display the "Change Image" button for admin users
+							echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+                            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+	<!-- Page 1 -->
+	<script>
+		const imageUpload = document.getElementById('imageUpload');
+		const banner = document.getElementById('banner');
+
+		// Retrieve the stored image URL from local storage on page load
+		const storedImageUrl = localStorage.getItem('hungerBanner');
+		if (storedImageUrl) {
+			banner.style.backgroundImage = `url(${storedImageUrl})`;
+		}
+
+		imageUpload.addEventListener('change', function () {
+			const file = imageUpload.files[0];
+			if (file && file.type.startsWith('image/')) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					banner.style.backgroundImage = `url(${e.target.result})`;
+
+					// Store the selected image URL for Page 1 in local storage
+					localStorage.setItem('hungerBanner', e.target.result);
+				};
+				reader.readAsDataURL(file);
+			}
+		});
+	</script>
+
+	
     <!-- Main Content -->
     <div id="main-container">
     	<div class="content">
         	<div class="container">
                 <div class="grid-filter">
+					<div class="col-md-20 col-sm-15">
+                        <p class="lead">Hunger is an issue we are passionate about at Aalambana Foundation, 
+							and we are consciously picking organizations that cater to similar initiatives. 
+							Organizations that we have been working with: 
+						</p>
+                    </div>
+					<div class="col-md-10 col-sm-10">
+						-OC Food Bank
+					</div>
+					<div class="col-md-10 col-sm-10">
+						-Wound Walk OC
+					</div>
+					<div class="col-md-10 col-sm-10">
+						-Grandma’s House of Hope
+					</div>
+					<div class="col-md-10 col-sm-10">
+						-Orange County Rescue Mission
+					</div>
+					<div class="col-md-10 col-sm-10">
+						
+					</div>
                     <ul class="nav nav-pills sort-source" data-sort-id="gallery" data-option-key="filter">
                         <li data-option-value="*" class="active"><a href="#"><i class="fa fa-th"></i> <span>Show All</span></a></li>
                         <li data-option-value=".education"><a href="#"><span>Education</span></a></li>

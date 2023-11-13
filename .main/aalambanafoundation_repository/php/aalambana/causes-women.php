@@ -5,6 +5,10 @@
   } 
 
   include 'shared_resources.php';
+  
+  if (isset($_SESSION['role'])) {
+    $userRole = $_SESSION['role'];
+  }
 ?>
 
 <!DOCTYPE HTML>
@@ -37,6 +41,26 @@
 
 <!-- SCRIPTS
   ================================================== -->
+	<?php load_common_page_scripts() ?>
+	
+	<style>
+        /* Style for the custom button label */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+
+        /* Hide the actual file input element */
+        #imageUpload {
+            display: none;
+        }
+    </style>
+
 
 </head>
 <body>
@@ -48,14 +72,47 @@
     <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
     <div class="hero-area">
-    	<div class="page-banner parallax" style="background-image:url(images/women.jpg);">
+    	<div class="page-banner parallax" id="banner" style="background-image:url(images/women.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
         			<h1 class="block-title">Woman Empower</h1>
+					 <?php
+                        if (isset($userRole) && $userRole === "admin") {
+                            // Display the "Change Image" button for admin users
+							echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+                            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+                        }
+                        ?>
                 </div>
             </div>
         </div>
     </div>
+	
+	<script>
+		const imageUpload = document.getElementById('imageUpload');
+		const banner = document.getElementById('banner');
+
+		// Retrieve the stored image URL from local storage on page load
+		const storedImageUrl = localStorage.getItem('womanEmpower');
+		if (storedImageUrl) {
+			banner.style.backgroundImage = `url(${storedImageUrl})`;
+		}
+
+		imageUpload.addEventListener('change', function () {
+			const file = imageUpload.files[0];
+			if (file && file.type.startsWith('image/')) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					banner.style.backgroundImage = `url(${e.target.result})`;
+
+					// Store the selected image URL for Page 1 in local storage
+					localStorage.setItem('womanEmpower', e.target.result);
+				};
+				reader.readAsDataURL(file);
+			}
+		});
+	</script>
+	
     <!-- Main Content -->
     <div id="main-container">
     	<div class="content">
