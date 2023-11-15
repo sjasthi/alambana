@@ -10,10 +10,10 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     session_start();
   }
 
-  $MAX_VISIBLE_POSTS = get_session_value(); //intval(3);
+  $MAX_VISIBLE_POSTS = intval(get_session_value()); //intval(3);
   $MAX_NAV_BUTTONS = intval(3);
   $current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensure (INT | Variable Security)
-  if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS= intval(3);
+  if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS = intval(3);
 
 
   # Blog Page TOC

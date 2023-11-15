@@ -37,12 +37,13 @@ function create_comment_post($blogId) {
         }
         else {// New / Anonymous User.
             // Update the variables with form data
-            $paragraph = addslashes($_POST['comment_paragraph']);
-            $author = addslashes($_POST['comment_name']);
-            $email = addslashes($_POST['comment_email']);
-            $url = addslashes($_POST['comment_url']);
+            $paragraph = $_POST['comment_paragraph'] ?? '';
+            $author = $_POST['comment_name'] ?? '';
+            $email = $_POST['comment_email'] ?? '';
+            $url = $_POST['comment_url'] ?? '';
 
             if (empty($author)) {$author = "Anonymous User";}
+            
         }
 
         if (isset($_POST['create_comment_post']) ) {
