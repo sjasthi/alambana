@@ -15,20 +15,36 @@ function create_comment_post($blogId) {
 
     
     # Field Entries
-    if (isset($_POST['create_comment_post']) || isset($_POST['create_comment_post_anonymous'])) {
+    if (isset($_POST['create_comment_post']) || isset($_POST['create_comment_post_subline'])) {
 
-        // Update the variables with form data
-        $paragraph = addslashes($_POST['comment_paragraph']);
-        $author = addslashes($_POST['comment_name']);
-        $email = addslashes($_POST['comment_email']);
+        $paragraph = "";
+        $author = "";
+        $email = "";
+        $url = "";
+
+        if (isset($_POST['create_comment_post']) ) {
+            // Update the variables with form data
+            $paragraph = addslashes($_POST['comment_paragraph']);
+            $author = addslashes($_POST['comment_name']);
+            $email = addslashes($_POST['comment_email']);
+            $url = addslashes($_POST['comment_url']);
+        }
+        elseif (isset($_POST['create_comment_post_subline'])) {
+            // Update the variables with form data
+            $paragraph = addslashes($_POST['comment_paragraph']);
+            $author = "";
+            $email = "";
+            $url = "";
+        }
+
 
         // If any required item is still blank, display a message and continue the loop
-        if (empty($paragraph) || empty($author) || empty($email)) {
+        /*if (isset($_POST['create_comment_post']) && (empty($paragraph) || empty($author) || empty($email))) {
             echo "Please fill in all required fields.";
         }
-        else{
+        else{*/
 
-            $url = addslashes($_POST['comment_url']);
+            
             $timestamp = date("Y-m-d H:i:s");
             $subject_id = get_saved_button_id();
             if (!$subject_id) { // if not child button clicked then parent
@@ -62,7 +78,7 @@ function create_comment_post($blogId) {
                 }
             //}
             }
-        }  
+        //}  
     }
 
     mysqli_close($connection);
