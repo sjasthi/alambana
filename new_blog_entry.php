@@ -17,7 +17,9 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Aalambana - Blogs</title>
+  <!-- Include the favicon.ico file -->
+  <?php generateFaviconLink() ?>
+  <title>Aalambana - Blogs Entry</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="author" content="">
@@ -46,7 +48,7 @@
     <!-- Site Header Wrapper -->
     <div class="site-header-wrapper">
       <!-- Site Header Wrapper -->
-      <?php load_common_page_header() ?>
+      <?php load_common_page_header(2) ?>
 	  <style>
         /* Style for the custom button label */
         .custom-file-upload {

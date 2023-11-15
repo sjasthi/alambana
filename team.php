@@ -65,7 +65,7 @@
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" id="banner" style="background-image:url(images/inside5.jpg);">
