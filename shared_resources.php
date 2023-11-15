@@ -267,17 +267,17 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                         	<div class="widget recent_posts">
                                             	<ul>
                                                 	<li>
-                                                    	<a href="single-post.php" class="media-box">
+                                                    	<a href="single-cause.php" class="media-box">
                                                             <img src="images/post1.jpg" alt="">
                                                         </a>
-                                                		<h5><a href="single-post.php">A single person can change million lives</a></h5>
+                                                		<h5><a href="single-cause.php">A single person can change million lives</a></h5>
                                                 		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
                                                     </li>
                                                 	<li>
-                                                    	<a href="single-post.php" class="media-box">
+                                                    	<a href="single-cause.php" class="media-box">
                                                             <img src="images/post3.jpg" alt="">
                                                         </a>
-                                                		<h5><a href="single-post.php">Donate your woolens this winter</a></h5>
+                                                		<h5><a href="single-cause.php">Donate your woolens this winter</a></h5>
                                                 		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
                                                     </li>
                                                 </ul>
