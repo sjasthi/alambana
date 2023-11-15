@@ -268,6 +268,8 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
       $blog_reply_field = "";
 
       while($row = $result->fetch_assoc()) { // start in first row
+        
+        $reply_button = '';
 
         if ($is_new_topic != $row['Subject_Id']){ // new parent comment
           
@@ -281,14 +283,17 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
           $is_new_topic = $row['Subject_Id']; // set as new parent subject
           
           # Intial HTML Blog Comment Body Elements
+          if (isset($_SESSION['role'])){ // Verify SESSION
+            $reply_button = '<a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button'.$button_id.'"; onclick="reply_blog_comment('.$button_id.');">Reply</a>';
+          }
           $blog_body .= 
           '
           <li>
               <div class="post-comment-parent-block"> 
                   <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
-                      <div class="post-comment-content">
-                          <a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button'.$button_id.'"; onclick="reply_blog_comment('.$button_id.');">Reply</a>
-                          <h5>' . $row['Name'] . ' <span>says</span></h5>
+                      <div class="post-comment-content">'
+                      . $reply_button .
+                      '<h5>' . $row['Name'] . ' <span>says</span></h5>
                           <span class="meta-data">' . $row['Created_Time'] . '</span>
                           <p>' . nl2br($row['Paragraph']) . '</p>
                       </div>
@@ -302,17 +307,21 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
           $formAction = "";#create_comment_post($targetBlogId); // Set the form action for creating
           $submitAction = "create_comment_post_subline";
-          
           if ($is_subline == 0){ $blog_body .= '<ul>';} // if parent comment has been initialized; open to first child branch structure
           $is_subline = 1;
+          
+          if (isset($_SESSION['role'])){ // Verify SESSION
+            $reply_button = '<a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button'.($button_id-1).'"; onclick="reply_blog_comment('.($button_id-1).');">Reply</a>';
+          }
+         
           $blog_body .=
           '
             <li>
                 <div class="post-comment-block">
                     <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
-                        <div class="post-comment-content">
-                        <a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button'.($button_id-1).'"; onclick="reply_blog_comment('.($button_id-1).');">Reply</a>
-                        <h5>' . $row['Name'] . ' <span>says</span></h5>
+                        <div class="post-comment-content">'
+                        . $reply_button .
+                        '<h5>' . $row['Name'] . ' <span>says</span></h5>
                             <span class="meta-data">' . $row['Created_Time'] . '</span>
                             <p>' . nl2br($row['Paragraph']) . '</p>
                         </div>
@@ -321,6 +330,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
           ';
         }
+        if (isset($_SESSION['role'])){ // Verify SESSION
         $blog_reply_field = '
             <form id="blog_reply_form'.($button_id-1).'" action="'. $formAction .'" method="POST" enctype="multipart/form-data" hidden="hidden">
                 <div class="row">
@@ -339,6 +349,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
               </div>
           </form>
         </li>';// close parent tree
+        } else { $blog_reply_field = '';}
         
       }
       if ($is_subline == 1){ $blog_body .= '</ul>';} // if last contained child branch; close child branch    
