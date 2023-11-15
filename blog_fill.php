@@ -10,10 +10,10 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     session_start();
   }
 
-  $MAX_VISIBLE_POSTS = intval(3);
+  $MAX_VISIBLE_POSTS = get_session_value(); //intval(3);
   $MAX_NAV_BUTTONS = intval(3);
   $current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensure (INT | Variable Security)
-$MAX_VISIBLE_POSTS = get_session_value();
+  if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS= intval(3);
 
 
   # Blog Page TOC
@@ -265,18 +265,21 @@ $MAX_VISIBLE_POSTS = get_session_value();
       $is_subline = 0;
       $button_id = 1;
       $blog_body = "";
+      $blog_reply_field = "";
 
       while($row = $result->fetch_assoc()) { // start in first row
 
         if ($is_new_topic != $row['Subject_Id']){ // new parent comment
+          
+          $formAction = "";#create_comment_post($targetBlogId); // Set the form action for creating
+          $submitAction = "create_comment_post";
 
           if ($is_subline == 1){ $blog_body .= '</ul>';} // if previous parent contain children branch(s); close branch(s) to children
           if ($is_subline == 1){ $is_subline = 0;} // reset parent for new children 
-          if ($is_parent == 1){ $blog_body .= '</li>'; } // reset for new parent; close parent tree
+          if ($is_parent == 1){  $blog_body .= $blog_reply_field;} // reset for new parent; close parent tree
 
           $is_new_topic = $row['Subject_Id']; // set as new parent subject
-          $formAction = "";#create_comment_post($targetBlogId); // Set the form action for creating
-          $submitAction = "create_comment_post";
+          
           # Intial HTML Blog Comment Body Elements
           $blog_body .= 
           '
@@ -290,27 +293,15 @@ $MAX_VISIBLE_POSTS = get_session_value();
                           <p>' . nl2br($row['Paragraph']) . '</p>
                       </div>
               </div>
-                    <form id="blog_reply_form'.$button_id.'" action="'. $formAction .'" method="POST" enctype="multipart/form-data" hidden="hidden">
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                  <textarea name="comment_paragraph" cols="50" rows="1" class="form-control input-lg" placeholder="Your comment reply"></textarea>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="form-group">
-                              <div class="col-md-12">
-                                  <button type="submit" class="btn btn-primary btn-lg"; name="'.$submitAction.'">Submit your reply</button>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
+                    
 
           '; $is_parent = 1;
-          $button_id += 1;
+          $button_id++;
 
         }else{ // child comment(s)
+
+          $formAction = "";#create_comment_post($targetBlogId); // Set the form action for creating
+          $submitAction = "create_comment_post_subline";
           
           if ($is_subline == 0){ $blog_body .= '<ul>';} // if parent comment has been initialized; open to first child branch structure
           $is_subline = 1;
@@ -330,13 +321,30 @@ $MAX_VISIBLE_POSTS = get_session_value();
 
           ';
         }
+        $blog_reply_field = '
+            <form id="blog_reply_form'.($button_id-1).'" action="'. $formAction .'" method="POST" enctype="multipart/form-data" hidden="hidden">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                          <textarea name="comment_paragraph" cols="50" rows="1" class="form-control input-lg" placeholder="Your comment reply"></textarea>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="form-group">
+                      <div class="col-md-12">
+                          <button type="submit" class="btn btn-primary btn-lg"; name="'.$submitAction.'">Submit your reply</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+        </li>';// close parent tree
         
-
       }
       if ($is_subline == 1){ $blog_body .= '</ul>';} // if last contained child branch; close child branch    
       if ($blog_body != ""){
-        echo $blog_body;#.$blog_video_link;
-        echo '</li>';// close parent tree
+        echo $blog_body; //.$blog_video_link;
+        echo $blog_reply_field; // close parent tree
       }
     } else {
       echo $returnClassBlock;

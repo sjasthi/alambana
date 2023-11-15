@@ -16,33 +16,48 @@ function create_comment_post($blogId) {
     
     # Field Entries
     if (isset($_POST['create_comment_post']) || isset($_POST['create_comment_post_subline'])) {
+       
 
-        $paragraph = "";
-        $author = "";
-        $email = "";
-        $url = "";
-
-        if (isset($_POST['create_comment_post']) ) {
+        if (isset($_SESSION['role'])){ // Verify SESSION
+            // Only Users Logged In
+            if ($_SESSION['role'] == 'user') {
+                $paragraph = addslashes($_POST['comment_paragraph']);
+                $author = $_SESSION['first_name'];
+                $email = $_SESSION['email'];
+                $url = "";
+            }
+            // Admin Logged In
+            elseif ($_SESSION['role'] == 'admin') {
+                // Update the variables with form data
+                $paragraph = addslashes($_POST['comment_paragraph']);
+                $author = "Administration";
+                $email = $_SESSION['email'];
+                $url = addslashes($_POST['comment_url']);
+            }
+        }
+        else {// New / Anonymous User.
             // Update the variables with form data
             $paragraph = addslashes($_POST['comment_paragraph']);
             $author = addslashes($_POST['comment_name']);
             $email = addslashes($_POST['comment_email']);
             $url = addslashes($_POST['comment_url']);
+
+            if (empty($author)) {$author = "Anonymous User";}
+        }
+
+        if (isset($_POST['create_comment_post']) ) {
+            
         }
         elseif (isset($_POST['create_comment_post_subline'])) {
-            // Update the variables with form data
-            $paragraph = addslashes($_POST['comment_paragraph']);
-            $author = "";
-            $email = "";
-            $url = "";
+            
         }
 
 
         // If any required item is still blank, display a message and continue the loop
-        /*if (isset($_POST['create_comment_post']) && (empty($paragraph) || empty($author) || empty($email))) {
+        if ((empty($paragraph) || empty($author) || empty($email))) {
             echo "Please fill in all required fields.";
         }
-        else{*/
+        else{
 
             
             $timestamp = date("Y-m-d H:i:s");
@@ -78,7 +93,7 @@ function create_comment_post($blogId) {
                 }
             //}
             }
-        //}  
+        }  
     }
 
     mysqli_close($connection);
