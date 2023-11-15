@@ -14,7 +14,7 @@ function create_post_story($blogId) {
     }
 
     #$blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter [Previously Clicked Link ID]
-
+ 
     # Field Entries
     if (isset($_POST['create_post_story'])) {
         $paragraph = addslashes($_POST['paragraph']);
@@ -49,7 +49,7 @@ function create_post_story($blogId) {
     mysqli_close($connection);
 }
 
-# Check IF Post Exit
+# Check IF Post Exist
 function checkIfBlogPostExists($blog_Id) {
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 

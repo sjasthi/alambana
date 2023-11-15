@@ -76,7 +76,7 @@
                             	<div class="flex-caption-cell">
                                 	<div class="flex-caption-text text-align-center">
                                         <h2>make the world to smile</h2>
-                                        <a href="causes.php" class="btn btn-warning">start the change</a>
+                                        <a href="community-support.php" class="btn btn-warning">start the change</a>
 										<?php
 										if (isset($userRole) && $userRole === "admin") {
 											// Display the "Change Image" button for admin users
@@ -122,7 +122,7 @@
                             	<div class="flex-caption-cell">
                                 	<div class="flex-caption-text text-align-center">
                                         <h2>make a difference for people<br>who needs it the most</h2>
-                                        <a href="causes.php" class="btn btn-primary">start with a little</a>
+                                        <a href="community-support.php" class="btn btn-primary">start with a little</a>
 										<?php
 										if (isset($userRole) && $userRole === "admin") {
 											// Display the "Change Image" button for admin users
@@ -168,8 +168,8 @@
                         			<div class="flex-caption-cause">
                             			<h3><a href="#">please help</a></h3>
                     					<p>lorem ipsum dolor sit amet, consectet adipiscing elit. Nam malesuada dapi bus diam, ut fringilla purus efficitur  eget.</p>
-                                        	<span class="meta-data">donated $26400 / <span class="cause-target">$30000</span></span>
-                                    		<a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                            <span class="meta-data">Donated $26400 / <span class="cause-target">$30000</span></span>
+                                    		<a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
 											<?php
 											if (isset($userRole) && $userRole === "admin") {
 												// Display the "Change Image" button for admin users
@@ -239,12 +239,12 @@
                             <li class="item">
                                 <div class="grid-item cause-grid-item small-business format-standard">
                                     <div class="grid-item-inner">
-                                        <a href="single-cause.php" class="media-box">
+                                        <a href="causes-women.php" class="media-box">
                                             <img src="images/causeg1.jpg" alt="">
                                         </a>
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="88" data-color="f23827" data-toggle="tooltip" data-original-title="10 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="single-cause.php">help small shopkeepers of sunyani</a></h3>
+                                            <h3 class="post-title"><a href="causes-women.php">help small shopkeepers of sunyani</a></h3>
                                             <div class="meta-data">donated $26400 / <span class="cause-target">$30000</span></div>
                                         </div>
                                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
@@ -254,12 +254,12 @@
                             <li class="item">
                                 <div class="grid-item cause-grid-item small-business format-standard">
                                     <div class="grid-item-inner">
-                                        <a href="single-cause.php" class="media-box">
+                                        <a href="causes-hunger.php" class="media-box">
                                             <img src="images/causeg2.jpg" alt="">
                                         </a>
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="52" data-color="f6bb42" data-toggle="tooltip" data-original-title="25 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="single-cause.php">help relocate the refugees</a></h3>
+                                            <h3 class="post-title"><a href="causes-hunger.php">help relocate the refugees</a></h3>
                                             <div class="meta-data">donated $21840 / <span class="cause-target">$40000</span></div>
                                         </div>
                                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
@@ -299,12 +299,12 @@
                             <li class="item">
                                 <div class="grid-item cause-grid-item small-business format-standard">
                                     <div class="grid-item-inner">
-                                        <a href="single-cause.php" class="media-box">
+                                        <a href="causes-education.php" class="media-box">
                                             <img src="images/causeg3.jpg" alt="">
                                         </a>
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="20" data-color="8cc152" data-toggle="tooltip" data-original-title="102 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="single-cause.php">education for everyone</a></h3>
+                                            <h3 class="post-title"><a href="causes-education.php">education for everyone</a></h3>
                                             <div class="meta-data">donated $4000 / <span class="cause-target">$20000</span></div>
                                         </div>
                                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>

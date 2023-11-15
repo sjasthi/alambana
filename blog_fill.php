@@ -13,6 +13,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
   $MAX_VISIBLE_POSTS = intval(3);
   $MAX_NAV_BUTTONS = intval(3);
   $current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensure (INT | Variable Security)
+$MAX_VISIBLE_POSTS = get_session_value();
 
 
   # Blog Page TOC
@@ -241,6 +242,108 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     }
     $connection->close();
   }
+  
+  # Comments
+  function fill_blog_comments($blogId){
+    // Create connection
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+    // Check connection
+    if ($connection->connect_error) {
+      die("Connection failed: " . $connection->connect_error);
+    }
+    $returnClassBlock = '';
+
+    $targetBlogId = $blogId; // Specify the target Blog_Id you want to select
+    $sql = "SELECT * FROM blog_comments WHERE Blog_Id = $targetBlogId ORDER BY Subject_Id ASC, Created_Time ASC";
+    $result = $connection->query($sql);
+    
+    // fetch Comment Post from data from each row | If data exist
+    if ($result->num_rows > 0) {
+    
+      $is_new_topic = -1;
+      $is_parent = 0;
+      $is_subline = 0;
+      $button_id = 1;
+      $blog_body = "";
+
+      while($row = $result->fetch_assoc()) { // start in first row
+
+        if ($is_new_topic != $row['Subject_Id']){ // new parent comment
+
+          if ($is_subline == 1){ $blog_body .= '</ul>';} // if previous parent contain children branch(s); close branch(s) to children
+          if ($is_subline == 1){ $is_subline = 0;} // reset parent for new children 
+          if ($is_parent == 1){ $blog_body .= '</li>'; } // reset for new parent; close parent tree
+
+          $is_new_topic = $row['Subject_Id']; // set as new parent subject
+          $formAction = "";#create_comment_post($targetBlogId); // Set the form action for creating
+          $submitAction = "create_comment_post";
+          # Intial HTML Blog Comment Body Elements
+          $blog_body .= 
+          '
+          <li>
+              <div class="post-comment-parent-block"> 
+                  <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
+                      <div class="post-comment-content">
+                          <a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button'.$button_id.'"; onclick="reply_blog_comment('.$button_id.');">Reply</a>
+                          <h5>' . $row['Name'] . ' <span>says</span></h5>
+                          <span class="meta-data">' . $row['Created_Time'] . '</span>
+                          <p>' . nl2br($row['Paragraph']) . '</p>
+                      </div>
+              </div>
+                    <form id="blog_reply_form'.$button_id.'" action="'. $formAction .'" method="POST" enctype="multipart/form-data" hidden="hidden">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                  <textarea name="comment_paragraph" cols="50" rows="1" class="form-control input-lg" placeholder="Your comment reply"></textarea>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="form-group">
+                              <div class="col-md-12">
+                                  <button type="submit" class="btn btn-primary btn-lg"; name="'.$submitAction.'">Submit your reply</button>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+
+          '; $is_parent = 1;
+          $button_id += 1;
+
+        }else{ // child comment(s)
+          
+          if ($is_subline == 0){ $blog_body .= '<ul>';} // if parent comment has been initialized; open to first child branch structure
+          $is_subline = 1;
+          $blog_body .=
+          '
+            <li>
+                <div class="post-comment-block">
+                    <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
+                        <div class="post-comment-content">
+                        <a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button'.($button_id-1).'"; onclick="reply_blog_comment('.($button_id-1).');">Reply</a>
+                        <h5>' . $row['Name'] . ' <span>says</span></h5>
+                            <span class="meta-data">' . $row['Created_Time'] . '</span>
+                            <p>' . nl2br($row['Paragraph']) . '</p>
+                        </div>
+                </div>
+            </li>
+
+          ';
+        }
+        
+
+      }
+      if ($is_subline == 1){ $blog_body .= '</ul>';} // if last contained child branch; close child branch    
+      if ($blog_body != ""){
+        echo $blog_body;#.$blog_video_link;
+        echo '</li>';// close parent tree
+      }
+    } else {
+      echo $returnClassBlock;
+    }
+    $connection->close();
+    
+  }
 
   # Page List Items
   function fill_blog_page_list(){
@@ -249,58 +352,71 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
      
     <label for="list-count">Select Number of Post :</label>
     <select id="list-count">
+        <option value="">List Number Of Page(s)</option>
         <option value="1">1</option>
         <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="3">3</option> <!-- Set as default -->
         <option value="5">5</option>
         <option value="10">10</option>
     </select>
-      
+
     <script>
-      var MAX_VISIBLE_POSTS = 1;// Initialize MAX_VISIBLE_POSTS with PHP value
+        var MAX_VISIBLE_POSTS = 1; // Initialize MAX_VISIBLE_POSTS with PHP value
 
-      document.getElementById("list-count").addEventListener("change", function() {
-        var selectedValue = this.value;
-        MAX_VISIBLE_POSTS = parseInt(selectedValue);
-        
-        // Pass PHP variables to JavaScript variables
-        //alert("currentPage: " + MAX_VISIBLE_POSTS);
+        // UPDATE SERVER FOR NUMBER OF POST ITEMS ON PAGE
+        document.getElementById("list-count").addEventListener("change", function() {
+            var selectedValue = this.value;
 
-        fetchBlogContent()
-    
-        // Call a PHP script using AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "blog_fill.php?max_visible_posts=" + MAX_VISIBLE_POSTS, true);
-        xhr.send();
-      });
+            // Make an AJAX request to update the server with the count
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "update_server.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // var confirmation = confirm(xhr.responseText);
+                    console.log("Server response:", xhr.responseText);
+
+                    // Save selected option based on the userSelectedValue
+                    document.getElementById("list-count").value = selectedValue;
+
+                    // Reload the page after updating the server
+                    location.reload();
+                }
+            };
+
+            // Send the count as a parameter
+            xhr.send("elementCount=" + selectedValue);
+        });
 
 
-    function fetchBlogContent() {
-      var contentPage = "page";
-      removeAllBlogContent_ContainsString(contentPage);
-      //<?php echo fill_blog(); ?>
-    }
 
-    function removeSingleBlogContent_ContainsString(pageContentName) {
-      // Find the parent element by its id
-        var parentElement = document.getElementById(pageContentName);
 
-        // Check if the parent element exists
-        if (parentElement) {
-            // Remove the parent element
-            parentElement.remove();
+        function fetchBlogContent() {
+          var contentPage = "page";
+          removeAllBlogContent_ContainsString(contentPage);
+          //<?php echo fill_blog(); ?>
         }
-    }
 
-    function removeAllBlogContent_ContainsString(pageContentName) {
-      // Select all elements whose IDs contain the string "page"
-      var elementsToRemove = document.querySelectorAll(\'[id*="page"]\');
+        function removeSingleBlogContent_ContainsString(pageContentName) {
+          // Find the parent element by its id
+            var parentElement = document.getElementById(pageContentName);
 
-      // Loop through the matched elements and remove them
-      elementsToRemove.forEach(function(element) {
-          element.remove();
-      });
-    }
+            // Check if the parent element exists
+            if (parentElement) {
+                // Remove the parent element
+                parentElement.remove();
+            }
+        }
+
+        function removeAllBlogContent_ContainsString(pageContentName) {
+          // Select all elements whose IDs contain the string "page"
+          var elementsToRemove = document.querySelectorAll(\'[id*="page"]\');
+
+          // Loop through the matched elements and remove them
+          elementsToRemove.forEach(function(element) {
+              element.remove();
+          });
+        }
 
     </script>
     <br><br>
@@ -639,7 +755,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
     $connection->close();
   }
   
-
+  
 
 # fetch Title
 function getTitleFromDatabase($blogId) {
@@ -727,6 +843,48 @@ function getAboutFromDatabase($blogId) {
   $connection->close();
 
   return $about;
+}
+
+# fetch Page Comment Count
+function get_blog_page_comment_count($blogId){
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  $targetBlogId = $blogId; // Specify the target Blog_Id you want to select
+  $sql = "SELECT * FROM blog_comments WHERE Blog_Id = $targetBlogId ORDER BY Subject_Id ASC, Created_Time ASC";
+  $result = $connection->query($sql);
+  $comments = 0;
+  // fetch Comment Post from data from each row | If data exist
+  if ($result->num_rows > 0) {
+  
+    while($row = $result->fetch_assoc()) { // count rows
+      $comments += 1;
+    }
+    
+  }
+  $connection->close();
+  return $comments;
+}
+
+
+
+
+////////////////////////////////////////////////////////
+// SESSSION
+function save_button_id($button_id) {
+  // Save button_id to the PHP session
+  $_SESSION['saved_value'] = $button_id;
+}
+// Retrieve button_id from the session
+function get_saved_button_id() {
+  return isset($_SESSION['saved_value']) ? $_SESSION['saved_value'] : null;
+}
+function get_session_value() {
+  return isset($_SESSION['count_class_elements']) ? $_SESSION['count_class_elements'] : null;
 }
 ?>
 

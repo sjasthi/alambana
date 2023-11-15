@@ -8,7 +8,9 @@
   include 'blog_fill.php';
   include 'create_post_story.php';
   include 'edit_post_story.php';
+  include 'create_comment_post.php';
   $blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter
+  
 ?>
 
 <!DOCTYPE HTML>
@@ -43,6 +45,7 @@
   <?php load_common_page_scripts() ?>
   <!-- MODIFY POST-->
     <script>
+        // Create / Edit blog form
         let show_edit_form = () => {
             let form = document.getElementById("blog_modifiy_form");
             let show_button = document.getElementById("form_show_button");
@@ -50,14 +53,67 @@
             show_button.setAttribute("hidden", "hidden");
         }
         function delete_blog_post() {
-        var confirmation = confirm("Are you sure you want to delete this post?");
-        if (confirmation) {
-
-            // Redirect to the PHP script that handles post deletion
-            window.location.href = "delete_post.php?blog_id=<?php echo $blogId; ?>";
+            var confirmation = confirm("Are you sure you want to delete this post?");
+            if (confirmation) { refresh_blog_post()}
         }
-    }
+        
+        function refresh_blog_post() {
+            // Redirect to the PHP script that handles post deletion
+            window.location.href = "single-post.php?blog_id=<?php echo $blogId; ?>";
+            
+        }
+
+        // GET SESSION ID OF BUTTON SUBMIT TO BLOG COMMENT
+        let save_button_id = (button_id) => {
+            let valueToSave = button_id;  // Replace with the value you want to save
+
+            // Using AJAX to send the value to the server
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "save_value_to_session.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);  // Log the response from the server (optional)
+                }
+            };
+            xhr.send("value=" + encodeURIComponent(valueToSave));
+        };
+        let reply_blog_comment = (button_id) => {
+            let form = document.getElementById("blog_reply_form" + button_id);
+            let show_button = document.getElementById("form_show_reply_submit_button" + button_id);
+            form.removeAttribute("hidden");
+            show_button.setAttribute("hidden", "hidden");
+            let set_value = button_id;
+            save_button_id(button_id);
+            get_number_of_elements("post-comment-parent-block");
+        }
+
     </script>
+    
+    <!--UPDATE SERVER COMMENT COUNT FOR PARENT (Allows sub blogging)-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let className = "post-comment-parent-block";
+
+            // Count the number of elements with the specified class
+            let elementCount = document.getElementsByClassName(className).length;
+
+            // Make an AJAX request to update the server with the count
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "update_server.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    //var confirmation = confirm(xhr.responseText);
+                    console.log("Server response:", xhr.responseText);
+                }
+            };
+
+            // Send the count as a parameter
+            xhr.send("elementCount=" + elementCount);
+        });
+    </script>
+
 </head>
 <body class="single-post">
 <!--[if lt IE 7]>
@@ -109,7 +165,7 @@
                     // Blog doesn't exist, default button name and function
                     echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Create Post Story</button>';
                     $formAction = create_post_story($blogId); // Set the form action for creating
-                    $submitAction = "create_post_story";
+                    $postAction = "create_post_story";
 
                 }echo '<button type="submit" class="btn btn-primary btn-lg" id="delete_post_button;" style="margin-left: 10px;" onclick="delete_blog_post();">Delete Post</button>'; // Add the Delete Post button
                 ?>
@@ -127,107 +183,60 @@
                         <br>
                         <textarea type="text" name="about_author" maxlength="128" required rows="3" cols="50"><?php echo htmlspecialchars($aboutAuthor); ?></textarea><br><br>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-lg" name="<?php echo $submitAction; ?>" value="Publish">
+                    <input type="submit" class="btn btn-primary btn-lg" name="<?php echo $postAction; ?>" value="Publish">
                 </form>
 
                 
             	<div class="row">
                 	<div class="col-md-8 content-block">
-                    	<!-- Blog Page Fill --> <?php fill_blog_story($blogId); ?>
+                    	<!-- Fill Blog Page --> 
+                        <?php fill_blog_story($blogId); ?>
                         <!-- Pagination -->
                         <ul class="pager">
                             <li class="pull-left"><a href="#">&larr; Prev Post</a></li>
                             <li class="pull-right"><a href="#">Next Post &rarr;</a></li>
                         </ul>
             			<section class="post-comments" id="comments">
-              				<h3><i class="fa fa-comment"></i> Comments (4)</h3>
+                            
+                            <?php $comments_counter = get_blog_page_comment_count($blogId); ?>
+              				<h3><i class="fa fa-comment"></i> Comments ( <?php echo $comments_counter ?> )</h3>
               				<ol class="comments">
-                				<li>
-                  					<div class="post-comment-block">
-                    					<img src="images/user2.jpg" alt="avatar" class="img-thumbnail">
-                                        <div class="post-comment-content">
-                                            <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                            <h5>Robin Schmidt <span>says</span></h5>
-                                            <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                            <p>There have been human health concerns associated with the consumption of dolphin meat in Japan after tests showed that dolphin meat contained high levels of mercury.</p>
-                                      	</div>
-                  					</div>
-                				</li>
-                				<li>
-                                    <div class="post-comment-block">
-                    					<img src="images/user1.jpg" alt="avatar" class="img-thumbnail">
-                                        <div class="post-comment-content">
-                                            <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                            <h5>Emma Paquette <span>says</span></h5>
-                                            <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                            <p>Nicely said :)</p>
-                                      	</div>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="post-comment-block">
-                    							<img src="images/user2.jpg" alt="avatar" class="img-thumbnail">
-                                                <div class="post-comment-content">
-                                                    <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                                    <h5>Robin Schmidt <span>says</span></h5>
-                                                    <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                                    <p>Étienne de Flacourt (1607-60), French governor of Madagascar, described eating unborn dolphin calves cut out of the womb of a caught dolphin cow in Histoire de la grande isle Madagascar (1661). He considered the meat more tender and delicate than veal and believed it to be among the best meats he had eaten.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="post-comment-block">
-                    							<img src="images/user2.jpg" alt="avatar" class="img-thumbnail">
-                                                <div class="post-comment-content">
-                                                    <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                                    <h5>Robin Schmidt <span>says</span></h5>
-                                                    <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                                    <p>Real post, i love reading it all through</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="post-comment-block">
-                    					<img src="images/user1.jpg" alt="avatar" class="img-thumbnail">
-                                        <div class="post-comment-content">
-                                            <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                            <h5>Emma Paquette <span>says</span></h5>
-                                            <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                            <p>Dolphin meat is consumed in a small number of countries world-wide, which include Japan[125] and Peru (where it is referred to as chancho marino, or "sea pork").[126] While Japan may be the best-known and most controversial example, only a very small minority of the population has ever sampled it.</p>
-                                      	</div>
-                                    </div>
-                                </li>
+                                <!-- Fill Blog Comments -->
+                                <?php fill_blog_comments($blogId) ?>
+                				
                             </ol>
-                        </section>
+                        </section> 
                         <section class="post-comment-form">
                             <h3><i class="fa fa-share"></i> Post a comment</h3>
-                            <form>
+                            <?php 
+                                $formAction = create_comment_post($blogId); // Set the form action for creating
+                                $submitAction = "create_comment_post";
+                            ?>
+                            <form id="blog_create_comment_form" action="<?php echo $formAction; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control input-lg" placeholder="Your name">
+                                            <input type="text" name="comment_name" maxlength="128" class="form-control input-lg" placeholder="Your name">
                                         </div>
                                         <div class="col-md-4 col-sm-4">
-                                            <input type="email" class="form-control input-lg" placeholder="Your email">
+                                            <input type="email" name="comment_email" maxlength="128" class="form-control input-lg" placeholder="Your email">
                                         </div>
                                         <div class="col-md-4 col-sm-4">
-                                            <input type="url" class="form-control input-lg" placeholder="Website (optional)">
+                                            <input type="url" name="comment_url" maxlength="255" class="form-control input-lg" placeholder="Website (optional)">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-md-12">
-                                        	<textarea cols="8" rows="4" class="form-control input-lg" placeholder="Your comment"></textarea>
+                                        	<textarea name="comment_paragraph" cols="50" rows="4" class="form-control input-lg" placeholder="Your comment"></textarea>
                                     	</div>
                                 	</div>
                             	</div>
                             	<div class="row">
                                 	<div class="form-group">
                                     	<div class="col-md-12">
-                                        	<button type="submit" class="btn btn-primary btn-lg">Submit your comment</button>
+                                        	<button type="submit" class="btn btn-primary btn-lg"; name="<?php echo $submitAction; ?>">Submit your comment</button>
                                     	</div>
                                 	</div>
                             	</div>
@@ -243,7 +252,7 @@
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
   	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
-
+      
 <!-- Donate Form Modal -->
 <?php donate_dialog() ?>
 <!-- Libraries Loader -->

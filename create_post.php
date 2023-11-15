@@ -18,6 +18,7 @@ if (isset($_POST['create_post'])) {
   $description = addslashes($_POST['description']);
   $video_link = $_POST['video_link'];
   $timestamp = date("Y-m-d H:i:s");
+  // Photo upload / copy temp image to destination 
   $fileNameArray = [];
   for($i = 0; $i < count($_FILES['file']['name']); $i++) {
     $fileName = $_FILES['file']['name'][$i];

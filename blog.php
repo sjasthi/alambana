@@ -5,6 +5,7 @@ if (!isset($_SESSION)) {
 
 include 'shared_resources.php';
 include 'blog_fill.php';
+include 'create_comment_post.php';
 if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -129,6 +130,8 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
 		});
 	</script>
 
+  
+
     <!-- Blog Post Section -->
     <style>
     .content {
@@ -176,11 +179,11 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
                             <div class="widget sidebar-widget widget_categories">
                               <h3 class="widgettitle">Post Categories</h3>
                                 <ul>
-                                  <li><a href="https://demo1.imithemes.com/html/born-to-give/blog.html#"><i class="fa fa-caret-right"></i> Education</a> (3)</li>
-                                  <li><a href="https://demo1.imithemes.com/html/born-to-give/blog.html#"><i class="fa fa-caret-right"></i> Environment</a> (1)</li>
-                                  <li><a href="https://demo1.imithemes.com/html/born-to-give/blog.html#"><i class="fa fa-caret-right"></i> Water</a> (4)</li>
-                                  <li><a href="https://demo1.imithemes.com/html/born-to-give/blog.html#"><i class="fa fa-caret-right"></i> Wild life</a> (2)</li>
-                                  <li><a href="https://demo1.imithemes.com/html/born-to-give/blog.html#"><i class="fa fa-caret-right"></i> Small business</a> (12)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Education</a> (3)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Environment</a> (1)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Water</a> (4)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Wild life</a> (2)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Small business</a> (12)</li>
                                 </ul>
                             </div></div></div>              
                             <br><br>
