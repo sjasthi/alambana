@@ -92,8 +92,40 @@ if ($db->connect_error) {
     display: inline-block;
     font-size: 16px;
     border-radius: 5px;
-}
+    }
 
+
+    
+    #Event_table tbody tr td {
+        line-height: 1; /* Adjust this value as needed */
+    }
+
+    
+    /* Add these styles to your CSS file or within a <style> tag in your HTML */
+    .button-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .button-container form {
+        margin-right: 10px; /* Adjust the spacing between buttons as needed */
+    }
+
+    .button-container input[type="submit"] {
+        padding: 1px 4px; /* Adjust the padding to make buttons smaller */
+        /*width: auto;  Allow buttons to adjust their width based on content */
+    }
+    /* Change font family, size, and color */
+    .btn {
+        /* font-family: 'Arial', sans-serif; Change to your preferred font family */
+        font-size: 10px; /* Adjust the font size */
+        /* color: #ffffff; Change the text color */
+    }
+
+    /* Change the font weight (e.g., from normal to bold) */
+    .btn-bold {
+        font-weight: bold;
+    }
     </style>
     
      <!-- Site Header Wrapper -->
@@ -137,26 +169,25 @@ if ($db->connect_error) {
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        echo "<tr>";
-                                        echo "<td>" . $row["Event_Id"] . "</td>";
-                                        echo "<td>" . $row["Title"] . "</td>";
-                                        echo "<td>" . $row["Description"] . "</td>";
-                                        echo "<td>" . $row["Video_Link"] . "</td>";
-                                        echo "<td>" . $row["Event_Date"] . "</td>";
-                                        echo "<td>" . $row["Modified_Time"] . "</td>";
-                                        echo "<td>" . $row["Created_Time"] . "</td>";
-                                        echo "<td>";
-                                        echo "<form action='edit_event.php' method='get'>";
-                                        echo "<input type='hidden' name='Event_Id' value='" . $row["Event_Id"] . "'>";
-                                        echo "<input class='btn btn-sm btn-success' type='submit' value='Edit'/>";
-                                        echo "</form>
-                                        <br>";
-                                        echo "<form action='admin_delete_event.php' method='post'>";
-                                        echo "<input type='hidden' name='Event_Id' value='" . $row["Event_Id"] . "'>";
-                                        echo "<input class='btn btn-sm btn-danger mx-2 my-2' type='submit' value='Delete'/>";
-                                        echo "</form>";
-                                        echo "</td>";
-                                        echo "</tr>";
+                                        echo '<tr>
+                                        <td>' . $row["Event_Id"] . '</td>
+                                        <td>' . $row["Title"] . '</td>
+                                        <td>' . $row["Description"] . '</td>
+                                        <td>' . $row["Video_Link"] . '</td>
+                                        <td>' . $row["Event_Date"] . '</td>
+                                        <td>' . $row["Modified_Time"] . '</td>
+                                        <td>' . $row["Created_Time"] . '</td>
+                                        <td class="button-container" >
+                                            <form action="edit_event.php" method="get">
+                                                <input type="hidden" name="Event_Id" value="'. $row["Event_Id"] .'">
+                                                <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Edit">
+                                            </form>
+                                            <form action="admin_delete_event.php" method="post">
+                                                <input type="hidden" name="Event_Id" value="'. $row["Event_Id"] .'">
+                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Delete">
+                                            </form>
+                                        </td>
+                                    </tr>';
                                     }
                                 } else {
                                     echo "0 results";

@@ -1,14 +1,17 @@
 <?php
 
+  ob_start();
   if(!isset($_SESSION)) { 
       session_start();
   } 
 
+  if (!isset($_SESSION['role'])){
+      header('Location:loginForm.php'); 
+  }
+
   include 'shared_resources.php';
   include 'blog_fill.php';
-  if (isset($_SESSION['role'])) {
-    $userRole = $_SESSION['role'];
-  }
+  ob_end_flush();
 ?>
 
 <!DOCTYPE HTML>
