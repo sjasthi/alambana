@@ -19,7 +19,9 @@
 <!-- Basic Page Needs
   ================================================== -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Change This Title With BLOG TItle!!!</title>
+<!-- Include the favicon.ico file -->
+<?php generateFaviconLink() ?>
+<title><?php echo getTitleFromDatabase($blogId); ?></title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -116,12 +118,13 @@
 
 </head>
 <body class="single-post">
+
 <!--[if lt IE 7]>
 	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
 
     <!-- Banner Area -->
     <div class="hero-area">
@@ -249,16 +252,18 @@
             </div>
         </div>
     </div>
-    <!-- Site Footer -->
+
+    <!-- Libraries Loader -->
+    <?php lib() ?>
+    <!-- Style Switcher Start -->
+    <?php style_switcher() ?>
+	<body>
+    <div id="wrapper" style="min-height: 46vh; position: relative;">
+        <!-- Your page content goes here -->
+    </div>
+
     <?php load_common_page_footer() ?>
-  	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
-      
-<!-- Donate Form Modal -->
-<?php donate_dialog() ?>
-<!-- Libraries Loader -->
-<?php lib() ?>
-<!-- Style Switcher Start -->
-<?php style_switcher() ?>
+	</body>
 
 </body>
 </html>
