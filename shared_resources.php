@@ -209,7 +209,6 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     <li><a href="index.php">Home</a></li> 
                     <li><a href="about.php">About</a>
                     	<ul>
-                    		<li><a href="about.php">Introduction</a></li>
                     		<li><a href="team.php">Team</a></li>
                     		<li><a href="our-impact.php">Our Impact</a></li>
                     		<li><a href="contact.php">Contact</a></li>
@@ -220,6 +219,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     		<li><a href="causes-education.php">Education</a></li>
                     		<li><a href="causes-hunger.php">Hunger Relief</a></li>
                     		<li><a href="causes-women.php">Women Empowerment</a></li>
+							<li><a href="community-service.php">Community Service</a></li>
                         </ul>
                     </li>
                     <li><a href="events.php">Events</a>
@@ -547,7 +547,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
             <li><a href="admin_panel.php" img src="" alt="">Blogs</a></li>
             <li><a href="admin_panel.php" img src="" alt="">Users</a></li>
             <li><a href="admin_panel.php" img src="" alt="">Causes</a></li>
-            <li><a href="admin_panel.php" img src="" alt="">Help</a></li>
+            <li><a href="admin_help.php" img src="" alt="">Help</a></li>
             <li><a href="admin_panel.php" img src="" alt="">Settings</a></li>
         </ul>
     </div>

@@ -86,7 +86,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blog.php' && !isset($_GET['current_page']
   <div class="body">
     
     <!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
     
     <!-- Banner Area -->
     <div class="hero-area">
