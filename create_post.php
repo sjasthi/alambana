@@ -27,7 +27,8 @@ if (!empty($hash)){ // Only Allow Users To Create Entry
     $description = addslashes($_POST['description']);
     $video_link = $_POST['video_link'];
     $timestamp = date("Y-m-d H:i:s");
-    
+    $hidden = false;
+
     $fileNameArray = [];
     // Photo upload / copy temp image to destination 
     for($i = 0; $i < count($_FILES['file']['name']); $i++) {
@@ -56,7 +57,8 @@ if (!empty($hash)){ // Only Allow Users To Create Entry
       '$video_link',
       '$timestamp',
       '$timestamp',
-      '$hash');";
+      '$hash',
+      '$hidden');";
 
     if (!mysqli_query($connection, $sql)) {
       echo("Error description: " . mysqli_error($connection));

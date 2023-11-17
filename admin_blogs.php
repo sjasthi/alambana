@@ -148,7 +148,7 @@ if ($db->connect_error) {
                     <!-- Admin Side Menu Panel -->
                     <?php admin_side_menu() ?>
                     <div style="padding-top: 100px; padding-left: 450px; width:100%">
-                        <a href="add_blog.php" class="btn">Add new Blog  </a>
+                        <a href="new_blog_entry.php" class="btn">Add new Blog  </a>
                     </div>
 
                     <div class="toggle_columns" style="padding-top: 50px; padding-left: 450px; width:100%">

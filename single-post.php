@@ -195,16 +195,10 @@
     <!-- Main Content -->
     <div id="main-container">
     	<div class="content">
+            <a href="blog.php" class="btn btn-primary" style="margin-left: 100px;">< Go to Blogs</a>
         	<div class="container">
                 <!-- USER PRIVILEGES ROLE (User/Admin from 'users' Table) -->
-                <!--?php
-                            if (isset($_SESSION['role'])) {
-                            if ($_SESSION['role'] == 'admin') {
-                                echo '<button id="form_show_button" onclick="show_new_post_form();">Create Post</button>';
-                            }
-                            }
-                        ?-->
-                <!-- Blog Create Post Button -->
+                
                 <?php
                 $isRole = '';
                 if (isset($_SESSION['role'])) {
