@@ -31,11 +31,12 @@ else { // User exists
             exit();
         }
         else {
-            // email validation already completed
+            // email validation already completed (Load userdata into session)
             $_SESSION['id'] = $user['id'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['hash'] = $user['hash'];
             $_SESSION['logged_in'] = true;
             if ($_SESSION['role'] == "admin"){
                 header("location: admin_panel.php");

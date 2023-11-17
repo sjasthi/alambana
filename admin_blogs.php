@@ -5,11 +5,11 @@ if(!isset($_SESSION)) {
 } 
 
 if ($_SESSION['role'] != 'admin'){
-    header('Location:blogs.php'); 
+    header('Location:blog.php'); 
 }
 
 include('shared_resources.php'); 
-
+include ('blog_fill.php');
 ob_end_flush();
 
 //$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -40,12 +40,18 @@ if ($db->connect_error) {
     <!-- CSS
   ================================================== -->
     <?php css(2) ?>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- SCRIPTS
   ================================================== -->
     <?php load_common_page_scripts() ?>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script>
+        function confirm_prompt_delete() {
+            var confirmation = confirm("Are you sure you want to delete this post?");
+            if (confirmation) { return true;}
 
+            return false;
+        }
+    </script>
 
 
 </head>
@@ -124,6 +130,14 @@ if ($db->connect_error) {
         font-weight: bold;
     }
 
+    .show-button,
+    .hidden-state { 
+        background-color: lightcoral; /* Set the background color for the buttons */
+        border-radius: 5px; /* Add border-radius for rounded corners */
+        text-align: center; /* Center text horizontally */
+        /* Additional styles as needed */
+        color: black; /* or any other styling you want */
+    }
 
     
 
@@ -140,7 +154,7 @@ if ($db->connect_error) {
                     <!-- Admin Side Menu Panel -->
                     <?php admin_side_menu() ?>
                     <div style="padding-top: 100px; padding-left: 450px; width:100%">
-                        <a href="add_blog.php" class="btn">Add new Blog  </a>
+                        <a href="new_blog_entry.php" class="btn">Add new Blog  </a>
                     </div>
 
                     <div class="toggle_columns" style="padding-top: 50px; padding-left: 450px; width:100%">
@@ -155,8 +169,10 @@ if ($db->connect_error) {
                                     <th>Blog ID</th>
                                     <th>Title</th>
                                     <th>Description</th>
+                                    <th>Blog Link</th>
                                     <th>Video Link</th>
                                     <th>Author</th>
+                                    <th>Comments</th>
                                     <th>Modified Time</th>
                                     <th>Created Time</th>
                                     <th>Options</th>
@@ -170,12 +186,16 @@ if ($db->connect_error) {
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        echo '<tr>
+                                    echo '
+                                        <tr>
                                         <td>' . $row["Blog_Id"] . '</td>
                                         <td>' . $row["Title"] . '</td>
                                         <td>' . $row["Description"] . '</td>
-                                        <td>' . $row["Video_Link"] . '</td>
-                                        <td>' . $row["Author"] . '</td>
+                                        <td><a href="single-post.php?blog_id=' . $row["Blog_Id"] .'">Blog Site</a></td>';
+                                        if(!empty($row["Video_Link"])) {echo'<td><a href="' . $row["Video_Link"] . '">Video</a></td>';}
+                                        else{echo'<td></td>';}
+                                    echo'<td>' . $row["Author"] . '</td>
+                                        <td>' . get_blog_page_comment_count($row["Blog_Id"]) . '</td>
                                         <td>' . $row["Modified_Time"] . '</td>
                                         <td>' . $row["Created_Time"] . '</td>
                                         <td class="button-container" >
@@ -186,7 +206,21 @@ if ($db->connect_error) {
                                             <form action="admin_delete_blog.php" method="post">
                                                 <input type="hidden" name="Blog_Id" value="'. $row["Blog_Id"] .'">
                                                 <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Delete">
-                                            </form>
+                                            </form>';
+                                            if (getBlogVisibilityStateFromDatabase($row['Blog_Id'])) {
+                                                echo '<form action="post_visibility.php" method="post">
+                                                        <input type="hidden" name="blog_id" value="'. $row["Blog_Id"] .'">
+                                                        <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Show">
+                                                      </form>';
+                                            } else {
+                                                echo '<div class="hidden-state">
+                                                        <form action="post_visibility.php" method="post">
+                                                          <input type="hidden" name="blog_id" value="'. $row["Blog_Id"] .'">
+                                                          <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background hidden-state btn-border" type="submit" value="Hide">
+                                                        </form>
+                                                      </div>';
+                                            }
+                                        echo  '
                                         </td>
                                     </tr>';
                                     }

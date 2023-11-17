@@ -1,6 +1,9 @@
 <?php
+
 // Start the session
 session_start();
+
+// UPDATE SERVER COMMENT COUNT FOR PARENT (Allows sub blogging)
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the count from the POST data

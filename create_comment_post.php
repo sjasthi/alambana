@@ -12,12 +12,9 @@ function create_comment_post($blogId) {
         die("Connection failed: " . $connection->connect_error);
     }
 
-
-    
     # Field Entries
     if (isset($_POST['create_comment_post']) || isset($_POST['create_comment_post_subline'])) {
        
-
         if (isset($_SESSION['role'])){ // Verify SESSION
             // Only Users Logged In
             if ($_SESSION['role'] == 'user') {
@@ -46,20 +43,12 @@ function create_comment_post($blogId) {
             
         }
 
-        if (isset($_POST['create_comment_post']) ) {
-            
-        }
-        elseif (isset($_POST['create_comment_post_subline'])) {
-            
-        }
-
 
         // If any required item is still blank, display a message and continue the loop
         if ((empty($paragraph) || empty($author) || empty($email))) {
             echo "Please fill in all required fields.";
         }
         else{
-
             
             $timestamp = date("Y-m-d H:i:s");
             $subject_id = get_saved_button_id();
