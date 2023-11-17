@@ -9,8 +9,13 @@
   include 'create_post_story.php';
   include 'edit_post_story.php';
   include 'create_comment_post.php';
+
   $blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter
-  
+
+  // DO NOT ALLOW ACCESS TO HIDDEN BLOG PAGES
+  if (getBlogVisibilityStateFromDatabase($blogId)) header('Location:blog.php'); 
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -54,11 +59,62 @@
             form.removeAttribute("hidden");
             show_button.setAttribute("hidden", "hidden");
         }
-        function delete_blog_post() {
+        // DELETE BLOG PAGE SESSION BY USER
+        function delete_blog_post(blog_id) {
             var confirmation = confirm("Are you sure you want to delete this post?");
-            if (confirmation) { refresh_blog_post()}
+            if (confirmation) {
+                let blogID = blog_id;  // Replace with the value you want to save
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "delete_post.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                // Define the callback function to handle the response
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Output the server response to the console
+                        console.log(xhr.responseText);
+                        //location.reload();
+                    }
+                };
+                // Send the request with the blogId as a parameter
+                xhr.send("blog_id=" + blogID);
+
+                // Redirect to blog.php and Refresh page
+                window.location.href = "blog.php?";
+             
+                //window.location.href = window.location.href;
+                //window.location.href = "delete_post.php?blog_id=" + blog_id; # Subjected to SQL Injection Issue (Security Issue)
+                
+
+            }
         }
-        
+        // HIDE BLOG PAGE SESSION BY USER
+        function set_blog_post_visibility(blog_id) {
+            var confirmation = confirm("Are you sure you want to delete this post?");
+            if (confirmation) {
+                let blogID = blog_id;  // Replace with the value you want to save
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "post_visibility.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                // Define the callback function to handle the response
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Output the server response to the console
+                        console.log(xhr.responseText);
+                        //location.reload();
+                    }
+                };
+                // Send the request with the blogId as a parameter
+                xhr.send("blog_id=" + blogID);
+
+                // Redirect to blog.php and Refresh page
+                window.location.href = "blog.php?";
+             
+                //window.location.href = window.location.href;
+                //window.location.href = "delete_post.php?blog_id=" + blog_id; # Subjected to SQL Injection Issue (Security Issue)
+                
+
+            }
+        }
         function refresh_blog_post() {
             // Redirect to the PHP script that handles post deletion
             window.location.href = "single-post.php?blog_id=<?php echo $blogId; ?>";
@@ -92,7 +148,7 @@
 
     </script>
     
-    <!--UPDATE SERVER COMMENT COUNT FOR PARENT (Allows sub blogging)-->
+    <!--UPDATE SERVER COMMENT COUNT FOR PARENT (Set New Blog Entry Level)-->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let className = "post-comment-parent-block";
@@ -150,27 +206,37 @@
                         ?-->
                 <!-- Blog Create Post Button -->
                 <?php
-                // Check if the blog_id exists
-                $isBlogExists = checkIfBlogPostExists($blogId);
-
-                if ($isBlogExists) {
-                    $aboutAuthor = getAboutFromDatabase($blogId);
-                    $storyDescription = getParagraphFromDatabase($blogId);
-                    // Blog exists, modify button name and function
-                    echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Edit Post Story</button>';
+                $isRole = '';
+                if (isset($_SESSION['role'])) {
+                    $isRole = $_SESSION['role'];
+                }
+                if ((getHashFromDatabase($blogId)) || ($isRole == 'admin') ){ // Verify SESSION with Hash Code or is 'admin'
                     
-                    $formAction = edit_post_story($blogId); // Set the form action for editing
-                    $submitAction = "update_post_story";
+                
+                    // Check if the blog_id exists
+                    $isBlogExists = checkIfBlogPostExists($blogId);
 
-                } else {
-                    $aboutAuthor =  '';
-                    $storyDescription = '';
-                    // Blog doesn't exist, default button name and function
-                    echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Create Post Story</button>';
-                    $formAction = create_post_story($blogId); // Set the form action for creating
-                    $postAction = "create_post_story";
+                    if ($isBlogExists) {
+                        $aboutAuthor = getAboutFromDatabase($blogId);
+                        $storyDescription = getParagraphFromDatabase($blogId);
+                        // Blog exists, modify button name and function
+                        echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Edit Post Story</button>';
+                        
+                        $formAction = edit_post_story($blogId); // Set the form action for editing
+                        $postAction = "update_post_story";
 
-                }echo '<button type="submit" class="btn btn-primary btn-lg" id="delete_post_button;" style="margin-left: 10px;" onclick="delete_blog_post();">Delete Post</button>'; // Add the Delete Post button
+                    } else {
+                        $aboutAuthor =  '';
+                        $storyDescription = '';
+                        // Blog doesn't exist, default button name and function
+                        echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Create Post Story</button>';
+                        $formAction = create_post_story($blogId); // Set the form action for creating
+                        $postAction = "create_post_story";
+
+                    }echo '<button type="submit" class="btn btn-primary btn-lg" name="delete_post_button" style="margin-left: 10px;" onclick="set_blog_post_visibility(' . $blogId . ');">Delete Post</button>';
+                    
+                }
+                
                 ?>
                 <br><br>
                 <!-- Blog Form (Initially hidden) [Activates on button click] -->
@@ -200,7 +266,7 @@
                             <li class="pull-right"><a href="#">Next Post &rarr;</a></li>
                         </ul>
             			<section class="post-comments" id="comments">
-                            
+                             <!-- Get Count of Blog Comments for Page -->
                             <?php $comments_counter = get_blog_page_comment_count($blogId); ?>
               				<h3><i class="fa fa-comment"></i> Comments ( <?php echo $comments_counter ?> )</h3>
               				<ol class="comments">
@@ -212,7 +278,7 @@
                         <section class="post-comment-form">
                             <h3><i class="fa fa-share"></i> Post a comment</h3>
                             <?php 
-                                $formAction = create_comment_post($blogId); // Set the form action for creating
+                                $formAction = create_comment_post($blogId); // Set the form action for creating new comment section
                                 $submitAction = "create_comment_post";
                             ?>
                             <form id="blog_create_comment_form" action="<?php echo $formAction; ?>" method="POST" enctype="multipart/form-data">

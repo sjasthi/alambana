@@ -76,7 +76,7 @@
                             	<div class="flex-caption-cell">
                                 	<div class="flex-caption-text text-align-center">
                                         <h2>make the world to smile</h2>
-                                        <a href="community-support.php" class="btn btn-warning">start the change</a>
+                                        <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#DonateModal">start the change</a>
 										<?php
 										if (isset($userRole) && $userRole === "admin") {
 											// Display the "Change Image" button for admin users
@@ -122,7 +122,7 @@
                             	<div class="flex-caption-cell">
                                 	<div class="flex-caption-text text-align-center">
                                         <h2>make a difference for people<br>who needs it the most</h2>
-                                        <a href="community-support.php" class="btn btn-primary">start with a little</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">start with a little</a>
 										<?php
 										if (isset($userRole) && $userRole === "admin") {
 											// Display the "Change Image" button for admin users
@@ -213,7 +213,7 @@
     </div>
     <div class="accent-bg padding-tb20 cta-fw">
         <div class="container">
-            <a href="#" class="btn btn-default btn-ghost btn-light btn-rounded pull-right">become a volunteer</a>
+            <a href="community-support.php" class="btn btn-default btn-ghost btn-light btn-rounded pull-right">become a volunteer</a>
             <h4>let's start doing your bit for the world. Join us as a volunteer</h4>
         </div>
     </div>
@@ -245,9 +245,9 @@
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="88" data-color="f23827" data-toggle="tooltip" data-original-title="10 days left"><strong></strong></a>
                                             <h3 class="post-title"><a href="causes-women.php">help small shopkeepers of sunyani</a></h3>
-                                            <div class="meta-data">donated $26400 / <span class="cause-target">$30000</span></div>
+                                            <div class="meta-data">Donated $26400 / <span class="cause-target">$30000</span></div>
                                         </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate now</a>
                                     </div>
                                 </div>
                             </li>
@@ -260,9 +260,9 @@
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="52" data-color="f6bb42" data-toggle="tooltip" data-original-title="25 days left"><strong></strong></a>
                                             <h3 class="post-title"><a href="causes-hunger.php">help relocate the refugees</a></h3>
-                                            <div class="meta-data">donated $21840 / <span class="cause-target">$40000</span></div>
+                                            <div class="meta-data">Donated $21840 / <span class="cause-target">$40000</span></div>
                                         </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate now</a>
                                     </div>
                                 </div>
                             </li>
@@ -275,9 +275,9 @@
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="75" data-color="8cc152" data-toggle="tooltip" data-original-title="65 days left"><strong></strong></a>
                                             <h3 class="post-title"><a href="single-cause.php">save tigers from poachers</a></h3>
-                                            <div class="meta-data">donated $15000 / <span class="cause-target">$20000</span></div>
+                                            <div class="meta-data">Donated $15000 / <span class="cause-target">$20000</span></div>
                                         </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate now</a>
                                     </div>
                                 </div>
                             </li>
@@ -290,9 +290,9 @@
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="88" data-color="8cc152" data-toggle="tooltip" data-original-title="70 days left"><strong></strong></a>
                                             <h3 class="post-title"><a href="single-cause.php">help rebuild nepal</a></h3>
-                                            <div class="meta-data">donated $176000 / <span class="cause-target">$200000</span></div>
+                                            <div class="meta-data">Donated $176000 / <span class="cause-target">$200000</span></div>
                                         </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate now</a>
                                     </div>
                                 </div>
                             </li>
@@ -305,9 +305,9 @@
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="20" data-color="8cc152" data-toggle="tooltip" data-original-title="102 days left"><strong></strong></a>
                                             <h3 class="post-title"><a href="causes-education.php">education for everyone</a></h3>
-                                            <div class="meta-data">donated $4000 / <span class="cause-target">$20000</span></div>
+                                            <div class="meta-data">Donated $4000 / <span class="cause-target">$20000</span></div>
                                         </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate now</a>
                                     </div>
                                 </div>
                             </li>
@@ -320,9 +320,9 @@
                                         <div class="grid-item-content">
                                             <a class="cprogress" data-complete="50" data-color="8cc152" data-toggle="tooltip" data-original-title="105 days left"><strong></strong></a>
                                             <h3 class="post-title"><a href="single-cause.php">save water initiative</a></h3>
-                                            <div class="meta-data">donated $5000 / <span class="cause-target">$10000</span></div>
+                                            <div class="meta-data">Donated $5000 / <span class="cause-target">$10000</span></div>
                                         </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#donatemodal">donate now</a>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal">Donate now</a>
                                     </div>
                                 </div>
                             </li>
@@ -516,7 +516,7 @@
                                 <img src="images/post2.jpg" alt="">
                             </a>
                             <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">donate your woolens this winter</a></h3>
+                                <h3 class="post-title"><a href="single-post.php">Donate your woolens this winter</a></h3>
                                 <span class="meta-data"><i class="fa fa-calendar"></i> posted on 11th dec, 2015</span>
                                 <p>a blog post sample excerpt text which can be edited by editing the blog post page...</p>
                             </div>

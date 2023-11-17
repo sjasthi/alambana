@@ -5,11 +5,11 @@ if(!isset($_SESSION)) {
 } 
 
 if ($_SESSION['role'] != 'admin'){
-    header('Location:blogs.php'); 
+    header('Location:blog.php'); 
 }
 
 include('shared_resources.php'); 
-
+include ('blog_fill.php');
 ob_end_flush();
 
 //$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -124,6 +124,14 @@ if ($db->connect_error) {
         font-weight: bold;
     }
 
+    .show-button,
+    .hidden-state { 
+        background-color: lightcoral; /* Set the background color for the buttons */
+        border-radius: 5px; /* Add border-radius for rounded corners */
+        text-align: center; /* Center text horizontally */
+        /* Additional styles as needed */
+        color: black; /* or any other styling you want */
+    }
 
     
 
@@ -170,7 +178,8 @@ if ($db->connect_error) {
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        echo '<tr>
+                                        echo '
+                                        <tr>
                                         <td>' . $row["Blog_Id"] . '</td>
                                         <td>' . $row["Title"] . '</td>
                                         <td>' . $row["Description"] . '</td>
@@ -179,14 +188,28 @@ if ($db->connect_error) {
                                         <td>' . $row["Modified_Time"] . '</td>
                                         <td>' . $row["Created_Time"] . '</td>
                                         <td class="button-container" >
-                                            <form action="edit_blog.php" method="get">
+                                            <form action="admin_edit_blog.php" method="get">
                                                 <input type="hidden" name="Blog_Id" value="'. $row["Blog_Id"] .'">
                                                 <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Edit">
                                             </form>
                                             <form action="admin_delete_blog.php" method="post">
                                                 <input type="hidden" name="Blog_Id" value="'. $row["Blog_Id"] .'">
                                                 <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Delete">
-                                            </form>
+                                            </form>';
+                                            if (getBlogVisibilityStateFromDatabase($row['Blog_Id'])) {
+                                                echo '<form action="post_visibility.php" method="post">
+                                                        <input type="hidden" name="blog_id" value="'. $row["Blog_Id"] .'">
+                                                        <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Show">
+                                                      </form>';
+                                            } else {
+                                                echo '<div class="hidden-state">
+                                                        <form action="post_visibility.php" method="post">
+                                                          <input type="hidden" name="blog_id" value="'. $row["Blog_Id"] .'">
+                                                          <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background hidden-state btn-border" type="submit" value="Hide">
+                                                        </form>
+                                                      </div>';
+                                            }
+                                        echo  '
                                         </td>
                                     </tr>';
                                     }
