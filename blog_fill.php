@@ -869,9 +869,9 @@ function getHashFromDatabase($blogId) {
   $hash = false;
 
   if (isset($_SESSION['role'])){ // Verify SESSION
-    // Only Users Logged In with matching Hash
+    // get current user hash
     $session_hash = $_SESSION['hash'];
-
+    
     // Create connection
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 
@@ -886,7 +886,7 @@ function getHashFromDatabase($blogId) {
     $result = $connection->query($sql);
     
     if ($result->num_rows > 0) {
-        // Fetch the hash from the database
+        // Fetch the hash from the database matching blog id
         $row = $result->fetch_assoc();
         $hash = $row['hash'];
         if ($hash == $session_hash)  return true;
@@ -895,7 +895,7 @@ function getHashFromDatabase($blogId) {
     $connection->close();
   }
 
-  return $hash;
+  return false;
 }
 # fetch Blog Visiability : Boolean (false:0 | true:1) 
 function getBlogVisibilityStateFromDatabase($blogId) {
