@@ -29,7 +29,7 @@ $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABA
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 } else {
-    if (getHashFromDatabase($blogId) || $_SESSION['role']== 'admin') {
+    if (getUserHashFromDatabase($blogId) || $_SESSION['role']== 'admin') {
         // Retrieve the current value of 'hidden' from the database
         $currentHiddenValue = getBlogVisibilityStateFromDatabase($blogId);
 
@@ -66,7 +66,7 @@ if ($connection->connect_error) {
 
 /**/
 # fetch Hash (User Validation)
-function getHashFromDatabase($blogId) {
+function getUserHashFromDatabase($blogId) {
 
   if (isset($_SESSION['role'])){ // Verify SESSION
     // Only Users Logged In with matching Hash

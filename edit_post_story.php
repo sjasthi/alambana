@@ -16,7 +16,7 @@ function edit_post_story($blogId) {
     }
 
     #$blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter [Previously Clicked Link ID]
-    if (getHashFromDatabase($blogId) ){ // Verify SESSION with Hash Code
+    if (getUserHashFromDatabase($blogId) ){ // Verify SESSION with Hash Code
 
         # Field Entries
         if (isset($_POST['update_post_story'])) {

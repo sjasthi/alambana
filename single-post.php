@@ -106,9 +106,11 @@
                 // Send the request with the blogId as a parameter
                 xhr.send("blog_id=" + blogID);
 
-                // Redirect to blog.php and Refresh page
-                window.location.href = "blog.php?";
-             
+                setTimeout(function () {
+                    // Redirect to blog.php and Refresh page
+                    window.location.href = "blog.php?";
+                }, 100);// Introduce a delay (milliseconds)
+
                 //window.location.href = window.location.href;
                 //window.location.href = "delete_post.php?blog_id=" + blog_id; # Subjected to SQL Injection Issue (Security Issue)
                 
@@ -146,10 +148,8 @@
             get_number_of_elements("post-comment-parent-block");
         }
 
-    </script>
     
-    <!--UPDATE SERVER COMMENT COUNT FOR PARENT (Set New Blog Entry Level)-->
-    <script>
+        // UPDATE SERVER COMMENT COUNT FOR PARENT (Set New Blog Entry Level)
         document.addEventListener("DOMContentLoaded", function () {
             let className = "post-comment-parent-block";
 
@@ -204,7 +204,7 @@
                 if (isset($_SESSION['role'])) {
                     $isRole = $_SESSION['role'];
                 }
-                if ((getHashFromDatabase($blogId)) || ($isRole == 'admin') ){ // Verify SESSION with Hash Code or is 'admin'
+                if ((getUserHashFromDatabase($blogId)) || ($isRole == 'admin') ){ // Verify SESSION with Hash Code or is 'admin'
                     
                 
                     // Check if the blog_id exists

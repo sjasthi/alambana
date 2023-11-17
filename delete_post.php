@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 $blogId = get_session_blog_id();
 if (!is_numeric($blogId)) {
-    echo "Invalid user ID: " . $blogId;
+    echo "Invalid ID: " . $blogId;
     exit();
 } else {
-    echo "Good user ID: " . $blogId;
+    echo "ID: " . $blogId;
 }
 
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -31,21 +31,24 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }else{
 
-    if (getHashFromDatabase($blogId)) {
+    if (getUserHashFromDatabase($blogId)) {
         //if (isset($_POST['delete_post_button'])) {  // No longer needed while using AJAX
             $deleteBlogQuery = "DELETE FROM blogs WHERE blog_id=?";
             $deletePicturesQuery = "DELETE FROM blog_pictures WHERE blog_id=?";
             $deleteStoryQuery = "DELETE FROM blog_story WHERE blog_id=?";
+            $deleteCommentQuery = "DELETE FROM blog_comments WHERE blog_id=?";
 
             $stmtBlog = $connection->prepare($deleteBlogQuery);
             $stmtPictures = $connection->prepare($deletePicturesQuery);
             $stmtStory = $connection->prepare($deleteStoryQuery);
+            $stmtComment = $connection->prepare($deleteCommentyQuery);
 
             $stmtBlog->bind_param("i", $blogId);
             $stmtPictures->bind_param("i", $blogId);
             $stmtStory->bind_param("i", $blogId);
+            $stmtComment->bind_param("i", $blogId);
 
-            if ($stmtBlog->execute() && $stmtPictures->execute() && $stmtStory->execute()) {
+            if ($stmtBlog->execute() && $stmtPictures->execute() && $stmtStory->execute() && $stmtComment->execute()) {
                 $response = array('status' => 'success', 'message' => 'Post deleted successfully.');
             } else {
                 $response = array('status' => 'error', 'message' => 'Error: ' . $connection->error);
@@ -54,6 +57,7 @@ if ($connection->connect_error) {
             $stmtBlog->close();
             $stmtPictures->close();
             $stmtStory->close();
+            $stmtComment->close();
 
             
 
@@ -71,7 +75,7 @@ if ($connection->connect_error) {
 
 /**/
 # fetch Hash (User Validation)
-function getHashFromDatabase($blogId) {
+function getUserHashFromDatabase($blogId) {
 
   if (isset($_SESSION['role'])){ // Verify SESSION
     // Only Users Logged In with matching Hash

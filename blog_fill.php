@@ -864,13 +864,11 @@ function getAboutFromDatabase($blogId) {
   return $about;
 }
 # fetch Hash : Boolean (false | true) 
-function getHashFromDatabase($blogId) {
+function getUserHashFromDatabase($blogId) {
   // If no matching blogId found, return an false (without permissions)
-  $hash = false;
-
   if (isset($_SESSION['role'])){ // Verify SESSION
     // get current user hash
-    $session_hash = $_SESSION['hash'];
+    $user_session_hash = $_SESSION['hash'];
     
     // Create connection
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -879,17 +877,15 @@ function getHashFromDatabase($blogId) {
     if ($connection->connect_error) {
         die("Connection failed: " . $connection->connect_error);
     }
-
     // Prepare SQL query to fetch hash based on blogId
     $sql = "SELECT hash FROM blogs WHERE Blog_Id = $blogId";
 
     $result = $connection->query($sql);
-    
     if ($result->num_rows > 0) {
         // Fetch the hash from the database matching blog id
         $row = $result->fetch_assoc();
-        $hash = $row['hash'];
-        if ($hash == $session_hash)  return true;
+        $blog_hash = $row['hash'];
+        if ($blog_hash === $user_session_hash)  return true;
     }
     // Close the connection
     $connection->close();

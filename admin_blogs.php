@@ -40,12 +40,18 @@ if ($db->connect_error) {
     <!-- CSS
   ================================================== -->
     <?php css(2) ?>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- SCRIPTS
   ================================================== -->
     <?php load_common_page_scripts() ?>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script>
+        function confirm_prompt_delete() {
+            var confirmation = confirm("Are you sure you want to delete this post?");
+            if (confirmation) { return true;}
 
+            return false;
+        }
+    </script>
 
 
 </head>
@@ -163,8 +169,10 @@ if ($db->connect_error) {
                                     <th>Blog ID</th>
                                     <th>Title</th>
                                     <th>Description</th>
+                                    <th>Blog Link</th>
                                     <th>Video Link</th>
                                     <th>Author</th>
+                                    <th>Comments</th>
                                     <th>Modified Time</th>
                                     <th>Created Time</th>
                                     <th>Options</th>
@@ -178,17 +186,20 @@ if ($db->connect_error) {
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        echo '
+                                    echo '
                                         <tr>
                                         <td>' . $row["Blog_Id"] . '</td>
                                         <td>' . $row["Title"] . '</td>
                                         <td>' . $row["Description"] . '</td>
-                                        <td>' . $row["Video_Link"] . '</td>
-                                        <td>' . $row["Author"] . '</td>
+                                        <td><a href="single-post.php?blog_id=' . $row["Blog_Id"] .'">Blog Site</a></td>';
+                                        if(!empty($row["Video_Link"])) {echo'<td><a href="' . $row["Video_Link"] . '">Video</a></td>';}
+                                        else{echo'<td></td>';}
+                                    echo'<td>' . $row["Author"] . '</td>
+                                        <td>' . get_blog_page_comment_count($row["Blog_Id"]) . '</td>
                                         <td>' . $row["Modified_Time"] . '</td>
                                         <td>' . $row["Created_Time"] . '</td>
                                         <td class="button-container" >
-                                            <form action="admin_edit_blog.php" method="get">
+                                            <form action="edit_blog.php" method="get">
                                                 <input type="hidden" name="Blog_Id" value="'. $row["Blog_Id"] .'">
                                                 <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Edit">
                                             </form>
