@@ -949,7 +949,28 @@ function get_blog_page_comment_count($blogId){
   return $comments;
 }
 
+function getAll__blog_comment_count(){
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
 
+  $sql = "SELECT COUNT(*) AS comment_count FROM blog_comments";
+  $result = $connection->query($sql);
+
+  $comments = 0;
+
+  // Fetch the count directly
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $comments = $row['comment_count'];
+  }
+
+  $connection->close();
+  return $comments;
+}
 
 
 ////////////////////////////////////////////////////////

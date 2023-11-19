@@ -11,7 +11,9 @@
     #require 'bin/functions.php';
     #require 'db_configuration.php';
     include('shared_resources.php'); 
-    
+    include 'blog_fill.php';
+    include 'event_fill.php';
+    include 'user_fill.php';
     ob_end_flush();
 ?>
 
@@ -73,7 +75,7 @@
                             <div class="cards">
                                 <div class="card" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
                                     <div class="box">
-                                        <h1>2194</h1>
+                                        <h1><?php echo getAll__blog_comment_count() ?></h1>
                                         <h3>Blogs</h3>
                                     </div>
                                     <div class="icon-case">
@@ -82,7 +84,7 @@
                                 </div>
                                 <div class="card" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
                                     <div class="box">
-                                        <h1>53</h1>
+                                        <h1><?php echo getAll__event_count() ?></h1>
                                         <h3>Events</h3>
                                     </div>
                                     <div class="icon-case">
@@ -91,7 +93,7 @@
                                 </div>
                                 <div class="card" style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
                                     <div class="box">
-                                        <h1>5</h1>
+                                        <h1><?php echo getAll__user_count() ?></h1>
                                         <h3>Users</h3>
                                     </div>
                                     <div class="icon-case">

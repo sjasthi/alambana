@@ -1,5 +1,5 @@
 <?php
-require 'db_configuration.php';
+#require 'db_configuration.php';
 
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
@@ -7,7 +7,7 @@ if ($status == PHP_SESSION_NONE) {
 }
 
 
-function fill_form() {
+function fill_form() { // NOT IN USE; ONLY AN EXAMPLE
 
   if (isset($_COOKIE['email']) and !isset($_POST['action'])){
     $student_email = $_COOKIE['email'];
@@ -133,5 +133,30 @@ function fill_form() {
 		</label><!---radioButtons--->
     </div>
     ";
+}
+
+
+# fetch Page event Count
+function getAll__event_count(){
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  $sql = "SELECT COUNT(*) AS event_count FROM events";
+  $result = $connection->query($sql);
+
+  $events = 0;
+
+  // Fetch the count directly
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $events = $row['event_count'];
+  }
+
+  $connection->close();
+  return $events;
 }
 ?>
