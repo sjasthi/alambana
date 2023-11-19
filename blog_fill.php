@@ -216,7 +216,6 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                     </div>
                     <div class="post-content">
                       <p>' . nl2br($row['Description']) . '</p>
-                      <img src="images/cause3.jpg" alt="" class="align-left">
                       <p>' . $blog_paragraphs . '</p>
                     </div>
                     <div class="tag-cloud">

@@ -44,6 +44,21 @@ ob_flush();
 <!-- SCRIPTS
   ================================================== -->
 <?php load_common_page_scripts() ?>
+
+<script>
+  function validatePassword() {
+    var password = document.forms["registrationForm"]["password"].value;
+    var confirmPassword = document.forms["registrationForm"]["password_confirm"].value;
+
+    if (password != confirmPassword) {
+      alert("Passwords do not match. Please try again.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+
 </head>
   
       <!-- Site Header Wrapper -->
@@ -65,7 +80,6 @@ ob_flush();
             </label>
             <input type="email" required autocomplete="off" name="email" />
           </div>
-
           <div class="field-wrap">
             <label>
               Password <span class="req">*</span>
@@ -77,13 +91,12 @@ ob_flush();
             <a href="confirmEmail.php">Forgot password</a>
           </div>
         </form>
-
       </div>
 
       <div id="register">
         <h1 id="newUser">Register as a new user</h1>
 
-        <form action="register.php" method="post" autocomplete="off">
+        <form action="register.php" method="post" autocomplete="off" onsubmit="return validatePassword()" name="registrationForm">
 
           <div class="top-row">
             <div class="field-wrap">
@@ -114,9 +127,13 @@ ob_flush();
             </label>
             <input type="password" required autocomplete="off" name='password' />
           </div>
-
+          <div class="field-wrap">
+            <label>
+              Confirm Password <span class="req">*</span>
+            </label>
+            <input type="password" required autocomplete="off" name='password_confirm' />
+          </div>
           <button class="btn-primary" style="padding: 5px 25px; margin-left: 230px; margin-right: 50px;"  name="register">Register</button>
-
         </form>
 
       </div>

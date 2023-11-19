@@ -114,6 +114,18 @@
 		});
 	</script>
 
+<style>
+    #title {
+        resize: none; /* Disable resizing */
+        width: 300px; /* Set initial width */
+        height: 30px; /* Set initial height */
+    }
+    #blog_creation_form textarea {
+        resize: none; /* Disable resizing */
+        width: 500px; /* Set initial width */
+        height: 75px; /* Set initial height */
+    }
+</style>
     <!-- Blog Post Section -->
     <div id="main-container">
       <div class="content">
@@ -133,16 +145,16 @@
                 <div id=blog_creation_left>
                   <label>Blog Title</label>
                   <br>
-                  <input type="text" name="title" maxlength=100 required>
-                  <br>
+                  <input id="title" type="text" name="title" maxlength=100 required>
+                  <br><br>
                   <label for="description">Description</label>
                   <br>
-                  <textarea name="description" rows=9 cols=50 required></textarea>
+                  <textarea name="description" rows="3" cols="100" maxlength="160" required></textarea>
                 </div>
                 <div id=blog_creation_right>
-                  <label for="author">Author</label>
+                  <!-- <label for="author">Author</label>
                   <br>
-                  <input type="text" name="author" maxlength=50 required>
+                  <input type="text" name="author" maxlength=50 required> -->
                   <br>
                   <label>Image(s)</label>`
                   <br>

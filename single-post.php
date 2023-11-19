@@ -278,6 +278,7 @@
                             <form id="blog_create_comment_form" action="<?php echo $formAction; ?>" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="form-group">
+                                    <?php if (!isset($_SESSION['role'])) { echo '
                                         <div class="col-md-4 col-sm-4">
                                             <input type="text" name="comment_name" maxlength="128" class="form-control input-lg" placeholder="Your name">
                                         </div>
@@ -286,7 +287,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-4">
                                             <input type="url" name="comment_url" maxlength="255" class="form-control input-lg" placeholder="Website (optional)">
-                                        </div>
+                                        </div>';
+                                    } ?>
                                     </div>
                                 </div>
                                 <div class="row">

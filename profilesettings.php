@@ -5,19 +5,20 @@
   } 
 
   include 'shared_resources.php';
-  include 'blog_fill.php';
-  include 'create_post_story.php';
-  include 'edit_post_story.php';
-  $blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter
+  
+  if (isset($_SESSION['role'])) {
+    $userRole = $_SESSION['role'];
+  }
 ?>
 
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
+
 <!-- Basic Page Needs
   ================================================== -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Change This Title With BLOG TItle!!!</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>TBD</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
@@ -39,217 +40,36 @@
 <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
 <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
 <!-- SCRIPTS
-  ================================================== -->
-  <?php load_common_page_scripts() ?>
-  <!-- MODIFY POST-->
-    <script>
-        let show_edit_form = () => {
-            let form = document.getElementById("blog_modifiy_form");
-            let show_button = document.getElementById("form_show_button");
-            form.removeAttribute("hidden");
-            show_button.setAttribute("hidden", "hidden");
-        }
-        function delete_blog_post() {
-        var confirmation = confirm("Are you sure you want to delete this post?");
-        if (confirmation) {
 
-            // Redirect to the PHP script that handles post deletion
-            window.location.href = "delete_post.php?blog_id=<?php echo $blogId; ?>";
+  ================================================== -->
+  <style>
+        body {
+            font-size: 50px; /* Set the font size to make the text bigger */
+            color: black;    /* Set the text color to black */
+			text-align: center; /* Center align the text */
         }
-    }
-    </script>
+    </style>
+
+  <?php load_common_page_scripts() ?>
+ 
 </head>
-<body class="single-post">
+<body>
 <!--[if lt IE 7]>
 	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
 <div class="body">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header() ?>
+    <?php load_common_page_header(2) ?>
+    <!-- Hero Area -->
+	<?php
+	
+	$text = "To Be Implemented";
+	?>
+	<p><?php echo $text; ?></p>
 
-    <!-- Banner Area -->
-    <div class="hero-area">
-    	<div class="page-banner parallax" style="background-image:url(images/inside8.jpg);">
-        	<div class="container">
-            	<div class="page-banner-text">
-        			<h1 class="block-title">Title - <?php echo getTitleFromDatabase($blogId);?></h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Main Content -->
-    <div id="main-container">
-    	<div class="content">
-        	<div class="container">
-                <!-- USER PRIVILEGES ROLE (User/Admin from 'users' Table) -->
-                <!--?php
-                            if (isset($_SESSION['role'])) {
-                            if ($_SESSION['role'] == 'admin') {
-                                echo '<button id="form_show_button" onclick="show_new_post_form();">Create Post</button>';
-                            }
-                            }
-                        ?-->
-                <!-- Blog Create Post Button -->
-                <?php
-                // Check if the blog_id exists
-                $isBlogExists = checkIfBlogPostExists($blogId);
 
-                if ($isBlogExists) {
-                    $aboutAuthor = getAboutFromDatabase($blogId);
-                    $storyDescription = getParagraphFromDatabase($blogId);
-                    // Blog exists, modify button name and function
-                    echo '<button id="form_show_button" onclick="show_edit_form();">Edit Post Story</button>';
-                    
-                    $formAction = edit_post_story($blogId); // Set the form action for editing
-                    $submitAction = "update_post_story";
-
-                } else {
-                    $aboutAuthor =  '';
-                    $storyDescription = '';
-                    // Blog doesn't exist, default button name and function
-                    echo '<button id="form_show_button" onclick="show_edit_form();">Create Post Story</button>';
-                    $formAction = create_post_story($blogId); // Set the form action for creating
-                    $submitAction = "create_post_story";
-
-                }echo '<button id="delete_post_button" onclick="delete_blog_post();">Delete Post</button>'; // Add the Delete Post button
-                ?>
-                <br><br>
-                <!-- Blog Form (Initially hidden) [Activates on button click] -->
-                <form id="blog_modifiy_form" action="<?php echo $formAction; ?>" method="POST" enctype="multipart/form-data" hidden="hidden">
-                    <div id="blog_creation_left">
-                        <label>Blog</label>
-                        <label for="paragraph">Paragraph</label>
-                        <br>
-                        <textarea name="paragraph" rows="9" cols="50" required><?php echo htmlspecialchars($storyDescription); ?></textarea>
-                    </div>
-                    <div id="blog_creation_right">
-                        <label>Author Description</label>
-                        <br>
-                        <textarea type="text" name="about_author" maxlength="128" required rows="3" cols="50"><?php echo htmlspecialchars($aboutAuthor); ?></textarea><br><br>
-                    </div>
-                    <input type="submit" name="<?php echo $submitAction; ?>" value="Publish">
-                </form>
-
-                
-            	<div class="row">
-                	<div class="col-md-8 content-block">
-                    	<!-- Blog Page Fill --> <?php fill_blog_story($blogId); ?>
-                        <!-- Pagination -->
-                        <ul class="pager">
-                            <li class="pull-left"><a href="#">&larr; Prev Post</a></li>
-                            <li class="pull-right"><a href="#">Next Post &rarr;</a></li>
-                        </ul>
-            			<section class="post-comments" id="comments">
-              				<h3><i class="fa fa-comment"></i> Comments (4)</h3>
-              				<ol class="comments">
-                				<li>
-                  					<div class="post-comment-block">
-                    					<img src="images/user2.jpg" alt="avatar" class="img-thumbnail">
-                                        <div class="post-comment-content">
-                                            <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                            <h5>Robin Schmidt <span>says</span></h5>
-                                            <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                            <p>There have been human health concerns associated with the consumption of dolphin meat in Japan after tests showed that dolphin meat contained high levels of mercury.</p>
-                                      	</div>
-                  					</div>
-                				</li>
-                				<li>
-                                    <div class="post-comment-block">
-                    					<img src="images/user1.jpg" alt="avatar" class="img-thumbnail">
-                                        <div class="post-comment-content">
-                                            <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                            <h5>Emma Paquette <span>says</span></h5>
-                                            <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                            <p>Nicely said :)</p>
-                                      	</div>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="post-comment-block">
-                    							<img src="images/user2.jpg" alt="avatar" class="img-thumbnail">
-                                                <div class="post-comment-content">
-                                                    <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                                    <h5>Robin Schmidt <span>says</span></h5>
-                                                    <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                                    <p>Étienne de Flacourt (1607-60), French governor of Madagascar, described eating unborn dolphin calves cut out of the womb of a caught dolphin cow in Histoire de la grande isle Madagascar (1661). He considered the meat more tender and delicate than veal and believed it to be among the best meats he had eaten.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="post-comment-block">
-                    							<img src="images/user2.jpg" alt="avatar" class="img-thumbnail">
-                                                <div class="post-comment-content">
-                                                    <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                                    <h5>Robin Schmidt <span>says</span></h5>
-                                                    <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                                    <p>Real post, i love reading it all through</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="post-comment-block">
-                    					<img src="images/user1.jpg" alt="avatar" class="img-thumbnail">
-                                        <div class="post-comment-content">
-                                            <a href="#" class="btn btn-default btn-xs pull-right">Reply</a>
-                                            <h5>Emma Paquette <span>says</span></h5>
-                                            <span class="meta-data">Nov 23, 2013 at 7:58 pm</span>
-                                            <p>Dolphin meat is consumed in a small number of countries world-wide, which include Japan[125] and Peru (where it is referred to as chancho marino, or "sea pork").[126] While Japan may be the best-known and most controversial example, only a very small minority of the population has ever sampled it.</p>
-                                      	</div>
-                                    </div>
-                                </li>
-                            </ol>
-                        </section>
-                        <section class="post-comment-form">
-                            <h3><i class="fa fa-share"></i> Post a comment</h3>
-                            <form>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="text" class="form-control input-lg" placeholder="Your name">
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="email" class="form-control input-lg" placeholder="Your email">
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <input type="url" class="form-control input-lg" placeholder="Website (optional)">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                        	<textarea cols="8" rows="4" class="form-control input-lg" placeholder="Your comment"></textarea>
-                                    	</div>
-                                	</div>
-                            	</div>
-                            	<div class="row">
-                                	<div class="form-group">
-                                    	<div class="col-md-12">
-                                        	<button type="submit" class="btn btn-primary btn-lg">Submit your comment</button>
-                                    	</div>
-                                	</div>
-                            	</div>
-                        	</form>
-                    	</section>
-                    </div>
-                    
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Site Footer -->
-    <?php load_common_page_footer() ?>
-  	<a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
-
-<!-- Donate Form Modal -->
-<?php donate_dialog() ?>
-<!-- Libraries Loader -->
-<?php lib() ?>
-<!-- Style Switcher Start -->
-<?php style_switcher() ?>
-
+    <?php lib() ?>
+    <!-- Style Switcher Start -->
+    <?php style_switcher() ?>
 </body>
 </html>
