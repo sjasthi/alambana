@@ -176,7 +176,7 @@
                	</div>
                 
                 <div class="cta">
-                 	<a href="causes.php" class="btn btn-primary pull-right">Donate Now</a>
+                     <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
                 	<p>Let's start doing your bit for the world. Donate a little.</p>
                 </div>
                 <div class="spacer-30"></div>
@@ -284,6 +284,8 @@
     </div>
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
+    <!-- donate form modal -->
+    <?php donate_dialog() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
     <!-- Style Switcher Start -->
