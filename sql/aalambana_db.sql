@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2023 at 11:06 PM
+-- Generation Time: Nov 19, 2023 at 11:35 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,15 +44,20 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, `Modified_Time`, `Created_Time`, `hash`, `hidden`) VALUES
-(39, 'Blog Title1', 'Author1', 'Description1', 'https://youtu.be/k9em7Ey00xQ', '2023-11-06 20:33:09', '2023-11-06 20:33:09', '', 0),
-(40, 'Blog Title2', 'Author2', 'Description2', '', '2023-11-06 20:33:37', '2023-11-06 20:33:37', '', 0),
-(41, 'Blog Title3', 'Author3', 'Description3', '', '2023-11-06 20:34:08', '2023-11-06 20:34:08', '', 0),
-(42, 'Blog Title4', 'Author4', 'Description4', '', '2023-11-06 20:34:37', '2023-11-06 20:34:37', '', 1),
-(43, 'Blog Title5', 'Author5', 'Description5', '', '2023-11-06 20:35:24', '2023-11-06 20:35:24', '', 0),
-(44, 'Blog Title6', 'Author6', 'Description6', '', '2023-11-06 20:35:46', '2023-11-06 20:35:46', '', 0),
-(45, 'Blog Title7', 'Author7', 'Description7', '', '2023-11-06 20:36:11', '2023-11-06 20:36:11', '', 0),
-(76, 'A2', 'Love, Israel', 'A2', '', '2023-11-17 00:07:40', '2023-11-17 00:07:40', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(77, 'A3', 'Love, Israel', 'A3', '', '2023-11-17 00:07:45', '2023-11-17 00:07:45', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1);
+(84, 'Blog Title 12', 'CS320, SILC', 'Description 12', 'https://youtu.be/3cZhu9hTals', '2023-11-19 20:42:06', '2023-11-19 20:42:06', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0),
+(85, 'Blog Title 11', 'Love, Israel', 'Description 11', '', '2023-11-19 20:43:04', '2023-11-19 20:43:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(86, 'Blog Title 10', 'Love, Israel', 'Description 10', '', '2023-11-19 20:44:04', '2023-11-19 20:44:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(87, 'Blog Title 9', 'Love, Israel', 'Description 9', '', '2023-11-19 20:44:21', '2023-11-19 20:44:21', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(88, 'Blog Title 8', 'Love, Israel', 'Description 8', '', '2023-11-19 20:44:51', '2023-11-19 20:44:51', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(89, 'Blog Title 7', 'Love, Israel', 'Description 7', '', '2023-11-19 20:45:13', '2023-11-19 20:45:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(90, 'Blog Title 6', 'Love, Israel', 'Description 6', '', '2023-11-19 20:45:28', '2023-11-19 20:45:28', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(91, 'Blog Title 5', 'Love, Israel', 'Description 5', '', '2023-11-19 20:45:56', '2023-11-19 20:45:56', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(92, 'Blog Title 4', 'Love, Israel', 'Description 4', '', '2023-11-19 20:46:13', '2023-11-19 20:46:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
+(93, 'Blog Title 3', 'Love, Israel', 'Description 3', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(94, 'Blog Title 2', 'Love, Israel', 'Description 2', '', '2023-11-19 20:46:46', '2023-11-19 20:46:46', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(95, 'Blog Title 1', 'Love, Israel', 'Description 1', '', '2023-11-19 20:47:04', '2023-11-19 20:47:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(96, 'Blog Title admin', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-19 21:11:03', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0),
+(97, 'Blog Title New User', 'Johnson, Tom', 'Description New User', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0);
 
 -- --------------------------------------------------------
 
@@ -76,22 +81,13 @@ CREATE TABLE `blog_comments` (
 --
 
 INSERT INTO `blog_comments` (`Comment_Id`, `Blog_Id`, `Paragraph`, `Created_Time`, `Name`, `Subject_Id`, `email`, `url`) VALUES
-(163, 43, 'test1', '2023-11-15 10:49:14', 'user name 1', 1, 'istreamtofly@gmail.com', ''),
-(164, 43, 'sddfsdf', '2023-11-15 11:00:26', 'user name 2', 1, 'istreamtofly@gmail.com', ''),
-(165, 43, 'sdfsdfa44', '2023-11-15 11:00:51', 'user name 2', 2, 'istreamtofly@gmail.com', ''),
-(166, 43, 'testsesete3', '2023-11-15 11:01:09', 'Anonymous User', 3, 'istreamtofly@gmail.com', ''),
-(167, 43, 'testees34555', '2023-11-15 11:01:53', 'Israel', 1, 'israel.love@my.metrostate.edu', ''),
-(168, 43, 'ddd', '2023-11-15 11:02:02', 'Israel', 1, 'israel.love@my.metrostate.edu', ''),
-(169, 43, 'eeeeeeeeeeeeeeeeee', '2023-11-15 11:02:11', 'Israel', 3, 'israel.love@my.metrostate.edu', ''),
-(170, 43, 'AAAAAAAAAAAAAAAAAAA', '2023-11-15 11:10:31', 'Administration', 1, 'cs320@silcmn.com', ''),
-(171, 43, 'sdffAAAAAAAAAAAAAA', '2023-11-15 11:10:40', 'Administration', 4, 'cs320@silcmn.com', ''),
-(172, 43, 'Aaaaaaaaaa', '2023-11-15 11:10:50', 'Administration', 4, 'cs320@silcmn.com', ''),
-(173, 45, 'admin post1', '2023-11-15 22:54:00', 'Administration', 1, 'cs320@silcmn.com', ''),
-(174, 77, 'test1', '2023-11-17 09:52:48', 'user name 1', 1, 'istreamtofly@gmail.com', ''),
-(175, 77, 'test 2', '2023-11-17 09:53:26', 'Anonymous User', 2, 'istreamtofly@gmail.com', ''),
-(176, 45, 'comment 2', '2023-11-17 10:10:45', 'Administration', 1, 'cs320@silcmn.com', ''),
-(177, 45, 'Comment 3 new', '2023-11-17 10:11:01', 'Administration', 2, 'cs320@silcmn.com', ''),
-(178, 45, 'Hello to Comment 2', '2023-11-17 10:11:41', 'Israel', 1, 'israel.love@my.metrostate.edu', '');
+(179, 95, 'Hey this is really a good site blog!', '2023-11-20 03:17:26', 'Tom', 1, 'tom.johnson@gmail.com', ''),
+(180, 94, 'Very interesting read, hope to hear more from your post.', '2023-11-20 03:19:58', 'Tom', 1, 'tom.johnson@gmail.com', ''),
+(181, 95, 'Are you going to make any more postings on this topic?', '2023-11-20 04:19:49', 'Tom', 2, 'tom.johnson@gmail.com', ''),
+(182, 95, 'Yes, very soon!', '2023-11-20 04:21:58', 'Israel', 2, 'israel.love@my.metrostate.edu', ''),
+(183, 96, 'Is this a Admin post?', '2023-11-20 04:22:39', 'Israel', 1, 'israel.love@my.metrostate.edu', ''),
+(184, 97, 'Hi, is there a new post to this page', '2023-11-20 04:27:39', 'user name 1', 1, 'user1@gmail.com', ''),
+(185, 97, 'I was wondering the same thing..', '2023-11-20 05:07:24', 'Deb', 1, 'deb.holt@msn.com', '');
 
 -- --------------------------------------------------------
 
@@ -110,18 +106,23 @@ CREATE TABLE `blog_pictures` (
 --
 
 INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
-(21, 39, 'images/blog_pictures/65493f752f6947.00110101.jpg'),
-(22, 40, 'images/blog_pictures/65493f91c4f978.64073287.jpg'),
-(23, 41, 'images/blog_pictures/65493fb0147a34.50160538.jpg'),
-(24, 42, 'images/blog_pictures/65493fcd93bd00.75092656.jpg'),
-(25, 43, 'images/blog_pictures/65493ffc9b0a39.52529038.jpg'),
-(26, 44, 'images/blog_pictures/654940129a4f76.32594610.jpg'),
-(27, 45, 'images/blog_pictures/6549402b13df46.83020739.jpg'),
 (28, 48, 'images/blog_pictures/6554f41890b446.42606833.jpg'),
 (29, 49, 'images/blog_pictures/6554f621909a87.79369267.jpg'),
 (30, 50, 'images/blog_pictures/6554f6a96b8172.66056853.jpg'),
-(56, 76, 'images/blog_pictures/6556a0bc349ff7.96590254.jpg'),
-(57, 77, 'images/blog_pictures/6556a0c190e638.79451381.jpg');
+(64, 84, 'images/blog_pictures/655a650e7168c9.57985351.jpg'),
+(65, 85, 'images/blog_pictures/655a654807a544.18347308.jpg'),
+(66, 86, 'images/blog_pictures/655a658406b7c9.48144260.jpg'),
+(67, 87, 'images/blog_pictures/655a6595e8f2e8.47185645.jpg'),
+(68, 88, 'images/blog_pictures/655a65b3cb1a05.94802641.jpg'),
+(69, 89, 'images/blog_pictures/655a65c928b9e9.38424586.jpg'),
+(70, 90, 'images/blog_pictures/655a65d89a0747.50571369.jpg'),
+(71, 91, 'images/blog_pictures/655a65f40244d8.66522321.jpg'),
+(72, 92, 'images/blog_pictures/655a6605445c31.60858895.jpg'),
+(73, 93, 'images/blog_pictures/655a6618383d79.60594253.jpg'),
+(74, 94, 'images/blog_pictures/655a6626cb90c4.51601587.jpg'),
+(75, 95, 'images/blog_pictures/655a66383f7709.15555490.jpg'),
+(76, 96, 'images/blog_pictures/655a6bd7db62e3.76003664.jpg'),
+(77, 97, 'images/blog_pictures/655a6d1ca9e490.00244529.jpg');
 
 -- --------------------------------------------------------
 
@@ -141,10 +142,11 @@ CREATE TABLE `blog_story` (
 --
 
 INSERT INTO `blog_story` (`Story_Id`, `Blog_Id`, `Paragraph`, `About_Author`) VALUES
-(22, 39, 'Blog Paragraph1', 'Author Description1'),
-(23, 45, 'Blog Paragraph7', 'Author Description7'),
-(24, 44, 'Blog Paragraph6', 'Author Description6'),
-(25, 51, 'Blog Paragraph', 'Author Description');
+(25, 51, 'Blog Paragraph', 'Author Description'),
+(27, 95, 'In the serene embrace of nature, the morning sun casts a golden glow on dew-kissed petals, awakening a world of possibilities. As birds orchestrate a symphony overhead, a tranquil breeze whispers through the leaves. Amidst this ethereal canvas, each moment unfolds, offering a sanctuary for contemplation. Join me on this journey of reflection and discovery, where the beauty of simplicity dances with the profound, creating a tapestry of stories waiting to be explored.', 'Embark on a journey with a nature-inspired wordsmith who weaves tales of simplicity and reflection. With an affinity for life\'s '),
+(28, 94, 'In the heart of a bustling city, where skyscrapers touch the clouds and the rhythm of life echoes through the streets, I find solace in the unexplored corners. Amidst the urban chaos, hidden gems of tranquility wait to be discovered. As I navigate this vibrant landscape, my pen becomes a guide, weaving stories that capture the essence of city life. Join me on a literary exploration, where the mundane transforms into the extraordinary, and every alleyway holds a narrative waiting to unfold.', 'Meet the author, a city dweller with a passion for uncovering the beauty within urban landscapes. With a keen eye for detail and'),
+(29, 93, 'Within the realm of pixels and code, explore the digital landscapes where creativity knows no bounds. Join the author, a tech visionary, in crafting narratives that unfold in the virtual realms of innovation and imagination.', 'Journey alongside the author, a tech visionary, as they navigate the digital frontier. With a mind tuned to the frequencies of i'),
+(30, 92, 'In the quiet hours of the night, delve into the realm of introspection and dreams. Join me, a nocturnal wordsmith, in weaving tales that unravel beneath the silver glow of the moon, where secrets are whispered and thoughts take flight.', 'Meet the author, a nocturnal wordsmith, whose pen dances with the rhythm of midnight musings.');
 
 -- --------------------------------------------------------
 
@@ -167,8 +169,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`) VALUES
-(2, 0, ' Add new Event Event Title Event Title Event Description', '', '2023-11-15 12:28:00', '2023-11-10 19:28:20', '2023-11-10 19:28:20'),
-(3, 0, 'Event Description2', '', '2023-11-15 19:43:00', '2023-11-14 02:43:20', '2023-11-14 02:43:20');
+(4, 0, 'Event Description1', '', '2023-11-29 16:08:00', '2023-11-19 23:08:43', '2023-11-19 23:08:43'),
+(5, 0, 'Event Description2', '', '2023-11-22 16:09:00', '2023-11-19 23:09:19', '2023-11-19 23:09:19'),
+(6, 0, 'Event Description 3', 'https://youtu.be/NAmQ2zfH3jY', '2023-12-29 16:13:00', '2023-11-19 23:14:19', '2023-11-19 23:14:19');
 
 -- --------------------------------------------------------
 
@@ -188,7 +191,10 @@ CREATE TABLE `event_pictures` (
 INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
 (1, 'images/event_pictures/654abb793cf0d.'),
 (2, 'images/event_pictures/654abb9ccf77a.jpg'),
-(3, 'images/event_pictures/6552d0b8d31ea.');
+(3, 'images/event_pictures/6552d0b8d31ea.'),
+(4, 'images/event_pictures/655a876b93b68.jpg'),
+(5, 'images/event_pictures/655a878f0c78c.jpg'),
+(6, 'images/event_pictures/655a88bb40c4c.png');
 
 -- --------------------------------------------------------
 
@@ -216,18 +222,13 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`, `role`, `Picture_Id`, `modified_time`, `created_time`) VALUES
 (1, 'Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
 (2, 'Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(3, 'Ahala', '', 'ahala@abcd.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
 (4, 'SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(5, 'Happy', 'Josyula', 'happy@abcd.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(6, 'ics499', '12345', 'ics499@abcd.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(9, 'admin', 'admin', 'admin@admin.com', '$2y$10$6gPbUgQrTQjjUWWz2NwjNu3B3.fcZ9W.LkRL11CJar5UO3gCU1Mby', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
 (10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', NULL, '0000-00-00', '0000-00-00'),
-(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$I2fp1ZFLTiKhonjteDCpBuI3i/o0s1H6CBgSeSyuc7PKexyamapgG', '81448138f5', 'user', NULL, '0000-00-00', '0000-00-00'),
-(12, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$VLTZlUKTCGnkKsmMhrikOuzp1cB76ixaoIy4HPOMHWVrmXTTer55G', '8dd48d6a2e', 'user', NULL, '0000-00-00', '0000-00-00'),
-(13, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$KYCYI.XEPt2d/XPVnzUV8OVsOFao/3rIHBBxr.DCBixyUgLpprCxS', '5737c6ec2e', 'user', NULL, '0000-00-00', '0000-00-00'),
-(14, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$5o2DpsNy92iFJ4Cyktqi3.waUl6IwNfXm2fx8Y5yiVHP27ue.B7dG', '352fe25daf', 'user', NULL, '0000-00-00', '0000-00-00'),
-(15, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$qI8NV39nOXSMEgxJOh.3P.BBBjCJEwKfijSADdUd6uKcMrodbeE4u', '8e98d81f82', 'user', NULL, '0000-00-00', '0000-00-00'),
-(16, 'Varma', 'Alluri', 'test@test.com', '$2y$10$vyqu2FB2r0o.AONX5Gtp8ez6dPY3moOQwhG.AuFKiVFvhrDShOKPG', 'eae27d77ca', 'admin', NULL, '0000-00-00', '0000-00-00');
+(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'user', NULL, '0000-00-00', '0000-00-00'),
+(16, 'Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
+(17, 'admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
+(18, 'Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'yes', 'user', NULL, '0000-00-00', '0000-00-00'),
+(19, 'Katie', 'Hall', 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', '5487315b12', 'user', NULL, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -319,43 +320,43 @@ ALTER TABLE `user_photos`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT for table `blog_pictures`
 --
 ALTER TABLE `blog_pictures`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `blog_story`
 --
 ALTER TABLE `blog_story`
-  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `event_pictures`
 --
 ALTER TABLE `event_pictures`
-  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user_photos`
