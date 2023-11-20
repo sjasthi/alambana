@@ -1,45 +1,75 @@
 <?php
+if (!isset($_SESSION)) { 
+    session_start();
+} 
 
-  if(!isset($_SESSION)) { 
-      session_start();
-  } 
-
-  include 'shared_resources.php';
-  if (isset($_SESSION['role'])) {
+include 'shared_resources.php';
+if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
-  }
+}
+// Define the number of events per page (default to 3)
+$eventsPerPage = isset($_GET['events_per_page']) ? intval($_GET['events_per_page']) : 3;
+
+// Calculate the total number of pages
+$totalEvents = $db->query("SELECT COUNT(*) FROM events")->fetch_row()[0];
+$totalPages = ceil($totalEvents / $eventsPerPage);
+
+// Get the current page number from the URL parameters, default to 1 if not set
+$current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1;
+
+// Calculate the offset for the SQL query
+$offset = ($current_page - 1) * $eventsPerPage;
+
+function fetchEvents($db, $offset, $eventsPerPage) {
+    $events = [];
+    $query = "SELECT * FROM events ORDER BY Event_Date DESC LIMIT $eventsPerPage OFFSET $offset";
+    if ($result = $db->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $events[] = $row;
+        }
+        $result->free();
+    }
+    return $events;
+}
+
+
+$events = fetchEvents($db, $offset, $eventsPerPage);
 ?>
 
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
-<!-- Basic Page Needs
+    <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Events</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<!-- Mobile Specific Metas
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!-- Include the favicon.ico file -->
+   <?php generateFaviconLink() ?>
+  <title>Aalambana - Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <!-- CSS
   ================================================== -->
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<!-- CSS
-  ================================================== -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
-<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-<link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
-<!-- Color Style -->
-<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
-<!-- SCRIPTS
-  ================================================== -->
-  <?php load_common_page_scripts() ?>
+
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
+  <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
+  <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
+  <link href="css/custom.css" rel="stylesheet" type="text/css">
+
+  <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
+  <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+
+  <style>
+        .event {
+            margin-bottom: 30px; /* Adds space below each event */
+            padding: 15px; /* Adds padding inside each event container */
+            border-bottom: 1px solid #ccc; /* Adds a border line below each event */
+        }
+    </style>
+    <?php load_common_page_scripts() ?>
   <style>
         /* Style for the custom button label */
         .custom-file-upload {
@@ -58,36 +88,34 @@
         }
     </style>
 </head>
+
+
 <body>
-<!--[if lt IE 7]>
-	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-<![endif]-->
-<div class="body">
-	<!-- Site Header Wrapper -->
+  <div class="body">
     <?php load_common_page_header(2) ?>
-    <!-- Banner Area -->
+
     <div class="hero-area">
-    	<div class="page-banner parallax"  id="banner" style="background-image:url(images/inside9.jpg);">
-        	<div class="container">
-            	<div class="page-banner-text">
-        			<h1 class="block-title">Past Events</h1>
-					 <?php
-                        if (isset($userRole) && $userRole === "admin") {
+      <div class="page-banner parallax" id="banner" style="background-image:url(images/event_banner.jpg);">
+        <div class="container">
+          <div class="page-banner-text">
+            <h1 class="block-title">Events</h1>
+            <?php if (isset($userRole) && $userRole === "admin") {
                             // Display the "Change Image" button for admin users
 							echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
                             echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
-                        }
-                        ?>
-                </div>
-            </div>
+                        } ?>
+          </div>
         </div>
+      </div>
     </div>
-	<script>
+
+
+    <script>
 		const imageUpload = document.getElementById('imageUpload');
 		const banner = document.getElementById('banner');
 
 		// Retrieve the stored image URL from local storage on page load
-		const storedImageUrl = localStorage.getItem('pastEventBanner');
+		const storedImageUrl = localStorage.getItem('blog_Banner');
 		if (storedImageUrl) {
 			banner.style.backgroundImage = `url(${storedImageUrl})`;
 		}
@@ -100,150 +128,188 @@
 					banner.style.backgroundImage = `url(${e.target.result})`;
 
 					// Store the selected image URL for Page 1 in local storage
-					localStorage.setItem('pastEventBanner', e.target.result);
+					localStorage.setItem('blog_Banner', e.target.result);
 				};
 				reader.readAsDataURL(file);
 			}
 		});
 	</script>
-    <!-- Main Content -->
-    <div id="main-container">
-    	<div class="content">
-        	<div class="container">
-            	<div class="row">
-                	<div class="col-md-8 content-block">
-                        <ul class="events-list">
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">14</span>
-                                    <span class="month">Jan</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Thursday, 11:20 AM - 02:20 PM</span>
-                                    <h4 class="post-title"><a href="#">Fundraising for meals</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">18</span>
-                                    <span class="month">Jan</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Monday, 07:00 PM</span>
-                                    <h4 class="post-title"><a href="#">Fundraising for meals</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">26</span>
-                                    <span class="month">Feb</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Friday, 01:00 PM</span>
-                                    <h4 class="post-title"><a href="#">Green Environment</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">02</span>
-                                    <span class="month">Mar</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Wednesday, 10:00 AM</span>
-                                    <h4 class="post-title"><a href="#">Medical checkup camp</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- Page Pagination -->
-                        <nav>
-                            <ul class="pagination pagination-lg">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    
-                    <!-- Sidebar -->
-                    <div class="col-md-4 sidebar-block">
-                        <div class="widget sidebar-widget widget_categories">
-                        	<h3 class="widgettitle">Event Categories</h3>
-                            <ul>
-                            	<li><a href="#">Education</a> (3)</li>
-                            	<li><a href="#">Environment</a> (1)</li>
-                            	<li><a href="#">Global warming</a> (6)</li>
-                            	<li><a href="#">Water</a> (4)</li>
-                            	<li><a href="#">Wild life</a> (2)</li>
-                            	<li><a href="#">Small business</a> (12)</li>
-                            </ul>
-                        </div>
-                        <div class="widget widget_recent_causes">
-                        	<h3 class="widgettitle">Latest Causes</h3>
-                            <ul>
-                                <li>
-                                    <a href="#" class="cause-thumb">
-                                        <img src="images/cause1.jpg" alt="" class="img-thumbnail">
-                                        <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                            <strong></strong>
-                                        </div>
-                                    </a>
-                                   	<h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
-                                    <span class="meta-data">10 days left to achieve</span>
-                                </li>
-                                <li>
-                                    <a href="#" class="cause-thumb">
-                                        <img src="images/cause5.jpg" alt="" class="img-thumbnail">
-                                        <div class="cProgress" data-complete="75" data-color="42b8d4">
-                                            <strong></strong>
-                                        </div>
-                                    </a>
-                                   	<h5><a href="single-cause.php">Save tigers from poachers</a></h5>
-                                    <span class="meta-data">32 days left to achieve</span>
-                                </li>
-                                <li>
-                                    <a href="#" class="cause-thumb">
-                                        <img src="images/cause6.jpg" alt="" class="img-thumbnail">
-                                        <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                            <strong></strong>
-                                        </div>
-                                    </a>
-                                   	<h5><a href="single-cause.php">Help rebuild Nepal</a></h5>
-                                    <span class="meta-data">10 days left to achieve</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+ 
+ <style>
+    .content {
+      display: flex;
+      align-items: flex-start; /* Align items at the top */
+    }
+    #search_bar {
+      width: 350px; /* Set a fixed width for the TOC */
+      margin-right: 100px; /* Add margin between TOC and main content */
+    }
+    #blog_TOC {
+      width: 250px; /* Set a fixed width for the TOC */
+      margin-right: -110px; /* Add margin between TOC and main content */
+    }
+    #TOC_list {
+      width: 250px; /* Set a fixed width for the TOC */
+      margin-right: 100px; /* Add margin between TOC and main content */
+    }
+    #main-container {
+      flex: 1; /* Allow the main container to take remaining space */
+    }
+    </style>
+<?php
+// ... (Your existing PHP code, like session checks and includes)
+
+// Function to fetch events and their pictures
+function fetchEventsWithPictures($db, $offset, $eventsPerPage) {
+    $events = [];
+    $query = "SELECT e.*, p.Location FROM events e
+              LEFT JOIN event_pictures p ON e.Event_Id = p.Event_Id
+              ORDER BY e.Event_Date DESC LIMIT $eventsPerPage OFFSET $offset";
+    if ($result = $db->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $events[] = $row;
+        }
+        $result->free();
+    }
+    return $events;
+}
+
+// Now call the function to get the events with pictures
+//$eventsWithPictures = fetchEventsWithPictures($db);
+$events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
+
+?>
+
+    <div class="content">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-8 content-block">
+<!-- Event Per Page Selection Form -->
+<form action="" method="get">
+                            <label for="events_per_page">Events per page:</label>
+                            <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
+                                <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
+                                <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
+                                <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
+                            </select>
+                        </form>
+
+    <?php foreach ($events as $event): ?>
+        <div class="event">
+            <h3><?php echo htmlspecialchars($event['Title']); ?></h3>
+            <p><?php echo htmlspecialchars($event['Description']); ?></p>
+            <p>Date: <?php echo htmlspecialchars($event['Event_Date']); ?></p>
+            <?php if (!empty($event['Location'])): ?>
+                <img src="<?php echo htmlspecialchars($event['Location']); ?>">
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+
+
+ <!-- Pagination Links -->
+ <div class="pagination">
+            <!-- Previous Page Link -->
+            <?php if ($current_page > 1): ?>
+                <a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>">&laquo; Previous</a>
+            <?php endif; ?>
+
+            <!-- Page Number Links -->
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="?current_page=<?php echo $i; ?>&events_per_page=<?php echo $eventsPerPage; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>>
+                    <?php echo $i; ?>
+                </a>
+            <?php endfor; ?>
+
+            <!-- Next Page Link -->
+            <?php if ($current_page < $totalPages): ?>
+                <a href="?current_page=<?php echo $current_page + 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>">Next &raquo;</a>
+            <?php endif; ?>
         </div>
     </div>
+
+        <!-- Event Per Page Selection Form -->
+        <form action="" method="get">
+            <label for="events_per_page">Events per page:</label>
+            <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
+                <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
+                <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
+                <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
+            </select>
+        </form>
+
+          <div class="col-md-4 sidebar-block">
+            <div class="widget sidebar-widget widget_categories">
+                <h3 class="widgettitle">Event Categories</h3>
+                <ul>
+                <li><a href="#"><i class="fa fa-caret-right"></i> Education</a> (3)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Environment</a> (1)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Water</a> (4)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Wild life</a> (2)</li>
+                                  <li><a href="#"><i class="fa fa-caret-right"></i> Small business</a> (12)</li>
+                </ul>
+            </div>
+            </div>
+            </div>
+
+            <div class="widget sidebar-widget widget_search" id="search_bar">
+                              <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Enter your keywords">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                                  </span>
+                              </div>
+                            </div><br><br><br>
+                            <div class="widget widget_testimonials">
+                              <h3 class="widgettitle">Stories of change</h3>
+                                <div class="carousel-wrapper" style="background: none;">
+                                    <div class="row">
+                                        <ul class="owl-carousel carousel-fw owl-theme" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1" style="opacity: 1; display: block;">
+                                            <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 780px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 390px;"><li class="item">
+                                                <div class="testimonial-block">
+                                                    <blockquote>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                                    </blockquote>
+                                                    <div class="testimonial-avatar"><img src="./story1.jpg" alt="" width="70" height="70"></div>
+                                                    <div class="testimonial-info">
+                                                        <div class="testimonial-info-in">
+                                                            <strong>Ada Ajimobi</strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li></div><div class="owl-item" style="width: 390px;"><li class="item">
+                                                <div class="testimonial-block">
+                                                    <blockquote>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                                    </blockquote>
+                                                    <div class="testimonial-avatar"><img src="./story2.jpg" alt="" width="70" height="70"></div>
+                                                    <div class="testimonial-info">
+                                                        <div class="testimonial-info-in">
+                                                            <strong>Chloe Lévesque</strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li></div></div></div>
+                                            
+                                        <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"><i class="fa fa-chevron-left"></i></div><div class="owl-next"><i class="fa fa-chevron-right"></i></div></div></div></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
     <!-- Style Switcher Start -->
     <?php style_switcher() ?>
+
 </body>
 </html>
