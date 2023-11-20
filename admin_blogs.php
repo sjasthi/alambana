@@ -199,8 +199,8 @@ if ($db->connect_error) {
                                         <td>' . $row["Modified_Time"] . '</td>
                                         <td>' . $row["Created_Time"] . '</td>
                                         <td class="button-container" >
-                                            <form action="edit_blog.php" method="get">
-                                                <input type="hidden" name="Blog_Id" value="'. $row["Blog_Id"] .'">
+                                            <form action="edit_post.php?blog_id=' . intval($row["Blog_Id"]) . '" method="get">
+                                                <input type="hidden" name="blog_id" value="'. $row["Blog_Id"] .'">
                                                 <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Edit">
                                             </form>
                                             <form action="admin_delete_blog.php" method="post">
