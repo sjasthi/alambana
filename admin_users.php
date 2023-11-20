@@ -1,6 +1,6 @@
 <?php
 ob_start();
-if (!isset($_SESSION)) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -13,8 +13,8 @@ include('shared_resources.php');
 ob_end_flush();
 
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
 }
 ?>
 
@@ -45,6 +45,66 @@ if ($db->connect_error) {
 </head>
 
 <body>
+    <!-- table styling -->
+    <style>
+        /* Add the styles here */
+        #User_table {
+            border-collapse: collapse;
+            margin: auto;
+            width: 90%;
+        }
+
+        #User_table th, #User_table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #User_table th {
+            background-color: #f2f2f2;
+        }
+
+        /* Adjust DataTables elements */
+        .dataTables_wrapper {
+            width: 80%;
+            margin: auto;
+        }
+
+        /* Add these styles to your CSS file or within a <style> tag in your HTML */
+        .button-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .button-container form {
+            margin-right: 10px; /* Adjust the spacing between buttons as needed */
+        }
+
+        .button-container input[type="submit"] {
+            padding: 1px 4px; /* Adjust the padding to make buttons smaller */
+            /*width: auto;  Allow buttons to adjust their width based on content */
+        }
+        /* Change font family, size, and color */
+        .btn {
+            /* font-family: 'Arial', sans-serif; Change to your preferred font family */
+            font-size: 10px; /* Adjust the font size */
+            /* color: #ffffff; Change the text color */
+        }
+
+        /* Change the font weight (e.g., from normal to bold) */
+        .btn-bold {
+            font-weight: bold;
+        }
+
+        .show-button,
+        .hidden-state { 
+            background-color: lightcoral; /* Set the background color for the buttons */
+            border-radius: 5px; /* Add border-radius for rounded corners */
+            text-align: center; /* Center text horizontally */
+            /* Additional styles as needed */
+            color: black; /* or any other styling you want */
+        }
+    </style>
     <!-- Body Content -->
 
     <!-- Site Header Wrapper -->
@@ -71,18 +131,22 @@ if ($db->connect_error) {
                                     <th>Email</th>
                                     <th>Profile Picture</th>
                                     <th>Change photo</th>
+                                    <th>Account Status</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Populate table with User data from the database -->
                                 <?php
-                                $sql = "SELECT users.id, users.first_name, users.last_name, users.email, user_photos.Location 
+                                $sql = "SELECT users.id, users.first_name, users.last_name, users.email, users.status, user_photos.Location 
                                         FROM users 
-                                        LEFT JOIN user_photos ON users.Picture_Id = user_photos.Picture_Id"; // Modify this query to fetch Users data
+                                        LEFT JOIN user_photos ON users.Picture_Id = user_photos.Picture_Id";
                                 $result = $db->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
+                                        $statusClass = ($row["status"] == 'enabled') ? 'btn-success' : 'btn-danger';
+                                        $statusAction = ($row["status"] == 'enabled') ? 'Disable' : 'Enable';
                                         echo '<tr>
                                         <td>' . $row["id"] . '</td>
                                         <td>' . $row["first_name"] . '</td>
@@ -96,8 +160,17 @@ if ($db->connect_error) {
                                               <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" name="change_photo" value="Change Photo">
                                             </form>
                                         </td>
+                                        <td>' . $row["status"] . '</td>
+                                        <td>
+                                            <form action="admin_disable_enable.php" method="post">
+                                                <input type="hidden" name="user_id" value="' . $row["id"] . '">
+                                                <button type="submit" name="disable_enable_user" class="btn btn-sm enable-disable-btn ' . $statusClass . '">
+                                                    ' . $statusAction . ' User
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>';
-                                    }
+                                }
                                 } else {
                                     echo "0 results";
                                 }
@@ -126,6 +199,22 @@ if ($db->connect_error) {
             var dataTable = new DataTable(table);
         });
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var enableDisableButtons = document.querySelectorAll('.enable-disable-btn');
+
+        enableDisableButtons.forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                button.closest('form').submit();
+            });
+        });
+    });
+    </script>
+
+
+
 </body>
 
 </html>

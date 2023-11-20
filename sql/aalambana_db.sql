@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2023 at 11:35 PM
+-- Generation Time: Nov 20, 2023 at 11:33 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -169,9 +169,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`) VALUES
-(4, 0, 'Event Description1', '', '2023-11-29 16:08:00', '2023-11-19 23:08:43', '2023-11-19 23:08:43'),
-(5, 0, 'Event Description2', '', '2023-11-22 16:09:00', '2023-11-19 23:09:19', '2023-11-19 23:09:19'),
-(6, 0, 'Event Description 3', 'https://youtu.be/NAmQ2zfH3jY', '2023-12-29 16:13:00', '2023-11-19 23:14:19', '2023-11-19 23:14:19');
+(4, '0', 'Event Description1', '', '2023-11-29 16:08:00', '2023-11-19 23:08:43', '2023-11-19 23:08:43'),
+(5, '0', 'Event Description2', '', '2023-11-22 16:09:00', '2023-11-19 23:09:19', '2023-11-19 23:09:19'),
+(6, '0', 'Event Description 3', 'https://youtu.be/NAmQ2zfH3jY', '2023-12-29 16:13:00', '2023-11-19 23:14:19', '2023-11-19 23:14:19');
 
 -- --------------------------------------------------------
 
@@ -208,27 +208,30 @@ CREATE TABLE `users` (
   `last_name` varchar(30) NOT NULL,
   `email` varchar(75) NOT NULL,
   `hash` varchar(200) NOT NULL,
-  `active` varchar(10) NOT NULL,
+  `active` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
   `Picture_Id` int(11) DEFAULT NULL,
   `modified_time` date NOT NULL,
-  `created_time` date NOT NULL
+  `created_time` date NOT NULL,
+  `status` enum('enabled','disabled') DEFAULT 'enabled'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`, `role`, `Picture_Id`, `modified_time`, `created_time`) VALUES
-(1, 'Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(2, 'Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(4, 'SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', NULL, '0000-00-00', '0000-00-00'),
-(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'user', NULL, '0000-00-00', '0000-00-00'),
-(16, 'Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(17, 'admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00'),
-(18, 'Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'yes', 'user', NULL, '0000-00-00', '0000-00-00'),
-(19, 'Katie', 'Hall', 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', '5487315b12', 'user', NULL, '0000-00-00', '0000-00-00');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`, `role`, `Picture_Id`, `modified_time`, `created_time`, `status`) VALUES
+(1, 'Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(2, 'Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(4, 'SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(16, 'Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', 21, '0000-00-00', '0000-00-00', 'enabled'),
+(17, 'admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(18, 'Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(19, 'Katie', 'Hall', 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(20, 'Ram', 'YalamanChilli', 'test@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'yes', 'admin', 22, '0000-00-00', '0000-00-00', 'enabled'),
+(21, 'Raju', 'Vatsavai', 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'yes', 'admin', 23, '0000-00-00', '0000-00-00', 'enabled');
 
 -- --------------------------------------------------------
 
@@ -239,6 +242,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`,
 CREATE TABLE `user_photos` (
   `Picture_Id` int(11) NOT NULL,
   `Blog_Id` int(11) DEFAULT NULL,
+  `User_Id` int(11) DEFAULT NULL,
   `Location` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -246,18 +250,21 @@ CREATE TABLE `user_photos` (
 -- Dumping data for table `user_photos`
 --
 
-INSERT INTO `user_photos` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
-(6, 22, 'images/blog_pictures/65371530989501.90488542.jpg'),
-(9, 26, 'images/blog_pictures/6538627d343777.61810942.jpg'),
-(10, 27, 'images/blog_pictures/65386e301700c8.47196175.jpg'),
-(11, 28, 'images/blog_pictures/653922fc26c3f9.52815194.jpg'),
-(13, 30, 'images/blog_pictures/653a6d2e0afa26.08642205.jpg'),
-(14, 31, 'images/blog_pictures/653a6e4b5f4bc8.42880896.jpg'),
-(15, 32, 'images/blog_pictures/653a6e6ac89d49.28070896.jpg'),
-(16, 33, 'images/blog_pictures/653a8b928d5797.54334947.jpg'),
-(17, 34, 'images/blog_pictures/653a8bb88fb2f0.31269026.jpg'),
-(19, 36, 'images/blog_pictures/653aec19e43e64.17197132.jpg'),
-(20, 37, 'images/blog_pictures/653aec345f00e0.67092487.jpg');
+INSERT INTO `user_photos` (`Picture_Id`, `Blog_Id`, `User_Id`, `Location`) VALUES
+(6, 22, NULL, 'images/blog_pictures/65371530989501.90488542.jpg'),
+(9, 26, NULL, 'images/blog_pictures/6538627d343777.61810942.jpg'),
+(10, 27, NULL, 'images/blog_pictures/65386e301700c8.47196175.jpg'),
+(11, 28, NULL, 'images/blog_pictures/653922fc26c3f9.52815194.jpg'),
+(13, 30, NULL, 'images/blog_pictures/653a6d2e0afa26.08642205.jpg'),
+(14, 31, NULL, 'images/blog_pictures/653a6e4b5f4bc8.42880896.jpg'),
+(15, 32, NULL, 'images/blog_pictures/653a6e6ac89d49.28070896.jpg'),
+(16, 33, NULL, 'images/blog_pictures/653a8b928d5797.54334947.jpg'),
+(17, 34, NULL, 'images/blog_pictures/653a8bb88fb2f0.31269026.jpg'),
+(19, 36, NULL, 'images/blog_pictures/653aec19e43e64.17197132.jpg'),
+(20, 37, NULL, 'images/blog_pictures/653aec345f00e0.67092487.jpg'),
+(21, NULL, 16, 'images/users_pictures/655aeb079ac723.71567649.jpg'),
+(22, NULL, 20, 'images/users_pictures/655aeb21b1e6b9.53120516.jpg'),
+(23, NULL, 21, 'images/users_pictures/655aeb32d29dd5.50836719.jpg');
 
 --
 -- Indexes for dumped tables
@@ -356,13 +363,13 @@ ALTER TABLE `event_pictures`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_photos`
 --
 ALTER TABLE `user_photos`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

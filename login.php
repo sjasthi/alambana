@@ -1,7 +1,7 @@
 <?php
 ob_start();
 $status = session_status();
-if($status == PHP_SESSION_NONE){
+if ($status == PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -12,25 +12,29 @@ $pass = $db->escape_string($_POST['password']);
 $email = $db->escape_string($_POST['email']);
 $result = $db->query("SELECT * FROM users WHERE email='$email'");
 
-if ( $result->num_rows == 0 ){ // User doesn't exist
+if ($result->num_rows == 0) { // User doesn't exist
     $_SESSION['message'] = "User with that email doesn't exist!";
     header("location: error.php");
     exit();
-}
-else { // User exists
+} else { // User exists
     $user = $result->fetch_assoc();
 
-    if ( password_verify($_POST['password'], $user['hash']) ) {
+    if ($user['status'] == 'disabled') {
+        // Account is disabled, show a popup message
+        echo '<script>alert("Your account is disabled. Please contact the administrator.");</script>';
+        exit();
+    }
+
+    if (password_verify($_POST['password'], $user['hash'])) {
         $_SESSION['email'] = $user['email'];
         $_SESSION['active'] = $user['active'];
-        
+
         // (SU23-30) (Feature) user email validation
-        if(strcmp($_SESSION['active'], "yes") != 0) {
+        if (strcmp($_SESSION['active'], "yes") != 0) {
             // email validation was not completed
             header("location: validation.php");
             exit();
-        }
-        else {
+        } else {
             // email validation already completed (Load userdata into session)
             $_SESSION['id'] = $user['id'];
             $_SESSION['first_name'] = $user['first_name'];
@@ -38,17 +42,15 @@ else { // User exists
             $_SESSION['role'] = $user['role'];
             $_SESSION['hash'] = $user['hash'];
             $_SESSION['logged_in'] = true;
-            if ($_SESSION['role'] == "admin"){
+            if ($_SESSION['role'] == "admin") {
                 header("location: admin_panel.php");
-            }
-            else {
+            } else {
                 header("location: index.php");
                 exit();
             }
         }
-    }
-    else {
-        $_SESSION['message'] = "You have entered wrong password, try again!";
+    } else {
+        $_SESSION['message'] = "You have entered the wrong password. Please try again!";
         header("location: error.php");
         exit();
     }
