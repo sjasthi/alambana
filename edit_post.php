@@ -1,8 +1,8 @@
 <?php
 
-if (!isset($_GET['Blog_Id']) || !is_numeric($_GET['Blog_Id'])) {
+if (!isset($_GET['blog_id']) || !is_numeric($_GET['blog_id'])) {
     echo "Blog not found";
-    sleep(3);
+    //sleep(3);
     header("Location: admin_blogs.php");
     exit();
 }
@@ -13,13 +13,16 @@ $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABA
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
+
+$Blog_Id = $_GET['blog_id'];
+$BLOG_TYPE = "Edit Blog";
+
 // adding new Blog  
 if (isset($_POST["Created_Time"])) {
-
-    $Blog_Id = $_GET['Blog_Id'];
-    $Title = $_POST['Title'];
-    $Description = $_POST['Description'];
-    $Video_Link = $_POST['Video_Link'];
+    $BLOG_TYPE = "Add New Blog";
+    $Title = $_POST['title'];
+    $Description = $_POST['description'];
+    $Video_Link = $_POST['video_link'];
     $Modified_Time = date('Y-m-d H:i:s');
 
     $stmt = $connection->prepare("UPDATE blogs SET Title=?, Description=?, Video_Link=?, Modified_Time=? WHERE Blog_Id=?");
@@ -73,8 +76,63 @@ if (isset($_POST["Created_Time"])) {
     // Redirect to a suitable page after successful insertion
     header("Location: admin_blogs.php");
     exit();
-} else {
-    $Blog_Id = $_GET['Blog_Id'];
+
+}if (isset($_POST['update_post'])) {
+    $title = $_POST['Title'];
+    $author = $_POST['Author'];
+    $description = $_POST['Description'];
+    $video_link = $_POST['Video_Link'];
+    $timestamp = date("Y-m-d H:i:s");
+
+    if(empty($title)) $title = "Pending Title...";
+    if(empty($description)) $description = "Pending Description...";
+    if(empty($author)) $author = $_SESSION['last_name'] . ", " . $_SESSION['first_name'];  
+
+    // Update existing post data
+    $updateQuery = "UPDATE blogs SET title='$title', author='$author', description='$description', video_link='$video_link', Modified_Time='$timestamp' WHERE blog_id='$Blog_Id'";
+    
+    // Execute the update query for blog details
+    if (mysqli_query($connection, $updateQuery)) {
+        // Handle photo upload
+        $fileNameArray = [];
+        //if ($fileNameArray!=null){
+         if ($_FILES['Location']['name'][0] > 0) {
+                //echo "Error: " . $_FILES['Location']['error'][$i];
+            
+            for ($i = 0; $i < count($_FILES['Location']['name']); $i++) {
+                $fileName = $_FILES['Location']['name'][$i];
+                $fileTMP = $_FILES['Location']['tmp_name'][$i];
+                $fileError = $_FILES['Location']['error'][$i];
+                $fileExt = explode('.', $fileName);
+                $fileActualExt = strtolower(end($fileExt));
+
+                if ($fileError === 0) {
+                    $fileNewName = uniqid('', true).".".$fileActualExt;
+                    $fileDestination = 'images/blog_pictures/'.$fileNewName;
+                    move_uploaded_file($fileTMP, $fileDestination);
+                    array_push($fileNameArray, $fileDestination);
+                } else {
+                    echo "There was an error uploading your file.";
+                }
+            }
+
+            // Update existing post data for photos
+            $deletePreviousPhotosQuery = "DELETE FROM blog_pictures WHERE blog_id='$Blog_Id'";
+            mysqli_query($connection, $deletePreviousPhotosQuery);
+
+            foreach ($fileNameArray as $fileDestination) {
+                $insertPhotoQuery = "INSERT INTO blog_pictures (blog_id, location) VALUES ('$Blog_Id', '$fileDestination')";
+                mysqli_query($connection, $insertPhotoQuery);
+            }
+        }
+        // Redirect to updated page
+        header('Location: single-post.php?blog_id=' . $Blog_Id);
+    } else {
+        echo "Error updating blog details: " . mysqli_error($connection);
+    }
+}
+ else {
+    
     $sql = "SELECT * FROM blogs WHERE Blog_Id = '{$Blog_Id}'"; // Modify this query to fetch Blogs data
     $result = $connection->query($sql)->fetch_all(MYSQLI_ASSOC);
 
@@ -94,7 +152,7 @@ if (isset($_POST["Created_Time"])) {
     <!-- Basic Page Needs
   ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Edit Blog/title>
+    <title><?php echo $BLOG_TYPE ?></title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -128,8 +186,6 @@ if (isset($_POST["Created_Time"])) {
             </div>
         </div>
 
-
-
         <!-- Main Content -->
         <div id="main-container">
             <div class="content">
@@ -141,19 +197,24 @@ if (isset($_POST["Created_Time"])) {
                     <div class="row">
                         <br><br>
                         <div class="col-md-6 mx-auto">
-                            <h1>Add new Blog</h1>
-                            <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post"
-                                enctype="multipart/form-data">
+                            <h1><?php echo $BLOG_TYPE ?> here:</h1>
+                            <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="Title">Blog Title</label>
+                                    <label for="Title">Title</label>
                                     <input value="<?php echo $result[0]['Title']; ?>" type="text" class="form-control"
                                         name="Title" id="Title">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Description">Blog Description</label>
+                                    <label for="Description">Description</label>
                                     <input value="<?php echo $result[0]['Description']; ?>" type="text"
                                         class="form-control" name="Description" id="Description">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Author">Author</label>
+                                    <input value="<?php echo $result[0]['Author']; ?>" type="text"
+                                        class="form-control" name="Author" id="Author">
                                 </div>
 
                                 <div class="form-group">
@@ -168,7 +229,7 @@ if (isset($_POST["Created_Time"])) {
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary">Submit</button>
+                                    <button class="btn btn-primary" name="update_post">Submit</button>
                                 </div>
 
                             </form>

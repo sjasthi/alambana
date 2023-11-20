@@ -152,9 +152,6 @@
                   <textarea name="description" rows="3" cols="100" maxlength="160" required></textarea>
                 </div>
                 <div id=blog_creation_right>
-                  <!-- <label for="author">Author</label>
-                  <br>
-                  <input type="text" name="author" maxlength=50 required> -->
                   <br>
                   <label>Image(s)</label>`
                   <br>
