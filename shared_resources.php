@@ -546,7 +546,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
             <li><a href="admin_events.php" img src="" alt="">Events</a></li>
             <li><a href="admin_blogs.php" img src="" alt="">Blogs</a></li>
             <li><a href="admin_users.php" img src="" alt="">Users</a></li>
-            <li><a href="causes.php" img src="" alt="">Causes</a></li>
+            <li><a href="community-support.php" img src="" alt="">Causes</a></li>
             <li><a href="admin_help.php" img src="" alt="">Help</a></li>
             <li><a href="admin_panel.php" img src="" alt="">Settings</a></li>
         </ul>
