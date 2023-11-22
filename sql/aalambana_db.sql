@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 08:55 PM
+-- Generation Time: Nov 23, 2023 at 12:13 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,19 +44,19 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, `Modified_Time`, `Created_Time`, `hash`, `hidden`) VALUES
-(84, 'Blog Title 12', 'CS320, SILC', 'Description 12', 'https://youtu.be/3cZhu9hTals', '2023-11-19 20:42:06', '2023-11-19 20:42:06', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0),
+(84, 'Blog Title 16', 'CS320, SILC', 'Description 12', 'https://youtu.be/3cZhu9hTals', '2023-11-21 02:28:31', '2023-11-19 20:42:06', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 1),
 (85, 'Blog Title 11', 'Love, Israel', 'Description 11', '', '2023-11-20 20:44:55', '2023-11-19 20:43:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
 (86, 'Blog Title 10', 'Love, Israel', 'Description 10', '', '2023-11-19 20:44:04', '2023-11-19 20:44:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
 (87, 'Blog Title 9', 'Love, Israel', 'Description 9', '', '2023-11-19 20:44:21', '2023-11-19 20:44:21', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(88, 'Blog Title 8', 'Love, Israel', 'Description 8', '', '2023-11-19 20:44:51', '2023-11-19 20:44:51', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
+(88, 'Blog Title 8', 'Love, Israel', 'Description 8', '', '2023-11-19 20:44:51', '2023-11-19 20:44:51', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
 (89, 'Blog Title 7', 'Love, Israel', 'Description 7', '', '2023-11-19 20:45:13', '2023-11-19 20:45:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
 (90, 'Blog Title 6', 'Love, Israel', 'Description 6', '', '2023-11-19 20:45:28', '2023-11-19 20:45:28', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
 (91, 'Blog Title 5', 'Love, Israel', 'Description 5', '', '2023-11-19 20:45:56', '2023-11-19 20:45:56', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
 (92, 'Blog Title 4', 'Love, Israel', 'Description 4', '', '2023-11-19 20:46:13', '2023-11-19 20:46:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
 (93, 'Blog Title 3', 'Love, Israel', 'Description 3', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
 (94, 'Blog Title 2', 'Love, Israel', 'Description 2', '', '2023-11-19 20:46:46', '2023-11-19 20:46:46', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(95, 'Blog Title 1', 'Love, Israel', 'Description 1', '', '2023-11-20 20:49:28', '2023-11-19 20:47:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(96, 'Blog Title admin', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-19 21:11:03', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0),
+(95, 'Blog Title 1', 'Love, Israel', 'Description 1', '', '2023-11-20 20:49:28', '2023-11-19 20:47:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
+(96, 'Blog Title admin', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-21 01:28:50', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0),
 (97, 'Blog Title New User', 'Johnson, Tom', 'Description New User', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0);
 
 -- --------------------------------------------------------
@@ -93,7 +93,8 @@ INSERT INTO `blog_comments` (`Comment_Id`, `Blog_Id`, `Paragraph`, `Created_Time
 (188, 89, 'I\'ll come back later, looks like a good start though', '2023-11-20 23:01:07', 'Deb', 3, 'deb.holt@msn.com', ''),
 (189, 89, 'Yes this is about planting and our ecosystem', '2023-11-20 23:02:12', 'Israel', 2, 'israel.love@my.metrostate.edu', ''),
 (190, 89, 'I haven\'t written anything down yet but I will, thank you for your interest!', '2023-11-20 23:03:02', 'Israel', 1, 'israel.love@my.metrostate.edu', ''),
-(191, 95, 'Please provide appropriate contact only. \r\nThank you', '2023-11-21 02:14:27', 'Administration', 3, 'cs320@silcmn.com', '');
+(191, 95, 'Please provide appropriate contact only. \r\nThank you', '2023-11-21 02:14:27', 'Administration', 3, 'cs320@silcmn.com', ''),
+(192, 97, 'hi yu', '2023-11-22 02:37:21', 'Israel', 1, 'israel.love@my.metrostate.edu', '');
 
 -- --------------------------------------------------------
 
@@ -115,7 +116,6 @@ INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
 (28, 48, 'images/blog_pictures/6554f41890b446.42606833.jpg'),
 (29, 49, 'images/blog_pictures/6554f621909a87.79369267.jpg'),
 (30, 50, 'images/blog_pictures/6554f6a96b8172.66056853.jpg'),
-(64, 84, 'images/blog_pictures/655a650e7168c9.57985351.jpg'),
 (66, 86, 'images/blog_pictures/655a658406b7c9.48144260.jpg'),
 (67, 87, 'images/blog_pictures/655a6595e8f2e8.47185645.jpg'),
 (68, 88, 'images/blog_pictures/655a65b3cb1a05.94802641.jpg'),
@@ -128,7 +128,8 @@ INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
 (76, 96, 'images/blog_pictures/655a6bd7db62e3.76003664.jpg'),
 (77, 97, 'images/blog_pictures/655a6d1ca9e490.00244529.jpg'),
 (81, 95, 'images/blog_pictures/655bafdef36a98.80008798.jpg'),
-(82, 85, 'images/blog_pictures/655bb7156e38c0.95310575.jpg');
+(82, 85, 'images/blog_pictures/655bb7156e38c0.95310575.jpg'),
+(83, 84, 'images/blog_pictures/655c07bf2a2162.58934655.jpg');
 
 -- --------------------------------------------------------
 
@@ -168,20 +169,22 @@ CREATE TABLE `events` (
   `Video_Link` varchar(255) DEFAULT NULL,
   `Event_Date` datetime DEFAULT NULL,
   `Created_Time` datetime DEFAULT NULL,
-  `Modified_Time` datetime DEFAULT NULL
+  `Modified_Time` datetime DEFAULT NULL,
+  `Event_Date_Close` datetime DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL,
+  `Attendees` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`) VALUES
-(1, 'Title1', 'Event Description1', '', '2023-11-21 16:08:00', '2023-11-19 23:08:43', '2023-11-19 23:08:43'),
-(2, 'Title2', 'Event Description2', '', '2024-02-14 16:09:00', '2023-11-19 23:09:19', '2023-11-19 23:09:19'),
-(3, 'Title3', 'Event Description3', '', '2023-12-31 16:13:00', '2023-11-19 23:14:19', '2023-11-19 23:14:19'),
-(4, 'Title4', 'Event Description4', '', '2024-02-24 16:08:00', '2023-11-19 23:08:43', '2023-11-20 23:08:43'),
-(5, 'Title5', 'Event Description5', '', '2024-01-17 16:09:00', '2023-11-19 23:09:19', '2023-11-21 23:09:19'),
-(6, 'Title6', 'Event Description6', 'https://youtu.be/NAmQ2zfH3jY', '2024-03-08 16:13:00', '2023-11-19 23:14:19', '2023-11-24 23:14:19');
+INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`, `Event_Date_Close`, `Address`, `Attendees`) VALUES
+(2, 'Title2', 'Event Description2', '', '2024-02-14 16:09:00', '2023-11-19 23:09:19', '2023-11-19 23:09:19', NULL, '', NULL),
+(3, 'Title3', 'Event Description3', '', '2023-12-31 16:13:00', '2023-11-19 23:14:19', '2023-11-19 23:14:19', NULL, '', NULL),
+(4, 'Title4', 'Event Description4', '', '2024-02-24 16:08:00', '2023-11-19 23:08:43', '2023-11-20 23:08:43', NULL, '', NULL),
+(5, 'Title5', 'Event Description5', '', '2024-01-17 16:09:00', '2023-11-19 23:09:19', '2023-11-21 23:09:19', NULL, '', NULL),
+(6, 'Title6', 'Event Description6', 'https://youtu.be/NAmQ2zfH3jY', '2024-03-08 16:13:00', '2023-11-19 23:14:19', '2023-11-24 23:14:19', NULL, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -199,7 +202,7 @@ CREATE TABLE `event_pictures` (
 --
 
 INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
-(1, 'images/event_pictures/655a876b93b68.jpg'),
+(1, 'images/event_pictures/655c076b3ce83.'),
 (2, 'images/event_pictures/655a878f0c78c.jpg'),
 (3, 'images/event_pictures/655a88bb40c4c.png'),
 (4, 'images/event_pictures/655a876b93b68.jpg'),
@@ -234,7 +237,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`,
 (1, 'Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
 (2, 'Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
 (4, 'SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
-(10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', 24, '0000-00-00', '0000-00-00', 'enabled'),
 (11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
 (16, 'Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', 21, '0000-00-00', '0000-00-00', 'enabled'),
 (17, 'admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
@@ -274,7 +277,8 @@ INSERT INTO `user_photos` (`Picture_Id`, `Blog_Id`, `User_Id`, `Location`) VALUE
 (20, 37, NULL, 'images/blog_pictures/653aec345f00e0.67092487.jpg'),
 (21, NULL, 16, 'images/users_pictures/655aeb079ac723.71567649.jpg'),
 (22, NULL, 20, 'images/users_pictures/655aeb21b1e6b9.53120516.jpg'),
-(23, NULL, 21, 'images/users_pictures/655aeb32d29dd5.50836719.jpg');
+(23, NULL, 21, 'images/users_pictures/655aeb32d29dd5.50836719.jpg'),
+(24, NULL, 10, 'images/users_pictures/655bf5e5a47d54.30822011.jpg');
 
 --
 -- Indexes for dumped tables
@@ -343,13 +347,13 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
 
 --
 -- AUTO_INCREMENT for table `blog_pictures`
 --
 ALTER TABLE `blog_pictures`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `blog_story`
@@ -379,7 +383,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_photos`
 --
 ALTER TABLE `user_photos`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
