@@ -5,6 +5,8 @@
   } 
 
   include 'shared_resources.php';
+  include 'event_fill.php';
+  include 'blog_fill.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -332,132 +334,9 @@
             </div>
         
             <div class="spacer-50"></div>
-            
-            <div class="padding-tb75 lgray-bg">
-            	<div class="container">
-                	<div class="text-align-center">
-                  		<h2 class="block-title block-title-center">upcoming events</h2>
-                    </div>
-                    <div class="spacer-20"></div>
-                    <div class="carousel-wrapper">
-                        <div class="row">
-                            <ul class="owl-carousel carousel-fw" id="news-slider" data-columns="3" data-autoplay="" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="3" data-items-desktop-small="2" data-items-tablet="1" data-items-mobile="1">
-                                <li class="item">
-                                    <div class="grid-item event-grid-item format-standard">
-                                        <div class="grid-item-inner">
-                                            <a href="single-event.php" class="media-box">
-                                                <img src="images/event1.jpg" alt="">
-                                            </a>
-                                            <div class="grid-item-content">
-                                                <span class="event-date">
-                                                    <span class="date">14</span>
-                                                    <span class="month">jan</span>
-                                                    <span class="year">2016</span>
-                                                </span>
-                                                <span class="meta-data">thursday, 11:20 am - 02:20 pm</span>
-                                                <h3 class="post-title"><a href="single-event.php">summer camp: students get together</a></h3>
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">200<span class="badge">attendees</span></li>
-                                                    <li class="list-group-item">341 magetic state, us<span class="badge">location</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="grid-item event-grid-item format-standard">
-                                        <div class="grid-item-inner">
-                                            <a href="single-event.php" class="media-box">
-                                                <img src="images/event2.jpg" alt="">
-                                            </a>
-                                            <div class="grid-item-content">
-                                                <span class="event-date">
-                                                    <span class="date">18</span>
-                                                    <span class="month">jan</span>
-                                                    <span class="year">2016</span>
-                                                </span>
-                                                <span class="meta-data">monday, 07:00 pm</span>
-                                                <h3 class="post-title"><a href="single-event.php">campaign: fundraising for meals</a></h3>
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">200<span class="badge">attendees</span></li>
-                                                    <li class="list-group-item">341 magetic state, us<span class="badge">location</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                             	</li>
-                                <li class="item">
-                                    <div class="grid-item event-grid-item format-standard">
-                                        <div class="grid-item-inner">
-                                            <a href="single-event.php" class="media-box">
-                                                <img src="images/event3.jpg" alt="">
-                                            </a>
-                                            <div class="grid-item-content">
-                                            <span class="event-date">
-                                                <span class="date">26</span>
-                                                <span class="month">feb</span>
-                                                <span class="year">2016</span>
-                                            </span>
-                                                <span class="meta-data">friday, 01:00 pm</span>
-                                                <h3 class="post-title"><a href="single-event.php">campaign: green environment</a></h3>
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">200<span class="badge">attendees</span></li>
-                                                    <li class="list-group-item">341 magetic state, us<span class="badge">location</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                             	</li>
-                                <li class="item">
-                                    <div class="grid-item event-grid-item format-standard">
-                                        <div class="grid-item-inner">
-                                            <a href="single-event.php" class="media-box">
-                                                <img src="images/event4.jpg" alt="">
-                                            </a>
-                                            <div class="grid-item-content">
-                                            <span class="event-date">
-                                                <span class="date">02</span>
-                                                <span class="month">mar</span>
-                                                <span class="year">2016</span>
-                                            </span>
-                                                <span class="meta-data">wednesday, 10:00 am</span>
-                                                <h3 class="post-title"><a href="single-event.php">campaign: medical checkup camp</a></h3>
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">200<span class="badge">attendees</span></li>
-                                                    <li class="list-group-item">341 magetic state, us<span class="badge">location</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                             	</li>
-                                <li class="item">
-                                    <div class="grid-item event-grid-item format-standard">
-                                        <div class="grid-item-inner">
-                                            <a href="single-event.php" class="media-box">
-                                                <img src="images/event5.jpg" alt="">
-                                            </a>
-                                            <div class="grid-item-content">
-                                                <span class="event-date">
-                                                    <span class="date">02</span>
-                                                    <span class="month">mar</span>
-                                                    <span class="year">2016</span>
-                                                </span>
-                                                <span class="meta-data">wednesday, 01:30 pm</span>
-                                                <h3 class="post-title"><a href="single-event.php">tips: rain water harvesting</a></h3>
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">200<span class="badge">attendees</span></li>
-                                                    <li class="list-group-item">341 magetic state, us<span class="badge">location</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                             	</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            <!-- latest event posts Box channel -->
+            <?php fill_event_post_display_container() ?>
+            <!-- latest blog posts comments Box channel -->
             <div class="parallax parallax5 parallax-light text-align-center padding-tb100" style="background-image:url(images/parallax6.jpg)">
             	<div class="container">
                     <div class="carousel-wrapper">
@@ -495,49 +374,9 @@
                 </div>
             </div>
             <div class="spacer-75"></div>
-            <!-- latest blog posts -->
-            <div class="container">
-            	<div class="row">
-                	<div class="col-md-4 col-sm-6 grid-item blog-grid-item format-standard">
-                        <div class="grid-item-inner">
-                            <a href="single-event.php" class="media-box">
-                                <img src="images/post1.jpg" alt="">
-                            </a>
-                            <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">a single person can change million lives</a></h3>
-                                <span class="meta-data"><i class="fa fa-calendar"></i> posted on 11th dec, 2015</span>
-                                <p>a blog post sample excerpt text which can be edited by editing the blog post page...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 grid-item blog-grid-item format-standard">
-                        <div class="grid-item-inner">
-                            <a href="single-event.php" class="media-box">
-                                <img src="images/post2.jpg" alt="">
-                            </a>
-                            <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">Donate your woolens this winter</a></h3>
-                                <span class="meta-data"><i class="fa fa-calendar"></i> posted on 11th dec, 2015</span>
-                                <p>a blog post sample excerpt text which can be edited by editing the blog post page...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 grid-item blog-grid-item format-standard">
-                        <div class="grid-item-inner">
-                            <a href="single-event.php" class="media-box">
-                                <img src="images/post3.jpg" alt="">
-                            </a>
-                            <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">how to survive the tough path of life</a></h3>
-                                <span class="meta-data"><i class="fa fa-calendar"></i> posted on 11th dec, 2015</span>
-                                <p>a blog post sample excerpt text which can be edited by editing the blog post page...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            <!-- latest blog posts Box channel -->
+            <?php fill_blog_post_display_container() ?>
+                
     
     <script type="text/javascript">
 

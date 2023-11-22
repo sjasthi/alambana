@@ -191,7 +191,7 @@ if ($db->connect_error) {
                                         <td>' . $row["Blog_Id"] . '</td>
                                         <td>' . $row["Title"] . '</td>
                                         <td>' . $row["Description"] . '</td>
-                                        <td><a href="single-post.php?blog_id=' . $row["Blog_Id"] .'">Blog Site</a></td>';
+                                        <td><a href="blog-post.php?blog_id=' . $row["Blog_Id"] .'">Blog Site</a></td>';
                                         if(!empty($row["Video_Link"])) {echo'<td><a href="' . $row["Video_Link"] . '">Video</a></td>';}
                                         else{echo'<td></td>';}
                                     echo'<td>' . $row["Author"] . '</td>

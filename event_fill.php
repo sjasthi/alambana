@@ -7,6 +7,130 @@ if ($status == PHP_SESSION_NONE) {
 }
 
 
+# Event Page Fill Box Display [owl-carousel]
+function fill_event_post_display_container(){
+
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  $sql = "SELECT * FROM Events ORDER BY Created_Time DESC";
+  $result = $connection->query($sql);
+
+  $returnClassBlock = '';
+
+  // Create Post from data from each row
+  if ($result->num_rows > 0) {
+    $number_of_posts = 0;
+    //$number_of_pages = 1;
+    
+    $Event_body = '';
+    
+    while($row = $result->fetch_assoc()) {
+      
+        $eventDate = $row['Event_Date'];
+
+        // Create a DateTime object from the event date string
+        $dateTime = new DateTime($eventDate);
+
+        // Extract date components
+        $dayName = $dateTime->format('l');// Get the day name
+        $day = $dateTime->format('j');      // Day (01 to 31)
+        $month = $dateTime->format('M');    // Month (Jan, Feb, Mar, etc.)
+        $year = $dateTime->format('Y');     // Year (e.g., 2024)
+
+        // Extract time components
+        $hour = $dateTime->format('H');     // Hour (00 to 23)
+        $minute = $dateTime->format('i');   // Minute (00 to 59)
+        $second = $dateTime->format('s');   // Second (00 to 59)
+        $ampm = $dateTime->format('a');     // AM or PM
+
+        $timeScheduled = $hour .":". $minute ." ". $ampm;
+
+        # Video Link to Event
+        if ($row["Video_Link"] != NULL) {
+          $Event_video_link = ''; #'<a class="Event_video_link" href=' . $row["Video_Link"] . '> Video </a> ';
+        } else {
+          $Event_video_link = '';
+        }
+        # Photo to Event
+        $picture_sql = "SELECT Location FROM event_pictures WHERE Event_Id = " . $row["Event_Id"];
+        $picture_locations = $connection->query($picture_sql);
+        $Event_photo = '';
+        if ($picture_locations->num_rows > 0) {
+          while($picture = $picture_locations->fetch_assoc()) {
+            $Event_photo = $Event_photo . '<img src="'. $picture['Location'] . '" alt="" style="width: 390px; height: 240px;">';
+
+          }
+        }
+        $attendees = $row['Attendees'];
+        $address = $row['Address'];
+        
+        if(empty($attendees)) $attendees = 0;
+        if(empty($address)) $address = 'Please contact Aalambana for details on event location.';
+
+
+        # HTML Event Body Elements
+        $Event_body .=
+                    '<li class="item">
+                        <div class="grid-item event-grid-item format-standard" id=eventboxitem' . $row['Event_Id'] . '>
+                            <div class="grid-item-inner">
+                                <a href="event-post.php?event_id=' . $row['Event_Id'] . '" class="media-box">
+                                ' . $Event_photo . '
+                                </a>'.$Event_video_link . '
+                                <div class="grid-item-content">
+                                    <span class="event-date">
+                                        <span class="date">'.$day.'</span>
+                                        <span class="month">'.$month.'</span>
+                                        <span class="year">'.$year.'</span>
+                                    </span>
+                                    <span class="meta-data">'.$dayName.', '.$timeScheduled.' - '.$timeScheduled.'</span>
+                                    <h3 class="post-title"><a href="event-post.php?event_id=' . $row['Event_Id'] . '">' . $row['Title'] . 'r</a></h3>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">' . $attendees . '<span class="badge">attendees</span></li>
+                                        <li class="list-group-item">' . $address . '<span class="badge">location</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>';
+        
+        
+        $number_of_posts += 1;
+      
+    }
+
+    $container_open = '<div class="padding-tb75 lgray-bg">
+                          <div class="container">
+                              <div class="text-align-center">
+                                  <h2 class="block-title block-title-center">upcoming events</h2>
+                              </div>
+                              <div class="spacer-20"></div>
+                              <div class="carousel-wrapper">
+                                  <div class="row">
+                                      <ul class="owl-carousel carousel-fw" id="news-slider" data-columns="3" data-autoplay="" data-pagination="yes" data-arrows="yes" data-single-item="no" data-items-desktop="3" data-items-desktop-small="2" data-items-tablet="1" data-items-mobile="1">
+                                          ';
+
+    $container_close = '
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+    //if ($number_of_posts < $MAX_VISIBLE_POSTS) { echo '</div>'; }// Catch last items of Row | Close Incomplete Page
+    echo $container_open. $Event_body. $container_close;
+    $returnClassBlock = '';
+    return $returnClassBlock;
+  } else {
+    echo "No Events";
+    return 0;
+  }
+  $connection->close();
+}
+
 function fill_form() { // NOT IN USE; ONLY AN EXAMPLE
 
   if (isset($_COOKIE['email']) and !isset($_POST['action'])){
