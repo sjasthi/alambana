@@ -4,6 +4,8 @@ if (!isset($_SESSION)) {
 } 
 
 include 'shared_resources.php';
+include 'event_fill.php';
+include 'blog_fill.php';
 if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }
@@ -47,20 +49,9 @@ $events = fetchEvents($db, $offset, $eventsPerPage);
   <title>Aalambana - Events</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-  <!-- CSS
+  <!-- css
   ================================================== -->
-
-  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-  <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-
-  <link href="css/style.css" rel="stylesheet" type="text/css">
-  <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-  <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-  <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
-  <link href="css/custom.css" rel="stylesheet" type="text/css">
-
-  <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-  <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+  <?php css() ?>
 
   <style>
         .event {
@@ -182,126 +173,129 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
 ?>
 
     <div class="content">
-      <div class="container">
-        <div class="row">
-            <div class="col-md-8 content-block">
-<!-- Event Per Page Selection Form -->
-<form action="" method="get">
-                            <label for="events_per_page">Events per page:</label>
-                            <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
-                                <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
-                                <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
-                                <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
-                            </select>
-                        </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 content-block">
+                    <!-- Event Per Page Selection Form -->
+                    <form action="" method="get">
+                        <label for="events_per_page">Events per page:</label>
+                        <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
+                            <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
+                            <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
+                            <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
+                        </select>
+                    </form>
+                    <?php foreach ($events as $event): ?>
+                        <div class="event">
+                            <h3><?php echo htmlspecialchars($event['Title']); ?></h3>
+                            <p><?php echo htmlspecialchars($event['Description']); ?></p>
+                            <p>Date: <?php echo htmlspecialchars($event['Event_Date']); ?></p>
+                            <?php if (!empty($event['Location'])): ?>
+                                <a href="event-post.php?event_id=<?php echo htmlspecialchars($event['Event_Id']); ?>" class="media-box">
+                                    <img src="<?php echo htmlspecialchars($event['Location']); ?>">
+                                </a>
+                            <?php endif; ?>
 
-    <?php foreach ($events as $event): ?>
-        <div class="event">
-            <h3><?php echo htmlspecialchars($event['Title']); ?></h3>
-            <p><?php echo htmlspecialchars($event['Description']); ?></p>
-            <p>Date: <?php echo htmlspecialchars($event['Event_Date']); ?></p>
-            <?php if (!empty($event['Location'])): ?>
-                <img src="<?php echo htmlspecialchars($event['Location']); ?>">
-            <?php endif; ?>
-        </div>
-    <?php endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
 
+                    <!-- Pagination Links -->
+                    <div class="pagination">
+                        <!-- Previous Page Link -->
+                        <?php if ($current_page > 1): ?>
+                            <a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>">&laquo; Previous</a>
+                        <?php endif; ?>
 
- <!-- Pagination Links -->
- <div class="pagination">
-            <!-- Previous Page Link -->
-            <?php if ($current_page > 1): ?>
-                <a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>">&laquo; Previous</a>
-            <?php endif; ?>
+                        <!-- Page Number Links -->
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <a href="?current_page=<?php echo $i; ?>&events_per_page=<?php echo $eventsPerPage; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>>
+                                <?php echo $i; ?>
+                            </a>
+                        <?php endfor; ?>
 
-            <!-- Page Number Links -->
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="?current_page=<?php echo $i; ?>&events_per_page=<?php echo $eventsPerPage; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>>
-                    <?php echo $i; ?>
-                </a>
-            <?php endfor; ?>
+                        <!-- Next Page Link -->
+                        <?php if ($current_page < $totalPages): ?>
+                            <a href="?current_page=<?php echo $current_page + 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>">Next &raquo;</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
-            <!-- Next Page Link -->
-            <?php if ($current_page < $totalPages): ?>
-                <a href="?current_page=<?php echo $current_page + 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>">Next &raquo;</a>
-            <?php endif; ?>
+                <!-- Event Per Page Selection Form 
+                <form action="" method="get">
+                    <label for="events_per_page">Events per page:</label>
+                    <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
+                        <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
+                        <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
+                        <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
+                    </select>
+                </form><br>-->
+                
+                <div class="col-md-4 sidebar-block">
+                    <div class="widget sidebar-widget widget_search" id="search_bar">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter your keywords">
+                            <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br> 
+                <div class="col-md-4 sidebar-block">
+                    <div class="widget sidebar-widget widget_categories">
+                        <h3 class="widgettitle">Event Categories</h3>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-caret-right"></i> Education</a> (3)</li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i> Environment</a> (1)</li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i> Water</a> (4)</li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i> Wild life</a> (2)</li>
+                            <li><a href="#"><i class="fa fa-caret-right"></i> Small business</a> (12)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 sidebar-block">
+                    <!-- Side blog List (Lastest Postings) -->
+                    <?php fill_blog_post_side_container_small() ?>
+                </div>
+                
+                <div class="widget widget_testimonials">
+                    <h3 class="widgettitle">Stories of change</h3>
+                    <div class="carousel-wrapper" style="background: none;">
+                        <div class="row">
+                            <ul class="owl-carousel carousel-fw owl-theme" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1" style="opacity: 1; display: block;">
+                                <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 780px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 390px;"><li class="item">
+                                    <div class="testimonial-block">
+                                        <blockquote>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                        </blockquote>
+                                        <div class="testimonial-avatar"><img src="./story1.jpg" alt="" width="70" height="70"></div>
+                                        <div class="testimonial-info">
+                                            <div class="testimonial-info-in">
+                                                <strong>Ada Ajimobi</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li></div><div class="owl-item" style="width: 390px;"><li class="item">
+                                    <div class="testimonial-block">
+                                        <blockquote>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                                        </blockquote>
+                                        <div class="testimonial-avatar"><img src="./story2.jpg" alt="" width="70" height="70"></div>
+                                        <div class="testimonial-info">
+                                            <div class="testimonial-info-in">
+                                                <strong>Chloe Lévesque</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </li></div></div></div>     
+                                <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"><i class="fa fa-chevron-left"></i></div><div class="owl-next"><i class="fa fa-chevron-right"></i></div></div></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-        <!-- Event Per Page Selection Form -->
-        <form action="" method="get">
-            <label for="events_per_page">Events per page:</label>
-            <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
-                <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
-                <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
-                <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
-            </select>
-        </form>
-
-          <div class="col-md-4 sidebar-block">
-            <div class="widget sidebar-widget widget_categories">
-                <h3 class="widgettitle">Event Categories</h3>
-                <ul>
-                <li><a href="#"><i class="fa fa-caret-right"></i> Education</a> (3)</li>
-                                  <li><a href="#"><i class="fa fa-caret-right"></i> Environment</a> (1)</li>
-                                  <li><a href="#"><i class="fa fa-caret-right"></i> Water</a> (4)</li>
-                                  <li><a href="#"><i class="fa fa-caret-right"></i> Wild life</a> (2)</li>
-                                  <li><a href="#"><i class="fa fa-caret-right"></i> Small business</a> (12)</li>
-                </ul>
-            </div>
-            </div>
-            </div>
-
-            <div class="widget sidebar-widget widget_search" id="search_bar">
-                              <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Enter your keywords">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-                                  </span>
-                              </div>
-                            </div><br><br><br>
-                            <div class="widget widget_testimonials">
-                              <h3 class="widgettitle">Stories of change</h3>
-                                <div class="carousel-wrapper" style="background: none;">
-                                    <div class="row">
-                                        <ul class="owl-carousel carousel-fw owl-theme" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1" style="opacity: 1; display: block;">
-                                            <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 780px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 390px;"><li class="item">
-                                                <div class="testimonial-block">
-                                                    <blockquote>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                                    </blockquote>
-                                                    <div class="testimonial-avatar"><img src="./story1.jpg" alt="" width="70" height="70"></div>
-                                                    <div class="testimonial-info">
-                                                        <div class="testimonial-info-in">
-                                                            <strong>Ada Ajimobi</strong>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li></div><div class="owl-item" style="width: 390px;"><li class="item">
-                                                <div class="testimonial-block">
-                                                    <blockquote>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                                    </blockquote>
-                                                    <div class="testimonial-avatar"><img src="./story2.jpg" alt="" width="70" height="70"></div>
-                                                    <div class="testimonial-info">
-                                                        <div class="testimonial-info-in">
-                                                            <strong>Chloe Lévesque</strong>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li></div></div></div>
-                                            
-                                        <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"><i class="fa fa-chevron-left"></i></div><div class="owl-next"><i class="fa fa-chevron-right"></i></div></div></div></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
 
     
     <!-- Site Footer -->
