@@ -234,7 +234,7 @@ function fill_blog_post_display_container($carousel=false)
                               ' . $Blog_photo . '
                           </a>' . $Blog_video_link . '
                           <div class="grid-item-content">
-                              <h3 class="post-title"><a href="blog-post.php?blog_id=' . $row['Blog_Id'] . '">' . $row['Title'] . 'r</a></h3>
+                              <h3 class="post-title"><a href="blog-post.php?blog_id=' . $row['Blog_Id'] . '">' . $row['Title'] . '</a></h3>
                               <span class="meta-data"><i class="fa fa-calendar"></i> posted on ' . $daySuffix. ' ' . $month . ', ' . $year . '</span>
                               <p>' . nl2br($row['Description']) . '...</p>
                           </div>
@@ -286,6 +286,101 @@ function fill_blog_post_display_container($carousel=false)
   }
   $connection->close();
 }
+# Blog Page Fill Side List Display mini (Latest blogs)
+function fill_blog_post_side_container_small($carousel=false)
+{
+
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  $sql = "SELECT * FROM blogs ORDER BY Created_Time DESC";
+  $result = $connection->query($sql);
+
+  $returnClassBlock = '';
+
+  // Create Post from data from each row
+  if ($result->num_rows > 0) {
+    $number_of_posts = 0;
+    //$number_of_pages = 1;
+
+    $Blog_body = '';
+
+    while ($row = $result->fetch_assoc()) {
+
+      if(!$carousel && ($number_of_posts >= 3)) { break; }
+
+      $BlogDate = $row['Created_Time'];
+
+      // Create a DateTime object from the Blog date string
+      $dateTime = new DateTime($BlogDate);
+
+      // Extract date components
+      $dayName = $dateTime->format('l'); // Get the day name
+      $daySuffix = getDayWithSuffix($dateTime->format('d')); // Get the day with suffix
+      $day = $dateTime->format('d');      // Day (01 to 31)
+      $month = $dateTime->format('M');    // Month (Jan, Feb, Mar, etc.)
+      $year = $dateTime->format('Y');     // Year (e.g., 2024)
+
+      // Extract time components
+      $hour = $dateTime->format('H');     // Hour (00 to 23)
+      $minute = $dateTime->format('i');   // Minute (00 to 59)
+      $second = $dateTime->format('s');   // Second (00 to 59)
+      $ampm = $dateTime->format('a');     // AM or PM
+
+      $timeScheduled = $hour . ":" . $minute . " " . $ampm;
+
+      # Video Link to Blog
+      if ($row["Video_Link"] != NULL) {
+        $Blog_video_link = ''; #'<a class="Blog_video_link" href=' . $row["Video_Link"] . '> Video </a> ';
+      } else {
+        $Blog_video_link = '';
+      }
+      # Photo to Blog
+      $picture_sql = "SELECT Location FROM blog_pictures WHERE Blog_Id = " . $row["Blog_Id"];
+      $picture_locations = $connection->query($picture_sql);
+      $Blog_photo = '';
+      if ($picture_locations->num_rows > 0) {
+        while ($picture = $picture_locations->fetch_assoc()) {
+          $Blog_photo = $Blog_photo . '<img src="' . $picture['Location'] . '" alt="" >';
+        }
+      }
+
+      # HTML Blog Body Elements
+      $Blog_body .= '<li>
+                        <a href="blog-post.php?blog_id=' . $row['Blog_Id'] . '" class="media-box">
+                        ' . $Blog_photo . '
+                        </a>' . $Blog_video_link . '
+                        <h5><a href="blog-post.php?blog_id=' . $row['Blog_Id'] . '">' . $row['Title'] . '</a></h3>
+                        <span class="meta-data grid-item-meta">Posted on ' . $daySuffix. ' ' . $month . ', ' . $year . '</span>
+                    </li>';
+
+
+      $number_of_posts += 1;
+    }
+
+    $container_open = '<div class="widget recent_posts">
+                              <h3 class="widgettitle">Latest Posts</h3>
+                                <ul>';
+        $container_close =
+                          '     </ul>
+                            </div>
+                        </div>';  
+
+                        
+    echo $container_open . $Blog_body . $container_close;
+    $returnClassBlock = '';
+    return $returnClassBlock;
+  } else {
+    echo "No Blogs";
+    return 0;
+  }
+  $connection->close();
+}
+
 # Blog Page Fill Story
 function fill_blog_story($blogId)
 {

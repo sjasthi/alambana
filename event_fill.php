@@ -6,6 +6,109 @@ if ($status == PHP_SESSION_NONE) {
   session_start();
 }
 
+# Event Fill Single Page
+function fillEventPostSinglePage($EventId) {
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+  if ($connection->connect_error) {
+      die("Connection failed: " . $connection->connect_error);
+  }
+
+  // Use a prepared statement to prevent SQL injection
+  $sql = "SELECT * FROM events WHERE Event_Id = ?";
+  $stmt = $connection->prepare($sql);
+  $stmt->bind_param("i", $EventId);
+  $stmt->execute();
+
+  $result = $stmt->get_result();
+
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+
+      $eventDate = $row['Event_Date'];
+      $formattedDate = date_create_from_format('Y-m-d H:i:s', $eventDate)->format('j M Y');
+
+      // Create a DateTime object from the event date string
+      $dateTime = new DateTime($eventDate);
+
+      // Extract date components
+      $dayName = $dateTime->format('l');// Get the day name
+      $day = $dateTime->format('j');      // Day (01 to 31)
+      $month = $dateTime->format('M');    // Month (Jan, Feb, Mar, etc.)
+      $year = $dateTime->format('Y');     // Year (e.g., 2024)
+
+      // Extract time components
+      $hour = $dateTime->format('H');     // Hour (00 to 23)
+      $minute = $dateTime->format('i');   // Minute (00 to 59)
+      $second = $dateTime->format('s');   // Second (00 to 59)
+      $ampm = $dateTime->format('a');     // AM or PM
+
+      $timeScheduled = $hour .":". $minute ." ". $ampm;
+
+      # Video Link to Event
+      if ($row["Video_Link"] != NULL) {
+        $Event_video_link = ''; #'<a class="Event_video_link" href=' . $row["Video_Link"] . '> Video </a> ';
+      } else {
+        $Event_video_link = '';
+      }
+      # Photo to Event
+      $picture_sql = "SELECT Location FROM event_pictures WHERE Event_Id = " . $row["Event_Id"];
+      $picture_locations = $connection->query($picture_sql);
+      $Event_photo = '';
+      if ($picture_locations->num_rows > 0) {
+        while($picture = $picture_locations->fetch_assoc()) {
+          $Event_photo = $Event_photo . '<img src="'. $picture['Location'] . '" alt="">';
+
+        }
+      }
+      $attendees = $row['Attendees'];
+      $address = $row['Address'];
+      
+      if(empty($attendees)) $attendees = 0;
+      if(empty($address)) $address = 'Please contact Aalambana for details on event location.';
+
+
+      $eventBody = '
+          <div class="col-md-8 content-block" id="event_single_page' . $row['Event_Id'] . '">
+              <h3>' . $row['Title'] . '</h3>
+              <div class="post-media">
+                  ' . $Event_photo . '
+                  ' . $Event_video_link . '
+              </div>
+              <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                      <span class="event-date">
+                            <span class="date">'.$day.'</span>
+                            <span class="month">'.$month.'</span>
+                            <span class="year">'.$year.'</span>
+                          <!-- <span class="date">' . $formattedDate . '</span> -->
+                      </span>
+                      <span class="meta-data">' . $dayName . ', ' . $timeScheduled . ' - ' . $timeScheduled . '</span>
+                      <a href="#" class="btn btn-primary btn-event-single-book">Book Tickets</a>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                      <ul class="list-group">
+                          <li class="list-group-item">' . $attendees . '<span class="badge">Attendees</span></li>
+                          <li class="list-group-item">' . $address . '<span class="badge">Location</span></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="spacer-20"></div>
+              <p class="lead">' . nl2br($row['Description']) . '</p>
+              <p>' . nl2br($row['Paragraph']) . '</p>
+          </div>';
+
+      echo $eventBody;
+      $returnClassBlock = '';
+      return $returnClassBlock;
+  } else {
+      echo "No Events have been posted!";
+      return 0;
+  }
+
+  $stmt->close();
+  $connection->close();
+}
 
 # Event Page Fill Box Display [owl-carousel]
 function fill_event_post_display_container(){
@@ -17,7 +120,7 @@ function fill_event_post_display_container(){
     die("Connection failed: " . $connection->connect_error);
   }
 
-  $sql = "SELECT * FROM Events ORDER BY Created_Time DESC";
+  $sql = "SELECT * FROM Events ORDER BY Event_Date ASC";
   $result = $connection->query($sql);
 
   $returnClassBlock = '';
@@ -88,10 +191,10 @@ function fill_event_post_display_container(){
                                         <span class="year">'.$year.'</span>
                                     </span>
                                     <span class="meta-data">'.$dayName.', '.$timeScheduled.' - '.$timeScheduled.'</span>
-                                    <h3 class="post-title"><a href="event-post.php?event_id=' . $row['Event_Id'] . '">' . $row['Title'] . 'r</a></h3>
+                                    <h3 class="post-title"><a href="event-post.php?event_id=' . $row['Event_Id'] . '">' . $row['Title'] . '</a></h3>
                                     <ul class="list-group">
-                                        <li class="list-group-item">' . $attendees . '<span class="badge">attendees</span></li>
-                                        <li class="list-group-item">' . $address . '<span class="badge">location</span></li>
+                                        <li class="list-group-item">' . $attendees . '<span class="badge">Attendees</span></li>
+                                        <li class="list-group-item">' . $address . '<span class="badge">Location</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -260,6 +363,91 @@ function fill_form() { // NOT IN USE; ONLY AN EXAMPLE
 }
 
 
+# fetch Title
+function geEventtTitleFromDatabase($EventId){
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  // Prepare SQL query to fetch Title based on EventId
+  $sql = "SELECT Title FROM events WHERE Event_Id = $EventId";
+
+  $result = $connection->query($sql);
+  $title = "";
+
+  if ($result->num_rows > 0) {
+    // Fetch the Title from the database
+    $row = $result->fetch_assoc();
+    $title = $row['Title'];
+  }
+
+  // Close the connection
+  $connection->close();
+
+  return $title;
+}
+# fetch Paragraph
+function getEventParagraphFromDatabase($EventId){
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  // Prepare SQL query to fetch Paragraph based on EventId
+  $sql = "SELECT * FROM Events ORDER BY Event_Date ASC";
+
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+    // Fetch the Paragraph from the database
+    $row = $result->fetch_assoc();
+    $paragraph = $row['Paragraph'];
+  } else {
+    // If no matching EventId found, return an empty string or handle it as per your requirement
+    $paragraph = "";
+  }
+
+  // Close the connection
+  $connection->close();
+
+  return $paragraph;
+}
+# fetch Photo
+function getEventPhotoFromDatabase($EventId){
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  $eventPhoto = '';
+
+  $sql = "SELECT Events.*, event_pictures.Location FROM Events
+          LEFT JOIN event_pictures ON Events.Event_Id = event_pictures.Event_Id
+          WHERE Events.Event_Id = $EventId
+          ORDER BY Events.Event_Date ASC";
+
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $eventPhoto = '<img src="' . $row['Location'] . '" alt="" style="width: 390px; height: 240px;">';
+  }
+
+  $connection->close();
+
+  return $eventPhoto;
+}
+
+
+#####################################################
 # fetch Page event Count
 function getAll__event_count(){
   // Create connection

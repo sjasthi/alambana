@@ -229,13 +229,13 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                         </ul>
                     </li>
                     <li><a href="gallery-caption-2cols.php">Gallery</a>
-                    	<ul>
+                    	<!-- <ul>
                     		<li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
                                 <ul>
                                     <li><a href="gallery-caption-2cols.php">2 Columns</a></li>
                                     <li><a href="gallery-caption-3cols.php">3 Columns</a></li>
                                     <li><a href="gallery-caption-4cols.php">4 Columns</a></li>
-                                </ul>
+                                </ul> 
                             </li>
                     		<li><a href="gallery-2cols.php">Gallery without Caption</a>
                                 <ul>
@@ -244,7 +244,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                     <li><a href="gallery-4cols.php">4 Columns</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul>-->
                     </li>
                     <li class="megamenu"><a href="javascrip:void(0)">Features</a>
                         <ul class="dropdown">

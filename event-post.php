@@ -5,9 +5,13 @@
   } 
 
   include 'shared_resources.php';
+  include 'event_fill.php';
+  include 'blog_fill.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
+
+  $EventId = $_GET['event_id']; // Get the Event_Id from the URL parameter
 ?>
 
 <!DOCTYPE HTML>
@@ -15,7 +19,8 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- Include the favicon.ico file -->
+<?php generateFaviconLink() ?>
 <title>Community Event</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -24,19 +29,9 @@
   ================================================== -->
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
-<!-- CSS
+<!-- css
   ================================================== -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
-<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-<link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
-<!-- Color Style -->
-<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+  <?php css() ?>
 <!-- SCRIPTS
   ================================================== -->
   <?php load_common_page_scripts() ?>
@@ -111,35 +106,7 @@
     	<div class="content">
         	<div class="container">
             	<div class="row">
-                	<div class="col-md-8 content-block">
-                    	<h3>Summer Camp: Students Get Together</h3>
-                    	<div class="post-media">
-                        	<img src="images/event1.jpg" alt="">
-                        </div>
-                        <div class="row">
-                        	<div class="col-md-6 col-sm-6">
-                                <span class="event-date">
-                                    <span class="date">14</span>
-                                    <span class="month">Jan</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                    <span class="meta-data">Thursday, 11:20 AM - 02:20 PM</span>
-                        		<a href="#" class="btn btn-primary btn-event-single-book">Book Tickets</a>
-                      		</div>
-                            <div class="col-md-6 col-sm-6">
-                                <ul class="list-group">
-                                    <li class="list-group-item">200<span class="badge">Attendees</span></li>
-                                    <li class="list-group-item">341 Magetic state, US<span class="badge">Location</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="spacer-20"></div>
-                      	<p class="lead">Nepal has been seriously devastated by the recent earthquake. Over 8,000 people have died (with death toll rising), thousands more are injured, and countless more have been displaced. Many homes, temples, and public monuments have been destroyed throughout the affected areas.</p>
-                        <p>Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec.</p>
-                        <img src="images/img2.jpg" alt="" class="align-right">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, efficitur a fermen tum sed, suscipit sit amet arcu. Ut ut finibus tortor, eu ultrices turpis. Mauris vitae elit nec diam elementum elementum. Mauris ante quam, consequat ac nibh placerat, lacinia sollicitudin mi. Duis facilisis nibh quam, sit amet interdum tellus sollicitudin tempor. Curabitur aliquam erat in nisl lobortis, ut pellentesque lectus viverra.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, efficitur a fermen tum sed, suscipit sit amet arcu. Ut ut finibus tortor, eu ultrices turpis. Mauris vitae elit nec diam elementum elementum. Mauris ante quam, consequat ac nibh placerat, lacinia sollicitudin mi. Duis facilisis nibh quam, sit amet interdum tellus sollicitudin tempor. Curabitur aliquam erat in nisl lobortis, ut pellentesque lectus viverra. Aenean sodales aliquet arcu at aliquam. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec.</p>
-                    </div>
+                	<?php fillEventPostSinglePage($EventId) ?>
                     
                     <!-- Sidebar -->
                     <div class="col-md-4 sidebar-block">
@@ -189,32 +156,8 @@
                             	<li><a href="#">Small business</a> (12)</li>
                             </ul>
                         </div>
-                        <div class="widget recent_posts">
-                           	<h3 class="widgettitle">Latest Posts</h3>
-                            <ul>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post1.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">A single person can change million lives</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post3.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">Donate your woolens this winter</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post2.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">How to survive the tough path of life</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
-                                </li>
-                            </ul>
-                        </div>
+                         <!-- Side blog List (Lastest Postings) -->
+                        <?php fill_blog_post_side_container_small() ?>
                     </div>
                 </div>
             </div>
