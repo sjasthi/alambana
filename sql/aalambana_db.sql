@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 12:13 AM
+-- Generation Time: Nov 23, 2023 at 05:24 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -172,19 +172,20 @@ CREATE TABLE `events` (
   `Modified_Time` datetime DEFAULT NULL,
   `Event_Date_Close` datetime DEFAULT NULL,
   `Address` varchar(100) DEFAULT NULL,
-  `Attendees` int(11) DEFAULT NULL
+  `Attendees` int(11) DEFAULT NULL,
+  `Paragraph` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`, `Event_Date_Close`, `Address`, `Attendees`) VALUES
-(2, 'Title2', 'Event Description2', '', '2024-02-14 16:09:00', '2023-11-19 23:09:19', '2023-11-19 23:09:19', NULL, '', NULL),
-(3, 'Title3', 'Event Description3', '', '2023-12-31 16:13:00', '2023-11-19 23:14:19', '2023-11-19 23:14:19', NULL, '', NULL),
-(4, 'Title4', 'Event Description4', '', '2024-02-24 16:08:00', '2023-11-19 23:08:43', '2023-11-20 23:08:43', NULL, '', NULL),
-(5, 'Title5', 'Event Description5', '', '2024-01-17 16:09:00', '2023-11-19 23:09:19', '2023-11-21 23:09:19', NULL, '', NULL),
-(6, 'Title6', 'Event Description6', 'https://youtu.be/NAmQ2zfH3jY', '2024-03-08 16:13:00', '2023-11-19 23:14:19', '2023-11-24 23:14:19', NULL, '', NULL);
+INSERT INTO `events` (`Event_Id`, `Title`, `Description`, `Video_Link`, `Event_Date`, `Created_Time`, `Modified_Time`, `Event_Date_Close`, `Address`, `Attendees`, `Paragraph`) VALUES
+(2, 'Title2', 'Event Description2', '', '2024-02-14 16:09:00', '2023-11-19 23:09:19', '2023-11-23 00:30:43', NULL, '', NULL, 'Test Paragraph 2'),
+(3, 'Title3', 'Event Description3', '', '2023-12-31 16:13:00', '2023-11-19 23:14:19', '2023-11-23 00:31:30', NULL, '', NULL, 'Test Paragraph 3'),
+(4, 'Title4', 'Event Description4', '', '2024-02-24 16:08:00', '2023-11-19 23:08:43', '2023-11-23 00:31:49', NULL, '', NULL, 'Test Paragraph 4'),
+(5, 'Title5', 'Event Description5', '', '2024-01-17 16:09:00', '2023-11-19 23:09:19', '2023-11-23 00:34:15', NULL, '', NULL, 'Test Paragraph 5'),
+(6, 'Title6', 'Event Description6', 'https://youtu.be/NAmQ2zfH3jY', '2024-03-08 16:13:00', '2023-11-19 23:14:19', '2023-11-23 00:34:31', NULL, '', NULL, 'Test Paragraph 6');
 
 -- --------------------------------------------------------
 
@@ -203,11 +204,11 @@ CREATE TABLE `event_pictures` (
 
 INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
 (1, 'images/event_pictures/655c076b3ce83.'),
-(2, 'images/event_pictures/655a878f0c78c.jpg'),
-(3, 'images/event_pictures/655a88bb40c4c.png'),
-(4, 'images/event_pictures/655a876b93b68.jpg'),
-(5, 'images/event_pictures/655a878f0c78c.jpg'),
-(6, 'images/event_pictures/655a88bb40c4c.png');
+(2, 'images/event_pictures/655e8f23c49cf.jpg'),
+(3, 'images/event_pictures/655e8f52c6871.jpg'),
+(4, 'images/event_pictures/655e8f6549874.jpg'),
+(5, 'images/event_pictures/655e8ff741a05.jpg'),
+(6, 'images/event_pictures/655e90073ac17.png');
 
 -- --------------------------------------------------------
 
