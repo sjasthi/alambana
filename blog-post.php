@@ -109,7 +109,7 @@
         }
         function refresh_blog_post() {
             // Redirect to the PHP script that handles post deletion
-            window.location.href = "single-post.php?blog_id=<?php echo $blogId; ?>";
+            window.location.href = "blog-post.php?blog_id=<?php echo $blogId; ?>";
             
         }
 
@@ -243,14 +243,25 @@
             	<div class="row">
                 	<div class="col-md-8 content-block">
                         <!-- Edit Post Blog Page --> 
-                        <li class="pull-left"><a href="edit_post.php?blog_id=<?php echo $blogId; ?>">&larr; Edit Post header</a></li><br><br>
-                    	<!-- Fill Blog Page --> 
-                        <?php fill_blog_story($blogId); ?>
+                        <?php
+                            $isRole = '';
+                            if (isset($_SESSION['role'])) {
+                                $isRole = $_SESSION['role'];
+                            }
+                            if ((getUserHashFromDatabase($blogId)) || ($isRole == 'admin') ){ // Verify SESSION with Hash Code or is 'admin'
+                                echo '<li class="pull-left"><a href="edit_post.php?blog_id='. $blogId . '">&larr; Edit Post header</a></li><br><br>';
+                            
+                            }
+                        
+                        ?>
                         <!-- Pagination -->
                         <ul class="pager">
-                            <li class="pull-left"><a href="single-post.php?blog_id=<?php echo ($blogId-1); ?>">&larr; Prev Post</a></li>
-                            <li class="pull-right"><a href="single-post.php?blog_id=<?php echo ($blogId+1); ?>">Next Post &rarr;</a></li>
+                            <li class="pull-left"><a href="blog-post.php?blog_id=<?php echo ($blogId-1); ?>">&larr; Prev Post</a></li>
+                            <li class="pull-center"><a href="blog-post.php?blog_id=<?php echo ($blogId+1); ?>">Next Post &rarr;</a></li>
                         </ul>
+                    	<!-- Fill Blog Page --> 
+                        <?php fill_blog_story($blogId); ?>
+                        </div>
             			<section class="post-comments" id="comments">
                              <!-- Get Count of Blog Comments for Page -->
                             <?php $comments_counter = get_blog_page_comment_count($blogId); ?>
