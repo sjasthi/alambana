@@ -921,7 +921,7 @@ function fill_blog_tabs()
 
     while ($row = $result->fetch_assoc()) {
 
-      if ($number_of_posts == $MAX_VISIBLE_POSTS) {
+      if ($number_of_posts == 3) {
         break;
       }
       if (!getBlogVisibilityStateFromDatabase($row['Blog_Id'])) {
@@ -972,47 +972,77 @@ function fill_blog_tabs()
             </div>
             <div id="Tpopular" class="tab-pane">
                 <div class="widget recent_posts">
-                    <ul>
-                        <li>
-                            <a href="https://demo1.imithemes.com/html/born-to-give/single-post.html" class="media-box">
-                                <img src="./post2.jpg" alt="">
-                            </a>
-                            <h5><a href="https://demo1.imithemes.com/html/born-to-give/single-post.html">How to survive the tough path of life</a></h5>
-                            <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
-                        </li>
-                        <li>
-                            <a href="https://demo1.imithemes.com/html/born-to-give/single-post.html" class="media-box">
-                                <img src="./post1.jpg" alt="">
-                            </a>
-                            <h5><a href="https://demo1.imithemes.com/html/born-to-give/single-post.html">A single person can change million lives</a></h5>
-                            <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                        </li>
-                        <li>
-                            <a href="https://demo1.imithemes.com/html/born-to-give/single-post.html" class="media-box">
-                                <img src="./post3.jpg" alt="">
-                            </a>
-                            <h5><a href="https://demo1.imithemes.com/html/born-to-give/single-post.html">Donate your woolens this winter</a></h5>
-                            <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                        </li>
-                    </ul>
+                    <ul>';
+
+                    // Retrieve the top 3 blogs with the most visitors
+                    $sql = "SELECT * FROM blogs ORDER BY Visitor_Count DESC LIMIT 3";
+                    $result = $connection->query($sql);
+
+                    // Fetch the blog data
+                    while ($row = $result->fetch_assoc()) {
+                        $BlogDate = $row['Created_Time'];
+
+                        // Create a DateTime object from the Blog date string
+                        $dateTime = new DateTime($BlogDate);
+
+                        // Extract date components
+                        $dayName = $dateTime->format('l'); // Get the day name
+                        $daySuffix = getDayWithSuffix($dateTime->format('d')); // Get the day with suffix
+                        $day = $dateTime->format('d');      // Day (01 to 31)
+                        $month = $dateTime->format('M');    // Month (Jan, Feb, Mar, etc.)
+                        $year = $dateTime->format('Y');     // Year (e.g., 2024)
+
+                        // Extract time components
+                        $hour = $dateTime->format('H');     // Hour (00 to 23)
+                        $minute = $dateTime->format('i');   // Minute (00 to 59)
+                        $second = $dateTime->format('s');   // Second (00 to 59)
+                        $ampm = $dateTime->format('a');     // AM or PM
+
+                        // Retrieve blog pictures
+                        $picture_sql = "SELECT Location FROM blog_pictures WHERE Blog_Id = " . $row["Blog_Id"];
+                        $picture_locations = $connection->query($picture_sql);
+                        $blog_pictures = '';
+
+                        if ($picture_locations->num_rows > 0) {
+                            while ($picture = $picture_locations->fetch_assoc()) {
+                                $blog_pictures .= '<img src="' . $picture['Location'] . '" alt="">';
+                            }
+                        }
+
+                        // Output each blog as an HTML list item
+                        echo '<li>
+                                <a href="blog-post.php?blog_id=' . $row["Blog_Id"] . '" class="media-box">' .
+                                    $blog_pictures . 
+                                '</a>
+                                <h5><a href="blog-post.php?blog_id=' . $row["Blog_Id"] . '">' . $row["Title"] . '</a></h5>
+                                <span class="meta-data grid-item-meta">Posted on ' . $daySuffix . ' ' . $month . ', ' . $year . '</span>
+                            </li>';
+                    }
+
+
+                        
+                        
+
+
+               echo '</ul>
                 </div>
             </div>
             <div id="Tcomments" class="tab-pane">
                 <div class="tag-cloud">
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Water</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Students</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">NYC</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Education</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Poverty</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Food</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Poor</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Business</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Love</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Help</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Savings</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Winter</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Soul</a>
-                    <a href="https://demo1.imithemes.com/html/born-to-give/blog.html#">Power</a>
+                    <a href="#">Water</a>
+                    <a href="#">Students</a>
+                    <a href="#">NYC</a>
+                    <a href="#">Education</a>
+                    <a href="#">Poverty</a>
+                    <a href="#">Food</a>
+                    <a href="#">Poor</a>
+                    <a href="#">Business</a>
+                    <a href="#">Love</a>
+                    <a href="#">Help</a>
+                    <a href="#">Savings</a>
+                    <a href="#">Winter</a>
+                    <a href="#">Soul</a>
+                    <a href="#">Power</a>
                 </div>
             </div>
         </div>
@@ -1178,6 +1208,67 @@ function getBlogVisibilityStateFromDatabase($blogId)
 
   return $hidden;
 }
+# fetch Page Visitor Count
+function get_blog_page_visitor_count($blogId)
+{
+    // Create connection
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+    // Check connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    // Specify the target Blog_Id you want to select
+    $targetBlogId = $blogId;
+
+    // Use a parameterized query to prevent SQL injection
+    $sql = "SELECT Visitor_Count FROM blogs WHERE Blog_Id = ?";
+    $statement = $connection->prepare($sql);
+    $statement->bind_param("i", $targetBlogId);
+    $statement->execute();
+    $statement->bind_result($visitors);
+
+    // Fetch visitor Post count | If data exist
+    if ($statement->fetch()) {
+        $statement->close();
+        $connection->close();
+        return $visitors;
+    }
+
+    $statement->close();
+    $connection->close();
+
+    return 0; // Return 0 if no data found
+}
+# update Page Visitor Count
+function increment_blog_page_visitor_count($blogId)
+{
+    // Create connection
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+    // Check connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    // Specify the target Blog_Id you want to update
+    $targetBlogId = $blogId;
+
+    // Increment the visitor count in the database
+    $sql = "UPDATE blogs SET Visitor_Count = Visitor_Count + 1 WHERE Blog_Id = ?";
+    $statement = $connection->prepare($sql);
+    $statement->bind_param("i", $targetBlogId);
+
+    // Execute the update
+    $statement->execute();
+
+    // Close the statement and connection
+    $statement->close();
+    $connection->close();
+}
+
+
 # fetch Page Comment Count
 function get_blog_page_comment_count($blogId)
 {

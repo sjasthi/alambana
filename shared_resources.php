@@ -229,7 +229,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                         </ul>
                     </li>
                     <li><a href="gallery-caption-2cols.php">Gallery</a>
-                    	<!-- <ul>
+                    	<!-- HIDDEN GALLERY MENUS ---  <ul>
                     		<li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
                                 <ul>
                                     <li><a href="gallery-caption-2cols.php">2 Columns</a></li>

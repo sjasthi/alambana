@@ -14,6 +14,8 @@
   // DO NOT ALLOW ACCESS TO HIDDEN BLOG PAGES
   if (getBlogVisibilityStateFromDatabase($blogId)) header('Location:blog.php'); 
 
+  // Track page visitors
+  increment_blog_page_visitor_count($blogId);
 
 ?>
 
