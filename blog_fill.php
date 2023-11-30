@@ -9,11 +9,13 @@ $status = session_status();
 if ($status == PHP_SESSION_NONE) {
   session_start();
 }
-
+//define('MAX_VISIBLE_POSTS', 5); // Replace 5 with your desired value
+// Define the number of blogs per page (default to 3)
 $MAX_VISIBLE_POSTS = intval(get_session_value()); //intval(3);
+if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS = intval(3);
+
 $MAX_NAV_BUTTONS = intval(3);
 $current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : intval(1); // intval ensure (INT | Variable Security)
-if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS = intval(3);
 
 
 # Blog Page TOC
@@ -26,7 +28,7 @@ function fill_TOC()
   if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
   }
-
+  
   $sql = "SELECT Blog_Id, Title FROM blogs ORDER BY Created_Time DESC";
   $result = $connection->query($sql);
   $number_of_posts = 0;
@@ -635,10 +637,10 @@ function fill_blog_page_list()
         // UPDATE SERVER FOR NUMBER OF POST ITEMS ON PAGE
         document.getElementById("list-count").addEventListener("change", function() {
             var selectedValue = this.value;
-
+            
             // Make an AJAX request to update the server with the count
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "update_server.php", true);
+            xhr.open("POST", "update_server_page_list_number.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
@@ -1264,7 +1266,7 @@ function get_saved_button_id()
 }
 function get_session_value()
 {
-  return isset($_SESSION['count_class_elements']) ? $_SESSION['count_class_elements'] : null;
+  return isset($_SESSION['update_server_page_list_number']) ? $_SESSION['update_server_page_list_number'] : 3;
 }
 
 function get_session_blog_id()

@@ -11,7 +11,6 @@
   include 'create_comment_post.php';
 
   $blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter
-
   // DO NOT ALLOW ACCESS TO HIDDEN BLOG PAGES
   if (getBlogVisibilityStateFromDatabase($blogId)) header('Location:blog.php'); 
 
@@ -148,7 +147,7 @@
 
             // Make an AJAX request to update the server with the count
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "update_server.php", true);
+            xhr.open("POST", "update_server_page_comment_count.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {

@@ -10,6 +10,10 @@ if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
 
+// Define the number of blogs per page (default to 3)
+$blogsPerPage = isset($_GET['update_server_page_list_number']) ? intval($_GET['update_server_page_list_number']) : 3;
+
+// Get the current page number from the URL parameters, default to 1 if not set
 $current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensures the variable is an integer for security
 
 
