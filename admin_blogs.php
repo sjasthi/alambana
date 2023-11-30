@@ -173,6 +173,7 @@ if ($db->connect_error) {
                                     <th>Video Link</th>
                                     <th>Author</th>
                                     <th>Comments</th>
+                                    <th>Visits</th>
                                     <th>Modified Time</th>
                                     <th>Created Time</th>
                                     <th>Options</th>
@@ -196,6 +197,7 @@ if ($db->connect_error) {
                                         else{echo'<td></td>';}
                                     echo'<td>' . $row["Author"] . '</td>
                                         <td>' . get_blog_page_comment_count($row["Blog_Id"]) . '</td>
+                                        <td>' . get_blog_page_visitor_count($row["Blog_Id"]) . '</td>
                                         <td>' . $row["Modified_Time"] . '</td>
                                         <td>' . $row["Created_Time"] . '</td>
                                         <td class="button-container" >
