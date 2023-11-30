@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 05:24 AM
+-- Generation Time: Dec 01, 2023 at 12:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -36,28 +36,30 @@ CREATE TABLE `blogs` (
   `Modified_Time` datetime DEFAULT NULL,
   `Created_Time` datetime DEFAULT NULL,
   `hash` varchar(200) NOT NULL,
-  `hidden` tinyint(1) DEFAULT 0
+  `hidden` tinyint(1) DEFAULT 0,
+  `Visitor_Count` bigint(20) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `blogs`
 --
 
-INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, `Modified_Time`, `Created_Time`, `hash`, `hidden`) VALUES
-(84, 'Blog Title 16', 'CS320, SILC', 'Description 12', 'https://youtu.be/3cZhu9hTals', '2023-11-21 02:28:31', '2023-11-19 20:42:06', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 1),
-(85, 'Blog Title 11', 'Love, Israel', 'Description 11', '', '2023-11-20 20:44:55', '2023-11-19 20:43:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(86, 'Blog Title 10', 'Love, Israel', 'Description 10', '', '2023-11-19 20:44:04', '2023-11-19 20:44:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(87, 'Blog Title 9', 'Love, Israel', 'Description 9', '', '2023-11-19 20:44:21', '2023-11-19 20:44:21', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(88, 'Blog Title 8', 'Love, Israel', 'Description 8', '', '2023-11-19 20:44:51', '2023-11-19 20:44:51', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
-(89, 'Blog Title 7', 'Love, Israel', 'Description 7', '', '2023-11-19 20:45:13', '2023-11-19 20:45:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(90, 'Blog Title 6', 'Love, Israel', 'Description 6', '', '2023-11-19 20:45:28', '2023-11-19 20:45:28', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(91, 'Blog Title 5', 'Love, Israel', 'Description 5', '', '2023-11-19 20:45:56', '2023-11-19 20:45:56', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(92, 'Blog Title 4', 'Love, Israel', 'Description 4', '', '2023-11-19 20:46:13', '2023-11-19 20:46:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
-(93, 'Blog Title 3', 'Love, Israel', 'Description 3', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(94, 'Blog Title 2', 'Love, Israel', 'Description 2', '', '2023-11-19 20:46:46', '2023-11-19 20:46:46', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0),
-(95, 'Blog Title 1', 'Love, Israel', 'Description 1', '', '2023-11-20 20:49:28', '2023-11-19 20:47:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 1),
-(96, 'Blog Title admin', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-21 01:28:50', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0),
-(97, 'Blog Title New User', 'Johnson, Tom', 'Description New User', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0);
+INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, `Modified_Time`, `Created_Time`, `hash`, `hidden`, `Visitor_Count`) VALUES
+(84, 'Blog Title 16', 'CS320, SILC', 'Description 12', 'https://youtu.be/3cZhu9hTals', '2023-11-21 02:28:31', '2023-11-19 20:42:06', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 0),
+(85, 'Blog Title 11', 'Love, Israel', 'Description 11', '', '2023-11-20 20:44:55', '2023-11-19 20:43:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(86, 'Blog Title 100', 'Love, Israel', 'Description 100', 'https://youtu.be/NAmQ2zfH3jY', '2023-11-28 03:16:05', '2023-11-19 20:44:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(87, 'Blog Title 9', 'Love, Israel', 'Description 9', '', '2023-11-19 20:44:21', '2023-11-19 20:44:21', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(88, 'Blog Title 8', 'Love, Israel', 'Description 8', '', '2023-11-19 20:44:51', '2023-11-19 20:44:51', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(89, 'Blog Title 77', 'Love, Israel', 'Description 7', '', '2023-11-28 02:02:05', '2023-11-19 20:45:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(90, 'Blog Title 6', 'Love, Israel', 'Description 6', '', '2023-11-19 20:45:28', '2023-11-19 20:45:28', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 25),
+(91, 'Blog Title 5', 'Love, Israel', 'Description 5', '', '2023-11-19 20:45:56', '2023-11-19 20:45:56', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(92, 'Blog Title 4', 'Love, Israel', 'Description 4', '', '2023-11-19 20:46:13', '2023-11-19 20:46:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(93, 'Blog Title 3', 'Love, Israel', 'Description 3', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
+(94, 'Blog Title 2', 'Love, Israel', 'Description 2', '', '2023-11-28 03:12:15', '2023-11-19 20:46:46', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 18),
+(95, 'Blog Title 1', 'Love, Israel', 'Description 1', '', '2023-11-20 20:49:28', '2023-11-19 20:47:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 3),
+(96, 'Blog Title admin1', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-30 20:47:21', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0, 1),
+(97, 'Blog Title New User', 'Johnson, Tom', 'Description New User', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 1),
+(98, 'Title New X', 'Johnson, Tom', 'Description X', '', '2023-11-28 03:18:09', '2023-11-28 03:18:09', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -94,7 +96,12 @@ INSERT INTO `blog_comments` (`Comment_Id`, `Blog_Id`, `Paragraph`, `Created_Time
 (189, 89, 'Yes this is about planting and our ecosystem', '2023-11-20 23:02:12', 'Israel', 2, 'israel.love@my.metrostate.edu', ''),
 (190, 89, 'I haven\'t written anything down yet but I will, thank you for your interest!', '2023-11-20 23:03:02', 'Israel', 1, 'israel.love@my.metrostate.edu', ''),
 (191, 95, 'Please provide appropriate contact only. \r\nThank you', '2023-11-21 02:14:27', 'Administration', 3, 'cs320@silcmn.com', ''),
-(192, 97, 'hi yu', '2023-11-22 02:37:21', 'Israel', 1, 'israel.love@my.metrostate.edu', '');
+(192, 97, 'hi yu', '2023-11-22 02:37:21', 'Israel', 1, 'israel.love@my.metrostate.edu', ''),
+(193, 93, 'test', '2023-11-28 07:59:10', 'user name 1', 1, 'ej7303tr@metrostate.edu', ''),
+(194, 89, 'hi there!', '2023-11-28 08:02:31', 'Administration', 2, 'cs320@silcmn.com', ''),
+(195, 94, 'hello to me', '2023-11-28 09:10:02', 'Tom', 1, 'tom.johnson@gmail.com', ''),
+(196, 98, 'New comment!', '2023-11-28 09:19:15', 'Tom', 1, 'tom.johnson@gmail.com', ''),
+(197, 97, 'tests', '2023-12-01 04:54:26', 'user name 1', 3, 'ej7303tr@metrostate.edu', '');
 
 -- --------------------------------------------------------
 
@@ -116,7 +123,6 @@ INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
 (28, 48, 'images/blog_pictures/6554f41890b446.42606833.jpg'),
 (29, 49, 'images/blog_pictures/6554f621909a87.79369267.jpg'),
 (30, 50, 'images/blog_pictures/6554f6a96b8172.66056853.jpg'),
-(66, 86, 'images/blog_pictures/655a658406b7c9.48144260.jpg'),
 (67, 87, 'images/blog_pictures/655a6595e8f2e8.47185645.jpg'),
 (68, 88, 'images/blog_pictures/655a65b3cb1a05.94802641.jpg'),
 (69, 89, 'images/blog_pictures/655a65c928b9e9.38424586.jpg'),
@@ -124,12 +130,14 @@ INSERT INTO `blog_pictures` (`Picture_Id`, `Blog_Id`, `Location`) VALUES
 (71, 91, 'images/blog_pictures/655a65f40244d8.66522321.jpg'),
 (72, 92, 'images/blog_pictures/655a6605445c31.60858895.jpg'),
 (73, 93, 'images/blog_pictures/655a6618383d79.60594253.jpg'),
-(74, 94, 'images/blog_pictures/655a6626cb90c4.51601587.jpg'),
 (76, 96, 'images/blog_pictures/655a6bd7db62e3.76003664.jpg'),
 (77, 97, 'images/blog_pictures/655a6d1ca9e490.00244529.jpg'),
 (81, 95, 'images/blog_pictures/655bafdef36a98.80008798.jpg'),
 (82, 85, 'images/blog_pictures/655bb7156e38c0.95310575.jpg'),
-(83, 84, 'images/blog_pictures/655c07bf2a2162.58934655.jpg');
+(83, 84, 'images/blog_pictures/655c07bf2a2162.58934655.jpg'),
+(84, 94, 'images/blog_pictures/65654c7f1bb254.75700699.jpg'),
+(85, 86, 'images/blog_pictures/65654d65e78770.41360875.jpg'),
+(86, 98, 'images/blog_pictures/65654de147b770.16995332.jpg');
 
 -- --------------------------------------------------------
 
@@ -151,10 +159,11 @@ CREATE TABLE `blog_story` (
 INSERT INTO `blog_story` (`Story_Id`, `Blog_Id`, `Paragraph`, `About_Author`) VALUES
 (25, 51, 'Blog Paragraph', 'Author Description'),
 (27, 95, 'In the serene embrace of nature, the morning sun casts a golden glow on dew-kissed petals, awakening a world of possibilities. As birds orchestrate a symphony overhead, a tranquil breeze whispers through the leaves. Amidst this ethereal canvas, each moment unfolds, offering a sanctuary for contemplation. Join me on this journey of reflection and discovery, where the beauty of simplicity dances with the profound, creating a tapestry of stories waiting to be explored.', 'Embark on a journey with a nature-inspired wordsmith who weaves tales of simplicity and reflection. With an affinity for life\'s '),
-(28, 94, 'In the heart of a bustling city, where skyscrapers touch the clouds and the rhythm of life echoes through the streets, I find solace in the unexplored corners. Amidst the urban chaos, hidden gems of tranquility wait to be discovered. As I navigate this vibrant landscape, my pen becomes a guide, weaving stories that capture the essence of city life. Join me on a literary exploration, where the mundane transforms into the extraordinary, and every alleyway holds a narrative waiting to unfold.', 'Meet the author, a city dweller with a passion for uncovering the beauty within urban landscapes. With a keen eye for detail and'),
+(28, 94, 'In the moment of a bustling city, where skyscrapers touch the clouds and the rhythm of life echoes through the streets, I find solace in the unexplored corners. Amidst the urban chaos, hidden gems of tranquility wait to be discovered. As I navigate this vibrant landscape, my pen becomes a guide, weaving stories that capture the essence of city life. Join me on a literary exploration, where the mundane transforms into the extraordinary, and every alleyway holds a narrative waiting to unfold.', 'Meet the author, a city dweller with a passion for uncovering the beauty within urban landscapes. With a keen eye for detail and'),
 (29, 93, 'Within the realm of pixels and code, explore the digital landscapes where creativity knows no bounds. Join the author, a tech visionary, in crafting narratives that unfold in the virtual realms of innovation and imagination.', 'Journey alongside the author, a tech visionary, as they navigate the digital frontier. With a mind tuned to the frequencies of i'),
 (30, 92, 'In the quiet hours of the night, delve into the realm of introspection and dreams. Join me, a nocturnal wordsmith, in weaving tales that unravel beneath the silver glow of the moon, where secrets are whispered and thoughts take flight.', 'Meet the author, a nocturnal wordsmith, whose pen dances with the rhythm of midnight musings.'),
-(31, 89, 'Delve into the hidden wonders beneath our feet as we explore the intricate narrative of soil health. Join the author, a soil ecologist, in unraveling the mysteries of this living, breathing ecosystem. From microbial communities to nutrient cycles, embark on a journey that unveils the crucial role soil plays in sustaining life.', 'Embark on a soil-centric odyssey with the author, a soil ecologist, whose passion lies in decoding the secrets held by the Earth');
+(31, 89, 'Delve into the hidden wonders beneath our feet as we explore the intricate narrative of soil health. Join the author, a soil ecologist, in unraveling the mysteries of this living, breathing ecosystem. From microbial communities to nutrient cycles, embark on a journey that unveils the crucial role soil plays in sustaining life.', 'Embark on a soil-centric odyssey with the author, a soil ecologist, whose passion lies in decoding the secrets held by the Earth'),
+(32, 98, 'New story', 'New Author');
 
 -- --------------------------------------------------------
 
@@ -342,25 +351,25 @@ ALTER TABLE `user_photos`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `Blog_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `Comment_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT for table `blog_pictures`
 --
 ALTER TABLE `blog_pictures`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `blog_story`
 --
 ALTER TABLE `blog_story`
-  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `Story_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `events`
