@@ -113,11 +113,11 @@
                 <ul class="grid-holder isotope gallery-items" data-sort-id="gallery">
                     <li class="col-md-4 col-sm-6 grid-item blog-grid-item format-standard">
                         <div class="grid-item-inner">
-                            <a href="single-event.php" class="media-box">
+                            <a href="blog.php" class="media-box">
                                 <img src="images/post1.jpg" alt="">
                             </a>
                             <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">A single person can change million lives</a></h3>
+                                <h3 class="post-title"><a href="blog.php">A single person can change million lives</a></h3>
                                 <span class="meta-data"><i class="fa fa-calendar"></i> Posted on 11th Dec, 2015</span>
                                 <p>A blog post sample excerpt text which can be edited by editing the blog post page...</p>
                                 <div class="tag-cloud">
@@ -131,11 +131,11 @@
                     </li>
                     <li class="col-md-4 col-sm-6 grid-item blog-grid-item format-standard">
                         <div class="grid-item-inner">
-                            <a href="single-event.php" class="media-box">
+                            <a href="blog.php" class="media-box">
                                 <img src="images/post2.jpg" alt="">
                             </a>
                             <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">Donate your woolens this winter</a></h3>
+                                <h3 class="post-title"><a href="blog.php">Donate your woolens this winter</a></h3>
                                 <span class="meta-data"><i class="fa fa-calendar"></i> Posted on 11th Dec, 2015</span>
                                 <p>A blog post sample excerpt text which can be edited by editing the blog post page...</p>
                                 <div class="tag-cloud">
@@ -149,11 +149,11 @@
                     </li>
                     <li class="col-md-4 col-sm-6 grid-item blog-grid-item format-standard">
                         <div class="grid-item-inner">
-                            <a href="single-event.php" class="media-box">
+                            <a href="blog.php" class="media-box">
                                 <img src="images/post3.jpg" alt="">
                             </a>
                             <div class="grid-item-content">
-                                <h3 class="post-title"><a href="single-post.php">How to survive the tough path of life</a></h3>
+                                <h3 class="post-title"><a href="blog.php">How to survive the tough path of life</a></h3>
                                 <span class="meta-data"><i class="fa fa-calendar"></i> Posted on 11th Dec, 2015</span>
                                 <p>A blog post sample excerpt text which can be edited by editing the blog post page...</p>
                                 <div class="tag-cloud">
