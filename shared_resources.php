@@ -260,6 +260,14 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                                 <li><a href="payment-terms.php">Payment terms</a></li>
                                                 <li><a href="refund-policy.php">Refund policy</a></li>
                                             </ul>
+                                            <br><br>
+                                            <ul class="sub-menu-feed">
+                                                <li>
+                                                <a href="feedback-post.php" class="megamenu-sub-title" >
+                                                        <img src="images/feedback.png" alt="" style="width: 48px; height: 48px;">
+                                                    Feedback</a>
+                                                </li>
+                                            </ul>
                                         </div>
                                         <div class="col-md-3 megamenu-col">
                                         	<span class="megamenu-sub-title"><i class="fa fa-newspaper-o"></i> Latest news</span>
@@ -309,7 +317,10 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                         </div>
                                         <div class="col-md-3 megamenu-col">
                                         	<span class="megamenu-sub-title"><i class="fa fa-star"></i> Featured Video</span> 
-                                            <div class="fw-video"><iframe src="https://player.vimeo.com/video/62947247" width="500" height="275"></iframe></div>
+                                            <video autoplay loop muted width="500" height="275">
+                                                <source src="videos/sample01.mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
                                         </div>
                                     </div>
                                 </div>
