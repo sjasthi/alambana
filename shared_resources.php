@@ -316,11 +316,15 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                             </ul>
                                         </div>
                                         <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-star"></i> Featured Video</span> 
+                                            <a href="events.php" class="megamenu-sub-title">
+                                                <i class="fa fa-star"></i> Featured Video
+                                            </a>
+                                            <a href="events.php" style="margin-top: 10px; display: block;">
                                             <video autoplay loop muted width="500" height="275">
                                                 <source src="videos/sample01.mp4" type="video/mp4">
                                                 Your browser does not support the video tag.
                                             </video>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
