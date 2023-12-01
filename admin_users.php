@@ -200,7 +200,7 @@ if ($connection->connect_error) {
 
                                                 <input type="hidden" name="user_id" value="' . $row["id"] . '">
                                                 <input id="fileInput' . $row["id"] . '" type="file" name="file" accept="image/*" style="display: none;">
-                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" name="change_photo" value="Apply">
+                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border btn-ghost btn-light btn-rounded pull-right" type="submit" name="change_photo" value="Apply">
                                             </form>
 
                                            
@@ -245,7 +245,7 @@ if ($connection->connect_error) {
 
                                                 <input type="hidden" name="user_id" value="' . $row["id"] . '">
                                                 <input id="fileInput' . $row["id"] . '" type="file" name="file" accept="image/*" style="display: none;">
-                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" name="change_photo" value="Apply">
+                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border btn-ghost btn-light btn-rounded pull-right" type="submit" name="change_photo" value="Apply">
                                             </form>
 
                                             
