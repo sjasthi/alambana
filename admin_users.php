@@ -104,7 +104,12 @@ if ($connection->connect_error) {
             /* Additional styles as needed */
             color: black; /* or any other styling you want */
         }
+
+        .clickable {
+            cursor: pointer;
+        } 
     </style>
+    
     <!-- Body Content -->
 
     <!-- Site Header Wrapper -->
@@ -143,6 +148,8 @@ if ($connection->connect_error) {
                                         LEFT JOIN user_photos ON users.Picture_Id = user_photos.Picture_Id";
                                 $result = $db->query($sql);
 
+                               
+
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         $statusClass = ($row["status"] == 'enabled') ? 'btn-success' : 'btn-danger';
@@ -154,28 +161,109 @@ if ($connection->connect_error) {
                                         <td>' . $row["last_name"] . '</td>
                                         <td>' . $row["email"] . '</td>';
                                         if(isset($row["Location"]) && file_exists($row["Location"])){
-                                            echo '<td><div class="testimonial-avatar"><img src="' . $user_photo  . '" alt="" style="width:70px;height:70px";></div></td>';
-                                        }else{
-                                            echo '<td><div class="default-avatar"><img src="' . $user_photo  . '" alt="" style="width:50px;height:50px";></div></td>';
-                                        }
-                                        echo'<td> 
-                                            <form action="admin_change_photo.php" method="post" enctype="multipart/form-data">
-                                              <input type="hidden" name="user_id" value="' . $row["id"] . '">
-                                              <input type="file" name="file" accept="image/*">
-                                              <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" name="change_photo" value="Change Photo">
-                                            </form>
-                                        </td>
-                                        <td>' . $row["status"] . '</td>
-                                        <td>
-                                            <form action="admin_disable_enable.php" method="post">
+                                            echo '<td>
+                                            <style>
+                                                .default-avatar' . $row["id"] . ' {
+                                                    position: relative;
+                                                    overflow: hidden;
+                                                    display: inline-block;
+                                                }
+
+                                                .overlay' . $row["id"] . ' {
+                                                    position: absolute;
+                                                    top: 0;
+                                                    left: 0;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    background: rgba(0, 0, 0, 0.5);
+                                                    color: #fff;
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    opacity: 0;
+                                                    transition: opacity 0.3s;
+                                                    cursor: pointer;
+                                                }
+
+                                                .default-avatar' . $row["id"] . ':hover .overlay' . $row["id"] . ' {
+                                                    opacity: 1;
+                                                }
+                                                .testimonial-avatar:hover .overlay {
+                                                    opacity: 1;
+                                                }
+                                            </style>
+                                            <form action="admin_change_photo.php" method="post" enctype="multipart/form-data" style="display: flex; align-items: center;">
+                                                <label for="fileInput' . $row["id"] . '" class="testimonial-avatar default-avatar' . $row["id"] . ' clickable">
+                                                    <img src="' . $user_photo . '" alt="" style="width:70px;height:70px;">
+                                                    <div class="overlay' . $row["id"] . '">Change Photo</div>
+                                                </label>
+
                                                 <input type="hidden" name="user_id" value="' . $row["id"] . '">
-                                                <button type="submit" name="disable_enable_user" class="btn btn-sm enable-disable-btn ' . $statusClass . '">
-                                                    ' . $statusAction . ' User
-                                                </button>
+                                                <input id="fileInput' . $row["id"] . '" type="file" name="file" accept="image/*" style="display: none;">
+                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" name="change_photo" value="Apply">
                                             </form>
-                                        </td>
-                                    </tr>';
-                                }
+
+                                           
+                                        ';
+                                        }else{
+                                            echo '<td>
+                                            <style>
+                                                .default-avatar' . $row["id"] . ' {
+                                                    position: relative;
+                                                    overflow: hidden;
+                                                    display: inline-block;
+                                                }
+
+                                                .overlay' . $row["id"] . ' {
+                                                    position: absolute;
+                                                    top: 0;
+                                                    left: 0;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    background: rgba(0, 0, 0, 0.5);
+                                                    color: #fff;
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    opacity: 0;
+                                                    transition: opacity 0.3s;
+                                                    cursor: pointer;
+                                                }
+
+                                                .default-avatar' . $row["id"] . ':hover .overlay' . $row["id"] . ' {
+                                                    opacity: 1;
+                                                }
+                                                .testimonial-avatar:hover .overlay {
+                                                    opacity: 1;
+                                                }
+                                            </style>
+                                            <form action="admin_change_photo.php" method="post" enctype="multipart/form-data"  style="display: flex; align-items: center;">
+                                                <label for="fileInput' . $row["id"] . '" class="default-avatar' . $row["id"] . ' clickable" style="margin-right: 20px;">
+                                                    <img src="' . $user_photo . '" alt="" style="width:50px;height:50px;">
+                                                    <div class="overlay' . $row["id"] . '">Change Photo</div>
+                                                </label>
+
+                                                <input type="hidden" name="user_id" value="' . $row["id"] . '">
+                                                <input id="fileInput' . $row["id"] . '" type="file" name="file" accept="image/*" style="display: none;">
+                                                <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" name="change_photo" value="Apply">
+                                            </form>
+
+                                            
+                                        ';
+                                        }
+                                        echo'
+                                            <td>' . $row["status"] . '</td>
+                                            <td>
+                                                <form action="admin_disable_enable.php" method="post">
+                                                    <input type="hidden" name="user_id" value="' . $row["id"] . '">
+                                                    <button type="submit" name="disable_enable_user" class="btn btn-sm enable-disable-btn ' . $statusClass . '">
+                                                        ' . $statusAction . ' User
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>';
+                                    }
+                                    
                                 } else {
                                     echo "0 results";
                                 }
