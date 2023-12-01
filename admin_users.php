@@ -147,13 +147,18 @@ if ($connection->connect_error) {
                                     while ($row = $result->fetch_assoc()) {
                                         $statusClass = ($row["status"] == 'enabled') ? 'btn-success' : 'btn-danger';
                                         $statusAction = ($row["status"] == 'enabled') ? 'Disable' : 'Enable';
+                                        $user_photo = isset($row["Location"]) && file_exists($row["Location"]) ? $row["Location"] : "images/add-account-icon.png";
                                         echo '<tr>
                                         <td>' . $row["id"] . '</td>
                                         <td>' . $row["first_name"] . '</td>
                                         <td>' . $row["last_name"] . '</td>
-                                        <td>' . $row["email"] . '</td>
-                                        <td><img src="' . $row["Location"] . '" alt="Profile Picture" style="width:50px;height:50px;"></td>
-                                        <td> 
+                                        <td>' . $row["email"] . '</td>';
+                                        if(isset($row["Location"]) && file_exists($row["Location"])){
+                                            echo '<td><div class="testimonial-avatar"><img src="' . $user_photo  . '" alt="" style="width:70px;height:70px";></div></td>';
+                                        }else{
+                                            echo '<td><div class="default-avatar"><img src="' . $user_photo  . '" alt="" style="width:50px;height:50px";></div></td>';
+                                        }
+                                        echo'<td> 
                                             <form action="admin_change_photo.php" method="post" enctype="multipart/form-data">
                                               <input type="hidden" name="user_id" value="' . $row["id"] . '">
                                               <input type="file" name="file" accept="image/*">
