@@ -149,7 +149,32 @@ $events = fetchEvents($db, $offset, $eventsPerPage);
     }
     </style>
 <?php
-// ... (Your existing PHP code, like session checks and includes)
+
+
+function transformYouTubeURL($url) {
+    // Parse the URL to extract its components
+    $parsedUrl = parse_url($url);
+    if ($parsedUrl === false) {
+        return ''; // Invalid URL
+    }
+
+    // Check for the short YouTube URL format (youtu.be)
+    if (isset($parsedUrl['host']) && $parsedUrl['host'] === 'youtu.be') {
+        $videoId = ltrim($parsedUrl['path'], '/');
+        return 'https://www.youtube.com/embed/' . $videoId;
+    } 
+    // Check for the standard YouTube URL format
+    elseif (isset($parsedUrl['host']) && in_array($parsedUrl['host'], ['www.youtube.com', 'youtube.com'])) {
+        parse_str($parsedUrl['query'], $queryParams);
+        if (isset($queryParams['v'])) {
+            return 'https://www.youtube.com/embed/' . $queryParams['v'];
+        }
+    }
+
+    // Return empty string if URL does not match YouTube formats
+    return '';
+}
+
 
 // Function to fetch events and their pictures
 function fetchEventsWithPictures($db, $offset, $eventsPerPage) {
@@ -186,18 +211,31 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
                         </select>
                     </form>
                     <?php foreach ($events as $event): ?>
-                        <div class="event">
-                            <h3><?php echo htmlspecialchars($event['Title']); ?></h3>
-                            <p><?php echo htmlspecialchars($event['Description']); ?></p>
-                            <p>Date: <?php echo htmlspecialchars($event['Event_Date']); ?></p>
-                            <?php if (!empty($event['Location'])): ?>
-                                <a href="event-post.php?event_id=<?php echo htmlspecialchars($event['Event_Id']); ?>" class="media-box">
-                                    <img src="<?php echo htmlspecialchars($event['Location']); ?>">
-                                </a>
-                            <?php endif; ?>
+    <div class="event">
+        <h3><?php echo htmlspecialchars($event['Title']); ?></h3>
+        <p><?php echo htmlspecialchars($event['Description']); ?></p>
+        <p>Date: <?php echo htmlspecialchars($event['Event_Date']); ?></p>
 
-                        </div>
-                    <?php endforeach; ?>
+        <?php 
+        if (!empty($event['Video_Link'])) {
+            $embedURL = transformYouTubeURL($event['Video_Link']); // Transform the URL
+            if (!empty($embedURL)) {
+                echo '<div class="video-container">';
+                echo '<iframe width="560" height="315" src="' . htmlspecialchars($embedURL) . '" frameborder="0" allowfullscreen></iframe>';
+                echo '</div>';
+            }
+        }
+        ?> 
+
+        <?php if (!empty($event['Location'])): ?>
+            <a href="event-post.php?event_id=<?php echo htmlspecialchars($event['Event_Id']); ?>" class="media-box">
+                <img src="<?php echo htmlspecialchars($event['Location']); ?>">
+            </a>
+        <?php endif; ?>
+
+    </div>
+<?php endforeach; ?>
+
 
                     <!-- Pagination Links -->
                     <div class="pagination">
