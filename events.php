@@ -6,6 +6,7 @@ if (!isset($_SESSION)) {
 include 'shared_resources.php';
 include 'event_fill.php';
 include 'blog_fill.php';
+include 'feedback_fill.php';
 if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }
@@ -300,34 +301,7 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
                     <h3 class="widgettitle">Stories of change</h3>
                     <div class="carousel-wrapper" style="background: none;">
                         <div class="row">
-                            <ul class="owl-carousel carousel-fw owl-theme" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1" style="opacity: 1; display: block;">
-                                <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 780px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 390px;"><li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="./story1.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>Ada Ajimobi</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li></div><div class="owl-item" style="width: 390px;"><li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="./story2.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>Chloe Lévesque</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </li></div></div></div>     
-                                <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"><i class="fa fa-chevron-left"></i></div><div class="owl-next"><i class="fa fa-chevron-right"></i></div></div></div>
-                            </ul>
+                            <?php fill_feedback_comments_carousel() ?>
                         </div>
                     </div>
                 </div>

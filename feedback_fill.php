@@ -9,11 +9,11 @@ $status = session_status();
 if ($status == PHP_SESSION_NONE) {
   session_start();
 }
-//define('MAX_VISIBLE_POSTS', 5); // Replace 5 with your desired value
+//define('MAX_VISIBLE_FEEDBACK_POSTS', 5); // Replace 5 with your desired value
 // Define the number of feedbacks per page (default to 3)
-//$MAX_VISIBLE_POSTS = intval(get_session_value()); //intval(3);
-//if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS = intval(3);
-$MAX_VISIBLE_POSTS = intval(3);
+//$MAX_VISIBLE_FEEDBACK_POSTS = intval(get_session_value()); //intval(3);
+//if (empty($MAX_VISIBLE_FEEDBACK_POSTS)) $MAX_VISIBLE_FEEDBACK_POSTS = intval(3);
+$MAX_VISIBLE_FEEDBACK_POSTS = intval(3);
 $MAX_NAV_BUTTONS = intval(3);
 //$current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : intval(1); // intval ensure (INT | Variable Security)
 
@@ -175,7 +175,7 @@ function fill_feedback_comments_carousel($Hidden=0)
               </div>
           </li>
           ';
-          
+
     }
     echo $feedback_body .= '</ul>';
   } else {
@@ -187,7 +187,7 @@ function fill_feedback_comments_carousel($Hidden=0)
 # Page List Items
 function fill_feedback_page_list()
 {
-  global $MAX_VISIBLE_POSTS;
+  global $MAX_VISIBLE_FEEDBACK_POSTS;
   echo '
      
     <label for="list-count">Select Number of Post :</label>
@@ -201,7 +201,7 @@ function fill_feedback_page_list()
     </select>
 
     <script>
-        var MAX_VISIBLE_POSTS = 3; // Initialize MAX_VISIBLE_POSTS with PHP value
+        var MAX_VISIBLE_FEEDBACK_POSTS = 3; // Initialize MAX_VISIBLE_FEEDBACK_POSTS with PHP value
 
         // UPDATE SERVER FOR NUMBER OF POST ITEMS ON PAGE
         document.getElementById("list-count").addEventListener("change", function() {
@@ -265,7 +265,7 @@ function fill_feedback_page_list()
 # Page Pagination
 function fill_feedback_pagination()
 {
-  global $MAX_VISIBLE_POSTS;
+  global $MAX_VISIBLE_FEEDBACK_POSTS;
   global $MAX_NAV_BUTTONS;
   global $current_page;
   // Create connection
@@ -290,7 +290,7 @@ function fill_feedback_pagination()
 
     while ($row = $result->fetch_assoc()) {
       #create new page when the posts-per-page has been reached 
-      if ($number_of_posts == $MAX_VISIBLE_POSTS) {
+      if ($number_of_posts == $MAX_VISIBLE_FEEDBACK_POSTS) {
         $number_of_pages++;
         if ($number_of_pages <= $MAX_NAV_BUTTONS) { // [fixed : Nav Controls]
           $feedback_body_pagination .= '<li><a id="feedbackPage' . $number_of_pages . 'Button" onclick="show_page(' . $number_of_pages . ')" href="#' . $number_of_pages . '">Page ' . $number_of_pages . '</a></li>';

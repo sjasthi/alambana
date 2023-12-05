@@ -5,7 +5,8 @@
   } 
 
   include 'shared_resources.php';
-  
+  include 'blog_fill.php';
+  include 'feedback_fill.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -217,64 +218,14 @@
                             	<li><a href="#">Small business</a> (12)</li>
                             </ul>
                         </div>
-                        <div class="widget recent_posts">
-                           	<h3 class="widgettitle">Latest Posts</h3>
-                            <ul>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post1.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">A single person can change million lives</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post3.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">Donate your woolens this winter</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post2.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">How to survive the tough path of life</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <!-- Side blog List (Lastest Postings) -->
+                        <?php fill_blog_post_side_container_small() ?>
+                
                         <div class="widget widget_testimonials">
                         	<h3 class="widgettitle">Stories of change</h3>
                             <div class="carousel-wrapper">
                                 <div class="row">
-                                    <ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1">
-                                        <li class="item">
-                                            <div class="testimonial-block">
-                                                <blockquote>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                                </blockquote>
-                                                <div class="testimonial-avatar"><img src="images/story1.jpg" alt="" width="70" height="70"></div>
-                                                <div class="testimonial-info">
-                                                    <div class="testimonial-info-in">
-                                                        <strong>Ada Ajimobi</strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="item">
-                                            <div class="testimonial-block">
-                                                <blockquote>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                                </blockquote>
-                                                <div class="testimonial-avatar"><img src="images/story2.jpg" alt="" width="70" height="70"></div>
-                                                <div class="testimonial-info">
-                                                    <div class="testimonial-info-in">
-                                                        <strong>Chloe Lévesque</strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <?php fill_feedback_comments_carousel() ?>
                                 </div>
                             </div>
                         </div>

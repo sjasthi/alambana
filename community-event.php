@@ -5,6 +5,7 @@
   } 
 
   include 'shared_resources.php';
+  include 'blog_fill.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -189,32 +190,10 @@
                             	<li><a href="#">Small business</a> (12)</li>
                             </ul>
                         </div>
-                        <div class="widget recent_posts">
-                           	<h3 class="widgettitle">Latest Posts</h3>
-                            <ul>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post1.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">A single person can change million lives</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post3.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">Donate your woolens this winter</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                </li>
-                                <li>
-                                    <a href="single-post.php" class="media-box">
-                                        <img src="images/post2.jpg" alt="">
-                                    </a>
-                                    <h5><a href="single-post.php">How to survive the tough path of life</a></h5>
-                                    <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <!-- Side blog List (Lastest Postings) -->
+                        <?php fill_blog_post_side_container_small() ?>
+                
+                        
                     </div>
                 </div>
             </div>
