@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 11:11 PM
+-- Generation Time: Dec 05, 2023 at 01:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -222,6 +222,30 @@ INSERT INTO `event_pictures` (`Event_Id`, `Location`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedback_comments`
+--
+
+CREATE TABLE `feedback_comments` (
+  `Feedback_Id` int(11) NOT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Email` varchar(128) DEFAULT NULL,
+  `Paragraph` text NOT NULL,
+  `Created_Time` timestamp NULL DEFAULT NULL,
+  `Hidden` tinyint(4) NOT NULL DEFAULT 1,
+  `Title` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedback_comments`
+--
+
+INSERT INTO `feedback_comments` (`Feedback_Id`, `Name`, `Email`, `Paragraph`, `Created_Time`, `Hidden`, `Title`) VALUES
+(1, 'Administration', 'cs320@silcmn.com', 'My feedback.', '2023-12-05 07:43:22', 0, ''),
+(2, 'Administration', 'cs320@silcmn.com', 'Hidden feedback!', '2023-12-05 07:44:20', 1, '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -289,9 +313,9 @@ INSERT INTO `user_photos` (`Picture_Id`, `Blog_Id`, `User_Id`, `Location`) VALUE
 (22, NULL, 20, 'images/users_pictures/655aeb21b1e6b9.53120516.jpg'),
 (23, NULL, 21, 'images/users_pictures/655aeb32d29dd5.50836719.jpg'),
 (24, NULL, 10, 'images/users_pictures/655bf5e5a47d54.30822011.jpg'),
-(25, NULL, 4, 'images/users_pictures/656a4bb7819513.11717405.jpg'),
-(26, NULL, 1, 'images/users_pictures/656a580d23a667.84366739.jpg'),
-(27, NULL, 2, 'images/users_pictures/656a598d19f929.88535826.jpg');
+(25, NULL, 4, 'images/users_pictures/656a5bd02876f4.39733113.jpg'),
+(26, NULL, 1, 'images/users_pictures/656a5bc139a741.55560190.jpg'),
+(27, NULL, 2, 'images/users_pictures/656a637fb5fa53.23798558.jpg');
 
 --
 -- Indexes for dumped tables
@@ -332,6 +356,12 @@ ALTER TABLE `events`
 --
 ALTER TABLE `event_pictures`
   ADD PRIMARY KEY (`Event_Id`);
+
+--
+-- Indexes for table `feedback_comments`
+--
+ALTER TABLE `feedback_comments`
+  ADD PRIMARY KEY (`Feedback_Id`);
 
 --
 -- Indexes for table `users`
@@ -385,6 +415,12 @@ ALTER TABLE `events`
 --
 ALTER TABLE `event_pictures`
   MODIFY `Event_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `feedback_comments`
+--
+ALTER TABLE `feedback_comments`
+  MODIFY `Feedback_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
