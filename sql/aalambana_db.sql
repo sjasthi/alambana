@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 01:55 AM
+-- Generation Time: Dec 05, 2023 at 04:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -54,12 +54,12 @@ INSERT INTO `blogs` (`Blog_Id`, `Title`, `Author`, `Description`, `Video_Link`, 
 (90, 'Blog Title 6', 'Love, Israel', 'Description 6', '', '2023-11-19 20:45:28', '2023-11-19 20:45:28', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 26),
 (91, 'Blog Title 5', 'Love, Israel', 'Description 5', '', '2023-11-19 20:45:56', '2023-11-19 20:45:56', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
 (92, 'Blog Title 4', 'Love, Israel', 'Description 4', '', '2023-11-19 20:46:13', '2023-11-19 20:46:13', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
-(93, 'Blog Title 3', 'Love, Israel', 'Description 3', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 0),
-(94, 'Blog Title 2', 'Love, Israel', 'Description 2', '', '2023-11-28 03:12:15', '2023-11-19 20:46:46', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 18),
+(93, 'Blog Title 3', 'Love, Israel', 'Description 3', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 1),
+(94, 'Blog Title 2', 'Love, Israel', 'Description 2', '', '2023-11-28 03:12:15', '2023-11-19 20:46:46', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 19),
 (95, 'Blog Title 1', 'Love, Israel', 'Description 1', '', '2023-11-20 20:49:28', '2023-11-19 20:47:04', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 0, 3),
-(96, 'Blog Title admin1', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-30 20:47:21', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0, 1),
-(97, 'Blog Title New User', 'Johnson, Tom', 'Description New User', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 1),
-(98, 'Title New X', 'Johnson, Tom', 'Description X', '', '2023-11-28 03:18:09', '2023-11-28 03:18:09', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 22);
+(96, 'Blog Title admin1', 'admin, admin', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-30 20:47:21', '2023-11-19 21:11:03', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 0, 10),
+(97, 'Blog Title New User', 'Johnson, Tom', 'Description New User', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 4),
+(98, 'Title New X', 'Johnson, Tom', 'Description X', '', '2023-11-28 03:18:09', '2023-11-28 03:18:09', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 0, 53);
 
 -- --------------------------------------------------------
 
@@ -241,7 +241,9 @@ CREATE TABLE `feedback_comments` (
 
 INSERT INTO `feedback_comments` (`Feedback_Id`, `Name`, `Email`, `Paragraph`, `Created_Time`, `Hidden`, `Title`) VALUES
 (1, 'Administration', 'cs320@silcmn.com', 'My feedback.', '2023-12-05 07:43:22', 0, ''),
-(2, 'Administration', 'cs320@silcmn.com', 'Hidden feedback!', '2023-12-05 07:44:20', 1, '');
+(2, 'Administration', 'cs320@silcmn.com', 'Hidden feedback!', '2023-12-05 07:44:20', 1, ''),
+(3, 'Israel', 'israel.love@my.metrostate.edu', 'This is a good feedback!', '2023-12-05 10:03:04', 0, ''),
+(4, 'Deb', 'deb.holt@msn.com', 'This is bad feedback', '2023-12-05 10:03:55', 1, '');
 
 -- --------------------------------------------------------
 
@@ -272,7 +274,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`,
 (2, 'Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', 27, '0000-00-00', '0000-00-00', 'enabled'),
 (4, 'SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', 25, '0000-00-00', '0000-00-00', 'enabled'),
 (10, 'Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'yes', 'user', 24, '0000-00-00', '0000-00-00', 'enabled'),
-(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
+(11, 'Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'user', 28, '0000-00-00', '0000-00-00', 'enabled'),
 (16, 'Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'yes', 'admin', 21, '0000-00-00', '0000-00-00', 'enabled'),
 (17, 'admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
 (18, 'Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
@@ -312,10 +314,11 @@ INSERT INTO `user_photos` (`Picture_Id`, `Blog_Id`, `User_Id`, `Location`) VALUE
 (21, NULL, 16, 'images/users_pictures/655aeb079ac723.71567649.jpg'),
 (22, NULL, 20, 'images/users_pictures/655aeb21b1e6b9.53120516.jpg'),
 (23, NULL, 21, 'images/users_pictures/655aeb32d29dd5.50836719.jpg'),
-(24, NULL, 10, 'images/users_pictures/655bf5e5a47d54.30822011.jpg'),
+(24, NULL, 10, 'images/users_pictures/656e90e0b77ff6.47113219.jpg'),
 (25, NULL, 4, 'images/users_pictures/656a5bd02876f4.39733113.jpg'),
 (26, NULL, 1, 'images/users_pictures/656a5bc139a741.55560190.jpg'),
-(27, NULL, 2, 'images/users_pictures/656a637fb5fa53.23798558.jpg');
+(27, NULL, 2, 'images/users_pictures/656a637fb5fa53.23798558.jpg'),
+(28, NULL, 11, 'images/users_pictures/656e75991440d5.67882755.jpg');
 
 --
 -- Indexes for dumped tables
@@ -420,7 +423,7 @@ ALTER TABLE `event_pictures`
 -- AUTO_INCREMENT for table `feedback_comments`
 --
 ALTER TABLE `feedback_comments`
-  MODIFY `Feedback_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Feedback_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -432,7 +435,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_photos`
 --
 ALTER TABLE `user_photos`
-  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `Picture_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
