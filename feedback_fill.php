@@ -528,7 +528,7 @@ function getfeedbackVisibilityStateFromDatabase($feedbackId)
 
 
 # fetch Page Comment Count [Visible / Hidden : (true,false)]
-function get_blog_page_comment_count($Hidden=false)
+function get_blog_page_comment_count($Hidden=0)
 {
   // Create connection
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);

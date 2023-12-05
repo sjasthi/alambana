@@ -406,6 +406,12 @@ function fill_blog_story($blogId)
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc(); // Fetch the specific row with the specified Blog_Id
 
+    $hashAddress = $row['Author'];
+    # Photo to blog user id
+    $user_photo_path = getUserPhotoFromDatabase($hashAddress);
+    $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path) 
+                    ? $user_photo_path : "images/default.jpg";
+
     # Video Link to blog
     if ($row["Video_Link"] != NULL) {
       $blog_video_link = '<a class="blog_video_link" href=' . $row["Video_Link"] . '> Video </a> </div>';
@@ -466,7 +472,7 @@ function fill_blog_story($blogId)
                     </div>
                     <!-- About Author -->
                     <section class="about-author">
-                        <img src="images/user1.jpg" alt="avatar" class="img-thumbnail">
+                        <img src="'. $user_photo_id .'" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
                         <div class="post-author-content">
                             <h3>' . $row['Author'] . '<span class="label label-primary">Author</span></h3>
                             <p><strong>' . $row['Author'] . '</strong>, ' . $about_author . '</p>
@@ -511,6 +517,11 @@ function fill_blog_comments($blogId)
     while ($row = $result->fetch_assoc()) { // start in first row
 
       $reply_button = '';
+      $emailAddress = $row['email'];
+      # Photo to blog user id
+      $user_photo_path = getUserPhotoFromDatabase($emailAddress);
+      $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path) 
+                     ? $user_photo_path : "images/default.jpg";
 
       if ($is_new_topic != $row['Subject_Id']) { // new parent comment
 
@@ -537,7 +548,7 @@ function fill_blog_comments($blogId)
           '
           <li>
               <div class="post-comment-parent-block"> 
-                  <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
+                  <img src="' . $user_photo_id . '" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
                       <div class="post-comment-content">'
           . $reply_button .
           '<h5>' . $row['Name'] . ' <span>says</span></h5>
@@ -563,11 +574,13 @@ function fill_blog_comments($blogId)
           $reply_button = '<a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button' . ($button_id - 1) . '"; onclick="reply_blog_comment(' . ($button_id - 1) . ');">Reply</a>';
         }
 
+
+        
         $blog_body .=
           '
             <li>
                 <div class="post-comment-block">
-                    <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
+                    <img src="'. $user_photo_id .'" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
                         <div class="post-comment-content">'
           . $reply_button .
           '<h5>' . $row['Name'] . ' <span>says</span></h5>
@@ -1145,6 +1158,73 @@ function getAboutFromDatabase($blogId)
 
   return $about;
 }
+# fetch User_Photo
+function getUserPhotoFromDatabase($userInfo)
+{
+    // Create connection
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+    // Check connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    // Use prepared statement to prevent SQL injection
+    $sql = "SELECT id FROM users WHERE email = ? OR CONCAT(last_name, ', ', first_name) = ?";
+
+    $statement = $connection->prepare($sql);
+
+    if (!$statement) {
+        die("Error in prepare statement: " . $connection->error);
+    }
+
+    $statement->bind_param("ss", $userInfo, $userInfo);
+    $statement->execute();
+    $statement->bind_result($userId);
+
+    // Fetch the user ID
+    if ($statement->fetch()) {
+        // Close the statement
+        $statement->close();
+
+        // Prepare and execute the second statement
+        $picture_sql = "SELECT Location FROM user_photos WHERE User_Id = ?";
+        $picture_statement = $connection->prepare($picture_sql);
+
+        if (!$picture_statement) {
+            die("Error in prepare statement: " . $connection->error);
+        }
+
+        $picture_statement->bind_param("i", $userId);
+        $picture_statement->execute();
+        $picture_statement->bind_result($user_photo_id);
+
+        // Fetch the user photo location
+        if ($picture_statement->fetch()) {
+            // Close the second statement
+            $picture_statement->close();
+
+            // Close the connection
+            $connection->close();
+
+            return $user_photo_id;
+        }
+    }
+
+    // If no matching user found or no photo found, return an empty string or handle it as per your requirement
+    //$statement->close();
+
+    // Close the connection
+    $connection->close();
+
+    return "";
+}
+
+
+
+
+
+
 # fetch Hash : Boolean (false | true) 
 function getUserHashFromDatabase($blogId)
 {
