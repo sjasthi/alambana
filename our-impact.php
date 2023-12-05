@@ -5,6 +5,7 @@
   } 
 
   include 'shared_resources.php';
+  include 'feedback_fill.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -177,47 +178,7 @@ By funding orphanages, meals, grocercies, enrichment, back to school drives, foo
                     </div>
                     <div class="carousel-wrapper">
                         <div class="row">
-                            <ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="2" data-autoplay="5000" data-pagination="yes" data-arrows="no" data-single-item="no" data-items-desktop="2" data-items-desktop-small="2" data-items-tablet="1" data-items-mobile="1">
-                                <li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="images/story1.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>Ada Ajimobi</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="images/story2.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>Chloe Lévesque</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="images/story1.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>Ada Ajimobi</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                        <?php fill_feedback_comments_carousel() ?>
                         </div>
                     </div>
                 </div>
