@@ -116,7 +116,7 @@
     	<div class="page-banner parallax" style="background-image:url(images/inside8.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
-        			<h1 class="block-title">Welcome to our Customer Feedback Support</h1>
+        			<h1 class="block-title">Welcome to our Customer Testimonials</h1>
                 </div>
             </div>
         </div>
