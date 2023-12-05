@@ -44,9 +44,16 @@ function fill_feedback_comments($Hidden=0)
     $feedback_body = "";
     $feedback_reply_field = "";
 
+    
+
     while ($row = $result->fetch_assoc()) { // start in first row
 
       $reply_button = '';
+      $emailAddress = $row['Email'];
+      # Photo to blog user id
+      $user_photo_path = getUserPhotoFromDatabase($emailAddress);
+      $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path) 
+                     ? $user_photo_path : "images/default.jpg";
 
         $formAction = ""; #create_comment_post($targetfeedbackId); // Set the form action for creating
         $submitAction = "create_comment_post";
@@ -62,7 +69,7 @@ function fill_feedback_comments($Hidden=0)
           '
           <li>
               <div class="post-comment-parent-block"> 
-                  <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
+                <img src="' . $user_photo_id . '" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
                       <div class="post-comment-content">'
           . '' .
           '<h5>' . $row['Name'] . ' <span>says</span></h5>
@@ -460,6 +467,67 @@ function getAboutFromDatabase($feedbackId)
   $connection->close();
 
   return $about;
+}
+# fetch User_Photo
+function getUserPhotoFromDatabase($userInfo)
+{
+    // Create connection
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+
+    // Check connection
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    // Use prepared statement to prevent SQL injection
+    $sql = "SELECT id FROM users WHERE email = ? OR CONCAT(last_name, ', ', first_name) = ?";
+
+    $statement = $connection->prepare($sql);
+
+    if (!$statement) {
+        die("Error in prepare statement: " . $connection->error);
+    }
+
+    $statement->bind_param("ss", $userInfo, $userInfo);
+    $statement->execute();
+    $statement->bind_result($userId);
+
+    // Fetch the user ID
+    if ($statement->fetch()) {
+        // Close the statement
+        $statement->close();
+
+        // Prepare and execute the second statement
+        $picture_sql = "SELECT Location FROM user_photos WHERE User_Id = ?";
+        $picture_statement = $connection->prepare($picture_sql);
+
+        if (!$picture_statement) {
+            die("Error in prepare statement: " . $connection->error);
+        }
+
+        $picture_statement->bind_param("i", $userId);
+        $picture_statement->execute();
+        $picture_statement->bind_result($user_photo_id);
+
+        // Fetch the user photo location
+        if ($picture_statement->fetch()) {
+            // Close the second statement
+            $picture_statement->close();
+
+            // Close the connection
+            $connection->close();
+
+            return $user_photo_id;
+        }
+    }
+
+    // If no matching user found or no photo found, return an empty string or handle it as per your requirement
+    //$statement->close();
+
+    // Close the connection
+    $connection->close();
+
+    return "";
 }
 # fetch Hash : Boolean (false | true) 
 function getUserHashFromDatabase($feedbackId)
