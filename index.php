@@ -7,6 +7,7 @@
   include 'shared_resources.php';
   include 'event_fill.php';
   include 'blog_fill.php';
+  include 'feedback_fill.php';
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -341,34 +342,7 @@
             	<div class="container">
                     <div class="carousel-wrapper">
                         <div class="row">
-                            <ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1">
-                                <li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="images/story1.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>ada ajimobi</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="testimonial-block">
-                                        <blockquote>
-                                            <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                                        </blockquote>
-                                        <div class="testimonial-avatar"><img src="images/story2.jpg" alt="" width="70" height="70"></div>
-                                        <div class="testimonial-info">
-                                            <div class="testimonial-info-in">
-                                                <strong>chloe lévesque</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <?php fill_feedback_comments_carousel() ?>
                         </div>
                     </div>
                 </div>

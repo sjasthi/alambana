@@ -6,6 +6,7 @@
 
   include 'shared_resources.php';
   include 'feedback_fill.php';
+  include 'blog_fill.php';
   include 'create_feedback_comment_post.php';
 
   //$feedbackId = $_GET['feedback_id']; // Get the feedback_Id from the URL parameter
@@ -130,7 +131,7 @@
                 
             			<section class="post-feedbacks" id="feedbacks">
                              <!-- Get Count of feedback feedbacks for Page -->
-                            <?php $feedbacks_counter = get_blog_page_comment_count(); ?>
+                            <?php $feedbacks_counter = get_feedback_page_comment_count(); ?>
               				<h3><i class="fa fa-feedback"></i> feedbacks ( <?php echo $feedbacks_counter ?> )</h3>
               				<ol class="feedbacks">
                                 <!-- Fill feedback comments -->

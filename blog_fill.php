@@ -1220,11 +1220,6 @@ function getUserPhotoFromDatabase($userInfo)
     return "";
 }
 
-
-
-
-
-
 # fetch Hash : Boolean (false | true) 
 function getUserHashFromDatabase($blogId)
 {

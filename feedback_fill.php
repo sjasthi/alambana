@@ -11,9 +11,9 @@ if ($status == PHP_SESSION_NONE) {
 }
 //define('MAX_VISIBLE_POSTS', 5); // Replace 5 with your desired value
 // Define the number of feedbacks per page (default to 3)
-$MAX_VISIBLE_POSTS = intval(get_session_value()); //intval(3);
-if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS = intval(3);
-
+//$MAX_VISIBLE_POSTS = intval(get_session_value()); //intval(3);
+//if (empty($MAX_VISIBLE_POSTS)) $MAX_VISIBLE_POSTS = intval(3);
+$MAX_VISIBLE_POSTS = intval(3);
 $MAX_NAV_BUTTONS = intval(3);
 //$current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : intval(1); // intval ensure (INT | Variable Security)
 
@@ -51,7 +51,7 @@ function fill_feedback_comments($Hidden=0)
       $reply_button = '';
       $emailAddress = $row['Email'];
       # Photo to blog user id
-      $user_photo_path = getUserPhotoFromDatabase($emailAddress);
+      $user_photo_path = getUserPhotoFromDatabaseFB($emailAddress);
       $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path) 
                      ? $user_photo_path : "images/default.jpg";
 
@@ -113,6 +113,71 @@ function fill_feedback_comments($Hidden=0)
       echo $feedback_body; //.$feedback_video_link;
       echo $feedback_reply_field; // close parent tree
     }
+  } else {
+    echo $returnClassBlock;
+  }
+  $connection->close();
+}
+
+function fill_feedback_comments_carousel($Hidden=0)
+{
+  // Create connection
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+  $returnClassBlock = '';
+
+  $targetHidden = $Hidden; // Specify the target feedback_Id you want to select
+  $sql = "SELECT * FROM feedback_comments WHERE Hidden = $targetHidden ORDER BY Created_Time ASC";
+  $result = $connection->query($sql);
+
+  // fetch Comment Post from data from each row | If data exist
+  if ($result->num_rows > 0) {
+
+    $is_new_topic = -1;
+    $is_parent = 0;
+    $is_subline = 0;
+    $button_id = 1;
+    $feedback_body = '<ul class="owl-carousel carousel-fw" id="testimonials-slider" data-columns="1" data-autoplay="5000" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="1" data-items-desktop-small="1" data-items-tablet="1" data-items-mobile="1">';
+    $feedback_reply_field = "";
+
+    while ($row = $result->fetch_assoc()) { // start in first row
+
+      $reply_button = '';
+      $emailAddress = $row['Email'];
+      # Photo to blog user id
+      $user_photo_path = getUserPhotoFromDatabaseFB($emailAddress);
+      $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path) 
+                     ? $user_photo_path : "images/default.jpg";
+
+        $formAction = ""; #create_comment_post($targetfeedbackId); // Set the form action for creating
+        $submitAction = "create_comment_post";
+
+
+
+        # Intial HTML feedback Comment Body Elements
+       
+        $feedback_body .=
+          '
+          <li class="item">
+              <div class="testimonial-block">
+                  <blockquote>
+                  <p>' . nl2br($row['Paragraph']) . '</p>
+                  </blockquote>
+                  <div class="testimonial-avatar"><img src="' . $user_photo_id . '" alt="" width="70" height="70"></div>
+                  <div class="testimonial-info">
+                      <div class="testimonial-info-in">
+                          <strong>' . $row['Name'] . '</strong>
+                      </div>
+                  </div>
+              </div>
+          </li>
+          ';
+          
+    }
+    echo $feedback_body .= '</ul>';
   } else {
     echo $returnClassBlock;
   }
@@ -409,7 +474,7 @@ function fill_feedback_pagination()
 
 
 # fetch Title
-function getTitleFromDatabase($feedbackId)
+function getTitleFromDatabaseFB($feedbackId)
 {
   // Create connection
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -439,7 +504,7 @@ function getTitleFromDatabase($feedbackId)
   return $title;
 }
 # fetch About_Author
-function getAboutFromDatabase($feedbackId)
+function getAboutFromDatabaseFB($feedbackId)
 {
   // Create connection
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -469,7 +534,7 @@ function getAboutFromDatabase($feedbackId)
   return $about;
 }
 # fetch User_Photo
-function getUserPhotoFromDatabase($userInfo)
+function getUserPhotoFromDatabaseFB($userInfo)
 {
     // Create connection
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -530,7 +595,7 @@ function getUserPhotoFromDatabase($userInfo)
     return "";
 }
 # fetch Hash : Boolean (false | true) 
-function getUserHashFromDatabase($feedbackId)
+function getUserHashFromDatabaseFB($feedbackId)
 {
   // If no matching feedbackId found, return an false (without permissions)
   if (isset($_SESSION['role'])) { // Verify SESSION
@@ -596,7 +661,7 @@ function getfeedbackVisibilityStateFromDatabase($feedbackId)
 
 
 # fetch Page Comment Count [Visible / Hidden : (true,false)]
-function get_blog_page_comment_count($Hidden=0)
+function get_feedback_page_comment_count($Hidden=0)
 {
   // Create connection
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -645,7 +710,7 @@ function getAll__feedback_comment_count()
   return $comments;
 }
 # trasnform day with suffix
-function getDayWithSuffix($day) {
+function getDayWithSuffixFB($day) {
   if ($day >= 11 && $day <= 13) {
       // If the day is between 11 and 13, use "th" suffix
       $suffix = 'th';
@@ -673,22 +738,3 @@ function getDayWithSuffix($day) {
 
 ////////////////////////////////////////////////////////
 // SESSSION
-function save_button_id($button_id)
-{
-  // Save button_id to the PHP session
-  $_SESSION['saved_value'] = $button_id;
-}
-// Retrieve button_id from the session
-function get_saved_button_id()
-{
-  return isset($_SESSION['saved_value']) ? $_SESSION['saved_value'] : null;
-}
-function get_session_value()
-{
-  return isset($_SESSION['update_server_page_list_number']) ? $_SESSION['update_server_page_list_number'] : 3;
-}
-
-function get_session_feedback_id()
-{
-  return isset($_SESSION['get_session_feedback_id']) ? $_SESSION['get_session_feedback_id'] : null;
-}
