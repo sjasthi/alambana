@@ -20,7 +20,7 @@ $MAX_NAV_BUTTONS = intval(3);
 
 
 # Comments
-function fill_feedback_comments()
+function fill_feedback_comments($Hidden=0)
 {
   // Create connection
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -30,8 +30,8 @@ function fill_feedback_comments()
   }
   $returnClassBlock = '';
 
-  $targetfeedbackId = $feedbackId; // Specify the target feedback_Id you want to select
-  $sql = "SELECT * FROM feedback_comments WHERE feedback_Id = $targetfeedbackId ORDER BY Subject_Id ASC, Created_Time ASC";
+  $targetHidden = $Hidden; // Specify the target feedback_Id you want to select
+  $sql = "SELECT * FROM feedback_comments WHERE Hidden = $targetHidden ORDER BY Created_Time ASC";
   $result = $connection->query($sql);
 
   // fetch Comment Post from data from each row | If data exist
@@ -48,34 +48,23 @@ function fill_feedback_comments()
 
       $reply_button = '';
 
-      if ($is_new_topic != $row['Subject_Id']) { // new parent comment
-
         $formAction = ""; #create_comment_post($targetfeedbackId); // Set the form action for creating
         $submitAction = "create_comment_post";
 
-        if ($is_subline == 1) {
-          $feedback_body .= '</ul>';
-        } // if previous parent contain children branch(s); close branch(s) to children
-        if ($is_subline == 1) {
-          $is_subline = 0;
-        } // reset parent for new children 
         if ($is_parent == 1) {
           $feedback_body .= $feedback_reply_field;
         } // reset for new parent; close parent tree
 
-        $is_new_topic = $row['Subject_Id']; // set as new parent subject
 
         # Intial HTML feedback Comment Body Elements
-        if (isset($_SESSION['role'])) { // Verify SESSION
-          $reply_button = '<a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button' . $button_id . '"; onclick="reply_feedback_comment(' . $button_id . ');">Reply</a>';
-        }
+       
         $feedback_body .=
           '
           <li>
               <div class="post-comment-parent-block"> 
                   <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
                       <div class="post-comment-content">'
-          . $reply_button .
+          . '' .
           '<h5>' . $row['Name'] . ' <span>says</span></h5>
                           <span class="meta-data">' . $row['Created_Time'] . '</span>
                           <p>' . nl2br($row['Paragraph']) . '</p>
@@ -86,35 +75,7 @@ function fill_feedback_comments()
           ';
         $is_parent = 1;
         $button_id++;
-      } else { // child comment(s)
-
-        $formAction = ""; #create_comment_post($targetfeedbackId); // Set the form action for creating
-        $submitAction = "create_comment_post_subline";
-        if ($is_subline == 0) {
-          $feedback_body .= '<ul>';
-        } // if parent comment has been initialized; open to first child branch structure
-        $is_subline = 1;
-
-        if (isset($_SESSION['role'])) { // Verify SESSION
-          $reply_button = '<a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button' . ($button_id - 1) . '"; onclick="reply_feedback_comment(' . ($button_id - 1) . ');">Reply</a>';
-        }
-
-        $feedback_body .=
-          '
-            <li>
-                <div class="post-comment-block">
-                    <img src="images/default.jpg" alt="avatar" class="img-thumbnail">
-                        <div class="post-comment-content">'
-          . $reply_button .
-          '<h5>' . $row['Name'] . ' <span>says</span></h5>
-                            <span class="meta-data">' . $row['Created_Time'] . '</span>
-                            <p>' . nl2br($row['Paragraph']) . '</p>
-                        </div>
-                </div>
-            </li>
-
-          ';
-      }
+      
       if (isset($_SESSION['role'])) { // Verify SESSION
         $feedback_reply_field = '
             <form id="feedback_reply_form' . ($button_id - 1) . '" action="' . $formAction . '" method="POST" enctype="multipart/form-data" hidden="hidden">

@@ -18,6 +18,7 @@ function create_feedback_post() {
         if (isset($_SESSION['role'])){ // Verify SESSION
             // Only Users Logged In
             if ($_SESSION['role'] == 'user') {
+                $title = $_POST['feedback_title'] ?? '';
                 $paragraph = addslashes($_POST['feedback_paragraph']);
                 $author = $_SESSION['first_name'];
                 $email = $_SESSION['email'];
@@ -26,18 +27,18 @@ function create_feedback_post() {
             // Admin Logged In
             elseif ($_SESSION['role'] == 'admin') {
                 // Update the variables with form data
+                $title = $_POST['feedback_title'] ?? '';
                 $paragraph = addslashes($_POST['feedback_paragraph']);
                 $author = "Administration";
                 $email = $_SESSION['email'];
-                $url = addslashes($_POST['feedback_url']);
             }
         }
         else {// New / Anonymous User.
             // Update the variables with form data
+            $title = $_POST['feedback_title'] ?? '';
             $paragraph = $_POST['feedback_paragraph'] ?? '';
             $author = $_POST['feedback_name'] ?? '';
             $email = $_POST['feedback_email'] ?? '';
-            $url = $_POST['feedback_url'] ?? '';
 
             if (empty($author)) {$author = "Anonymous User";}
             
@@ -51,23 +52,14 @@ function create_feedback_post() {
         else{
             
             $timestamp = date("Y-m-d H:i:s");
-            $subject_id = get_saved_button_id();
-            if (!$subject_id) { // if not child button clicked then parent
-                $subject_id = get_session_value() + 1;
-            }
-
-            if ($subject_id > 0) {
-            // Check if the entry already exists
-            $checkQuery = "SELECT * FROM feedback_feedbacks WHERE feedback_id = '$feedbackId'";
-            $checkResult = mysqli_query($connection, $checkQuery);
 
             //if (mysqli_num_rows($checkResult) > 0) {
                 // Entry already exists, handle the situation (e.g., show an error message)
             // echo "Error: Entry already exists for feedback ID $feedbackId";
             //} else {
                 // Entry doesn't exist, proceed with the insertion
-                $sql = "INSERT INTO feedback_feedbacks (feedback_id, feedback_id, subject_id, paragraph, name, email, url, created_time) 
-                        VALUES (NULL, '$feedbackId', '$subject_id', '$paragraph', '$author', '$email', '$url', '$timestamp')";
+                $sql = "INSERT INTO feedback_comments (feedback_id, title, paragraph, name, email, created_time) 
+                        VALUES (NULL, '$title', '$paragraph', '$author', '$email', '$timestamp')";
 
                 if (mysqli_query($connection, $sql)) {
                     // Get the last inserted ID
@@ -82,7 +74,6 @@ function create_feedback_post() {
                     echo("Error: " . mysqli_error($connection));
                 }
             //}
-            }
         }  
     }
 
