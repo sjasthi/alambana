@@ -78,13 +78,13 @@ ob_flush();
               Email Address
               <span class="req">*</span>
             </label>
-            <input type="email" required autocomplete="off" name="email" />
+            <input value="test@test.com" type="email" required autocomplete="off" name="email" />
           </div>
           <div class="field-wrap">
             <label>
               Password <span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name="password" />
+            <input value="password" type="password" required autocomplete="off" name="password" />
           </div>
           <div class="btnContainer">
             <button class="btn-primary" style="padding: 5px 25px; margin-left: 120px; margin-right: 50px;" name="login" />Log In</button>
@@ -103,14 +103,14 @@ ob_flush();
               <label>
                 First Name <span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='first_name' />
+              <input value="testFName" type="text" required autocomplete="off" name='first_name' />
             </div>
 
             <div class="field-wrap">
               <label>
                 Last Name <span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='last_name' />
+              <input value="testLName" type="text" required autocomplete="off" name='last_name' />
             </div>
           </div>
 
@@ -118,20 +118,20 @@ ob_flush();
             <label>
               Email Address <span class="req">*</span>
             </label>
-            <input type="email" required autocomplete="off" name='email' />
+            <input value="test@test.com" type="email" required autocomplete="off" name='email' />
           </div>
 
           <div class="field-wrap">
             <label>
               Set A Password <span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name='password' />
+            <input value="password" type="password" required autocomplete="off" name='password' />
           </div>
           <div class="field-wrap">
             <label>
               Confirm Password <span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" name='password_confirm' />
+            <input value="password" type="password" required autocomplete="off" name='password_confirm' />
           </div>
           <button class="btn-primary" style="padding: 5px 25px; margin-left: 230px; margin-right: 50px;"  name="register">Register</button>
         </form>

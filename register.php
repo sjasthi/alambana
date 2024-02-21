@@ -30,7 +30,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
 
         //insert user info into DB
         $sql = "INSERT INTO users (first_name, last_name, email, hash, active, role, modified_time, created_time)
-                VALUES ('$first_name', '$last_name', '$email', '$hashPass', '$email_validation', 'user', '0000-00-00', '0000-00-00')";
+                VALUES ('$first_name', '$last_name', '$email', '$hashPass', '$email_validation', 'user', CURDATE(), CURDATE())";
 
         if (mysqli_query($db, $sql)) {
             // read config.ini
