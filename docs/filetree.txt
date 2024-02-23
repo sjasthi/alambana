@@ -1,0 +1,337 @@
+alambana
+├── about.php
+├── add_event.php
+├── admin_blogs.php
+├── admin_blog_submit.php
+├── admin_change_photo.php
+├── admin_delete_blog.php
+├── admin_delete_blog_pictures.php
+├── admin_delete_event.php
+├── admin_disable_enable.php
+├── admin_edit_blog.php
+├── admin_events.php
+├── admin_events_submit.php
+├── admin_help.php
+├── admin_panel.php
+├── admin.php
+├── admin_users.php
+├── api
+│   └── tweet.php
+├── blog_fill.php
+├── blog-grid.php
+├── blog.php
+├── blog-post.php
+├── causes-education.php
+├── causes-hunger.php
+├── causes.php
+├── causes-women.php
+├── colors
+│   ├── color10.css
+│   ├── color11.css
+│   ├── color12.css
+│   ├── color1.css
+│   ├── color2.css
+│   ├── color3.css
+│   ├── color4.css
+│   ├── color5.css
+│   ├── color6.css
+│   ├── color7.css
+│   ├── color8.css
+│   └── color9.css
+├── community-event.php
+├── community-support.php
+├── config.ini
+├── confirmEmailCheck.php
+├── confirmEmail.php
+├── confirmPassword.php
+├── contact.php
+├── create_comment_post.php
+├── create_event.php
+├── create_feedback_comment_post.php
+├── create_post.php
+├── create_post_story.php
+├── css
+│   ├── admin_panel.css
+│   ├── animations.css
+│   ├── bootstrap.css
+│   ├── bootstrap-theme.css
+│   ├── custom.css
+│   ├── font-awesome.css
+│   ├── fonts
+│   │   ├── fontawesome-webfont.woff2
+│   │   └── outlined-iconset.woff
+│   ├── line-icons.css
+│   ├── loginForm.css
+│   └── style.css
+├── db_configuration.php
+├── delete_post.php
+├── edit_event.php
+├── edit_post.php
+├── edit_post_story.php
+├── error.php
+├── event_fill.php
+├── event-post.php
+├── events-calendar.php
+├── events-grid.php
+├── events.php
+├── favicon.ico
+├── feedback_fill.php
+├── feedback-post.php
+├── filetree.txt
+├── gallery-2cols.php
+├── gallery-3cols.php
+├── gallery-4cols.php
+├── gallery-caption-2cols.php
+├── gallery-caption-3cols.php
+├── gallery-caption-4cols.php
+├── images
+│   ├── add-account-icon.png
+│   ├── blog_pictures
+│   │   ├── 655a650e7168c9.57985351.jpg
+│   │   ├── 655a658406b7c9.48144260.jpg
+│   │   ├── 655a6595e8f2e8.47185645.jpg
+│   │   ├── 655a65b3cb1a05.94802641.jpg
+│   │   ├── 655a65c928b9e9.38424586.jpg
+│   │   ├── 655a65d89a0747.50571369.jpg
+│   │   ├── 655a65f40244d8.66522321.jpg
+│   │   ├── 655a6605445c31.60858895.jpg
+│   │   ├── 655a6618383d79.60594253.jpg
+│   │   ├── 655a6626cb90c4.51601587.jpg
+│   │   ├── 655a66383f7709.15555490.jpg
+│   │   ├── 655a6bd7db62e3.76003664.jpg
+│   │   ├── 655a6d1ca9e490.00244529.jpg
+│   │   ├── 655baab793fd00.28976876.jpg
+│   │   ├── 655bacb9c0bf39.13984791.jpg
+│   │   ├── 655bafa21b9620.55737587.jpg
+│   │   ├── 655bafdef36a98.80008798.jpg
+│   │   ├── 655bb7156e38c0.95310575.jpg
+│   │   ├── 65654c7f1bb254.75700699.jpg
+│   │   ├── 65654d65e78770.41360875.jpg
+│   │   └── 65654de147b770.16995332.jpg
+│   ├── cause1.jpg
+│   ├── cause5.jpg
+│   ├── cause6.jpg
+│   ├── cause-detail6.jpg
+│   ├── causeg1.jpg
+│   ├── causeg2.jpg
+│   ├── causeg3.jpg
+│   ├── causeg4.jpg
+│   ├── causeg5.jpg
+│   ├── causeg6.jpg
+│   ├── commresour.jpg
+│   ├── empower.jpg
+│   ├── event1.jpg
+│   ├── event2.jpg
+│   ├── event3.jpg
+│   ├── event4.jpg
+│   ├── event5.jpg
+│   ├── event_pictures
+│   │   ├── 655e8f23c49cf.jpg
+│   │   ├── 655e8f52c6871.jpg
+│   │   ├── 655e8f6549874.jpg
+│   │   ├── 655e8ff741a05.jpg
+│   │   └── 655e90073ac17.png
+│   ├── feedback.png
+│   ├── gallery1.jpg
+│   ├── gallery2.jpg
+│   ├── gallery3.jpg
+│   ├── gallery4.jpg
+│   ├── gallery6.jpg
+│   ├── gallery7.jpg
+│   ├── gallery8.jpg
+│   ├── gallery9.jpg
+│   ├── inside7.jpg
+│   ├── inside8.jpg
+│   ├── inside9.jpg
+│   ├── loader.gif
+│   ├── loadingIcon.gif
+│   ├── logo1.png
+│   ├── logo2.png
+│   ├── logo@2x.png
+│   ├── logo3.png
+│   ├── logo4.png
+│   ├── logo5.png
+│   ├── logo6.png
+│   ├── logo.png
+│   ├── main_logo.png
+│   ├── mainWomenEmpower.jpg
+│   ├── nepal.jpg
+│   ├── parallax3.jpg
+│   ├── parallax5.jpg
+│   ├── parallax6.jpg
+│   ├── post1.jpg
+│   ├── post2.jpg
+│   ├── post3.jpg
+│   ├── post-detail1.jpg
+│   ├── slide1.jpg
+│   ├── slide2.jpg
+│   ├── slide3.jpg
+│   ├── slide4.jpg
+│   ├── slide6.jpg
+│   ├── staff1.jpg
+│   ├── staff2.jpg
+│   ├── sticky-logo@2x.png
+│   ├── sticky-logo.png
+│   ├── story1.jpg
+│   ├── story2.jpg
+│   ├── users_pictures
+│   │   ├── 656a5bc139a741.55560190.jpg
+│   │   ├── 656a5bd02876f4.39733113.jpg
+│   │   ├── 656a5c53abe1a0.45578953.jpg
+│   │   ├── 656a5dc3ddff35.30742502.jpg
+│   │   ├── 656a5f5521a144.23108879.jpg
+│   │   ├── 656a5f9b2d9057.01505929.jpg
+│   │   ├── 656a5ff784cdb1.53085991.jpg
+│   │   ├── 656a610308e7d5.96608265.jpg
+│   │   ├── 656a62300f8868.35462231.jpg
+│   │   ├── 656a62c799f425.65172990.jpg
+│   │   ├── 656a62ea24e5a9.14715063.png
+│   │   ├── 656a6342244e62.01112765.jpg
+│   │   ├── 656a637fb5fa53.23798558.jpg
+│   │   ├── 656e75991440d5.67882755.jpg
+│   │   ├── 656e90e0b77ff6.47113219.jpg
+│   │   ├── staff1.jpg
+│   │   └── staff2.jpg
+│   ├── womenempowerment.png
+│   └── women.jpg
+├── index.php
+├── js
+│   ├── bootstrap.js
+│   ├── circle-progress.js
+│   ├── helper-plugins.js
+│   ├── init.js
+│   ├── jquery-2.1.3.min.js
+│   ├── modernizr.js
+│   └── ui-plugins.js
+├── loginForm.php
+├── login.php
+├── logout.php
+├── new_blog_entry.php
+├── our-impact.php
+├── payment-terms.php
+├── PHP-Launcher.sh
+├── post_visibility.php
+├── privacy-policy.php
+├── profilesettings.php
+├── refund-policy.php
+├── register.php
+├── save_value_to_session.php
+├── shared_resources.php
+├── shortcodes.php
+├── show-navbar.php
+├── single-cause.php
+├── single-event.php
+├── single-post.php
+├── sql
+│   └── aalambana_db.sql
+├── style-switcher
+│   ├── backgrounds
+│   │   ├── images
+│   │   │   ├── img1.jpg
+│   │   │   ├── img1-thumb.png
+│   │   │   ├── img2.jpg
+│   │   │   ├── img2-thumb.png
+│   │   │   ├── img3.jpg
+│   │   │   ├── img3-thumb.png
+│   │   │   ├── img4.jpg
+│   │   │   ├── img4-thumb.png
+│   │   │   ├── img5.jpg
+│   │   │   └── img5-thumb.png
+│   │   ├── patterns
+│   │   │   ├── pt10.png
+│   │   │   ├── pt11.jpg
+│   │   │   ├── pt12.jpg
+│   │   │   ├── pt13.jpg
+│   │   │   ├── pt14.jpg
+│   │   │   ├── pt15.jpg
+│   │   │   ├── pt16.png
+│   │   │   ├── pt17.png
+│   │   │   ├── pt18.png
+│   │   │   ├── pt19.png
+│   │   │   ├── pt1.png
+│   │   │   ├── pt20.png
+│   │   │   ├── pt21.png
+│   │   │   ├── pt22.png
+│   │   │   ├── pt23.png
+│   │   │   ├── pt24.png
+│   │   │   ├── pt25.png
+│   │   │   ├── pt26.png
+│   │   │   ├── pt27.png
+│   │   │   ├── pt28.png
+│   │   │   ├── pt29.png
+│   │   │   ├── pt2.png
+│   │   │   ├── pt30.png
+│   │   │   ├── pt3.png
+│   │   │   ├── pt4.png
+│   │   │   ├── pt5.png
+│   │   │   ├── pt6.png
+│   │   │   ├── pt7.png
+│   │   │   ├── pt8.png
+│   │   │   └── pt9.png
+│   │   └── patternst
+│   │       ├── ptt10.png
+│   │       ├── ptt11.png
+│   │       ├── ptt12.png
+│   │       ├── ptt13.png
+│   │       ├── ptt14.png
+│   │       ├── ptt15.png
+│   │       ├── ptt16.png
+│   │       ├── ptt17.png
+│   │       ├── ptt18.png
+│   │       ├── ptt19.png
+│   │       ├── ptt1.png
+│   │       ├── ptt20.png
+│   │       ├── ptt21.png
+│   │       ├── ptt22.png
+│   │       ├── ptt23.png
+│   │       ├── ptt24.png
+│   │       ├── ptt25.png
+│   │       ├── ptt26.png
+│   │       ├── ptt27.png
+│   │       ├── ptt28.png
+│   │       ├── ptt29.png
+│   │       ├── ptt2.png
+│   │       ├── ptt30.png
+│   │       ├── ptt3.png
+│   │       ├── ptt4.png
+│   │       ├── ptt5.png
+│   │       ├── ptt6.png
+│   │       ├── ptt7.png
+│   │       ├── ptt8.png
+│   │       └── ptt9.png
+│   ├── css
+│   │   └── style-switcher.css
+│   └── js
+│       ├── jquery_cookie.js
+│       └── script.js
+├── team_fill.php
+├── team.php
+├── typography.php
+├── update_server_page_comment_count.php
+├── update_server_page_list_number.php
+├── update_server.php
+├── user_fill.php
+├── validation.php
+├── vendor
+│   ├── countdown
+│   │   └── js
+│   │       └── jquery.countdown.min.js
+│   ├── flexslider
+│   │   └── js
+│   │       └── jquery.flexslider.js
+│   ├── magnific
+│   │   ├── jquery.magnific-popup.min.js
+│   │   └── magnific-popup.css
+│   └── owl-carousel
+│       ├── css
+│       │   ├── grabbing.png
+│       │   ├── owl.carousel.css
+│       │   └── owl.theme.css
+│       └── js
+│           └── owl.carousel.min.js
+├── videos
+│   └── sample01.mp4
+├── view_events.php
+└── workspace.code-workspace
+
+28 directories, 307 files
