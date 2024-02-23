@@ -1,4 +1,4 @@
 # Alambana
 
 ToC
-- [Deployment](docs/deployment/deployinst.md)
+- [Deployment](.doc/deployment/deployinst.md)

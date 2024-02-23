@@ -1,15 +1,23 @@
 <h1 style="text-align: center;">Alambana Deployment Instructions</h1>
 
+# Table of Contents 
+- [Install Xampp](#install-xampp)
+- [GitHub](#clone-the-repository)
+- [Starting the Application](#start-xampp)
+- [SQL Configuration](#configure-mysql)
+- [Final Steps](#finishing-up)
+
 ## Install Xampp
 Navigate to the [xampp download page](https://www.apachefriends.org/index.html)<br>
 ![](xampp_download.jpg)<br>
 Select the download for your operating system<br>
-run the installation program<br>
+run the installer<br>
+
 ## Clone the repository
 [github repo](https://github.com/sjasthi/alambana)
 ### Cli
 ```bash
-git clone https://github.com/sjasthi/alambana.git </path/to/xampp/htdocs/alambana>
+git clone https://github.com/sjasthi/alambana.git </PATH/TO/xampp/htdocs/alambana>
 ```
 ### Github Desktop(Gui)
 click **File** in the application menubar -> **Clone Repository**<br>
@@ -17,7 +25,7 @@ click **File** in the application menubar -> **Clone Repository**<br>
 
 in the popup window select **URL** <br>
 paste ``sjasthi/alambana`` in the **Repository URL** box <br>
-paste ``</path/to/xampp/htdocs>/alambana`` in the **Local Path** box<br>
+paste ``<PATH/TO/xampp/htdocs>/alambana`` in the **Local Path** box<br>
 ![](github_desktop.png)
 
 
