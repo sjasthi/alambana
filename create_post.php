@@ -13,12 +13,12 @@ if ($connection->connect_error) {
 }
 
 $hash = "";
-if (isset($_SESSION['role'])){ // Verify SESSION
+if (isset($_SESSION['role'])) { // Verify SESSION
   // Only Valid Users Logged In
   $hash = $_SESSION['hash']; #echo $hash;
 }
 
-if (!empty($hash)){ // Only Allow Users To Create Entry
+if (!empty($hash)) { // Only Allow Users To Create Entry
 
   # Field Entries
   if (isset($_POST['create_post'])) {
@@ -27,11 +27,12 @@ if (!empty($hash)){ // Only Allow Users To Create Entry
     $description = addslashes($_POST['description']);
     $video_link = $_POST['video_link'];
     $timestamp = date("Y-m-d H:i:s");
-    $hidden = false;
+    $hidden = 0;
 
     $fileNameArray = [];
     // Photo upload / copy temp image to destination 
-    for($i = 0; $i < count($_FILES['file']['name']); $i++) {
+    echo count($_FILES['file']['name']) . "<br/>";
+    for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
       $fileName = $_FILES['file']['name'][$i];
       $fileTMP = $_FILES['file']['tmp_name'][$i];
       $fileError = $_FILES['file']['error'][$i];
@@ -39,8 +40,8 @@ if (!empty($hash)){ // Only Allow Users To Create Entry
       $fileActualExt = strtolower(end($fileExt));
 
       if ($fileError === 0) {
-        $fileNewName = uniqid('', true).".".$fileActualExt;
-        $fileDestination = 'images/blog_pictures/'.$fileNewName;
+        $fileNewName = uniqid('', true) . "." . $fileActualExt;
+        $fileDestination = 'images/blog_pictures/' . $fileNewName;
         move_uploaded_file($fileTMP, $fileDestination);
         array_push($fileNameArray, $fileDestination);
       } else {
@@ -58,20 +59,21 @@ if (!empty($hash)){ // Only Allow Users To Create Entry
       '$timestamp',
       '$timestamp',
       '$hash',
-      '$hidden');";
+      '$hidden',
+      0);";
 
     if (!mysqli_query($connection, $sql)) {
-      echo("Error description: " . mysqli_error($connection));
+      echo ("Error description: " . mysqli_error($connection));
     } else {
       $last_id = mysqli_insert_id($connection);
-      foreach($fileNameArray as $location){
+      foreach ($fileNameArray as $location) {
         $sql = "INSERT INTO blog_pictures VALUES (
           NULL,
           '$last_id',
           '$location');";
 
         if (!mysqli_query($connection, $sql)) {
-          echo("Error description: " . mysqli_error($connection));
+          echo ("Error description: " . mysqli_error($connection));
         }
       }
     }
