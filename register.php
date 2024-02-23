@@ -11,7 +11,7 @@ require 'db_configuration.php';
 
 /* User registers as a new user, (checks if user exists and password is correct) */
 if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_name']) && isset($_POST['last_name'])) {
-    
+
     $pass = $db->escape_string($_POST['password']);
     $pass_confirm = $db->escape_string($_POST['password_confirm']);
     //Password Field Confirmation
@@ -36,8 +36,9 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
             // read config.ini
             $email_settings = parse_ini_file("config.ini");
             // case where unable to read config file
-            if(!$email_settings) echo "failed to read config.ini";
-            else {
+            if (!$email_settings) {
+                echo "failed to read config.ini";
+            } else {
                 // SMTP server
                 // reference https://stackoverflow.com/questions/25909348/how-to-send-email-with-smtp-in-php
                 ini_set('SMTP', $email_settings["SMTP"]);
@@ -50,17 +51,18 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
                 $email_message = '
 
                 Your account has been created. Please click this link to activate your account:
-                '.$email_settings["URL"].'/validation.php?email='.$email.'&email_validation='.$email_validation.'
+                ' . $email_settings["URL"] . '/validation.php?email=' . $email . '&email_validation=' . $email_validation . '
                 
                 ';
-                $email_headers = 'From:noreply@projectaalambana.com'."\r\n";
-                
-                if(mail($email, $email_subject, $email_message, $email_headers)){
+                $email_headers = 'From: noreply@projectaalambana.com' . "\r\n";
+                $email_headers .= "MIME-Version: 1.0\r\n";
+                $email_headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+                if (mail($email, $email_subject, $email_message, $email_headers)) {
                     $_SESSION['status'] = "Sucess";
                     $_SESSION['email'] = $email;
                     header("location: validation.php");
-                }
-                else {
+                } else {
                     echo "email failed";
                 }
             }
