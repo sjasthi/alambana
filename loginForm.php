@@ -143,6 +143,7 @@ ob_flush();
       </div>
 
       <script>
+        // Function to clear the placeholder text for input fields
           function clearPlaceholder() {
             var emailInput = document.getElementById('firstname', 'lastname','email');
             if (emailInput.value === 'Enter first name', 'Enter last name', 'email@example.com') {
