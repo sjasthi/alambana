@@ -210,7 +210,7 @@
                         <div class="widget sidebar-widget widget_categories">
                         	<h3 class="widgettitle">Cause Categories</h3>
                             <ul>
-                            	<li><a href="#"><i class="fa fa-caret-right"></i>Education</a> (3)</li> <!-- Interesting find, adjusting these value types fixes the interactive need to talk to team-->
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Education</a> (3)</li> 
                             	<li><a href="#"><i class="fa fa-caret-right"></i>Environment</a> (1)</li>
                             	<li><a href="#"><i class="fa fa-caret-right"></i>Global warming</a> (6)</li>
                             	<li><a href="#"><i class="fa fa-caret-right"></i>Water</a> (4)</li>
