@@ -29,7 +29,7 @@ CREATE TABLE events (
     attendees INT DEFAULT 0,
     location VARCHAR(255),
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE blogs (
@@ -43,7 +43,7 @@ CREATE TABLE blogs (
     user_id INT NOT NULL,
     hidden TINYINT DEFAULT 0,
     visitor_count INT DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comments (
@@ -53,8 +53,8 @@ CREATE TABLE comments (
     created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     blog_id INT NOT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (blog_id) REFERENCES blogs(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE pictures (
@@ -64,11 +64,14 @@ CREATE TABLE pictures (
     user_id INT NOT NULL,
     event_id INT,
     created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (blog_id) REFERENCES blogs(id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (event_id) REFERENCES events(id)
+    FOREIGN KEY (blog_id) REFERENCES blogs(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 );
 
-ALTER TABLE users
-ADD COLUMN picture_id INT,
-ADD FOREIGN KEY (picture_id) REFERENCES pictures(id);
+ALTER TABLE
+    users
+ADD
+    COLUMN picture_id INT,
+ADD
+    FOREIGN KEY (picture_id) REFERENCES pictures(id) ON DELETE CASCADE;
