@@ -7,7 +7,7 @@
 <?php   
    /* Main page with two forms: sign up and log in */
    require_once "db_configuration.php";
-   include_once "header.php";
+   
 ?>
 <!DOCTYPE html>
 <html>

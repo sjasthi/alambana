@@ -1,6 +1,6 @@
 <?php
 //Load Composer's autoloader
-require_once 'vendor/autoload.php';
+
 require_once 'db_configuration.php';
 $email = $db->escape_string($_POST['email']);
 $sql = "SELECT * FROM users WHERE email='$email'";
@@ -23,8 +23,8 @@ function sendResetPasswordEmail($db,$email, $resetPasswordLink,$hashToken)
 {
    try{
       $email_settings = parse_ini_file("config.ini");
-      ini_set('SMTP', $email_settings["SMTP"]);
-      ini_set('smtp_port', $email_settings["smtp_port"]);
+      ini_set("SMTP","ssl://smtp.gmail.com");
+      ini_set("smtp_port","465");
       ini_set('sendmail_from', $email_settings["sendmail_from"]);
       $message = "Dear user,\n\n";
       $message .= "Click on the link below to reset your password:\n";
