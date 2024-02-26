@@ -7,7 +7,7 @@ CREATE TABLE users (
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     about TEXT,
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     hash VARCHAR(255),
     active VARCHAR(10),
     role ENUM('Administrator', 'User', 'Moderator') DEFAULT 'User',
