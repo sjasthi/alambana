@@ -9,7 +9,7 @@ CREATE TABLE users (
     about TEXT,
     email VARCHAR(255) UNIQUE,
     hash VARCHAR(255),
-    active VARCHAR(10),
+    validation_code VARCHAR(10),
     role ENUM('Administrator', 'User', 'Moderator') DEFAULT 'User',
     modified_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
