@@ -210,24 +210,25 @@
                         <div class="widget sidebar-widget widget_categories">
                         	<h3 class="widgettitle">Cause Categories</h3>
                             <ul>
-                            	<li><a href="#">Education</a> (3)</li>
-                            	<li><a href="#">Environment</a> (1)</li>
-                            	<li><a href="#">Global warming</a> (6)</li>
-                            	<li><a href="#">Water</a> (4)</li>
-                            	<li><a href="#">Wild life</a> (2)</li>
-                            	<li><a href="#">Small business</a> (12)</li>
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Education</a> (3)</li> <!-- Interesting find, adjusting these value types fixes the interactive need to talk to team-->
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Environment</a> (1)</li>
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Global warming</a> (6)</li>
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Water</a> (4)</li>
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Wild life</a> (2)</li>
+                            	<li><a href="#"><i class="fa fa-caret-right"></i>Small business</a> (12)</li>
                             </ul>
                         </div>
-                        <!-- Side blog List (Lastest Postings) -->
-                        <?php fill_blog_post_side_container_small() ?>
-                
-                        <div class="widget widget_testimonials">
-                        	<h3 class="widgettitle">Stories of change</h3>
-                            <div class="carousel-wrapper">
-                                <div class="row">
-                                    <?php fill_feedback_comments_carousel() ?>
-                                </div>
-                            </div>
+                    </div>
+                <div class="col-md-4 sidebar-block">
+                    <!-- Side blog List (Lastest Postings) -->
+                    <?php fill_blog_post_side_container_small() ?>
+                </div>
+
+                <div class="widget widget_testimonials">
+                    <h3 class="widgettitle">Stories of change</h3>
+                    <div class="carousel-wrapper">
+                        <div class="row">
+                            <?php fill_feedback_comments_carousel() ?>
                         </div>
                     </div>
                 </div>
