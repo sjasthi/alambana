@@ -75,21 +75,6 @@ ADD
     COLUMN picture_id INT,
 ADD
     FOREIGN KEY (picture_id) REFERENCES pictures(id) ON DELETE CASCADE;
-
-
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    about TEXT,
-    email VARCHAR(255) UNIQUE,
-    hash VARCHAR(255),
-    validation_code VARCHAR(10),
-    role ENUM('Administrator', 'User', 'Moderator') DEFAULT 'User',
-    modified_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('enabled', 'disabled') DEFAULT 'enabled'
-);
     
 INSERT INTO `users` (`first_name`, `last_name`, `email`, `hash`, `validation_code`, `role`, `picture_id`, `status`) VALUES
 ('Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
