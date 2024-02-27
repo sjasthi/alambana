@@ -89,7 +89,7 @@ INSERT INTO `users` (`first_name`, `last_name`, `email`, `hash`, `validation_cod
 ('Ram', 'YalamanChilli', 'test2@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'VALIDATED', 'Administrator', NULL, 'enabled'),
 ('Raju', 'Vatsavai', 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'VALIDATED', 'Administrator', NULL, 'enabled');
 
-INSERT INTO `blogs` ( `title`, `description`, `content`, `video_link`, `modified_time`, `created_time`, `user_id`, `hidden`, `Visitor_Count`) VALUES
+INSERT INTO `blogs` ( `title`, `description`, `content`, `video_link`, `modified_time`, `created_time`, `user_id`, `hidden`, `visitor_count`) VALUES
 ( 'Blog Title 16', 'Description 12', '', 'https://youtu.be/3cZhu9hTals', '2023-11-21 02:28:31', '2023-11-19 20:42:06', 3, 0, 2),
 ( 'Blog Title 11', 'Description 11', '', NULL, '2023-11-20 20:44:55', '2023-11-19 20:43:04', 4, 0, 2),
 ( 'Blog Title 100', 'Description 100', '', 'https://youtu.be/NAmQ2zfH3jY', '2023-11-28 03:16:05', '2023-11-19 20:44:04', 4, 0, 1),
