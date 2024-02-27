@@ -75,20 +75,19 @@ ADD
     COLUMN picture_id INT,
 ADD
     FOREIGN KEY (picture_id) REFERENCES pictures(id) ON DELETE CASCADE;
-    
-<<<<<<< HEAD
-INSERT INTO `users` ( `first_name`, `last_name`, `about` , `email`, `hash`, `validation_code`, `role`, `modified_time`, `created_time`, `status`) VALUES
-( 'Siva', 'Jasthi', "ABOUT_PLACEHOLDER", 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Mahesh', 'Sunkara', "ABOUT_PLACEHOLDER", 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
-( 'SILC', 'CS320', "ABOUT_PLACEHOLDER", 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
-( 'israel', 'Love', "ABOUT_PLACEHOLDER", 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'PHOLDER', 'User', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Tom', 'Johnson', "ABOUT_PLACEHOLDER", 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'PHOLDER', 'User', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Varma', 'Alluri', "ABOUT_PLACEHOLDER", 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
-( 'admin', 'admin', "ABOUT_PLACEHOLDER", 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Deb', 'Holt', "ABOUT_PLACEHOLDER", 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'PHOLDER', 'User', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Katie', 'Hall', "ABOUT_PLACEHOLDER", 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', 'PHOLDER', 'User', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Ram', 'YalamanChilli', "ABOUT_PLACEHOLDER", 'test2@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
-( 'Raju', 'Vatsavai', "ABOUT_PLACEHOLDER", 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled');
+
+INSERT INTO `users` (`first_name`, `last_name`, `email`, `hash`, `validation_code`, `role`, `picture_id`, `status`) VALUES
+('Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
+('Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
+('SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
+('Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'VALIDATED', 'User', NULL, 'enabled'),
+('Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'User', NULL, 'enabled'),
+('Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
+('admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'VALIDATED', 'Administrator', NULL, 'enabled'),
+('Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'VALIDATED', 'User', NULL, 'enabled'),
+('Katie', 'Hall', 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', 'VALIDATED', 'User', NULL, 'enabled'),
+('Ram', 'YalamanChilli', 'test2@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'VALIDATED', 'Administrator', NULL, 'enabled'),
+('Raju', 'Vatsavai', 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'VALIDATED', 'Administrator', NULL, 'enabled');
 
 INSERT INTO `blogs` ( `title`, `description`, `content`, `video_link`, `modified_time`, `created_time`, `user_id`, `hidden`, `Visitor_Count`) VALUES
 ( 'Blog Title 16', 'Description 12', '', 'https://youtu.be/3cZhu9hTals', '2023-11-21 02:28:31', '2023-11-19 20:42:06', 3, 0, 2),
@@ -106,18 +105,3 @@ INSERT INTO `blogs` ( `title`, `description`, `content`, `video_link`, `modified
 ( 'Blog Title admin1', 'Description admin', '', 'https://youtu.be/k9em7Ey00xQ', '2023-11-30 20:47:21', '2023-11-19 21:11:03', 7, 0, 10),
 ( 'Blog Title New User', 'Description New User', '', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', 5, 0, 4),
 ( 'Title New X', 'Description X', '', '', '2023-11-28 03:18:09', '2023-11-28 03:18:09', 5, 0, 53);
-
-=======
-INSERT INTO `users` (`first_name`, `last_name`, `email`, `hash`, `validation_code`, `role`, `picture_id`, `status`) VALUES
-('Siva', 'Jasthi', 'siva@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
-('Mahesh', 'Sunkara', 'mahesh@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
-('SILC', 'CS320', 'cs320@silcmn.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
-('Israel', 'Love', 'israel.love@my.metrostate.edu', '$2y$10$RE2YqufUEbyc66NQLqD9XOVycSKn4PDr2oxNTV5qj2svUHGk9z326', 'VALIDATED', 'User', NULL, 'enabled'),
-('Tom', 'Johnson', 'tom.johnson@gmail.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'User', NULL, 'enabled'),
-('Varma', 'Alluri', 'test@test.com', '$2y$10$zFAG5GBNtf.5BpowMqZSputSLeG8OzfKACpjAMsePjZhu.TnvU/Bu', 'VALIDATED', 'Administrator', NULL, 'enabled'),
-('admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'VALIDATED', 'Administrator', NULL, 'enabled'),
-('Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'VALIDATED', 'User', NULL, 'enabled'),
-('Katie', 'Hall', 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', 'VALIDATED', 'User', NULL, 'enabled'),
-('Ram', 'YalamanChilli', 'test2@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'VALIDATED', 'Administrator', NULL, 'enabled'),
-('Raju', 'Vatsavai', 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'VALIDATED', 'Administrator', NULL, 'enabled');
->>>>>>> 201df4823c1bb6083634eb24357ef079b7cbcf61
