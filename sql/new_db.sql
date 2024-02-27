@@ -88,3 +88,21 @@ INSERT INTO `users` ( `first_name`, `last_name`, `about` , `email`, `hash`, `val
 ( 'Katie', 'Hall', "ABOUT_PLACEHOLDER", 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', 'PHOLDER', 'User', '0000-00-00', '0000-00-00', 'enabled'),
 ( 'Ram', 'YalamanChilli', "ABOUT_PLACEHOLDER", 'test2@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled'),
 ( 'Raju', 'Vatsavai', "ABOUT_PLACEHOLDER", 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'PHOLDER', 'Administrator', '0000-00-00', '0000-00-00', 'enabled');
+
+INSERT INTO `blogs` ( `title`, `description`, `content`, `video_link`, `modified_time`, `created_time`, `user_id`, `hidden`, `Visitor_Count`) VALUES
+( 'Blog Title 16', 'Description 12', '', 'https://youtu.be/3cZhu9hTals', '2023-11-21 02:28:31', '2023-11-19 20:42:06', 3, 0, 2),
+( 'Blog Title 11', 'Description 11', '', '', '2023-11-20 20:44:55', '2023-11-19 20:43:04', 4, 0, 2),
+( 'Blog Title 100', 'Description 100', '', 'https://youtu.be/NAmQ2zfH3jY', '2023-11-28 03:16:05', '2023-11-19 20:44:04', 4, 0, 1),
+( 'Blog Title 9', 'Description 9', '', '', '2023-11-19 20:44:21', '2023-11-19 20:44:21', 4, 0, 1),
+( 'Blog Title 8', 'Description 8', '', '', '2023-11-19 20:44:51', '2023-11-19 20:44:51', 4, 0, 1),
+( 'Blog Title 77', 'Description 7', '', '', '2023-11-28 02:02:05', '2023-11-19 20:45:13', 4, 0, 2),
+( 'Blog Title 6', 'Description 6', '', '', '2023-11-19 20:45:28', '2023-11-19 20:45:28', 4, 0, 26),
+( 'Blog Title 5', 'Description 5', '', '', '2023-11-19 20:45:56', '2023-11-19 20:45:56', 4, 0, 0),
+( 'Blog Title 4', 'Description 4', '', '', '2023-11-19 20:46:13', '2023-11-19 20:46:13', 4, 0, 0),
+( 'Blog Title 3', 'Description 3', '', '', '2023-11-19 20:46:32', '2023-11-19 20:46:32', 4, 0, 1),
+( 'Blog Title 2', 'Description 2', '', '', '2023-11-28 03:12:15', '2023-11-19 20:46:46', 4, 0, 19),
+( 'Blog Title 1', 'Description 1', '', '', '2023-11-20 20:49:28', '2023-11-19 20:47:04', 4, 0, 3),
+( 'Blog Title admin1', 'Description admin', '', 'https://youtu.be/k9em7Ey00xQ', '2023-11-30 20:47:21', '2023-11-19 21:11:03', 7, 0, 10),
+( 'Blog Title New User', 'Description New User', '', '', '2023-11-19 21:16:28', '2023-11-19 21:16:28', 5, 0, 4),
+( 'Title New X', 'Description X', '', '', '2023-11-28 03:18:09', '2023-11-28 03:18:09', 5, 0, 53);
+
