@@ -18,7 +18,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
     //Password Field Confirmation
     if ($pass === $pass_confirm) {
         //hash password to store in DB
-        $hashPass = password_hash($pass, PASSWORD_DEFAULT);
+        $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
         //escape email to protect against SQL injections
         $email = $db->escape_string($_POST['email']);
         $first_name = $db->escape_string($_POST['first_name']);
@@ -30,8 +30,8 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
         $email_validation = substr($email_validation, 0, 10); // chop validation to 10 digits since database field only holds 10
 
         //insert user info into DB
-        $sql = "INSERT INTO users (first_name, last_name, email, hash, active, role, modified_time, created_time)
-                VALUES ('$first_name', '$last_name', '$email', '$hashPass', '$email_validation', 'user', CURDATE(), CURDATE())";
+        $sql = "INSERT INTO users (first_name, last_name, email, hash, validation_code, role, modified_time, created_time)
+                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', '$email_validation', 'User', CURDATE(), CURDATE())";
 
         if (mysqli_query($db, $sql)) {
             // read config.ini
@@ -40,20 +40,18 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
             if (!$email_settings) {
                 echo "failed to read smtp.ini";
             } else {
-                // SMTP server
-                // reference https://stackoverflow.com/questions/25909348/how-to-send-email-with-smtp-in-php
                 set_time_limit(10); // Set maximum execution time to 300 seconds (5 minutes)
                 $mail = new PHPMailer(true);
                 try {
                     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
                     $mail->isSMTP();
-                    $mail->Host = $email_settings["host"];//"localhost";
+                    $mail->Host = $email_settings["host"];
                     $mail->Port = $email_settings["port"];
 
                     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
                     $mail->setFrom($email_settings["sender"], 'Aalambana');
-                    $mail->addAddress($_POST["email"], $_POST["first_name"] . " " . $_POST["last_name"]);     //Add a recipient
+                    $mail->addAddress($email, $first_name . " " . $last_name);     //Add a recipient
                     $mail->Subject = 'Signup | Validation';
                     $mail->Body = '
 
