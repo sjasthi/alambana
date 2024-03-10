@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-//Enable mySQL error messages
-/*
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
 
 require 'db_configuration.php';
+
 
 /* User registers as a new user, (checks if user exists and password is correct) */
 if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_name']) && isset($_POST['last_name'])) {
@@ -34,20 +35,40 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
 
         if (mysqli_query($db, $sql)) {
             // read config.ini
-            $email_settings = parse_ini_file("config.ini");
+            $email_settings = parse_ini_file("smtp.ini");
             // case where unable to read config file
             if (!$email_settings) {
-                echo "failed to read config.ini";
+                echo "failed to read smtp.ini";
             } else {
                 // SMTP server
                 // reference https://stackoverflow.com/questions/25909348/how-to-send-email-with-smtp-in-php
-                ini_set('SMTP', $email_settings["SMTP"]);
-                ini_set('smtp_port', $email_settings["smtp_port"]);
-                ini_set('sendmail_from', $email_settings["sendmail_from"]);
                 set_time_limit(10); // Set maximum execution time to 300 seconds (5 minutes)
+                $mail = new PHPMailer(true);
+                try {
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                    $mail->isSMTP();
+                    $mail->Host = $email_settings["host"];//"localhost";
+                    $mail->Port = $email_settings["port"];
 
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+                    $mail->setFrom($email_settings["sender"], 'Aalambana');
+                    $mail->addAddress($_POST["email"], $_POST["first_name"] . " " . $_POST["last_name"]);     //Add a recipient
+                    $mail->Subject = 'Signup | Validation';
+                    $mail->Body = '
+
+                    Your account has been created. Please click this link to activate your account:
+                    ' . $email_settings["URL"] . '/validation.php?email=' . $email . '&email_validation=' . $email_validation . '
+                    
+                    ';
+                    $mail->send();
+                    echo 'Message has been sent';
+                    header("location: validation.php");
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
                 // send validation email
-                $email_subject = 'Signup | Validation';
+                /*$email_subject = 'Signup | Validation';
                 $email_message = '
 
                 Your account has been created. Please click this link to activate your account:
@@ -57,14 +78,17 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
                 $email_headers = 'From: noreply@projectaalambana.com' . "\r\n";
                 $email_headers .= "MIME-Version: 1.0\r\n";
                 $email_headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
+                error_reporting(-1);
+                ini_set('display_errors', 'On');
+                set_error_handler("var_dump");
                 if (mail($email, $email_subject, $email_message, $email_headers)) {
                     $_SESSION['status'] = "Sucess";
                     $_SESSION['email'] = $email;
                     header("location: validation.php");
                 } else {
-                    echo "email failed";
-                }
+                    $last_error = error_get_last();
+                    echo "Email failed with error: " . $last_error['message'];
+                }*/
             }
         }
         // case where the sql insert failed
