@@ -22,14 +22,12 @@ if (isset($_POST["event_date"])) {
 
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $video_Link = $_POST['video_link'];
+    $video_link = $_POST['video_link'];
     $event_date = $_POST['event_date'];
-    $created_time = date('Y-m-d H:i:s');
-    $modified_time = $created_time;
 
     // SQL query to insert data into the events table
     $sql = "INSERT INTO events (title, description, video_link, event_date, created_time, modified_time)
-        VALUES ('$title', '$description', '$video_link', '$event_date', '$created_time', '$modified_time')";
+        VALUES ('$title', '$description', '$video_link', '$event_date', CURDATE(), CURDATE())";
 
     mysqli_query($connection, $sql);
 
