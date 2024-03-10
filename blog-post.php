@@ -203,7 +203,6 @@
 
                     if ($isBlogExists) {
                         $aboutAuthor = getAboutFromDatabase($blogId);
-                        $storyDescription = getParagraphFromDatabase($blogId);
                         // Blog exists, modify button name and function
                         echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Edit Post Story</button>';
                         
@@ -212,7 +211,6 @@
 
                     } else {
                         $aboutAuthor =  '';
-                        $storyDescription = '';
                         // Blog doesn't exist, default button name and function
                         echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Create Post Story</button>';
                         $formAction = create_post_story($blogId); // Set the form action for creating
@@ -230,7 +228,7 @@
                         <label>Blog</label>
                         <label for="paragraph">Paragraph</label>
                         <br>
-                        <textarea name="paragraph" rows="9" cols="50" required><?php echo htmlspecialchars($storyDescription); ?></textarea>
+                        <textarea name="paragraph" rows="9" cols="50" required><?php echo "Content of blog should be here"; ?></textarea>
                     </div>
                     <div id="blog_creation_right">
                         <label>Author Description</label>

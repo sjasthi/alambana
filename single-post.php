@@ -212,7 +212,7 @@
 
                     if ($isBlogExists) {
                         $aboutAuthor = getAboutFromDatabase($blogId);
-                        $storyDescription = getParagraphFromDatabase($blogId);
+                        $storyDescription = get_content_from_database($blogId);
                         // Blog exists, modify button name and function
                         echo '<button type="submit" class="btn btn-primary btn-lg" id="form_show_button"; onclick="show_edit_form();">Edit Post Story</button>';
                         

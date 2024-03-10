@@ -535,113 +535,6 @@ ORDER BY comments.created_time ASC";
     }
   }
 }
-/*
-// Create connection
-$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-// Check connection
-if ($connection->connect_error) {
-  die("Connection failed: " . $connection->connect_error);
-}
-$return_class_block = '';
-
-$target_blog_id = $blog_id; // Specify the target Blog_Id you want to select
-$sql = "SELECT * FROM comments WHERE blog_id = $target_blog_id ORDER BY created_time ASC";
-$result = $connection->query($sql);
-
-// fetch Comment Post from data from each row | If data exist
-if ($result->num_rows > 0) {
-
-  $is_new_topic = -1;
-  $is_parent = 0;
-  $is_subline = 0;
-  $button_id = 1;
-  $blog_body = "";
-  $blog_reply_field = "";
-
-  while ($row = $result->fetch_assoc()) { // start in first row
-
-    $reply_button = '';
-    $email_address = $row['email'];
-    # Photo to blog user id
-    $user_photo_path = getUserPhotoFromDatabase($email_address);
-    $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path)
-      ? $user_photo_path : "images/default.jpg";
-
-    if ($is_new_topic != $row['Subject_Id']) { // new parent comment
-
-      $form_action = ""; #create_comment_post($target_blog_id); // Set the form action for creating
-      $submit_action = "create_comment_post";
-
-      if ($is_subline == 1) {
-        $blog_body .= '</ul>';
-      } // if previous parent contain children branch(s); close branch(s) to children
-      if ($is_subline == 1) {
-        $is_subline = 0;
-      } // reset parent for new children 
-      if ($is_parent == 1) {
-        $blog_body .= $blog_reply_field;
-      } // reset for new parent; close parent tree
-
-      $is_new_topic = $row['Subject_Id']; // set as new parent subject
-
-      # Intial HTML Blog Comment Body Elements
-      if (isset($_SESSION['role'])) { // Verify SESSION
-        $reply_button = '<a class="btn btn-default btn-xs pull-right" id="form_show_reply_submit_button' . $button_id . '"; onclick="reply_blog_comment(' . $button_id . ');">Reply</a>';
-      }
-      $blog_body .=
-        '
-        <li>
-            <div class="post-comment-parent-block"> 
-                <img src="' . $user_photo_id . '" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
-                    <div class="post-comment-content">'
-        . $reply_button .
-        '<h5>' . $row['Name'] . ' <span>says</span></h5>
-                        <span class="meta-data">' . $row['created_time'] . '</span>
-                        <p>' . nl2br($row['content']) . '</p>
-                    </div>
-            </div>
-                  
-
-        ';
-      $is_parent = 1;
-      $button_id++;
-    }
-    if (isset($_SESSION['role'])) { // Verify SESSION
-      $blog_reply_field = '
-          <form id="blog_reply_form' . ($button_id - 1) . '" action="' . $form_action . '" method="POST" enctype="multipart/form-data" hidden="hidden">
-              <div class="row">
-                  <div class="form-group">
-                      <div class="col-md-12">
-                        <textarea name="comment_paragraph" cols="50" rows="1" class="form-control input-lg" placeholder="Your comment reply"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary btn-lg"; name="' . $submit_action . '">Submit your reply</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-      </li>'; // close parent tree
-    } else {
-      $blog_reply_field = '';
-    }
-  }
-  if ($is_subline == 1) {
-    $blog_body .= '</ul>';
-  } // if last contained child branch; close child branch    
-  if ($blog_body != "") {
-    echo $blog_body; //.$blog_video_link;
-    echo $blog_reply_field; // close parent tree
-  }
-} else {
-  echo $return_class_block;
-}
-$connection->close();
-*/
-
 
 # Page List Items
 function fill_blog_page_list()
@@ -734,7 +627,7 @@ function fill_blog_pagination()
     die("Connection failed: " . $connection->connect_error);
   }
 
-  $sql = "SELECT Blog_Id, Title FROM blogs ORDER BY Created_Time DESC";
+  $sql = "SELECT id, title FROM blogs ORDER BY created_time DESC";
   $result = $connection->query($sql);
   $blog_body_pagination = "";
 
@@ -758,12 +651,12 @@ function fill_blog_pagination()
       }
       //////////////////////////////////////////
       // Place title in TOC
-      $newBlogId = $row['Blog_Id'];
-      $newTitle = $row['Title'];
+      $new_blog_id = $row['id'];
+      $new_title = $row['title'];
 
       // Add TOC link and title to the array for the current page
-      $TOC_Array[$number_of_pages][] = "blog-post.php?blog_id=" . $newBlogId;
-      $TOC_Array[$number_of_pages][] = $newTitle;
+      $TOC_Array[$number_of_pages][] = "blog-post.php?blog_id=" . $new_blog_id;
+      $TOC_Array[$number_of_pages][] = $new_title;
 
       $number_of_posts++;
     }
@@ -939,7 +832,7 @@ function fill_blog_tabs()
     die("Connection failed: " . $connection->connect_error);
   }
 
-  $sql = "SELECT * FROM blogs ORDER BY Created_Time DESC";
+  $sql = "SELECT * FROM blogs ORDER BY created_time DESC";
   $result = $connection->query($sql);
   // Create Post from data from each row
   if ($result->num_rows > 0) {
@@ -952,31 +845,31 @@ function fill_blog_tabs()
       if ($number_of_posts == 3) {
         break;
       }
-      if (!getBlogVisibilityStateFromDatabase($row['Blog_Id'])) {
+      if (!getBlogVisibilityStateFromDatabase($row['id'])) {
         # Video Link to blog
-        if ($row["Video_Link"] != NULL) {
-          $blog_video_link = '<a class="blog_video_link" href=' . $row["Video_Link"] . '> Video </a> </div>';
+        if ($row["video_link"] != NULL) {
+          $blog_video_link = '<a class="blog_video_link" href=' . $row["video_link"] . '> Video </a> </div>';
         } else {
           $blog_video_link = '</div>';
         }
         # Photo to blog
-        $picture_sql = "SELECT Location FROM blog_pictures WHERE Blog_Id = " . $row["Blog_Id"];
+        $picture_sql = "SELECT location FROM pictures WHERE blog_id = " . $row["id"];
         $picture_locations = $connection->query($picture_sql);
         $blog_pictures = '';
         if ($picture_locations->num_rows > 0) {
           while ($picture = $picture_locations->fetch_assoc()) {
-            $blog_pictures = $blog_pictures . '<img src="' . $picture['Location'] . '" alt="">';
+            $blog_pictures = $blog_pictures . '<img src="' . $picture['location'] . '" alt="">';
           }
         }
         # HTML Body Elements
         $blog_body_tabs .=
           '
             <li>
-            <a href="blog-post.php?blog_id=' . $row['Blog_Id'] . '" class="media-box">
+            <a href="blog-post.php?blog_id=' . $row['id'] . '" class="media-box">
             ' . $blog_pictures . '
             </a>
-            <h5><a href="blog-post.php?blog_id=' . $row['Blog_Id'] . '">' . $row['Title'] . '</a></h5>
-            <span class="meta-data grid-item-meta">Posted on ' . $row['Description'] . '</span>
+            <h5><a href="blog-post.php?blog_id=' . $row['id'] . '">' . $row['title'] . '</a></h5>
+            <span class="meta-data grid-item-meta">Posted on ' . $row['description'] . '</span>
             </li>
           ';
 
@@ -1003,12 +896,12 @@ function fill_blog_tabs()
                     <ul>';
 
     // Retrieve the top 3 blogs with the most visitors
-    $sql = "SELECT * FROM blogs ORDER BY Visitor_Count DESC LIMIT 3";
+    $sql = "SELECT * FROM blogs ORDER BY visitor_count DESC LIMIT 3";
     $result = $connection->query($sql);
 
     // Fetch the blog data
     while ($row = $result->fetch_assoc()) {
-      $blog_date = $row['Created_Time'];
+      $blog_date = $row['created_time'];
 
       // Create a DateTime object from the Blog date string
       $date_time = new DateTime($blog_date);
@@ -1027,22 +920,22 @@ function fill_blog_tabs()
       $ampm = $date_time->format('a');     // AM or PM
 
       // Retrieve blog pictures
-      $picture_sql = "SELECT Location FROM blog_pictures WHERE Blog_Id = " . $row["Blog_Id"];
+      $picture_sql = "SELECT Location FROM pictures WHERE blog_id = " . $row["id"];
       $picture_locations = $connection->query($picture_sql);
       $blog_pictures = '';
 
       if ($picture_locations->num_rows > 0) {
         while ($picture = $picture_locations->fetch_assoc()) {
-          $blog_pictures .= '<img src="' . $picture['Location'] . '" alt="">';
+          $blog_pictures .= '<img src="' . $picture['location'] . '" alt="">';
         }
       }
 
       // Output each blog as an HTML list item
       echo '<li>
-                                <a href="blog-post.php?blog_id=' . $row["Blog_Id"] . '" class="media-box">' .
+                                <a href="blog-post.php?blog_id=' . $row["id"] . '" class="media-box">' .
         $blog_pictures .
         '</a>
-                                <h5><a href="blog-post.php?blog_id=' . $row["Blog_Id"] . '">' . $row["Title"] . '</a></h5>
+                                <h5><a href="blog-post.php?blog_id=' . $row["id"] . '">' . $row["title"] . '</a></h5>
                                 <span class="meta-data grid-item-meta">Posted on ' . $day_suffix . ' ' . $month . ', ' . $year . '</span>
                             </li>';
     }
@@ -1080,258 +973,6 @@ function fill_blog_tabs()
   }
   $connection->close();
 }
-
-
-
-# fetch Title
-function getTitleFromDatabase($blog_id)
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  // Prepare SQL query to fetch Title based on blogId
-  $sql = "SELECT Title FROM blogs WHERE Blog_Id = $blog_id";
-
-  $result = $connection->query($sql);
-
-  if ($result->num_rows > 0) {
-    // Fetch the Title from the database
-    $row = $result->fetch_assoc();
-    $title = $row['Title'];
-  } else {
-    // If no matching blogId found, return an empty string or handle it as per your requirement
-    $title = "";
-  }
-
-  // Close the connection
-  $connection->close();
-
-  return $title;
-}
-# fetch Story Paragraph
-function getParagraphFromDatabase($blog_id)
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  // Prepare SQL query to fetch Paragraph based on blogId
-  $sql = "SELECT Paragraph FROM blog_story WHERE Blog_Id = $blog_id";
-
-  $result = $connection->query($sql);
-
-  if ($result->num_rows > 0) {
-    // Fetch the Paragraph from the database
-    $row = $result->fetch_assoc();
-    $paragraph = $row['Paragraph'];
-  } else {
-    // If no matching blogId found, return an empty string or handle it as per your requirement
-    $paragraph = "";
-  }
-
-  // Close the connection
-  $connection->close();
-
-  return $paragraph;
-}
-# fetch About_Author
-function getAboutFromDatabase($blog_id)
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  // Prepare SQL query to fetch About_Author based on blogId
-  $sql = "SELECT About_Author FROM blog_story WHERE Blog_Id = $blog_id";
-
-  $result = $connection->query($sql);
-
-  if ($result->num_rows > 0) {
-    // Fetch the About_Author from the database
-    $row = $result->fetch_assoc();
-    $about = $row['About_Author'];
-  } else {
-    // If no matching blogId found, return an empty string or handle it as per your requirement
-    $about = "";
-  }
-
-  // Close the connection
-  $connection->close();
-
-  return $about;
-}
-# fetch User_Photo
-function getUserPhotoFromDatabase($userInfo)
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  // Use prepared statement to prevent SQL injection
-  $sql = "SELECT id FROM users WHERE email = ? OR CONCAT(last_name, ', ', first_name) = ?";
-
-  $statement = $connection->prepare($sql);
-
-  if (!$statement) {
-    die("Error in prepare statement: " . $connection->error);
-  }
-
-  $statement->bind_param("ss", $userInfo, $userInfo);
-  $statement->execute();
-  $statement->bind_result($userId);
-
-  // Fetch the user ID
-  if ($statement->fetch()) {
-    // Close the statement
-    $statement->close();
-
-    // Prepare and execute the second statement
-    $picture_sql = "SELECT Location FROM user_photos WHERE User_Id = ?";
-    $picture_statement = $connection->prepare($picture_sql);
-
-    if (!$picture_statement) {
-      die("Error in prepare statement: " . $connection->error);
-    }
-
-    $picture_statement->bind_param("i", $userId);
-    $picture_statement->execute();
-    $picture_statement->bind_result($user_photo_id);
-
-    // Fetch the user photo location
-    if ($picture_statement->fetch()) {
-      // Close the second statement
-      $picture_statement->close();
-
-      // Close the connection
-      $connection->close();
-
-      return $user_photo_id;
-    }
-  }
-
-  // If no matching user found or no photo found, return an empty string or handle it as per your requirement
-  //$statement->close();
-
-  // Close the connection
-  $connection->close();
-
-  return "";
-}
-
-# fetch Hash : Boolean (false | true) 
-function getUserHashFromDatabase($blog_id)
-{
-  // If no matching blogId found, return an false (without permissions)
-  if (isset($_SESSION['role'])) { // Verify SESSION
-    // get current user hash
-    $user_session_hash = $_SESSION['hash'];
-
-    // Create connection
-    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-    // Check connection
-    if ($connection->connect_error) {
-      die("Connection failed: " . $connection->connect_error);
-    }
-    // Prepare SQL query to fetch hash based on blogId
-    $sql = "SELECT hash FROM blogs WHERE Blog_Id = $blog_id";
-
-    $result = $connection->query($sql);
-    if ($result->num_rows > 0) {
-      // Fetch the hash from the database matching blog id
-      $row = $result->fetch_assoc();
-      $blog_hash = $row['hash'];
-      if ($blog_hash === $user_session_hash)
-        return true;
-    }
-    // Close the connection
-    $connection->close();
-  }
-
-  return false;
-}
-# fetch Blog Visiability : Boolean (false:0 | true:1) 
-function getBlogVisibilityStateFromDatabase($blog_id)
-{
-
-  //if (isset($_SESSION['role'])){ // Verify SESSION
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  // Prepare SQL query to fetch hidden based on blogId
-  $sql = "SELECT hidden FROM blogs WHERE Blog_Id = $blog_id";
-
-  $result = $connection->query($sql);
-  // If no matching blogId found, return an false
-  $hidden = false;
-
-  if ($result->num_rows > 0) {
-    // Fetch the hidden info. from the database
-    $row = $result->fetch_assoc();
-    $hidden = $row['hidden'];
-  }
-
-  //}
-  // Close the connection
-  $connection->close();
-
-  return $hidden;
-}
-# fetch Page Visitor Count
-function get_blog_page_visitor_count($blog_id)
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  // Specify the target Blog_Id you want to select
-  $target_blog_id = $blog_id;
-
-  // Use a parameterized query to prevent SQL injection
-  $sql = "SELECT Visitor_Count FROM blogs WHERE Blog_Id = ?";
-  $statement = $connection->prepare($sql);
-  $statement->bind_param("i", $target_blog_id);
-  $statement->execute();
-  $statement->bind_result($visitors);
-
-  // Fetch visitor Post count | If data exist
-  if ($statement->fetch()) {
-    $statement->close();
-    $connection->close();
-    return $visitors;
-  }
-
-  $statement->close();
-  $connection->close();
-
-  return 0; // Return 0 if no data found
-}
 # update Page Visitor Count
 function increment_blog_page_visitor_count($blog_id)
 {
@@ -1361,52 +1002,6 @@ function increment_blog_page_visitor_count($blog_id)
 
 
 # fetch Page Comment Count
-function get_blog_page_comment_count($blog_id)
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  $target_blog_id = $blog_id; // Specify the target Blog_Id you want to select
-  $sql = "SELECT * FROM blog_comments WHERE Blog_Id = $target_blog_id ORDER BY Subject_Id ASC, Created_Time ASC";
-  $result = $connection->query($sql);
-  $comments = 0;
-  // fetch Comment Post from data from each row | If data exist
-  if ($result->num_rows > 0) {
-
-    while ($row = $result->fetch_assoc()) { // count rows
-      $comments += 1;
-    }
-  }
-  $connection->close();
-  return $comments;
-}
-function getAll__blog_comment_count()
-{
-  // Create connection
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-  // Check connection
-  if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
-  }
-
-  $sql = "SELECT COUNT(*) AS comment_count FROM blog_comments";
-  $result = $connection->query($sql);
-
-  $comments = 0;
-
-  // Fetch the count directly
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $comments = $row['comment_count'];
-  }
-
-  $connection->close();
-  return $comments;
-}
 # trasnform day with suffix
 function getDayWithSuffix($day)
 {
