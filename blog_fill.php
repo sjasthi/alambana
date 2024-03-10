@@ -415,10 +415,6 @@ function fill_blog_story($blog_id)
     $row = $result->fetch_assoc(); // Fetch the specific row with the specified Blog_Id
 
     $hashAddress = $row['Author'];
-    # Photo to blog user id
-    $user_photo_path = getUserPhotoFromDatabase($hashAddress);
-    $user_photo_id = (!empty($user_photo_path)) && file_exists($user_photo_path)
-      ? $user_photo_path : "images/default.jpg";
 
     # Video Link to blog
     if ($row["Video_Link"] != NULL) {
@@ -461,7 +457,7 @@ function fill_blog_story($blog_id)
 
 
 
-    # HTML Body Elements
+    # HTML Body Elements this will need fixing
     $blog_body =
       '
                   <h3>' . $row['Title'] . '</h3>
@@ -480,7 +476,7 @@ function fill_blog_story($blog_id)
                     </div>
                     <!-- About Author -->
                     <section class="about-author">
-                        <img src="' . $user_photo_id . '" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
+                        <img src="' ."userphotosrchere". '" alt="avatar" class="img-thumbnail" style="width:75px;height:70px;">
                         <div class="post-author-content">
                             <h3>' . $row['Author'] . '<span class="label label-primary">Author</span></h3>
                             <p><strong>' . $row['Author'] . '</strong>, ' . $about_author . '</p>
