@@ -30,8 +30,8 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
         $email_validation = substr($email_validation, 0, 10); // chop validation to 10 digits since database field only holds 10
 
         //insert user info into DB
-        $sql = "INSERT INTO users (first_name, last_name, email, hash, validation_code, role, modified_time, created_time)
-                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', '$email_validation', 'User', CURDATE(), CURDATE())";
+        $sql = "INSERT INTO users (first_name, last_name, email, hash, validation_code, role)
+                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', '$email_validation', 'User')";
 
         if (mysqli_query($db, $sql)) {
             // read config.ini

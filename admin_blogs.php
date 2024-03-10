@@ -9,7 +9,7 @@ if ($_SESSION['role'] != 'admin'){
 }
 
 include('shared_resources.php'); 
-include ('blog_fill.php');
+include('blog_fill.php');
 ob_end_flush();
 
 //$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
