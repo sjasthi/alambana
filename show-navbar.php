@@ -9,7 +9,7 @@ function show_navbar() {
       <a href="classes.php">Classes</a>
       <a href="books.php">Books</a>
       <a href="causes.php">Causes</a>
-      <a href="blog.php">Blog</a>
+      <a href="blogs.php">Blog</a>
       <a href="meet_our_instructors.php">Meet our Instructors</a>
       <a href="contact_us.php">Contact Us</a>';
       if (isset($_SESSION['email'])) {

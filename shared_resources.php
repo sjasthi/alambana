@@ -331,7 +331,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                             </li>
                       	</ul>
                   	</li>
-                    <li><a href="blog.php">Blog</a>
+                    <li><a href="blogs.php">Blog</a>
                         <ul class="dropdown">
                             <li><a href="blog-grid.php">Browse Blogs</a></li>
                             <li><a href="#" onclick="show_new_post_form()">Create Post</a></li>

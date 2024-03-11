@@ -12,7 +12,7 @@
 
   $blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter
   // DO NOT ALLOW ACCESS TO HIDDEN BLOG PAGES
-  if (getBlogVisibilityStateFromDatabase($blogId)) header('Location:blog.php'); 
+  if (getBlogVisibilityStateFromDatabase($blogId)) header('Location:blogs.php'); 
 
   // Track page visitors
   increment_blog_page_visitor_count($blogId);
@@ -69,8 +69,8 @@
                 // Send the request with the blogId as a parameter
                 xhr.send("blog_id=" + blogID);
 
-                // Redirect to blog.php and Refresh page
-                window.location.href = "blog.php?";
+                // Redirect to blogs.php and Refresh page
+                window.location.href = "blogs.php?";
              
                 //window.location.href = window.location.href;
                 //window.location.href = "delete_post.php?blog_id=" + blog_id; # Subjected to SQL Injection Issue (Security Issue)
@@ -98,8 +98,8 @@
                 xhr.send("blog_id=" + blogID);
 
                 setTimeout(function () {
-                    // Redirect to blog.php and Refresh page
-                    window.location.href = "blog.php?";
+                    // Redirect to blogs.php and Refresh page
+                    window.location.href = "blogs.php?";
                 }, 100);// Introduce a delay (milliseconds)
 
                 //window.location.href = window.location.href;
@@ -186,7 +186,7 @@
     <!-- Main Content -->
     <div id="main-container">
     	<div class="content">
-            <a href="blog.php" class="btn btn-primary" style="margin-left: 100px;">< Go to Blogs</a>
+            <a href="blogs.php" class="btn btn-primary" style="margin-left: 100px;">< Go to Blogs</a>
         	<div class="container">
                 <!-- USER PRIVILEGES ROLE (User/Admin from 'users' Table) -->
                 

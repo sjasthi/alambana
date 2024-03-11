@@ -82,5 +82,5 @@ if (!empty($hash)) { // Only Allow Users To Create Entry
 
 mysqli_close($connection);
 
-header('Location: blog.php');
+header('Location: blogs.php');
 ?>

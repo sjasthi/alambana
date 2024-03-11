@@ -174,9 +174,9 @@
                             </li>
                       	</ul>
                   	</li>
-                    <li><a href="blog.php">Blog</a>
+                    <li><a href="blogs.php">Blog</a>
                         <ul class="dropdown">
-                            <li><a href="blog.php">Blog Classic</a></li>
+                            <li><a href="blogs.php">Blog Classic</a></li>
                             <li><a href="blog-grid.php">Blog Grid</a></li>
                             <li><a href="single-post.php">Single Post</a></li>
                         </ul>

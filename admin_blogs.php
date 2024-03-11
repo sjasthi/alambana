@@ -5,18 +5,12 @@ if (!isset($_SESSION)) {
 }
 
 if ($_SESSION['role'] != 'admin') {
-    header('Location:blog.php');
+    header('Location:blogs.php');
 }
 
 include('shared_resources.php');
 include('blog_fill.php');
 ob_end_flush();
-
-//$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -52,6 +46,7 @@ if ($db->connect_error) {
     <div>
         <?php load_common_page_header(2) ?>
         <main>
+            <?php get_blogs(1, 10); ?>
         </main>
         <!-- Site Footer -->
         <?php load_common_page_footer(2) ?>
@@ -61,12 +56,6 @@ if ($db->connect_error) {
     <!-- Libraries Loader -->
     <?php lib() ?>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var table = document.querySelector('#Blog_table');
-            var dataTable = new DataTable(table);
-        });
-    </script>
 </body>
 
 </html>
