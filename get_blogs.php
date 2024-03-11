@@ -19,19 +19,43 @@ function get_blogs($start, $count)
   }
 
   $sql = "SELECT blogs.*, 
-  users.id AS user_id, 
-  users.first_name, 
-  users.last_name, 
-  users.picture_id,
-  pictures.location AS user_picture_location
-  FROM blogs
-  JOIN users ON blogs.user_id = users.id
-  JOIN pictures ON users.picture_id = pictures.id 
-  ORDER BY blogs.created_time DESC 
-  LIMIT $start - 1, $count";
+          users.id AS user_id, 
+          users.first_name, 
+          users.last_name, 
+          users.picture_id,
+          pictures.location AS user_picture_location
+          FROM blogs
+          JOIN users ON blogs.user_id = users.id
+          JOIN pictures ON users.picture_id = pictures.id 
+          ORDER BY blogs.created_time DESC 
+          LIMIT $start - 1, $count";
+
+  $result = $connection->query($sql);
+  $connection->close();
+  if ($result->num_rows > 0) {
+    while ($blog = $result->fetch_assoc()) {
+      ?>
+      <div>
+        Author:
+        <div>
+          <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"]); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
+          <?php echo htmlspecialchars($blog["modified_time"]) ?>
+        </div>
+        Title:
+        <div>
+          <?php echo htmlspecialchars($blog["title"]); ?>
+        </div>
+        Description:
+        <div>
+          <?php echo htmlspecialchars($blog["description"]); ?>
+        </div>
+      </div>
+      <?php
+    }
+  }
 }
 
-function get_blog($blog_id) #THIS SHOULD BE INCREMENTING VISITORS- REMEMBER TO COME BACK TO THIS
+function get_blog($blog_id)
 {
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
@@ -40,18 +64,19 @@ function get_blog($blog_id) #THIS SHOULD BE INCREMENTING VISITORS- REMEMBER TO C
   }
 
   $sql = "SELECT blogs.*, 
-  users.id AS user_id, 
-  users.first_name, 
-  users.last_name, 
-  users.picture_id,
-  pictures.location AS user_picture_location
-  FROM blogs
-  JOIN users ON blogs.user_id = users.id
-  JOIN pictures ON users.picture_id = pictures.id
-  WHERE id = $blog_id";
+          users.id AS user_id, 
+          users.first_name, 
+          users.last_name, 
+          users.picture_id,
+          pictures.location AS user_picture_location
+          FROM blogs
+          JOIN users ON blogs.user_id = users.id
+          JOIN pictures ON users.picture_id = pictures.id
+          WHERE id = $blog_id";
 
   $result = $connection->query($sql);
   $connection->close();
+  increment_blog_page_visitor_count($blog_id);
   if ($result->num_rows > 0) {
     $blog = $result->fetch_assoc();
     ?>
@@ -60,6 +85,18 @@ function get_blog($blog_id) #THIS SHOULD BE INCREMENTING VISITORS- REMEMBER TO C
       <div>
         <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"]); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
         <?php echo htmlspecialchars($blog["modified_time"]) ?>
+      </div>
+      Title:
+      <div>
+        <?php echo htmlspecialchars($blog["title"]) ?>
+      </div>
+      Description:
+      <div>
+        <?php echo htmlspecialchars($blog["description"]) ?>
+      </div>
+      Pictures:
+      <div>
+        <?php get_blog_pictures($blog_id); ?>
       </div>
       Content:
       <div>
@@ -82,17 +119,17 @@ function get_blog_comments($blog_id)
   }
 
   $sql = "SELECT 
-  comments.*, 
-  users.id AS user_id, 
-  users.first_name, 
-  users.last_name, 
-  users.picture_id, 
-  pictures.location AS user_picture_location 
-FROM comments 
-JOIN users ON comments.user_id = users.id 
-JOIN pictures ON users.picture_id = pictures.id 
-WHERE comments.blog_id = $blog_id 
-ORDER BY comments.created_time ASC";
+          comments.*, 
+          users.id AS user_id, 
+          users.first_name, 
+          users.last_name, 
+          users.picture_id, 
+          pictures.location AS user_picture_location 
+          FROM comments 
+          JOIN users ON comments.user_id = users.id 
+          JOIN pictures ON users.picture_id = pictures.id 
+          WHERE comments.blog_id = $blog_id 
+          ORDER BY comments.created_time ASC";
   $result = $connection->query($sql);
   $connection->close();
   if ($result->num_rows > 0) {
@@ -109,6 +146,29 @@ ORDER BY comments.created_time ASC";
         <div>
           <?php echo htmlspecialchars($comment["content"]); ?>
         </div>
+      </div>
+      <?php
+    }
+  }
+}
+
+function get_blog_pictures($blog_id)
+{
+  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+  // Check connection
+  if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+  }
+
+  $sql = "SELECT * FROM pictures WHERE blog_id = $blog_id";
+  $result = $connection->query($sql);
+  $connection->close();
+  if ($result->num_rows > 0) {
+    // Output data of each row
+    while ($picture = $result->fetch_assoc()) {
+      ?>
+      <div>
+        <img alt="" src="<?php echo $picture['location']; ?>" />
       </div>
       <?php
     }
