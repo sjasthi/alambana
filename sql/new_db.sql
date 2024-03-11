@@ -106,6 +106,14 @@ INSERT INTO `blogs` ( `title`, `description`, `video_link`, `modified_time`, `cr
 ( 'Blog Title New User', 'Description New User', NULL, '2023-11-19 21:16:28', '2023-11-19 21:16:28', 5, 0, 4),
 ( 'Title New X', 'Description X', NULL, '2023-11-28 03:18:09', '2023-11-28 03:18:09', 5, 0, 53);
 
+INSERT INTO `events` (`title`, `description`, `information`, `video_link`, `event_start_date`, `attendees`, `location`, `user_id`) VALUES
+('Event1', 'Event Description1', 'This is a sample event! 1', NULL, '2024-02-14 16:00:00', '2024-02-14 18:00:00', 2, '123 Nowhere st, St. Paul, MN', 3),
+('Title2', 'Event Description2', 'This is a sample event! 2', NULL, '2024-02-17 16:00:00', NULL, 2, 'online', 4),
+('Title3', 'Event Description3', 'This is a sample event! 3', NULL, '2024-02-18 14:00:00', '2024-02-18 18:00:00', 2, 'online', 4),
+('Title4', 'Event Description4', 'This is a sample event! 4', NULL, '2024-02-22 16:09:00', '2024-02-14 18:09:00', 2, 'online', 4),
+('Title5', 'Event Description5', 'This is a sample event! 5', NULL, '2024-03-14 16:09:00', '2024-02-14 18:09:00', 2, 'online', 4),
+('Title6', 'Event Description6', 'This is a sample event! 6', NULL, '2024-03-15 16:09:00', '2024-02-14 18:09:00', 2, 'online', 7)
+
 INSERT INTO `pictures` ( `location`, `blog_id`, `user_id`, `event_id`) VALUES 
 ('images/blog_pictures/6554f41890b446.42606833.jpg',1,3,NULL),
 ('images/blog_pictures/6554f621909a87.79369267.jpg',2,4,NULL),
@@ -123,7 +131,7 @@ INSERT INTO `pictures` ( `location`, `blog_id`, `user_id`, `event_id`) VALUES
 ('images/blog_pictures/655bb7156e38c0.95310575.jpg',14,5,NULL),
 ('images/blog_pictures/655c07bf2a2162.58934655.jpg',15,5,NULL),
 
-('images/event_pictures/655c076b3ce83.jpg',NULL,4,1),
+('images/event_pictures/655c076b3ce83.jpg',NULL,3,1),
 ('images/event_pictures/655e8f23c49cf.jpg',NULL,4,2),
 ('images/event_pictures/655e8f52c6871.jpg',NULL,4,3),
 ('images/event_pictures/655e8f6549874.jpg',NULL,4,4),
