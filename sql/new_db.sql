@@ -107,6 +107,28 @@ INSERT INTO `blogs` ( `title`, `description`,`content`, `video_link`, `modified_
 ( 'Blog Title New User', 'Description New User','This is a blog!!14', NULL, '2023-11-19 21:16:28', '2023-11-19 21:16:28', 5, 0, 4),
 ( 'Title New X', 'Description X','This is a blog!!15', NULL, '2023-11-28 03:18:09', '2023-11-28 03:18:09', 5, 0, 53);
 
+INSERT INTO `comments` (`blog_id`,`user_id`, `content`) VALUES
+(1,2,'Hey this is really a good site blog!'),
+(2,4,'Very interesting read, hope to hear more from your post.'),
+(3,4,'Are you going to make any more postings on this topic?'),
+(4,12,'Yes, very soon!'),
+(5,11,'Is this a Admin post?'),
+(6,10,'Hi, is there a new post to this page'),
+(7,9,'I was wondering the same thing..'),
+(8,5,'Hello there this is very interesting can you tell me more'),
+(9,4,'Is this about planting just wondering'),
+(10,7,"I'll come back later, looks like a good start though"),
+(11,6,'Yes this is about planting and our ecosystem'),
+(12,2,"I haven't written anything down yet but I will, thank you for your interest!"),
+(13,1,"Please provide appropriate contact only. Thank you"),
+(14,1,'hi yu'),
+(15,8,'test'),
+(2,8,'hi there!'),
+(2,9,'hello to me'),
+(2,11,'New comment!'),
+(2,4,'tests');
+
+
 INSERT INTO `events` (`title`, `description`, `information`, `video_link`, `event_date_start`, `event_date_end`, `attendees`, `location`, `user_id`) VALUES
 ('Event1', 'Event Description1', 'This is a sample event! 1', NULL, '2024-02-14 16:00:00', '2024-02-14 18:00:00', 2, '123 Nowhere st, St. Paul, MN', 3),
 ('Title2', 'Event Description2', 'This is a sample event! 2', NULL, '2024-02-17 16:00:00', NULL, 2, 'online', 4),
