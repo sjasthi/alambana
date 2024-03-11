@@ -18,17 +18,24 @@ function get_blogs($start, $count)
     die("Connection failed: " . $connection->connect_error);
   }
 
-  $sql = "SELECT blogs.*, 
-          users.id AS user_id, 
+  $sql = "SELECT blogs.*,
           users.first_name, 
           users.last_name, 
-          users.picture_id,
-          pictures.location AS user_picture_location
-          FROM blogs
-          JOIN users ON blogs.user_id = users.id
-          JOIN pictures ON users.picture_id = pictures.id 
-          ORDER BY blogs.created_time DESC 
-          LIMIT $start - 1, $count";
+          users.picture_id, 
+          pictures.location AS user_picture_location 
+          FROM blogs 
+          JOIN users ON blogs.user_id = users.id 
+          LEFT JOIN pictures ON users.picture_id = pictures.id 
+          ORDER BY blogs.created_time DESC";/*"SELECT blogs.*, 
+users.id AS user_id, 
+users.first_name, 
+users.last_name, 
+users.picture_id,
+pictures.location AS user_picture_location
+FROM blogs
+JOIN users ON blogs.user_id = users.id
+JOIN pictures ON users.picture_id = pictures.id 
+ORDER BY blogs.created_time DESC";*/
 
   $result = $connection->query($sql);
   $connection->close();

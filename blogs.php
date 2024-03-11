@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 
 include 'shared_resources.php';
-include 'blog_fill.php';
+include 'get_blogs.php';
 include 'feedback_fill.php';
 include 'create_comment_post.php';
 if (isset($_SESSION['role'])) {
@@ -60,7 +60,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset($_GET['current_page'
     <?php load_common_page_header(2) ?>
     <!-- Banner Area -->
     <main>
-      <?php get_blogs(1, 10); ?>
+      <?php get_blogs(0, 10); ?>
     </main>
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
