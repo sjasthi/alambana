@@ -105,3 +105,20 @@ INSERT INTO `blogs` ( `title`, `description`, `video_link`, `modified_time`, `cr
 ( 'Blog Title admin1', 'Description admin', 'https://youtu.be/k9em7Ey00xQ', '2023-11-30 20:47:21', '2023-11-19 21:11:03', 7, 0, 10),
 ( 'Blog Title New User', 'Description New User', NULL, '2023-11-19 21:16:28', '2023-11-19 21:16:28', 5, 0, 4),
 ( 'Title New X', 'Description X', NULL, '2023-11-28 03:18:09', '2023-11-28 03:18:09', 5, 0, 53);
+
+INSERT INTO `pictures` ( `location`, `blog_id`, `user_id`, `event_id`) VALUES 
+('images/blog_pictures/6554f41890b446.42606833.jpg',1,3,NULL),
+('images/blog_pictures/6554f621909a87.79369267.jpg',2,4,NULL),
+('images/blog_pictures/6554f6a96b8172.66056853.jpg',3,4,NULL),
+('images/blog_pictures/655a6595e8f2e8.47185645.jpg',4,4,NULL),
+('images/blog_pictures/655a65b3cb1a05.94802641.jpg',5,4,NULL),
+('images/blog_pictures/655a65c928b9e9.38424586.jpg',6,4,NULL),
+('images/blog_pictures/655a65d89a0747.50571369.jpg',7,4,NULL),
+('images/blog_pictures/655a65f40244d8.66522321.jpg',8,4,NULL),
+('images/blog_pictures/655a6605445c31.60858895.jpg',9,4,NULL),
+('images/blog_pictures/655a6618383d79.60594253.jpg',10,4,NULL),
+('images/blog_pictures/655a6bd7db62e3.76003664.jpg',11,4,NULL),
+('images/blog_pictures/655a6d1ca9e490.00244529.jpg',12,4,NULL),
+('images/blog_pictures/655bafdef36a98.80008798.jpg',13,7,NULL),
+('images/blog_pictures/655bb7156e38c0.95310575.jpg',14,5,NULL),
+('images/blog_pictures/655c07bf2a2162.58934655.jpg',15,5,NULL),
