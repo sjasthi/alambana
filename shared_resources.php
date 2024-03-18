@@ -381,7 +381,7 @@ function load_common_page_header($headType = 1)
             <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>
 
             <!-- Site Sign On Button -->
-            <div class="fa-signin accent-bg padding-tb8 cta-fw">';
+            <div class="fa-signin accent-bg padding-tb8 cta-fw">
                 <?php
                 if (isset ($_SESSION['role'])) { // Verify SESSION
                     // Only Users Logged In

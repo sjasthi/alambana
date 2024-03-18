@@ -4,7 +4,7 @@ if (!isset ($_SESSION)) {
 }
 
 include 'shared_resources.php';
-include 'get_blogs.php';
+include 'blog_controllers/get_blogs.php';
 include 'feedback_fill.php';
 include 'create_comment_post.php';
 if (isset ($_SESSION['role'])) {
@@ -28,6 +28,35 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
 
 <!DOCTYPE HTML>
 <html>
+
+<style>
+  .blog-container {
+    margin: 16px auto 16px auto;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid lightblue;
+    border-radius: 16px;
+  }
+
+  .blog-container .info-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-container .info-container .author-container img {
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    background-color: lightblue;
+    border-radius: 18px;
+  }
+  .blog-container .text-container {
+    width: 100%;
+  }
+</style>
 
 <head>
   <!-- Basic Page Needs

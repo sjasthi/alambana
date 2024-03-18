@@ -42,28 +42,7 @@ ORDER BY blogs.created_time DESC";*/
   if ($result->num_rows > 0) {
     while ($blog = $result->fetch_assoc()) {
       ?>
-      <style>
-        .blog-container {
-          margin: auto;
-          max-width: 800px;
-          text-align: center;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-          
-        }
-        .blog-container .info-container {
-          display: flex;
-          flex-direction: column;
-        }
-        .blog-container .info-container .author-container img {
-          width: 36px;
-          height: 36px;
-          padding: 4px;
-          background-color: lightblue;
-          border-radius: 18px;
-        }
-      </style>
+
       <div class="blog-container">
         <div class="info-container">
           <div class="author-container">
