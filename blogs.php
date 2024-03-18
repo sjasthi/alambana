@@ -60,12 +60,9 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
     <?php load_common_page_header(2) ?>
     <!-- Banner Area -->
     <div class="hero-area">
-      <div class="page-banner parallax" id="banner" style="background-image:url(images/inside7.jpg);">
-        <div class="container">
-          <div class="page-banner-text">
-            <h1 class="block-title">Blogs</h1>
-          </div>
-        </div>
+      <div
+        style="background-image:url(images/inside7.jpg);background-size: cover;background-repeat: no-repeat;height: 192px;width: 100%;height: 192px;">
+        <h1 style="color: white;padding-top: 48px;text-align: center;">Blogs</h1>
       </div>
     </div>
     <main>

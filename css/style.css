@@ -3295,6 +3295,7 @@ body.boxed .body{
 }
 .touch .parallax, .page-banner.parallax{
 	background-attachment:scroll!important;
+	height: 96px;
 }
 
 /*-------------------------------------------------------------------------------------------*/
