@@ -37,7 +37,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid lightblue;
+    border: 3px solid lightblue;
     border-radius: 16px;
   }
 
@@ -53,6 +53,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
     background-color: lightblue;
     border-radius: 18px;
   }
+
   .blog-container .text-container {
     width: 100%;
   }

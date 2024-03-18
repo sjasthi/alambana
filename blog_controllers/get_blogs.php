@@ -1,10 +1,5 @@
 <?php
 
-use PhpOffice\PhpPresentation\Shape\Chart\Title;
-
-//require 'db_configuration.php';
-//require 'update_current_page.php';
-
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
   session_start();
@@ -26,16 +21,7 @@ function get_blogs($start, $count)
           FROM blogs 
           JOIN users ON blogs.user_id = users.id 
           LEFT JOIN pictures ON users.picture_id = pictures.id 
-          ORDER BY blogs.created_time DESC";/*"SELECT blogs.*, 
-users.id AS user_id, 
-users.first_name, 
-users.last_name, 
-users.picture_id,
-pictures.location AS user_picture_location
-FROM blogs
-JOIN users ON blogs.user_id = users.id
-JOIN pictures ON users.picture_id = pictures.id 
-ORDER BY blogs.created_time DESC";*/
+          ORDER BY blogs.created_time DESC";
 
   $result = $connection->query($sql);
   $connection->close();
