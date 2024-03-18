@@ -15,7 +15,7 @@ function get_blogs($start, $count)
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
   }
 
   $sql = "SELECT blogs.*,
@@ -42,19 +42,23 @@ ORDER BY blogs.created_time DESC";*/
   if ($result->num_rows > 0) {
     while ($blog = $result->fetch_assoc()) {
       ?>
-      <div>
-        Author:
-        <div>
-          <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"]); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
-          <?php echo htmlspecialchars($blog["modified_time"]) ?>
+
+      <div class="blog-container">
+        <div class="info-container">
+          <div class="author-container">
+            <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"] !== null ? $blog["user_picture_location"] : "./images/users_pictures/default_profile.png"); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
+          </div>
+          <div class="time-container">
+            <?php echo htmlspecialchars($blog["modified_time"]) ?>
+          </div>
         </div>
-        Title:
-        <div>
-          <?php echo htmlspecialchars($blog["title"]); ?>
-        </div>
-        Description:
-        <div>
-          <?php echo htmlspecialchars($blog["description"]); ?>
+        <div class="text-container">
+          <div class="title-container">
+            <?php echo htmlspecialchars($blog["title"]); ?>
+          </div>
+          <div class="description-container">
+            <?php echo htmlspecialchars($blog["description"]); ?>
+          </div>
         </div>
       </div>
       <?php
@@ -67,7 +71,7 @@ function get_blog($blog_id)
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
   }
 
   $sql = "SELECT blogs.*, 
@@ -122,7 +126,7 @@ function get_blog_comments($blog_id)
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
   }
 
   $sql = "SELECT 
@@ -164,7 +168,7 @@ function get_blog_pictures($blog_id)
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
   }
 
   $sql = "SELECT * FROM pictures WHERE blog_id = $blog_id";
@@ -190,7 +194,7 @@ function increment_blog_page_visitor_count($blog_id)
 
   // Check connection
   if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
   }
 
   // Increment the visitor count in the database
@@ -239,14 +243,14 @@ function save_button_id($button_id)
 // Retrieve button_id from the session
 function get_saved_button_id()
 {
-  return isset($_SESSION['saved_value']) ? $_SESSION['saved_value'] : null;
+  return isset ($_SESSION['saved_value']) ? $_SESSION['saved_value'] : null;
 }
 function get_session_value()
 {
-  return isset($_SESSION['update_server_page_list_number']) ? $_SESSION['update_server_page_list_number'] : 3;
+  return isset ($_SESSION['update_server_page_list_number']) ? $_SESSION['update_server_page_list_number'] : 3;
 }
 
 function get_session_blog_id()
 {
-  return isset($_SESSION['get_session_blog_id']) ? $_SESSION['get_session_blog_id'] : null;
+  return isset ($_SESSION['get_session_blog_id']) ? $_SESSION['get_session_blog_id'] : null;
 }
