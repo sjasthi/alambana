@@ -254,7 +254,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                         <div class="col-md-3 megamenu-col">
                                         	<span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
                                             <ul class="sub-menu">
-                                                <li><a href="shortcodes.php">Shortcodes</a></li>
+                                                <li><a href="shortcodes.php">Donate Here</a></li>
                                                 <li><a href="typography.php">Typography</a></li>
                                                 <li><a href="privacy-policy.php">Privacy policy</a></li>
                                                 <li><a href="payment-terms.php">Payment terms</a></li>
