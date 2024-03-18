@@ -2,21 +2,22 @@
 
 use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
-  require 'db_configuration.php';
+require 'db_configuration.php';
 
-  $status = session_status();
-  if ($status == PHP_SESSION_NONE) {
+$status = session_status();
+if ($status == PHP_SESSION_NONE) {
     session_start();
-  }
+}
 
 
-  
- 
-  //*************************************/
-  // Create Common Library Loader(s)
 
-  # CSS References
-  function css($pageClass=0) {
+
+//*************************************/
+// Create Common Library Loader(s)
+
+# CSS References
+function css($pageClass = 0)
+{
 
     // [Default]
     echo '
@@ -39,26 +40,27 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
 
     ';
-    
+
     // Login CSS
-    if($pageClass==1){
+    if ($pageClass == 1) {
         echo '
         <link href="css/loginForm.css" rel="stylesheet">
         ';
     }
     // Admin CSS
-    if($pageClass==2){
+    if ($pageClass == 2) {
         echo '
             <link href="css/admin_panel.css" rel="stylesheet" type="text/css">
             <link href="css/" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
         ';
     }
-    
-    
-  }
 
-  # Libraries (JavaScript)
-  function lib() {
+
+}
+
+# Libraries (JavaScript)
+function lib()
+{
     echo '
         <!-- Shared Site Libraries -->
         <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
@@ -83,12 +85,13 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         
 
     ';
-  }
+}
 
-  //*************************************/
-  // Common Page Scripts
-  # Site Scripts
-  function load_common_page_scripts() {
+//*************************************/
+// Common Page Scripts
+# Site Scripts
+function load_common_page_scripts()
+{
 
     # Modernizr to detect support for HTML5 features like Canvas, CSS3 properties, or SVG.
     echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
@@ -120,124 +123,154 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                 window.location.href = page; // Redirect to the specified page
             }
         </script>';
-    
-  }
 
-  //*************************************/
-  // Common Page Elements
-  # Header Page Menu Element
-  function load_common_page_header($headType=1) {
+}
+
+//*************************************/
+// Common Page Elements
+# Header Page Menu Element
+function load_common_page_header($headType = 1)
+{
 
     # Site Header Wrapper / Menu Catagories
-    echo '
+    ?>
     <style>
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .header-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .site-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            /* Adjust padding as needed */
+        }
 
-    .site-header-bar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 30px; /* Adjust padding as needed */
-    }
+        .site-logo {
+            /* Your site logo styles here */
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            /* Adjust margin-right for spacing between logo and other elements */
+        }
 
-    .site-logo {
-        /* Your site logo styles here */
-        display: flex;
-        align-items: center;
-        margin-right: 20px; /* Adjust margin-right for spacing between logo and other elements */
-    }
-    
-    .header-info-col {
-        /* Adjust styles for the phone number */
-        padding: 5px 100px; /* Adjust padding as needed */
-        font-size: 14px; /* Adjust font size as needed */
-        margin-left: 20px; /* Add margin for spacing between sign-in button and other elements */
-        margin-top: 5px; Adjust margin-top to move the button down */
-        background-color: transparent; /* Set background color to transparent */
-        border: none; /* Remove border */
-        text-decoration: none; /* Remove underline style for links */
-        cursor: pointer; /* Set cursor to pointer for better user experience */
-    }
-    
-    .fa-signin {
-        /* Adjust styles for the sign-in button container */
-        margin-right: 20px; /* Add margin for spacing between sign-in button and other elements */
-        background-color: transparent; /* Set background color to transparent */
-        border: none; /* Remove border */
-        color: #333; /* Set text color */
-        text-decoration: none; /* Remove underline style for links */
-        cursor: pointer; /* Set cursor to pointer for better user experience */
-    }
-    
-    .small-button {
-        padding: 1px 40px; /* Adjust padding as needed */
-        font-size: 14px; /* Adjust font size as needed */
-        margin-left: 20px; /* Add margin for spacing between sign-in button and other elements */
-        margin-top: 5px; /* Adjust margin-top to move the button down */
-        background-color: transparent; /* Set background color to transparent */
-        border: none; /* Remove border */
-        color: #333; /* Set text color */
-        text-decoration: none; /* Remove underline style for links */
-        cursor: pointer; /* Set cursor to pointer for better user experience */
-    }
+        .header-info-col {
+            /* Adjust styles for the phone number */
+            padding: 5px 100px;
+            /* Adjust padding as needed */
+            font-size: 14px;
+            /* Adjust font size as needed */
+            margin-left: 20px;
+            /* Add margin for spacing between sign-in button and other elements */
+            margin-top: 5px;
+            Adjust margin-top to move the button down */ background-color: transparent;
+            /* Set background color to transparent */
+            border: none;
+            /* Remove border */
+            text-decoration: none;
+            /* Remove underline style for links */
+            cursor: pointer;
+            /* Set cursor to pointer for better user experience */
+        }
+
+        .fa-signin {
+            /* Adjust styles for the sign-in button container */
+            margin-right: 20px;
+            /* Add margin for spacing between sign-in button and other elements */
+            background-color: transparent;
+            /* Set background color to transparent */
+            border: none;
+            /* Remove border */
+            color: #333;
+            /* Set text color */
+            text-decoration: none;
+            /* Remove underline style for links */
+            cursor: pointer;
+            /* Set cursor to pointer for better user experience */
+        }
+
+        .small-button {
+            padding: 1px 40px;
+            /* Adjust padding as needed */
+            font-size: 14px;
+            /* Adjust font size as needed */
+            margin-left: 20px;
+            /* Add margin for spacing between sign-in button and other elements */
+            margin-top: 5px;
+            /* Adjust margin-top to move the button down */
+            background-color: transparent;
+            /* Set background color to transparent */
+            border: none;
+            /* Remove border */
+            color: #333;
+            /* Set text color */
+            text-decoration: none;
+            /* Remove underline style for links */
+            cursor: pointer;
+            /* Set cursor to pointer for better user experience */
+        }
     </style>
 
-    <!-- Site Header Wrapper -->';
-    
-    if($headType==1) {echo '<div class="site-header-wrapper">';} # Default Menu Bar (Transparent)
-    if($headType==2) {echo '<div class="site-header-bar accent-bg padding-tb20 cta-fw">';} # Solid Menu Bar
-    echo'<!-- Site Header -->
-        <header class="site-header">
-            <div class="header-container">
+    <!-- Site Header Wrapper -->
+    <?php
+    if ($headType == 1) {
+        echo '<div class="site-header-wrapper">';
+    } # Default Menu Bar (Transparent)
+    if ($headType == 2) {
+        echo '<div class="site-header-bar accent-bg padding-tb20 cta-fw">';
+    } # Solid Menu Bar
+    ?>
+    <header class="site-header">
+        <div class="header-container">
             <!-- Site Logo Image -->
-                <div class="site-logo">
-                    
-                    <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
-                    <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199" height="30"></a>
-                    <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
-                    <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199" height="30"></a>
-                </div>
-             	
-                <!-- Site Main Menu -->
-                <ul class="sf-menu dd-menu pull-left" role="menu">
-                    
-                    <li><a href="index.php">Home</a></li> 
-                    <li><a href="about.php">About</a>
-                    	<ul>
-                    		<li><a href="team.php">Team</a></li>
-                    		<li><a href="our-impact.php">Our Impact</a></li>
-                    		<li><a href="contact.php">Contact</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="community-support.php">Community</a>
-                    	<ul>
-                    		<li><a href="causes-education.php">Education</a></li>
-                    		<li><a href="causes-hunger.php">Hunger Relief</a></li>
-                    		<li><a href="causes-women.php">Women Empowerment</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="events.php">Events</a>
-                    	<ul>
-                    		<li><a href="events-grid.php">Events Grid</a></li>
-                    		<li><a href="events-calendar.php">Events Calendar</a></li>
-							<li><a href="community-event.php">Community Events</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery-caption-2cols.php">Gallery</a>
-                    	<!-- HIDDEN GALLERY MENUS ---  <ul>
-                    		<li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
+            <div class="site-logo">
+
+                <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
+                <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199"
+                        height="30"></a>
+                <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
+                <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199"
+                        height="30"></a>
+            </div>
+
+            <!-- Site Main Menu -->
+            <ul class="sf-menu dd-menu pull-left" role="menu">
+
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About</a>
+                    <ul>
+                        <li><a href="team.php">Team</a></li>
+                        <li><a href="our-impact.php">Our Impact</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="community-support.php">Community</a>
+                    <ul>
+                        <li><a href="causes-education.php">Education</a></li>
+                        <li><a href="causes-hunger.php">Hunger Relief</a></li>
+                        <li><a href="causes-women.php">Women Empowerment</a></li>
+                    </ul>
+                </li>
+                <li><a href="events.php">Events</a>
+                    <ul>
+                        <li><a href="events-grid.php">Events Grid</a></li>
+                        <li><a href="events-calendar.php">Events Calendar</a></li>
+                        <li><a href="community-event.php">Community Events</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery-caption-2cols.php">Gallery</a>
+                    <!-- HIDDEN GALLERY MENUS ---  <ul>
+                            <li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
                                 <ul>
                                     <li><a href="gallery-caption-2cols.php">2 Columns</a></li>
                                     <li><a href="gallery-caption-3cols.php">3 Columns</a></li>
                                     <li><a href="gallery-caption-4cols.php">4 Columns</a></li>
                                 </ul> 
                             </li>
-                    		<li><a href="gallery-2cols.php">Gallery without Caption</a>
+                            <li><a href="gallery-2cols.php">Gallery without Caption</a>
                                 <ul>
                                     <li><a href="gallery-2cols.php">2 Columns</a></li>
                                     <li><a href="gallery-3cols.php">3 Columns</a></li>
@@ -245,107 +278,112 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                                 </ul>
                             </li>
                         </ul>-->
-                    </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
-                        <ul class="dropdown">
-                            <li>
-                                <div class="megamenu-container container">
-                                    <div class="row">
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
-                                            <ul class="sub-menu">
-                                                <li><a href="shortcodes.php">Shortcodes</a></li>
-                                                <li><a href="typography.php">Typography</a></li>
-                                                <li><a href="privacy-policy.php">Privacy policy</a></li>
-                                                <li><a href="payment-terms.php">Payment terms</a></li>
-                                                <li><a href="refund-policy.php">Refund policy</a></li>
-                                            </ul>
-                                            <br><br>
-                                            <ul class="sub-menu-feed">
-                                                <li>
-                                                <a href="feedback-post.php" class="megamenu-sub-title" >
-                                                        <img src="images/feedback.png" alt="" style="width: 48px; height: 48px;">
+                </li>
+                <li class="megamenu"><a href="javascrip:void(0)">Features</a>
+                    <ul class="dropdown">
+                        <li>
+                            <div class="megamenu-container container">
+                                <div class="row">
+                                    <div class="col-md-3 megamenu-col">
+                                        <span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
+                                        <ul class="sub-menu">
+                                            <li><a href="shortcodes.php">Shortcodes</a></li>
+                                            <li><a href="typography.php">Typography</a></li>
+                                            <li><a href="privacy-policy.php">Privacy policy</a></li>
+                                            <li><a href="payment-terms.php">Payment terms</a></li>
+                                            <li><a href="refund-policy.php">Refund policy</a></li>
+                                        </ul>
+                                        <br><br>
+                                        <ul class="sub-menu-feed">
+                                            <li>
+                                                <a href="feedback-post.php" class="megamenu-sub-title">
+                                                    <img src="images/feedback.png" alt=""
+                                                        style="width: 48px; height: 48px;">
                                                     Feedback</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3 megamenu-col">
+                                        <span class="megamenu-sub-title"><i class="fa fa-newspaper-o"></i> Latest
+                                            news</span>
+                                        <div class="widget recent_posts">
+                                            <ul>
+                                                <li>
+                                                    <a href="single-cause.php" class="media-box">
+                                                        <img src="images/post1.jpg" alt="">
+                                                    </a>
+                                                    <h5><a href="single-cause.php">A single person can change million
+                                                            lives</a></h5>
+                                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
+                                                </li>
+                                                <li>
+                                                    <a href="single-cause.php" class="media-box">
+                                                        <img src="images/post3.jpg" alt="">
+                                                    </a>
+                                                    <h5><a href="single-cause.php">Donate your woolens this winter</a></h5>
+                                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-newspaper-o"></i> Latest news</span>
-                                        	<div class="widget recent_posts">
-                                            	<ul>
-                                                	<li>
-                                                    	<a href="single-cause.php" class="media-box">
-                                                            <img src="images/post1.jpg" alt="">
-                                                        </a>
-                                                		<h5><a href="single-cause.php">A single person can change million lives</a></h5>
-                                                		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                    </li>
-                                                	<li>
-                                                    	<a href="single-cause.php" class="media-box">
-                                                            <img src="images/post3.jpg" alt="">
-                                                        </a>
-                                                		<h5><a href="single-cause.php">Donate your woolens this winter</a></h5>
-                                                		<span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-microphone"></i> Latest causes</span>
-                                            <ul class="widget_recent_causes">
-                                                <li>
-                                                    <a href="#" class="cause-thumb">
-                                                        <img src="images/cause1.jpg" alt="" class="img-thumbnail">
-                                                        <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                                            <strong></strong>
-                                                        </div>
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
-                                                    <span class="meta-data">10 days left to achieve</span>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="cause-thumb">
-                                                        <img src="images/cause5.jpg" alt="" class="img-thumbnail">
-                                                        <div class="cProgress" data-complete="75" data-color="42b8d4">
-                                                            <strong></strong>
-                                                        </div>
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
-                                                    <span class="meta-data">32 days left to achieve</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-3 megamenu-col">
-                                            <a href="events.php" class="megamenu-sub-title">
-                                                <i class="fa fa-star"></i> Featured Video
-                                            </a>
-                                            <a href="events.php" style="margin-top: 10px; display: block;">
+                                    </div>
+                                    <div class="col-md-3 megamenu-col">
+                                        <span class="megamenu-sub-title"><i class="fa fa-microphone"></i> Latest
+                                            causes</span>
+                                        <ul class="widget_recent_causes">
+                                            <li>
+                                                <a href="#" class="cause-thumb">
+                                                    <img src="images/cause1.jpg" alt="" class="img-thumbnail">
+                                                    <div class="cProgress" data-complete="88" data-color="42b8d4">
+                                                        <strong></strong>
+                                                    </div>
+                                                </a>
+                                                <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
+                                                <span class="meta-data">10 days left to achieve</span>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="cause-thumb">
+                                                    <img src="images/cause5.jpg" alt="" class="img-thumbnail">
+                                                    <div class="cProgress" data-complete="75" data-color="42b8d4">
+                                                        <strong></strong>
+                                                    </div>
+                                                </a>
+                                                <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
+                                                <span class="meta-data">32 days left to achieve</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3 megamenu-col">
+                                        <a href="events.php" class="megamenu-sub-title">
+                                            <i class="fa fa-star"></i> Featured Video
+                                        </a>
+                                        <a href="events.php" style="margin-top: 10px; display: block;">
                                             <video autoplay loop muted width="500" height="275">
                                                 <source src="videos/sample01.mp4" type="video/mp4">
                                                 Your browser does not support the video tag.
                                             </video>
-                                            </a>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
-                            </li>
-                      	</ul>
-                  	</li>
-                    <li><a href="blogs.php">Blog</a>
-                        <ul class="dropdown">
-                            <li><a href="blogs.php">Browse Blogs</a></li>
-                            <li><a href="#" onclick="show_new_post_form()">Create Post</a></li>
-                        </ul>
-                    </li>
-              	</ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="blogs.php">Blog</a>
+                    <ul class="dropdown">
+                        <li><a href="blogs.php">Browse Blogs</a></li>
+                        <li><a href="#" onclick="show_new_post_form()">Create Post</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-                <!-- Site Phone Number -->
-                <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>  
-                
-                <!-- Site Sign On Button -->
-                <div class="fa-signin accent-bg padding-tb8 cta-fw">';
-                if (isset($_SESSION['role'])){ // Verify SESSION
+            <!-- Site Phone Number -->
+            <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
+            <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>
+
+            <!-- Site Sign On Button -->
+            <div class="fa-signin accent-bg padding-tb8 cta-fw">';
+                <?php
+                if (isset ($_SESSION['role'])) { // Verify SESSION
                     // Only Users Logged In
                     if ($_SESSION['role'] == 'user') {
                         echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['first_name'] . ')</a>';
@@ -356,30 +394,32 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
                         echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['role'] . ')</a>';
                         echo '<a href="admin_panel.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Admin</a>';
                     }
-                }
-                else {// None.
+                } else {// None.
                     echo '<a href="loginForm.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Sign in</a>';
                 }
-
-                echo '
-                </div>          
+                ?>
             </div>
-        </header>
+        </div>
+    </header>
     </div>
-    ';
+    <?php
+}
+# Footer Page Element
+function load_common_page_footer($footType = 1)
+{
 
-    
-   
-  }
-  # Footer Page Element
-  function load_common_page_footer($footType=1) {
-
-    echo '
+?>
     
     <!-- Site Footer -->';
-    if($footType==1) {echo '<div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">';} # Dynamic Footer Placement [Default]
-    if($footType==2) {echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';} # Static Footer 
-    echo '	<div class="container">
+    <?php
+    if ($footType == 1) {
+        echo '<div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">';
+    } # Dynamic Footer Placement [Default]
+    if ($footType == 2) {
+        echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';
+    } # Static Footer 
+    ?>
+    	<div class="container">
         	<div class="row">
             	<div class="col-md-4 col-sm-4">
                 	<div class="widget footer_widget">
@@ -457,11 +497,12 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         </div>
         <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
     </div>
-    ';
+    <?php
 
-  }
-  # Donation Dialog
-  function donate_dialog() {
+}
+# Donation Dialog
+function donate_dialog()
+{
 
     echo '
     
@@ -544,12 +585,13 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         </div>
     </div>
     ';
-  }
+}
 
-  //*************************************/
-  // Admin Controls
-  # Side Menu
-  function admin_side_menu(){
+//*************************************/
+// Admin Controls
+# Side Menu
+function admin_side_menu()
+{
     echo ' 
     <div class="a-side-menu">
         <div class="a-brand-name">
@@ -566,26 +608,28 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
         </ul>
     </div>
     ';
-  }
+}
 
 
-  # Fav Icon
-  function generateFaviconLink() {
+# Fav Icon
+function generateFaviconLink()
+{
     echo ' <!-- Include the favicon.ico file -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">';
-  }
+}
 
-  
-  //*************************************/
-  // Extended Functions
-  # Style Switcher Start
-  function style_switcher() {
 
-    if (isset($_SESSION['role'])){ // Verify SESSION
-        
+//*************************************/
+// Extended Functions
+# Style Switcher Start
+function style_switcher()
+{
+
+    if (isset ($_SESSION['role'])) { // Verify SESSION
+
         // Admin Logged In
         if ($_SESSION['role'] == 'admin') {
-            
+
             echo '
             
             <!-- Style Switcher Start -->
@@ -659,5 +703,5 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
         }
     }
-  }
+}
 ?>

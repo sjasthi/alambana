@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION)) {
+if (!isset ($_SESSION)) {
   session_start();
 }
 
@@ -7,19 +7,19 @@ include 'shared_resources.php';
 include 'get_blogs.php';
 include 'feedback_fill.php';
 include 'create_comment_post.php';
-if (isset($_SESSION['role'])) {
+if (isset ($_SESSION['role'])) {
   $userRole = $_SESSION['role'];
 }
 
 // Define the number of blogs per page (default to 3)
-$blogsPerPage = isset($_GET['update_server_page_list_number']) ? intval($_GET['update_server_page_list_number']) : 3;
+$blogsPerPage = isset ($_GET['update_server_page_list_number']) ? intval($_GET['update_server_page_list_number']) : 3;
 
 // Get the current page number from the URL parameters, default to 1 if not set
-$current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensures the variable is an integer for security
+$current_page = isset ($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensures the variable is an integer for security
 
 
 // Check if the current page is blogs.php and current_page parameter is not set
-if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset($_GET['current_page'])) {
+if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page'])) {
   // Redirect to the same page with the current_page parameter
   header('Location: blogs.php?current_page#1');//. $current_page);
   exit(); // Ensure script stops execution after redirection
@@ -59,6 +59,15 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset($_GET['current_page'
     <!-- Site Header Wrapper -->
     <?php load_common_page_header(2) ?>
     <!-- Banner Area -->
+    <div class="hero-area">
+      <div class="page-banner parallax" id="banner" style="background-image:url(images/inside7.jpg);">
+        <div class="container">
+          <div class="page-banner-text">
+            <h1 class="block-title">Blogs</h1>
+          </div>
+        </div>
+      </div>
+    </div>
     <main>
       <?php get_blogs(0, 10); ?>
     </main>
