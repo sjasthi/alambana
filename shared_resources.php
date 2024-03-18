@@ -278,6 +278,26 @@ function load_common_page_header($headType = 1)
                                 </ul>
                             </li>
                         </ul>-->
+                    </li>
+                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
+                        <ul class="dropdown">
+                            <li>
+                                <div class="megamenu-container container">
+                                    <div class="row">
+                                        <div class="col-md-3 megamenu-col">
+                                        	<span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
+                                            <ul class="sub-menu">
+                                                <li><a href="shortcodes.php">Donate Here</a></li>
+                                                <li><a href="typography.php">Typography</a></li>
+                                                <li><a href="privacy-policy.php">Privacy policy</a></li>
+                                                <li><a href="payment-terms.php">Payment terms</a></li>
+                                                <li><a href="refund-policy.php">Refund policy</a></li>
+                                            </ul>
+                                            <br><br>
+                                            <ul class="sub-menu-feed">
+                                                <li>
+                                                <a href="feedback-post.php" class="megamenu-sub-title" >
+                                                        <img src="images/feedback.png" alt="" style="width: 48px; height: 48px;">
                 </li>
                 <li class="megamenu"><a href="javascrip:void(0)">Features</a>
                     <ul class="dropdown">
