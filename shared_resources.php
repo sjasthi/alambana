@@ -278,26 +278,12 @@ function load_common_page_header($headType = 1)
                                 </ul>
                             </li>
                         </ul>-->
-                    </li>
-                    <li class="megamenu"><a href="javascrip:void(0)">Features</a>
-                        <ul class="dropdown">
-                            <li>
-                                <div class="megamenu-container container">
-                                    <div class="row">
-                                        <div class="col-md-3 megamenu-col">
-                                        	<span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
-                                            <ul class="sub-menu">
-                                                <li><a href="shortcodes.php">Donate Here</a></li>
-                                                <li><a href="typography.php">Typography</a></li>
-                                                <li><a href="privacy-policy.php">Privacy policy</a></li>
-                                                <li><a href="payment-terms.php">Payment terms</a></li>
-                                                <li><a href="refund-policy.php">Refund policy</a></li>
-                                            </ul>
-                                            <br><br>
-                                            <ul class="sub-menu-feed">
-                                                <li>
-                                                <a href="feedback-post.php" class="megamenu-sub-title" >
-                                                        <img src="images/feedback.png" alt="" style="width: 48px; height: 48px;">
+                </li>
+                <li><a href="events.php">Blogs</a>
+                    <ul>
+                        <li><a href="blogs.php">View Blogs</a></li>
+                        <li><a href="new_blog_entry.php">Post Blog</a></li>
+                    </ul>
                 </li>
                 <li class="megamenu"><a href="javascrip:void(0)">Features</a>
                     <ul class="dropdown">
@@ -307,7 +293,7 @@ function load_common_page_header($headType = 1)
                                     <div class="col-md-3 megamenu-col">
                                         <span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
                                         <ul class="sub-menu">
-                                            <li><a href="shortcodes.php">Shortcodes</a></li>
+                                            <li><a href="shortcodes.php">Donate Here</a></li>
                                             <li><a href="typography.php">Typography</a></li>
                                             <li><a href="privacy-policy.php">Privacy policy</a></li>
                                             <li><a href="payment-terms.php">Payment terms</a></li>
@@ -319,79 +305,11 @@ function load_common_page_header($headType = 1)
                                                 <a href="feedback-post.php" class="megamenu-sub-title">
                                                     <img src="images/feedback.png" alt=""
                                                         style="width: 48px; height: 48px;">
-                                                    Feedback</a>
                                             </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3 megamenu-col">
-                                        <span class="megamenu-sub-title"><i class="fa fa-newspaper-o"></i> Latest
-                                            news</span>
-                                        <div class="widget recent_posts">
-                                            <ul>
-                                                <li>
-                                                    <a href="single-cause.php" class="media-box">
-                                                        <img src="images/post1.jpg" alt="">
-                                                    </a>
-                                                    <h5><a href="single-cause.php">A single person can change million
-                                                            lives</a></h5>
-                                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                </li>
-                                                <li>
-                                                    <a href="single-cause.php" class="media-box">
-                                                        <img src="images/post3.jpg" alt="">
-                                                    </a>
-                                                    <h5><a href="single-cause.php">Donate your woolens this winter</a></h5>
-                                                    <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 megamenu-col">
-                                        <span class="megamenu-sub-title"><i class="fa fa-microphone"></i> Latest
-                                            causes</span>
-                                        <ul class="widget_recent_causes">
-                                            <li>
-                                                <a href="#" class="cause-thumb">
-                                                    <img src="images/cause1.jpg" alt="" class="img-thumbnail">
-                                                    <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                                        <strong></strong>
-                                                    </div>
-                                                </a>
-                                                <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
-                                                <span class="meta-data">10 days left to achieve</span>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="cause-thumb">
-                                                    <img src="images/cause5.jpg" alt="" class="img-thumbnail">
-                                                    <div class="cProgress" data-complete="75" data-color="42b8d4">
-                                                        <strong></strong>
-                                                    </div>
-                                                </a>
-                                                <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
-                                                <span class="meta-data">32 days left to achieve</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3 megamenu-col">
-                                        <a href="events.php" class="megamenu-sub-title">
-                                            <i class="fa fa-star"></i> Featured Video
-                                        </a>
-                                        <a href="events.php" style="margin-top: 10px; display: block;">
-                                            <video autoplay loop muted width="500" height="275">
-                                                <source src="videos/sample01.mp4" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                    </ul>
-                </li>
-                <li><a href="blogs.php">Blog</a>
-                    <ul class="dropdown">
-                        <li><a href="blogs.php">Browse Blogs</a></li>
-                        <li><a href="#" onclick="show_new_post_form()">Create Post</a></li>
                     </ul>
                 </li>
             </ul>
@@ -428,8 +346,8 @@ function load_common_page_header($headType = 1)
 function load_common_page_footer($footType = 1)
 {
 
-?>
-    
+    ?>
+
     <!-- Site Footer -->';
     <?php
     if ($footType == 1) {
@@ -439,83 +357,88 @@ function load_common_page_footer($footType = 1)
         echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';
     } # Static Footer 
     ?>
-    	<div class="container">
-        	<div class="row">
-            	<div class="col-md-4 col-sm-4">
-                	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">About Aalambana Foundation</h4>
-                        <p><img src="images/logo.png" alt=""></p>
-                        <p>Our mission is to provide access to education to financially disadvantaged students in order to transform their lives. By empowering disadvantaged individuals,
-                             we hope to help close the socio-economic gap in India, creating a more just and united society.</p>
-                        
-                        <ul class="social-icons-rounded social-icons-colored">
-                            <li class="facebook"><a href="https://www.facebook.com/aalambanafb"><i class="fa fa-facebook-f"></i></a></li>
-                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                            <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                            <li class="instagram"><a href="https://www.instagram.com/aalambana.foundation/?igshid=klesjehfy70r"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="widget footer_widget">
+                    <h4 class="widgettitle">About Aalambana Foundation</h4>
+                    <p><img src="images/logo.png" alt=""></p>
+                    <p>Our mission is to provide access to education to financially disadvantaged students in order to
+                        transform their lives. By empowering disadvantaged individuals,
+                        we hope to help close the socio-economic gap in India, creating a more just and united society.</p>
+
+                    <ul class="social-icons-rounded social-icons-colored">
+                        <li class="facebook"><a href="https://www.facebook.com/aalambanafb"><i
+                                    class="fa fa-facebook-f"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                        <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li class="instagram"><a
+                                href="https://www.instagram.com/aalambana.foundation/?igshid=klesjehfy70r"><i
+                                    class="fa fa-instagram"></i></a></li>
+                    </ul>
                 </div>
-            	<div class="col-md-4 col-sm-4">
-                	<div class="widget footer_widget widget_links">
-                    	<h4 class="widgettitle">Blogroll</h4>
-                        <ul>
-                        	<li><a href="our-impact.php">Become a volunteer</a></li>
-                        	<li><a href="about.php">Our mission</a></li>
-                        	<li><a href="community-event.php">Success stories</a></li>
-                        	<li><a href="team.php">Meet our team</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="widget footer_widget widget_links">
+                    <h4 class="widgettitle">Blogroll</h4>
+                    <ul>
+                        <li><a href="our-impact.php">Become a volunteer</a></li>
+                        <li><a href="about.php">Our mission</a></li>
+                        <li><a href="community-event.php">Success stories</a></li>
+                        <li><a href="team.php">Meet our team</a></li>
+                    </ul>
                 </div>
-            	<div class="col-md-4 col-sm-4">
-                	<div class="widget footer_widget">
-                    	<h4 class="widgettitle">Contact Us</h4>
-                        <p style="color: white;">
-                            Aalambana Foundation - CA Office<br>
-                            561 Orion Rd.<br>
-                            Tustin CA 92782<br>
-                            Californa, United States<br>
-                            (951) 821-6051
-                        </p>
-                        
-                        <p>Email: <a href="mailto:aalambanafoundation@gmail.com" style="color: white;">aalambanafoundation@gmail.com</a></p>
-   
-                       <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
-                    </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="widget footer_widget">
+                    <h4 class="widgettitle">Contact Us</h4>
+                    <p style="color: white;">
+                        Aalambana Foundation - CA Office<br>
+                        561 Orion Rd.<br>
+                        Tustin CA 92782<br>
+                        Californa, United States<br>
+                        (951) 821-6051
+                    </p>
+
+                    <p>Email: <a href="mailto:aalambanafoundation@gmail.com"
+                            style="color: white;">aalambanafoundation@gmail.com</a></p>
+
+                    <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
                 </div>
             </div>
         </div>
     </div>
+    </div>
     <!-- Site Footer Layer -->
     <div class="site-footer-bottom">
-    	<div class="container">
-        	<div class="row">
-            	<div class="col-md-6 col-sm-6">
-                	<div class="copyrights-col-left">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="copyrights-col-left">
                         <p>&copy; <span id="current-year"></span> Aalambana Foundation. All Rights Reserved</p>
                     </div>
                     <script>
                         // Get the current year
                         var currentYear = new Date().getFullYear();
-                        
+
                         // Set the current year in the HTML content
                         document.getElementById("current-year").textContent = currentYear;
                     </script>
                 </div>
-            	<div class="col-md-6 col-sm-6"></div>
-                	<div class="copyrights-col-right">
-                    	<ul class="footer-menu">
-                        	<li><a href="privacy-policy.php">Privacy policy</a></li>
-                        	<li><a href="payment-terms.php">Payment terms</a></li>
-                        	<li><a href="refund-policy.php">Refund policy</a></li>
-                        </ul>
-                    </div>
+                <div class="col-md-6 col-sm-6"></div>
+                <div class="copyrights-col-right">
+                    <ul class="footer-menu">
+                        <li><a href="privacy-policy.php">Privacy policy</a></li>
+                        <li><a href="payment-terms.php">Payment terms</a></li>
+                        <li><a href="refund-policy.php">Refund policy</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a> 
+    </div>
+    <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
     </div>
     <?php
 

@@ -1,5 +1,6 @@
 <?php
 require 'db_configuration.php';
+require_once 'blog_controllers/create_blog.php';
 
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
@@ -12,13 +13,13 @@ if ($connection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$hash = "";
-if (isset($_SESSION['role'])) { // Verify SESSION
+$user_id;
+if (isset($_SESSION['id'])) { // Verify SESSION
   // Only Valid Users Logged In
-  $hash = $_SESSION['hash']; #echo $hash;
+  $user_id = $_SESSION['id']; #echo $hash;
 }
 
-if (!empty($hash)) { // Only Allow Users To Create Entry
+if (!empty($user_id)) { // Only Allow Users To Create Entry
 
   # Field Entries
   if (isset($_POST['create_post'])) {
@@ -50,21 +51,9 @@ if (!empty($hash)) { // Only Allow Users To Create Entry
     }
 
     // Modification to MySQL Database
-    $sql = "INSERT INTO blogs VALUES (
-      NULL,
-      '$title',
-      '$author',
-      '$description',
-      '$video_link',
-      '$timestamp',
-      '$timestamp',
-      '$hash',
-      '$hidden',
-      0);";
+    
 
-    if (!mysqli_query($connection, $sql)) {
-      echo ("Error description: " . mysqli_error($connection));
-    } else {
+    if (create_blog($title, $description, $video_link, $user_id)) {
       $last_id = mysqli_insert_id($connection);
       foreach ($fileNameArray as $location) {
         $sql = "INSERT INTO blog_pictures VALUES (
@@ -76,6 +65,8 @@ if (!empty($hash)) { // Only Allow Users To Create Entry
           echo ("Error description: " . mysqli_error($connection));
         }
       }
+    } else{
+      echo "Blog could not be created.";
     }
   }
 }
