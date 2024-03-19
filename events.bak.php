@@ -5,6 +5,7 @@ if (!isset($_SESSION)) {
 
 include 'shared_resources.php';
 include 'event_fill.php';
+include 'blog_fill.php';
 include 'feedback_fill.php';
 if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
@@ -24,7 +25,7 @@ $offset = ($current_page - 1) * $eventsPerPage;
 
 function fetchEvents($db, $offset, $eventsPerPage) {
     $events = [];
-    $query = "SELECT * FROM events ORDER BY event_date_start DESC LIMIT $eventsPerPage OFFSET $offset";
+    $query = "SELECT * FROM events ORDER BY Event_Date DESC LIMIT $eventsPerPage OFFSET $offset";
     if ($result = $db->query($query)) {
         while ($row = $result->fetch_assoc()) {
             $events[] = $row;
@@ -180,8 +181,8 @@ function transformYouTubeURL($url) {
 function fetchEventsWithPictures($db, $offset, $eventsPerPage) {
     $events = [];
     $query = "SELECT e.*, p.Location FROM events e
-              LEFT JOIN pictures p ON e.id = p.event_Id
-              ORDER BY e.event_date_start DESC LIMIT $eventsPerPage OFFSET $offset";
+              LEFT JOIN event_pictures p ON e.Event_Id = p.Event_Id
+              ORDER BY e.Event_Date DESC LIMIT $eventsPerPage OFFSET $offset";
     if ($result = $db->query($query)) {
         while ($row = $result->fetch_assoc()) {
             $events[] = $row;
@@ -212,13 +213,13 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
                     </form>
                     <?php foreach ($events as $event): ?>
     <div class="event">
-        <h3><?php echo htmlspecialchars($event['title']); ?></h3>
-        <p><?php echo htmlspecialchars($event['description']); ?></p>
-        <p>Date: <?php echo htmlspecialchars($event['event_date_start']) . "-" . htmlspecialchars($event['event_date_end']); ?></p>
+        <h3><?php echo htmlspecialchars($event['Title']); ?></h3>
+        <p><?php echo htmlspecialchars($event['Description']); ?></p>
+        <p>Date: <?php echo htmlspecialchars($event['Event_Date']); ?></p>
 
         <?php 
-        if (!empty($event['video_link'])) {
-            $embedURL = transformYouTubeURL($event['video_link']); // Transform the URL
+        if (!empty($event['Video_Link'])) {
+            $embedURL = transformYouTubeURL($event['Video_Link']); // Transform the URL
             if (!empty($embedURL)) {
                 echo '<div class="video-container">';
                 echo '<iframe width="560" height="315" src="' . htmlspecialchars($embedURL) . '" frameborder="0" allowfullscreen></iframe>';
@@ -227,8 +228,8 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
         }
         ?> 
 
-        <?php if (!empty($event['location'])): ?>
-            <a href="event-post.php?event_id=<?php echo htmlspecialchars($event['id']); ?>" class="media-box">
+        <?php if (!empty($event['Location'])): ?>
+            <a href="event-post.php?event_id=<?php echo htmlspecialchars($event['Event_Id']); ?>" class="media-box">
                 <img src="<?php echo htmlspecialchars($event['Location']); ?>">
             </a>
         <?php endif; ?>
