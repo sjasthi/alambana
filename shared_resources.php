@@ -279,7 +279,7 @@ function load_common_page_header($headType = 1)
                             </li>
                         </ul>-->
                 </li>
-                <li><a href="events.php">Blogs</a>
+                <li><a href="blogs.php">Blogs</a>
                     <ul>
                         <li><a href="blogs.php">View Blogs</a></li>
                         <li><a href="new_blog_entry.php">Post Blog</a></li>
