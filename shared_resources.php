@@ -20,39 +20,39 @@ function css($pageClass = 0)
 {
 
     // [Default]
-    echo '
-        <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-        <link href="css/style.css" rel="stylesheet" type="text/css">
-        <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-        <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-        <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
-        <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-        <link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+    ?>
+    <link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
+    <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
+    <link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
 
-        <!-- Color Style -->
-        <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-        <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+    <!-- Color Style -->
+    <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
+    <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
 
-    ';
+    <?php
 
     // Login CSS
     if ($pageClass == 1) {
-        echo '
+        ?>
         <link href="css/loginForm.css" rel="stylesheet">
-        ';
+        <?php
     }
     // Admin CSS
     if ($pageClass == 2) {
-        echo '
-            <link href="css/admin_panel.css" rel="stylesheet" type="text/css">
-            <link href="css/" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
-        ';
+        ?>
+        <link href="css/admin_panel.css" rel="stylesheet" type="text/css">
+        <link href="css/" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+        <?php
     }
 
 
@@ -61,30 +61,28 @@ function css($pageClass = 0)
 # Libraries (JavaScript)
 function lib()
 {
-    echo '
-        <!-- Shared Site Libraries -->
-        <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
-        <script src="js/bootstrap.js"></script> <!-- UI -->
-        <script src="js/ui-plugins.js"></script> <!-- UI Plugins -->
-        <script src="js/helper-plugins.js"></script> <!-- Helper Plugins -->
-        <script src="js/init.js"></script> <!-- All Scripts -->
-        <script src="js/circle-progress.js"></script> <!-- Circle Progress Bars -->
-        <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- Maginific Popup Plugin -->
-        <script src="vendor/countdown/js/jquery.countdown.min.js"></script> <!-- Jquery Timer -->
-        <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script> <!-- Owl Carousel -->
-        <script src="vendor/flexslider/js/jquery.flexslider.js"></script> <!-- FlexSlider -->
+    ?>
+    <!-- Shared Site Libraries -->
+    <script src="js/jquery-2.1.3.min.js"></script> <!-- Jquery Library Call -->
+    <script src="js/bootstrap.js"></script> <!-- UI -->
+    <script src="js/ui-plugins.js"></script> <!-- UI Plugins -->
+    <script src="js/helper-plugins.js"></script> <!-- Helper Plugins -->
+    <script src="js/init.js"></script> <!-- All Scripts -->
+    <script src="js/circle-progress.js"></script> <!-- Circle Progress Bars -->
+    <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- Maginific Popup Plugin -->
+    <script src="vendor/countdown/js/jquery.countdown.min.js"></script> <!-- Jquery Timer -->
+    <script src="vendor/owl-carousel/js/owl.carousel.min.js"></script> <!-- Owl Carousel -->
+    <script src="vendor/flexslider/js/jquery.flexslider.js"></script> <!-- FlexSlider -->
 
-        <!-- Switcher Libraries -->
-        <script src="style-switcher/js/jquery_cookie.js"></script>
-        <script src="style-switcher/js/script.js"></script>
+    <!-- Switcher Libraries -->
+    <script src="style-switcher/js/jquery_cookie.js"></script>
+    <script src="style-switcher/js/script.js"></script>
 
-        <!-- Calendar Moment Function -->
-        <script src="vendor/fullcalendar/fullcalendar.min.js"></script>
-        <script src="vendor/fullcalendar/lib/moment.min.js"></script><!-- Calendar Moment Function -->
-        <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- PrettyPhoto Plugin -->
-        
-
-    ';
+    <!-- Calendar Moment Function -->
+    <script src="vendor/fullcalendar/fullcalendar.min.js"></script>
+    <script src="vendor/fullcalendar/lib/moment.min.js"></script><!-- Calendar Moment Function -->
+    <script src="vendor/magnific/jquery.magnific-popup.min.js"></script> <!-- PrettyPhoto Plugin -->
+    <?php
 }
 
 //*************************************/
@@ -213,52 +211,56 @@ function load_common_page_header($headType = 1)
     <!-- Site Header Wrapper -->
     <?php
     if ($headType == 1) {
-        echo '<div class="site-header-wrapper">';
+        ?>
+        <div class="site-header-wrapper">
+            <?php
     } # Default Menu Bar (Transparent)
     if ($headType == 2) {
-        echo '<div class="site-header-bar accent-bg padding-tb20 cta-fw">';
+        ?>
+            <div class="site-header-bar accent-bg padding-tb20 cta-fw">
+                <?php
     } # Solid Menu Bar
     ?>
-    <header class="site-header">
-        <div class="header-container">
-            <!-- Site Logo Image -->
-            <div class="site-logo">
+            <header class="site-header">
+                <div class="header-container">
+                    <!-- Site Logo Image -->
+                    <div class="site-logo">
 
-                <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
-                <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199"
-                        height="30"></a>
-                <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
-                <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo" width="199"
-                        height="30"></a>
-            </div>
+                        <a href="index.php" class="default-logo"><img src="images/logo.png" alt="Logo"></a>
+                        <a href="index.php" class="default-retina-logo"><img src="images/logo@2x.png" alt="Logo" width="199"
+                                height="30"></a>
+                        <a href="index.php" class="sticky-logo"><img src="images/sticky-logo.png" alt="Logo"></a>
+                        <a href="index.php" class="sticky-retina-logo"><img src="images/sticky-logo@2x.png" alt="Logo"
+                                width="199" height="30"></a>
+                    </div>
 
-            <!-- Site Main Menu -->
-            <ul class="sf-menu dd-menu pull-left" role="menu">
+                    <!-- Site Main Menu -->
+                    <ul class="sf-menu dd-menu pull-left" role="menu">
 
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a>
-                    <ul>
-                        <li><a href="team.php">Team</a></li>
-                        <li><a href="our-impact.php">Our Impact</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </li>
-                <li><a href="community-support.php">Community</a>
-                    <ul>
-                        <li><a href="causes-education.php">Education</a></li>
-                        <li><a href="causes-hunger.php">Hunger Relief</a></li>
-                        <li><a href="causes-women.php">Women Empowerment</a></li>
-                    </ul>
-                </li>
-                <li><a href="events.php">Events</a>
-                    <ul>
-                        <li><a href="events-grid.php">Events Grid</a></li>
-                        <li><a href="events-calendar.php">Events Calendar</a></li>
-                        <li><a href="community-event.php">Community Events</a></li>
-                    </ul>
-                </li>
-                <li><a href="gallery-caption-2cols.php">Gallery</a>
-                    <!-- HIDDEN GALLERY MENUS ---  <ul>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About</a>
+                            <ul>
+                                <li><a href="team.php">Team</a></li>
+                                <li><a href="our-impact.php">Our Impact</a></li>
+                                <li><a href="contact.php">Contact</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="community-support.php">Community</a>
+                            <ul>
+                                <li><a href="causes-education.php">Education</a></li>
+                                <li><a href="causes-hunger.php">Hunger Relief</a></li>
+                                <li><a href="causes-women.php">Women Empowerment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="events.php">Events</a>
+                            <ul>
+                                <li><a href="events-grid.php">Events Grid</a></li>
+                                <li><a href="events-calendar.php">Events Calendar</a></li>
+                                <li><a href="community-event.php">Community Events</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="gallery-caption-2cols.php">Gallery</a>
+                            <!-- HIDDEN GALLERY MENUS ---  <ul>
                             <li><a href="gallery-caption-2cols.php">Gallery with Caption</a>
                                 <ul>
                                     <li><a href="gallery-caption-2cols.php">2 Columns</a></li>
@@ -274,42 +276,42 @@ function load_common_page_header($headType = 1)
                                 </ul>
                             </li>
                         </ul>-->
-                </li>
-                <li><a href="blogs.php">Blogs</a>
-                    <ul>
-                        <li><a href="blogs.php">View Blogs</a></li>
-                        <li><a href="new_blog_entry.php">Post Blog</a></li>
+                        </li>
+                        <li><a href="blogs.php">Blogs</a>
+                            <ul>
+                                <li><a href="blogs.php">View Blogs</a></li>
+                                <li><a href="new_blog_entry.php">Post Blog</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
 
-            <!-- Site Phone Number -->
-            <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
-            <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>
+                    <!-- Site Phone Number -->
+                    <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                    <div class="header-info-col"><i class="fa fa-phone"></i> (951) 821-6051</div>
 
-            <!-- Site Sign On Button -->
-            <div class="fa-signin accent-bg padding-tb8 cta-fw">
-                <?php
-                if (isset ($_SESSION['role'])) { // Verify SESSION
-                    // Only Users Logged In
-                    if ($_SESSION['role'] == 'user') {
-                        echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['first_name'] . ')</a>';
-                        echo '<a href="profilesettings.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Profilo</a>';
-                    }
-                    // Admin Logged In
-                    elseif ($_SESSION['role'] == 'admin') {
-                        echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['role'] . ')</a>';
-                        echo '<a href="admin_panel.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Admin</a>';
-                    }
-                } else {// None.
-                    echo '<a href="loginForm.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Sign in</a>';
-                }
-                ?>
-            </div>
+                    <!-- Site Sign On Button -->
+                    <div class="fa-signin accent-bg padding-tb8 cta-fw">
+                        <?php
+                        if (isset ($_SESSION['role'])) { // Verify SESSION
+                            // Only Users Logged In
+                            if ($_SESSION['role'] == 'user') {
+                                echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['first_name'] . ')</a>';
+                                echo '<a href="profilesettings.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Profilo</a>';
+                            }
+                            // Admin Logged In
+                            elseif ($_SESSION['role'] == 'admin') {
+                                echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['role'] . ')</a>';
+                                echo '<a href="admin_panel.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Admin</a>';
+                            }
+                        } else {// None.
+                            echo '<a href="loginForm.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Sign in</a>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </header>
         </div>
-    </header>
-    </div>
-    <?php
+        <?php
 }
 # Footer Page Element
 function load_common_page_footer($footType = 1)
@@ -317,68 +319,69 @@ function load_common_page_footer($footType = 1)
 
     ?>
 
-    <!-- Site Footer -->
-    <?php
-    if ($footType == 1) {
-        echo '<div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">';
-    } # Dynamic Footer Placement [Default]
-    if ($footType == 2) {
-        echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';
-    } # Static Footer 
-    ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4">
-                <div class="widget footer_widget">
-                    <h4 class="widgettitle">About Aalambana Foundation</h4>
-                    <p><img src="images/logo.png" alt=""></p>
-                    <p>Our mission is to provide access to education to financially disadvantaged students in order to
-                        transform their lives. By empowering disadvantaged individuals,
-                        we hope to help close the socio-economic gap in India, creating a more just and united society.</p>
+        <!-- Site Footer -->
+        <?php
+        if ($footType == 1) {
+            echo '<div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">';
+        } # Dynamic Footer Placement [Default]
+        if ($footType == 2) {
+            echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';
+        } # Static Footer 
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="widget footer_widget">
+                        <h4 class="widgettitle">About Aalambana Foundation</h4>
+                        <p><img src="images/logo.png" alt=""></p>
+                        <p>Our mission is to provide access to education to financially disadvantaged students in order to
+                            transform their lives. By empowering disadvantaged individuals,
+                            we hope to help close the socio-economic gap in India, creating a more just and united society.
+                        </p>
 
-                    <ul class="social-icons-rounded social-icons-colored">
-                        <li class="facebook"><a href="https://www.facebook.com/aalambanafb"><i
-                                    class="fa fa-facebook-f"></i></a></li>
-                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                        <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                        <li class="instagram"><a
-                                href="https://www.instagram.com/aalambana.foundation/?igshid=klesjehfy70r"><i
-                                    class="fa fa-instagram"></i></a></li>
-                    </ul>
+                        <ul class="social-icons-rounded social-icons-colored">
+                            <li class="facebook"><a href="https://www.facebook.com/aalambanafb"><i
+                                        class="fa fa-facebook-f"></i></a></li>
+                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                            <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                            <li class="instagram"><a
+                                    href="https://www.instagram.com/aalambana.foundation/?igshid=klesjehfy70r"><i
+                                        class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="widget footer_widget widget_links">
-                    <h4 class="widgettitle">Blogroll</h4>
-                    <ul>
-                        <li><a href="our-impact.php">Become a volunteer</a></li>
-                        <li><a href="about.php">Our mission</a></li>
-                        <li><a href="community-event.php">Success stories</a></li>
-                        <li><a href="team.php">Meet our team</a></li>
-                    </ul>
+                <div class="col-md-4 col-sm-4">
+                    <div class="widget footer_widget widget_links">
+                        <h4 class="widgettitle">Blogroll</h4>
+                        <ul>
+                            <li><a href="our-impact.php">Become a volunteer</a></li>
+                            <li><a href="about.php">Our mission</a></li>
+                            <li><a href="community-event.php">Success stories</a></li>
+                            <li><a href="team.php">Meet our team</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="widget footer_widget">
-                    <h4 class="widgettitle">Contact Us</h4>
-                    <p style="color: white;">
-                        Aalambana Foundation - CA Office<br>
-                        561 Orion Rd.<br>
-                        Tustin CA 92782<br>
-                        Californa, United States<br>
-                        (951) 821-6051
-                    </p>
+                <div class="col-md-4 col-sm-4">
+                    <div class="widget footer_widget">
+                        <h4 class="widgettitle">Contact Us</h4>
+                        <p style="color: white;">
+                            Aalambana Foundation - CA Office<br>
+                            561 Orion Rd.<br>
+                            Tustin CA 92782<br>
+                            Californa, United States<br>
+                            (951) 821-6051
+                        </p>
 
-                    <p>Email: <a href="mailto:aalambanafoundation@gmail.com"
-                            style="color: white;">aalambanafoundation@gmail.com</a></p>
+                        <p>Email: <a href="mailto:aalambanafoundation@gmail.com"
+                                style="color: white;">aalambanafoundation@gmail.com</a></p>
 
-                    <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
+                        <!-- <div class="twitter-widget" data-tweets-count="2"></div>-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- Site Footer Layer -->
     <div class="site-footer-bottom">
