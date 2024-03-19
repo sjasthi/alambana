@@ -24,11 +24,8 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
   # Field Entries
   if (isset ($_POST['create_post'])) {
     $title = addslashes($_POST['title']);
-    $author = $_SESSION['last_name'] . ", " . $_SESSION['first_name'];  #addslashes($_POST['author']);
     $description = addslashes($_POST['description']);
     $video_link = $_POST['video_link'];
-    $timestamp = date("Y-m-d H:i:s");
-    $hidden = 0;
 
     $fileNameArray = [];
     // Photo upload / copy temp image to destination 
@@ -52,14 +49,13 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
 
     // Modification to MySQL Database
 
-    $last_id = create_blog($title, $description, $video_link, $user_id);
-    if ($last_id !== false) {
+    $blog_id = create_blog($title, $description, $video_link, $user_id);
+    if ($blog_id !== false) {
       foreach ($fileNameArray as $location) {
         $sql = "INSERT INTO pictures (blog_id, user_id, location) VALUES (
-          $last_id,
+          $blog_id,
           $user_id,
           '$location')";
-        echo "\n" . $last_id . "\n";
         if (!mysqli_query($connection, $sql)) {
           echo "\n" . $sql . "\n";
           echo ("Error description: " . mysqli_error($connection));
