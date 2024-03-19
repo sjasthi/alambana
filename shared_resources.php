@@ -92,38 +92,34 @@ function lib()
 # Site Scripts
 function load_common_page_scripts()
 {
+    ?>
+    <script src="js/modernizr.js"></script><!-- Modernizr -->
+    <script>
+        // New Blog Form Script
+        function show_new_post_form() {
+            var targetPage = "new_blog_entry.php";
 
-    # Modernizr to detect support for HTML5 features like Canvas, CSS3 properties, or SVG.
-    echo ' <script src="js/modernizr.js"></script><!-- Modernizr -->';
+            if (!isOnCurrentPage(targetPage)) {
+                redirectToPage(targetPage);
+            } else {
+                // show_form() logic 
+                let form = document.getElementById("blog_creation_form");
+                let show_button = document.getElementById("form_show_button");
+                form.removeAttribute("hidden");
+                show_button.setAttribute("hidden", "hidden");
+            }
+        }
 
-    # Create New Blog Form
-    echo '
-        <script>
-            // New Blog Form Script
-            function show_new_post_form() {
-                var targetPage = "new_blog_entry.php";
-    
-                if (!isOnCurrentPage(targetPage)) {
-                    redirectToPage(targetPage);
-                } else {
-                    // show_form() logic 
-                    let form = document.getElementById("blog_creation_form");
-                    let show_button = document.getElementById("form_show_button");
-                    form.removeAttribute("hidden");
-                    show_button.setAttribute("hidden", "hidden");
-                }
-            }
-    
-            function isOnCurrentPage(page) {
-                // Check if the current URL contains the specified page
-                return window.location.href.includes(page);
-            }
-    
-            function redirectToPage(page) {
-                window.location.href = page; // Redirect to the specified page
-            }
-        </script>';
+        function isOnCurrentPage(page) {
+            // Check if the current URL contains the specified page
+            return window.location.href.includes(page);
+        }
 
+        function redirectToPage(page) {
+            window.location.href = page; // Redirect to the specified page
+        }
+    </script>
+    <?php
 }
 
 //*************************************/
@@ -285,33 +281,6 @@ function load_common_page_header($headType = 1)
                         <li><a href="new_blog_entry.php">Post Blog</a></li>
                     </ul>
                 </li>
-                <li class="megamenu"><a href="javascrip:void(0)">Features</a>
-                    <ul class="dropdown">
-                        <li>
-                            <div class="megamenu-container container">
-                                <div class="row">
-                                    <div class="col-md-3 megamenu-col">
-                                        <span class="megamenu-sub-title"><i class="fa fa-bookmark"></i> Features</span>
-                                        <ul class="sub-menu">
-                                            <li><a href="shortcodes.php">Donate Here</a></li>
-                                            <li><a href="typography.php">Typography</a></li>
-                                            <li><a href="privacy-policy.php">Privacy policy</a></li>
-                                            <li><a href="payment-terms.php">Payment terms</a></li>
-                                            <li><a href="refund-policy.php">Refund policy</a></li>
-                                        </ul>
-                                        <br><br>
-                                        <ul class="sub-menu-feed">
-                                            <li>
-                                                <a href="feedback-post.php" class="megamenu-sub-title">
-                                                    <img src="images/feedback.png" alt=""
-                                                        style="width: 48px; height: 48px;">
-                                            </li>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
             </ul>
 
             <!-- Site Phone Number -->
@@ -348,7 +317,7 @@ function load_common_page_footer($footType = 1)
 
     ?>
 
-    <!-- Site Footer -->';
+    <!-- Site Footer -->
     <?php
     if ($footType == 1) {
         echo '<div class="site-footer parallax parallax3" style="background-image:url(images/parallax3.jpg)">';
