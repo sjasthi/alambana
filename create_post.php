@@ -10,19 +10,19 @@ if ($status == PHP_SESSION_NONE) {
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 // should use $db global in db_configuration.php
 if ($connection->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die ("Connection failed: " . $conn->connect_error);
 }
 
 $user_id;
-if (isset($_SESSION['id'])) { // Verify SESSION
+if (isset ($_SESSION['id'])) { // Verify SESSION
   // Only Valid Users Logged In
   $user_id = $_SESSION['id']; #echo $hash;
 }
 
-if (!empty($user_id)) { // Only Allow Users To Create Entry
+if (!empty ($user_id)) { // Only Allow Users To Create Entry
 
   # Field Entries
-  if (isset($_POST['create_post'])) {
+  if (isset ($_POST['create_post'])) {
     $title = addslashes($_POST['title']);
     $author = $_SESSION['last_name'] . ", " . $_SESSION['first_name'];  #addslashes($_POST['author']);
     $description = addslashes($_POST['description']);
@@ -51,21 +51,22 @@ if (!empty($user_id)) { // Only Allow Users To Create Entry
     }
 
     // Modification to MySQL Database
-    
 
-    if (create_blog($title, $description, $video_link, $user_id)) {
-      $last_id = mysqli_insert_id($connection);
+    $last_id = create_blog($title, $description, $video_link, $user_id);
+    if ($last_id !== false) {
       foreach ($fileNameArray as $location) {
-        $sql = "INSERT INTO blog_pictures VALUES (
-          NULL,
-          '$last_id',
-          '$location');";
-
+        $sql = "INSERT INTO pictures (blog_id, user_id, location) VALUES (
+          $last_id,
+          $user_id,
+          '$location')";
+        echo "\n" . $last_id . "\n";
         if (!mysqli_query($connection, $sql)) {
+          echo "\n" . $sql . "\n";
           echo ("Error description: " . mysqli_error($connection));
+          echo "\n" . $sql;
         }
       }
-    } else{
+    } else {
       echo "Blog could not be created.";
     }
   }

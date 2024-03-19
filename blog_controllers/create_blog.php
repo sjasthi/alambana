@@ -10,8 +10,9 @@ function create_blog($title, $description, $video_link, $user_id) {
     $statement->bind_param("ssssi", $title, $description, $content, $video_link, $user_id);
     $result = $statement->execute();
     if ($result === true) {
+        $last_id = mysqli_insert_id($connection);
         $connection->close();
-        return true;
+        return $last_id;
     } else {
         $connection->close();
         return false;
