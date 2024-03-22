@@ -1,10 +1,10 @@
 <?php
-
+require_once "blog_controllers/templates.php";
+require_once "comment_controllers/comment.php";
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
   session_start();
 }
-
 function get_blogs($start, $count)
 {
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -12,7 +12,6 @@ function get_blogs($start, $count)
   if ($connection->connect_error) {
     die ("Connection failed: " . $connection->connect_error);
   }
-
   $sql = "SELECT blogs.*,
           users.first_name, 
           users.last_name, 
@@ -21,33 +20,13 @@ function get_blogs($start, $count)
           FROM blogs 
           JOIN users ON blogs.user_id = users.id 
           LEFT JOIN pictures ON users.picture_id = pictures.id 
-          ORDER BY blogs.created_time DESC";
+          ORDER BY blogs.created_time DESC LIMIT $start, $count";
 
   $result = $connection->query($sql);
   $connection->close();
   if ($result->num_rows > 0) {
     while ($blog = $result->fetch_assoc()) {
-      ?>
-
-      <div class="blog-container">
-        <div class="info-container">
-          <div class="author-container">
-            <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"] !== null ? $blog["user_picture_location"] : "./images/users_pictures/default_profile.png"); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
-          </div>
-          <div class="time-container">
-            <?php echo htmlspecialchars($blog["modified_time"]) ?>
-          </div>
-        </div>
-        <div class="text-container">
-          <div class="title-container">
-            <?php echo htmlspecialchars($blog["title"]); ?>
-          </div>
-          <div class="description-container">
-            <?php echo htmlspecialchars($blog["description"]); ?>
-          </div>
-        </div>
-      </div>
-      <?php
+      generate_blog($blog);
     }
   }
 }
@@ -59,53 +38,65 @@ function get_blog($blog_id)
   if ($connection->connect_error) {
     die ("Connection failed: " . $connection->connect_error);
   }
+  echo $blog_id . "\n";
+  $sql = "SELECT blogs.*,
+        users.id AS user_id, 
+        users.first_name, 
+        users.last_name, 
+        users.picture_id AS user_picture_id, 
+        pictures.location AS user_picture_location 
+        FROM blogs
+        JOIN users ON blogs.user_id = users.id 
+        LEFT JOIN pictures ON users.picture_id = pictures.id 
+        WHERE blogs.id = ?";
 
-  $sql = "SELECT blogs.*, 
-          users.id AS user_id, 
-          users.first_name, 
-          users.last_name, 
-          users.picture_id,
-          pictures.location AS user_picture_location
-          FROM blogs
-          JOIN users ON blogs.user_id = users.id
-          JOIN pictures ON users.picture_id = pictures.id
-          WHERE id = $blog_id";
-
-  $result = $connection->query($sql);
-  $connection->close();
+  $statement = $connection->prepare($sql);
+  if (!$statement) {
+    die ("Error in preparing statement: " . $connection->error);
+  }
+  $statement->bind_param("i", $blog_id);
+  $success = $statement->execute();
+  if (!$success) {
+    die ("Error in executing statement: " . $statement->error);
+  }
+  $result = $statement->get_result();
+  $blog = ($result->fetch_all(MYSQLI_ASSOC))[0];
   increment_blog_page_visitor_count($blog_id);
-  if ($result->num_rows > 0) {
-    $blog = $result->fetch_assoc();
-    ?>
-    <div>
-      Author:
-      <div>
-        <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"]); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
+  ?>
+  <div class="blog-container">
+    <div class="info-container">
+      <div class="author-container">
+        <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"] !== null ? $blog["user_picture_location"] : "./images/users_pictures/default_profile.png"); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
+      </div>
+      <div class="time-container">
         <?php echo htmlspecialchars($blog["modified_time"]) ?>
       </div>
-      Title:
-      <div>
-        <?php echo htmlspecialchars($blog["title"]) ?>
+    </div>
+    <div class="text-container">
+      <div class="title-container">
+        <?php echo htmlspecialchars($blog["title"]); ?>
       </div>
-      Description:
-      <div>
-        <?php echo htmlspecialchars($blog["description"]) ?>
-      </div>
-      Pictures:
-      <div>
-        <?php get_blog_pictures($blog_id); ?>
-      </div>
-      Content:
-      <div>
-        <?php echo htmlspecialchars($blog["content"]); ?>
-      </div>
-      Comments:
-      <div>
-        <?php get_blog_comments($blog_id); ?>
+      <div class="description-container">
+        <?php echo htmlspecialchars($blog["description"]); ?>
       </div>
     </div>
-    <?php
-  }
+    Pictures:
+    <div>
+      <?php get_blog_pictures($blog_id); ?>
+    </div>
+    Content:
+    <div>
+      <?php echo htmlspecialchars($blog["content"]); ?>
+    </div>
+    Comments:
+    <div>
+      <?php
+      get_blog_comments($blog_id);
+      generate_new_comment_form();
+      ?>
+    </div>
+  </div>
+  <?php
 }
 function get_blog_comments($blog_id)
 {
