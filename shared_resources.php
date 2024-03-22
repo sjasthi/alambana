@@ -283,6 +283,7 @@ function load_common_page_header($headType = 1)
                                 <li><a href="new_blog_entry.php">Post Blog</a></li>
                             </ul>
                         </li>
+                        <li><a href="Donate.php">Donate Now</a></li>
                     </ul>
 
                     <!-- Site Phone Number -->

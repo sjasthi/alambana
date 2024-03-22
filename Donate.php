@@ -18,7 +18,7 @@
 <!-- Basic Page Needs
   ================================================== -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Short Codes</title>
+<title>Typography</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="author" content="">
