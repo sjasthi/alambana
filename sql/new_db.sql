@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS events (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
     description VARCHAR(255),
+    category ENUM('Education','Wild-life','Environment', 'Water', 'Human-Rights'),
     information TEXT,
     video_link VARCHAR(2048),
     event_date_start DATETIME NOT NULL,
