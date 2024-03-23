@@ -254,9 +254,8 @@ function load_common_page_header($headType = 1)
                         </li>
                         <li><a href="events.php">Events</a>
                             <ul>
-                                <li><a href="events-grid.php">Events Grid</a></li>
-                                <li><a href="events-calendar.php">Events Calendar</a></li>
-                                <li><a href="community-event.php">Community Events</a></li>
+                                <li><a href="event_controlllers/upcoming_events.php">Events Grid</a></li>
+                                <li><a href="event_controllers/past_events.php">Events Calendar</a></li>
                             </ul>
                         </li>
                         <li><a href="gallery-caption-2cols.php">Gallery</a>
