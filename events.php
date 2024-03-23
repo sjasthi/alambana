@@ -1,41 +1,15 @@
 <?php
-if (!isset($_SESSION)) { 
+if ( !isset( $_SESSION ) ) { 
     session_start();
 } 
 
 include 'shared_resources.php';
-include 'event_fill.php';
 include 'feedback_fill.php';
-if (isset($_SESSION['role'])) {
+include 'event_controllers/get_events.php';
+include 'event_controllers/time_formatting.php';
+if ( isset( $_SESSION['role'] ) ) {
     $userRole = $_SESSION['role'];
 }
-// Define the number of events per page (default to 3)
-$eventsPerPage = isset($_GET['events_per_page']) ? intval($_GET['events_per_page']) : 3;
-
-// Calculate the total number of pages
-$totalEvents = $db->query("SELECT COUNT(*) FROM events")->fetch_row()[0];
-$totalPages = ceil($totalEvents / $eventsPerPage);
-
-// Get the current page number from the URL parameters, default to 1 if not set
-$current_page = isset($_GET['current_page']) ? intval($_GET['current_page']) : 1;
-
-// Calculate the offset for the SQL query
-$offset = ($current_page - 1) * $eventsPerPage;
-
-function fetchEvents($db, $offset, $eventsPerPage) {
-    $events = [];
-    $query = "SELECT * FROM events ORDER BY event_date_start DESC LIMIT $eventsPerPage OFFSET $offset";
-    if ($result = $db->query($query)) {
-        while ($row = $result->fetch_assoc()) {
-            $events[] = $row;
-        }
-        $result->free();
-    }
-    return $events;
-}
-
-
-$events = fetchEvents($db, $offset, $eventsPerPage);
 ?>
 
 <!DOCTYPE HTML>
@@ -150,53 +124,21 @@ $events = fetchEvents($db, $offset, $eventsPerPage);
     </style>
 <?php
 
+// Define the number of events per page (default to 3)
+$eventsPerPage = isset( $_GET['events_per_page'] ) ? ( int )$_GET['events_per_page'] : 3;
 
-function transformYouTubeURL($url) {
-    // Parse the URL to extract its components
-    $parsedUrl = parse_url($url);
-    if ($parsedUrl === false) {
-        return ''; // Invalid URL
-    }
+// Calculate the total number of pages
+$totalEvents = event_count();
+$totalPages = ceil( ( int )$totalEvents / $eventsPerPage );
 
-    // Check for the short YouTube URL format (youtu.be)
-    if (isset($parsedUrl['host']) && $parsedUrl['host'] === 'youtu.be') {
-        $videoId = ltrim($parsedUrl['path'], '/');
-        return 'https://www.youtube.com/embed/' . $videoId;
-    } 
-    // Check for the standard YouTube URL format
-    elseif (isset($parsedUrl['host']) && in_array($parsedUrl['host'], ['www.youtube.com', 'youtube.com'])) {
-        parse_str($parsedUrl['query'], $queryParams);
-        if (isset($queryParams['v'])) {
-            return 'https://www.youtube.com/embed/' . $queryParams['v'];
-        }
-    }
+// Get the current page number from the URL parameters, default to 1 if not set
+$current_page = isset( $_GET['current_page'] ) ? ( int )$_GET['current_page'] : 1;
 
-    // Return empty string if URL does not match YouTube formats
-    return '';
-}
+// Calculate the offset for the SQL query
+$offset = ( $current_page - 1 ) * $eventsPerPage;
 
-
-// Function to fetch events and their pictures
-function fetchEventsWithPictures($db, $offset, $eventsPerPage) {
-    $events = [];
-    $query = "SELECT e.*, p.Location FROM events e
-              LEFT JOIN pictures p ON e.id = p.event_Id
-              ORDER BY e.event_date_start DESC LIMIT $eventsPerPage OFFSET $offset";
-    if ($result = $db->query($query)) {
-        while ($row = $result->fetch_assoc()) {
-            $events[] = $row;
-        }
-        $result->free();
-    }
-    return $events;
-}
-
-// Now call the function to get the events with pictures
-//$eventsWithPictures = fetchEventsWithPictures($db);
-$events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
-
+$events = get_events( "", $offset, $eventsPerPage );
 ?>
-
     <div class="content">
         <div class="container">
             <div class="row">
@@ -205,38 +147,36 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
                     <form action="" method="get">
                         <label for="events_per_page">Events per page:</label>
                         <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
-                            <option value="3" <?php if ($eventsPerPage == 3) echo 'selected'; ?>>3</option>
-                            <option value="5" <?php if ($eventsPerPage == 5) echo 'selected'; ?>>5</option>
-                            <option value="10" <?php if ($eventsPerPage == 10) echo 'selected'; ?>>10</option>
+                            <option value="3" <?php if ( $eventsPerPage == 3 ) echo 'selected'; ?>>3</option>
+                            <option value="5" <?php if ( $eventsPerPage == 5 ) echo 'selected'; ?>>5</option>
+                            <option value="10" <?php if ( $eventsPerPage == 10 ) echo 'selected'; ?>>10</option>
                         </select>
                     </form>
                     <?php foreach ($events as $event): ?>
     <div class="event">
-        <h3><?php echo htmlspecialchars($event['title']); ?></h3>
-        <p><?php echo htmlspecialchars($event['description']); ?></p>
-        <p>Date: <?php echo htmlspecialchars($event['event_date_start']) . "-" . htmlspecialchars($event['event_date_end']); ?></p>
+        <h3><?php echo $event['title']; ?></h3>
+        <p><?php echo $event['description']; ?></p>
+        <p>Date: <?php echo format_date( $event['event_date_start'], $event['event_date_end'] ); ?></p>
 
         <?php 
-        if (!empty($event['video_link'])) {
-            $embedURL = transformYouTubeURL($event['video_link']); // Transform the URL
-            if (!empty($embedURL)) {
+        if ( !empty( $event['video_link'] ) ) {
+            $embedURL = transformYouTubeURL( $event['video_link'] ); // Transform the URL
+            if ( !empty( $embedURL ) ) {
                 echo '<div class="video-container">';
-                echo '<iframe width="560" height="315" src="' . htmlspecialchars($embedURL) . '" frameborder="0" allowfullscreen></iframe>';
+                echo '<iframe width="560" height="315" src="' . htmlspecialchars( $embedURL ) . '" frameborder="0" allowfullscreen></iframe>';
                 echo '</div>';
             }
         }
         ?> 
 
-        <?php if (!empty($event['location'])): ?>
-            <a href="event-post.php?event_id=<?php echo htmlspecialchars($event['id']); ?>" class="media-box">
-                <img src="<?php echo htmlspecialchars($event['Location']); ?>">
+        <?php if ( !empty( $event['pic_location'] ) ) : ?>
+            <a href="event_controllers/single-event.php?id=<?php echo $event['id']; ?>" class="media-box">
+                <img src="<?php echo $event['pic_location']; ?>">
             </a>
         <?php endif; ?>
 
     </div>
 <?php endforeach; ?>
-
-
                     <!-- Pagination Links -->
                     <div class="pagination">
                         <!-- Previous Page Link -->
@@ -282,25 +222,25 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
                 <div class="col-md-4 sidebar-block">
                     <div class="widget sidebar-widget widget_categories">
                         <h3 class="widgettitle">Event Categories</h3>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-caret-right"></i> Education</a> (3)</li>
-                            <li><a href="#"><i class="fa fa-caret-right"></i> Environment</a> (1)</li>
-                            <li><a href="#"><i class="fa fa-caret-right"></i> Water</a> (4)</li>
-                            <li><a href="#"><i class="fa fa-caret-right"></i> Wild life</a> (2)</li>
-                            <li><a href="#"><i class="fa fa-caret-right"></i> Small business</a> (12)</li>
-                        </ul>
+						<ul>
+							<?php
+							$catagories = get_event_catagories();
+							foreach($catagories as $catagory) { ?>
+								<li data-option-value=".<?php echo str_replace( " ", "-", $catagory ); ?>"><a href="#"><span><?php echo $catagory; ?></span></a></li>
+							<?php } ?>
+						</ul>
                     </div>
                 </div>
                 <div class="col-md-4 sidebar-block">
                     <!-- Side blog List (Lastest Postings) -->
-                    <?php fill_blog_post_side_container_small() ?>
+                    <?php // fill_blog_post_side_container_small() ?>
                 </div>
                 
                 <div class="widget widget_testimonials">
                     <h3 class="widgettitle">Stories of change</h3>
                     <div class="carousel-wrapper" style="background: none;">
                         <div class="row">
-                            <?php fill_feedback_comments_carousel() ?>
+                            <?php //fill_feedback_comments_carousel() ?>
                         </div>
                     </div>
                 </div>
@@ -308,13 +248,39 @@ $events = fetchEventsWithPictures($db, $offset, $eventsPerPage);
         </div>
     </div>
 
-    
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
     <!-- Libraries Loader -->
     <?php lib() ?>
     <!-- Style Switcher Start -->
     <?php style_switcher() ?>
-
 </body>
 </html>
+
+<?php
+function transformYouTubeURL($url) {
+    // Parse the URL to extract its components
+    $parsedUrl = parse_url($url);
+    if ($parsedUrl === false) {
+        return ''; // Invalid URL
+    }
+
+    // Check for the short YouTube URL format (youtu.be)
+    if (isset($parsedUrl['host']) && $parsedUrl['host'] === 'youtu.be') {
+        $videoId = ltrim($parsedUrl['path'], '/');
+        return 'https://www.youtube.com/embed/' . $videoId;
+    } 
+    // Check for the standard YouTube URL format
+    elseif (isset($parsedUrl['host']) && in_array($parsedUrl['host'], ['www.youtube.com', 'youtube.com'])) {
+        parse_str($parsedUrl['query'], $queryParams);
+        if (isset($queryParams['v'])) {
+            return 'https://www.youtube.com/embed/' . $queryParams['v'];
+        }
+    }
+    // Return empty string if URL does not match YouTube formats
+    return '';
+}
+?>
+
+
+

@@ -5,6 +5,9 @@
   } 
 
   include 'shared_resources.php';
+  include 'get_events.php';
+  include 'time_formatting.php';
+
   if (isset($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
   }
@@ -15,7 +18,7 @@
 <head>
 <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="../favicon.ico" type="image/x-icon">
 <title>Events Calendar</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -26,17 +29,17 @@
 <meta name="format-detection" content="telephone=no">
 <!-- CSS
   ================================================== -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
+<link href="../vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="../vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
 <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-<link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+<link href="../css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
 <!-- Color Style -->
-<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+<link class="alt" href="../colors/color1.css" rel="stylesheet" type="text/css">
+<link href="../style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
 <!-- SCRIPTS
   ================================================== -->
   <?php load_common_page_scripts() ?>
@@ -67,7 +70,7 @@
     <?php load_common_page_header(2) ?>
     <!-- Banner Area -->
     <div class="hero-area">
-    	<div class="page-banner parallax" id="banner" style="background-image:url(images/inside9.jpg);">
+    	<div class="page-banner parallax" id="banner" style="background-image:url(../images/inside9.jpg);">
         	<div class="container">
             	<div class="page-banner-text">
         			<h1 class="block-title">Past Events</h1>
@@ -105,6 +108,7 @@
 				reader.readAsDataURL(file);
 			}
 		});
+<?php $events = get_events( "past", 0, 100 ); ?>
 	</script>
     <!-- Main Content -->
     <div id="main-container">
@@ -112,76 +116,22 @@
         	<div class="container">
             	<div class="row">
                 	<div class="col-md-8 content-block">
-                        <ul class="events-list">
+						<ul class="events-list">
+						<?php foreach( $events as $event ) { ?>
                             <li class="event-list-item">
                                 <span class="event-date">
-                                    <span class="date">14</span>
-                                    <span class="month">Jan</span>
-                                    <span class="year">2016</span>
+								<span class="date"><?php echo get_event_day( $event["event_date_start"] ); ?></span>
+                                    <span class="month"><?php echo get_event_month( $event["event_date_start"] ); ?></span>
+                                    <span class="year"><?php echo get_event_year( $event["event_date_start"] ); ?></span>
                                 </span>
                                 <div class="event-list-cont">
-                                    <span class="meta-data">Thursday, 11:20 AM - 02:20 PM</span>
-                                    <h4 class="post-title"><a href="#">Fundraising for meals</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
+                                    <span class="meta-data"><?php echo format_date( $event["event_date_start"], $event["event_date_end"] ); ?></span>
+									<h4 class="post-title"><a href="single-event.php?id=<?php echo $event["id"]; ?>"><?php echo $event["title"]; ?></a></h4>
+									<p><?php echo $event["description"]; ?></p>
                                     <a href="#" class="btn btn-default">Book Tickets</a>
                                 </div>
-                            </li>
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">18</span>
-                                    <span class="month">Jan</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Monday, 07:00 PM</span>
-                                    <h4 class="post-title"><a href="#">Fundraising for meals</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">26</span>
-                                    <span class="month">Feb</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Friday, 01:00 PM</span>
-                                    <h4 class="post-title"><a href="#">Green Environment</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                            <li class="event-list-item">
-                                <span class="event-date">
-                                    <span class="date">02</span>
-                                    <span class="month">Mar</span>
-                                    <span class="year">2016</span>
-                                </span>
-                                <div class="event-list-cont">
-                                    <span class="meta-data">Wednesday, 10:00 AM</span>
-                                    <h4 class="post-title"><a href="#">Medical checkup camp</a></h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam...</p>
-                                    <a href="#" class="btn btn-default">Book Tickets</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- Page Pagination -->
-                        <nav>
-                            <ul class="pagination pagination-lg">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
+							</li>
+							<?php } ?>
                             </ul>
                         </nav>
                     </div>
@@ -191,13 +141,12 @@
                         <div class="widget sidebar-widget widget_categories">
                         	<h3 class="widgettitle">Event Categories</h3>
                             <ul>
-                            	<li><a href="#">Education</a> (3)</li>
-                            	<li><a href="#">Environment</a> (1)</li>
-                            	<li><a href="#">Global warming</a> (6)</li>
-                            	<li><a href="#">Water</a> (4)</li>
-                            	<li><a href="#">Wild life</a> (2)</li>
-                            	<li><a href="#">Small business</a> (12)</li>
-                            </ul>
+							<?php
+							$catagories = get_event_catagories();
+							foreach($catagories as $catagory) { ?>
+								<li data-option-value=".<?php echo str_replace( " ", "-", $catagory ); ?>"><a href="#"><span><?php echo $catagory; ?></span></a></li>
+							<?php } ?>
+							</ul>
                         </div>
                         <div class="widget widget_recent_causes">
                         	<h3 class="widgettitle">Latest Causes</h3>
