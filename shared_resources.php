@@ -254,7 +254,7 @@ function load_common_page_header($headType = 1)
                         </li>
                         <li><a href="events.php">Events</a>
                             <ul>
-                                <li><a href="event_controlllers/upcoming_events.php">Events Grid</a></li>
+                                <li><a href="event_controllers/upcoming_events.php">Events Grid</a></li>
                                 <li><a href="event_controllers/past_events.php">Events Calendar</a></li>
                             </ul>
                         </li>
