@@ -171,4 +171,3 @@ INSERT INTO `pictures` ( `location`, `blog_id`, `user_id`, `event_id`) VALUES
 ('images/users_pictures/656a5bc139a741.55560190.jpg',NULL,4,NULL),
 ('images/users_pictures/656a637fb5fa53.23798558.jpg',NULL,4,NULL),
 ('images/users_pictures/656e75991440d5.67882755.jpg',NULL,4,NULL);
-

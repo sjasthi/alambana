@@ -75,7 +75,7 @@ if (isset ($_SESSION['role'])) {
         }
 
         #carouselExampleControls {
-            margin-top: 84px;
+            margin-top: 54px;
         }
     </style>
 </head>
