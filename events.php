@@ -7,6 +7,9 @@ include 'shared_resources.php';
 include 'feedback_fill.php';
 include 'event_controllers/get_events.php';
 include 'event_controllers/time_formatting.php';
+require_once "header/index.php";
+require_once "bootstrap.php";
+set_up_bootstrap();
 if ( isset( $_SESSION['role'] ) ) {
     $userRole = $_SESSION['role'];
 }
@@ -57,7 +60,7 @@ if ( isset( $_SESSION['role'] ) ) {
 
 <body>
   <div class="body">
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
 
     <div class="hero-area">
       <div class="page-banner parallax" id="banner" style="background-image:url(images/event_banner.jpg);">

@@ -10,6 +10,9 @@
   }
 
   include 'shared_resources.php';
+  require_once "header/index.php";
+  require_once "bootstrap.php";
+  set_up_bootstrap();
   ob_end_flush();
 ?>
 
@@ -50,7 +53,7 @@
     <!-- Site Header Wrapper -->
     <div class="site-header-wrapper">
       <!-- Site Header Wrapper -->
-      <?php load_common_page_header(2) ?>
+      <?php generate_header() ?>
 	  <style>
         /* Style for the custom button label */
         .custom-file-upload {
@@ -72,10 +75,20 @@
 
 
     <!-- Banner Area -->
-    <div class="hero-area" style="padding-top: 60px;">
-      <div
-        style="background-image:url(images/inside7.jpg);background-size: cover;background-repeat: no-repeat;height: 192px;width: 100%;height: 192px;">
-        <h1 style="color: white;padding-top: 48px;text-align: center;">Create a new Blog</h1>
+    <div class="hero-area">
+      <div class="page-banner parallax" id="banner" style="background-image:url(images/inside7.jpg);">
+        <div class="container">
+          <div class="page-banner-text">
+            <h1 class="block-title">Blogs</h1>
+            <?php
+            if (isset ($userRole) && $userRole === "admin") {
+              // Display the "Change Image" button for admin users
+              echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+              echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+            }
+            ?>
+          </div>
+        </div>
       </div>
     </div>
 	<script>

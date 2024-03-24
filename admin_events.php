@@ -9,7 +9,9 @@ if ($_SESSION['role'] != 'admin'){
 }
 
 include('shared_resources.php'); 
-
+require_once "header/index.php";
+require_once "bootstrap.php";
+set_up_bootstrap();
 ob_end_flush();
 
 //$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -129,7 +131,7 @@ if ($db->connect_error) {
     </style>
     
      <!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
     <!-- Main Content -->
     <div id="admin-container-id">
     	<div class="admin-content">

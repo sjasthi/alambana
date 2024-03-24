@@ -12,6 +12,9 @@ include('shared_resources.php');
 
 ob_end_flush();
 
+require_once "header/index.php";
+require_once "bootstrap.php";
+set_up_bootstrap();
 // adding new event  
 if (isset($_POST["event_date"])) {
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
@@ -95,7 +98,7 @@ if (isset($_POST["event_date"])) {
 <body>
     <div class="body">
         <!-- Site Header Wrapper -->
-        <?php load_common_page_header(2) ?>
+        <?php generate_header(); ?>
 
         <!-- Main Content -->
         <div id="main-container">
