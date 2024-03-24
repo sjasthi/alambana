@@ -4,7 +4,7 @@ if(!isset($_SESSION)) {
     session_start();
 } 
 
-if ($_SESSION['role'] != 'admin'){
+if ($_SESSION['role'] != 'Administrator'){
     header('Location:events.php'); 
 }
 

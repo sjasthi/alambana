@@ -9,7 +9,6 @@ include 'feedback_fill.php';
 include 'create_comment_post.php';
 require_once './header/index.php';
 require_once './bootstrap.php';
-
 set_up_bootstrap();
 if (isset ($_SESSION['role'])) {
   $userRole = $_SESSION['role'];
@@ -79,7 +78,7 @@ if (isset ($_SESSION['role'])) {
   <div class="body">
 
     <!-- Site Header Wrapper -->
-    <?php generate_header();//load_common_page_header(2)   ?>
+    <?php generate_header(); ?>
     <!-- Banner Area -->
     <div class="hero-area">
       <div class="page-banner parallax" id="banner" style="background-image:url(images/inside7.jpg);">

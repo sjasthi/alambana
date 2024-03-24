@@ -2,7 +2,7 @@
 session_start();
 
 // Block unauthorized users from accessing the page
-if (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') {
+if (isset($_SESSION['role']) && $_SESSION['role'] !== 'Administrator') {
     http_response_code(403);
     die('Forbidden');
 }

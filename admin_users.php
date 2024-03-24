@@ -4,17 +4,19 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if ($_SESSION['role'] != 'admin') {
+if ($_SESSION['role'] != 'Administrator') {
     header('Location:team.php');
 }
 
-include('shared_resources.php');
-
+include ('shared_resources.php');
+require_once ("header/index.php");
+require_once ("bootstrap.php");
+set_up_bootstrap();
 ob_end_flush();
 
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
 }
 ?>
 
@@ -54,7 +56,8 @@ if ($connection->connect_error) {
             width: 90%;
         }
 
-        #User_table th, #User_table td {
+        #User_table th,
+        #User_table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -77,17 +80,21 @@ if ($connection->connect_error) {
         }
 
         .button-container form {
-            margin-right: 10px; /* Adjust the spacing between buttons as needed */
+            margin-right: 10px;
+            /* Adjust the spacing between buttons as needed */
         }
 
         .button-container input[type="submit"] {
-            padding: 1px 4px; /* Adjust the padding to make buttons smaller */
+            padding: 1px 4px;
+            /* Adjust the padding to make buttons smaller */
             /*width: auto;  Allow buttons to adjust their width based on content */
         }
+
         /* Change font family, size, and color */
         .btn {
             /* font-family: 'Arial', sans-serif; Change to your preferred font family */
-            font-size: 10px; /* Adjust the font size */
+            font-size: 10px;
+            /* Adjust the font size */
             /* color: #ffffff; Change the text color */
         }
 
@@ -97,23 +104,27 @@ if ($connection->connect_error) {
         }
 
         .show-button,
-        .hidden-state { 
-            background-color: lightcoral; /* Set the background color for the buttons */
-            border-radius: 5px; /* Add border-radius for rounded corners */
-            text-align: center; /* Center text horizontally */
+        .hidden-state {
+            background-color: lightcoral;
+            /* Set the background color for the buttons */
+            border-radius: 5px;
+            /* Add border-radius for rounded corners */
+            text-align: center;
+            /* Center text horizontally */
             /* Additional styles as needed */
-            color: black; /* or any other styling you want */
+            color: black;
+            /* or any other styling you want */
         }
 
         .clickable {
             cursor: pointer;
-        } 
+        }
     </style>
-    
+
     <!-- Body Content -->
 
     <!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
 
     <!-- Main Content -->
     <div id="admin-container-id">
@@ -148,19 +159,19 @@ if ($connection->connect_error) {
                                         LEFT JOIN user_photos ON users.Picture_Id = user_photos.Picture_Id";
                                 $result = $db->query($sql);
 
-                               
+
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         $statusClass = ($row["status"] == 'enabled') ? 'btn-success' : 'btn-danger';
                                         $statusAction = ($row["status"] == 'enabled') ? 'Disable' : 'Enable';
-                                        $user_photo = isset($row["Location"]) && file_exists($row["Location"]) ? $row["Location"] : "images/add-account-icon.png";
+                                        $user_photo = isset ($row["Location"]) && file_exists($row["Location"]) ? $row["Location"] : "images/add-account-icon.png";
                                         echo '<tr>
                                         <td>' . $row["id"] . '</td>
                                         <td>' . $row["first_name"] . '</td>
                                         <td>' . $row["last_name"] . '</td>
                                         <td>' . $row["email"] . '</td>';
-                                        if(isset($row["Location"]) && file_exists($row["Location"])){
+                                        if (isset ($row["Location"]) && file_exists($row["Location"])) {
                                             echo '<td>
                                             <style>
                                                 .default-avatar' . $row["id"] . ' {
@@ -205,7 +216,7 @@ if ($connection->connect_error) {
 
                                            
                                         ';
-                                        }else{
+                                        } else {
                                             echo '<td>
                                             <style>
                                                 .default-avatar' . $row["id"] . ' {
@@ -251,7 +262,7 @@ if ($connection->connect_error) {
                                             
                                         ';
                                         }
-                                        echo'
+                                        echo '
                                             <td>' . $row["status"] . '</td>
                                             <td>
                                                 <form action="admin_disable_enable.php" method="post">
@@ -263,7 +274,7 @@ if ($connection->connect_error) {
                                             </td>
                                         </tr>';
                                     }
-                                    
+
                                 } else {
                                     echo "0 results";
                                 }
@@ -294,16 +305,16 @@ if ($connection->connect_error) {
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var enableDisableButtons = document.querySelectorAll('.enable-disable-btn');
+        document.addEventListener('DOMContentLoaded', function () {
+            var enableDisableButtons = document.querySelectorAll('.enable-disable-btn');
 
-        enableDisableButtons.forEach(function (button) {
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
-                button.closest('form').submit();
+            enableDisableButtons.forEach(function (button) {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    button.closest('form').submit();
+                });
             });
         });
-    });
     </script>
 
 

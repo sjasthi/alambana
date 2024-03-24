@@ -8,7 +8,7 @@ if ($status == PHP_SESSION_NONE) {
 
 // Block unauthorized users from accessing the page
 if (isset($_SESSION['role'])) {
-  if ($_SESSION['role'] != 'admin') {
+  if ($_SESSION['role'] != 'Administrator') {
     http_response_code(403);
     die('Forbidden');
   }

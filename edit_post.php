@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_GET['blog_id']) || !is_numeric($_GET['blog_id'])) {
+if (!isset ($_GET['blog_id']) || !is_numeric($_GET['blog_id'])) {
     echo "Blog not found";
     //sleep(3);
     header("Location: admin_blogs.php");
@@ -8,17 +8,20 @@ if (!isset($_GET['blog_id']) || !is_numeric($_GET['blog_id'])) {
 }
 //require 'db_configuration.php'; // Include your database configuration file
 include 'shared_resources.php';
+require_once './header/index.php';
+require_once './bootstrap.php';
+set_up_bootstrap();
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 
 if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
 }
 
 $Blog_Id = $_GET['blog_id'];
 $BLOG_TYPE = "Edit Blog";
 
 // adding new Blog  
-if (isset($_POST["Created_Time"])) {
+if (isset ($_POST["Created_Time"])) {
     $BLOG_TYPE = "Add New Blog";
     $Title = $_POST['title'];
     $Description = $_POST['description'];
@@ -29,7 +32,7 @@ if (isset($_POST["Created_Time"])) {
     $stmt->bind_param("ssssi", $Title, $Description, $Video_Link, $Modified_Time, $Blog_Id);
     $stmt->execute();
     echo "Blog updated successfully!";
-    
+
     // Handle Blog picture uploads 
     $fileCount = count($_FILES['Location']['name']);
     if ($fileCount > 0) {
@@ -77,28 +80,32 @@ if (isset($_POST["Created_Time"])) {
     header("Location: admin_blogs.php");
     exit();
 
-}if (isset($_POST['update_post'])) {
+}
+if (isset ($_POST['update_post'])) {
     $title = $_POST['Title'];
     $author = $_POST['Author'];
     $description = $_POST['Description'];
     $video_link = $_POST['Video_Link'];
     $timestamp = date("Y-m-d H:i:s");
 
-    if(empty($title)) $title = "Pending Title...";
-    if(empty($description)) $description = "Pending Description...";
-    if(empty($author)) $author = $_SESSION['last_name'] . ", " . $_SESSION['first_name'];  
+    if (empty ($title))
+        $title = "Pending Title...";
+    if (empty ($description))
+        $description = "Pending Description...";
+    if (empty ($author))
+        $author = $_SESSION['last_name'] . ", " . $_SESSION['first_name'];
 
     // Update existing post data
     $updateQuery = "UPDATE blogs SET title='$title', author='$author', description='$description', video_link='$video_link', Modified_Time='$timestamp' WHERE blog_id='$Blog_Id'";
-    
+
     // Execute the update query for blog details
     if (mysqli_query($connection, $updateQuery)) {
         // Handle photo upload
         $fileNameArray = [];
         //if ($fileNameArray!=null){
-         if ($_FILES['Location']['name'][0] > 0) {
-                //echo "Error: " . $_FILES['Location']['error'][$i];
-            
+        if ($_FILES['Location']['name'][0] > 0) {
+            //echo "Error: " . $_FILES['Location']['error'][$i];
+
             for ($i = 0; $i < count($_FILES['Location']['name']); $i++) {
                 $fileName = $_FILES['Location']['name'][$i];
                 $fileTMP = $_FILES['Location']['tmp_name'][$i];
@@ -107,8 +114,8 @@ if (isset($_POST["Created_Time"])) {
                 $fileActualExt = strtolower(end($fileExt));
 
                 if ($fileError === 0) {
-                    $fileNewName = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = 'images/blog_pictures/'.$fileNewName;
+                    $fileNewName = uniqid('', true) . "." . $fileActualExt;
+                    $fileDestination = 'images/blog_pictures/' . $fileNewName;
                     move_uploaded_file($fileTMP, $fileDestination);
                     array_push($fileNameArray, $fileDestination);
                 } else {
@@ -130,9 +137,8 @@ if (isset($_POST["Created_Time"])) {
     } else {
         echo "Error updating blog details: " . mysqli_error($connection);
     }
-}
- else {
-    
+} else {
+
     $sql = "SELECT * FROM blogs WHERE Blog_Id = '{$Blog_Id}'"; // Modify this query to fetch Blogs data
     $result = $connection->query($sql)->fetch_all(MYSQLI_ASSOC);
 
@@ -152,7 +158,9 @@ if (isset($_POST["Created_Time"])) {
     <!-- Basic Page Needs
   ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><?php echo $BLOG_TYPE ?></title>
+    <title>
+        <?php echo $BLOG_TYPE ?>
+    </title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -163,18 +171,18 @@ if (isset($_POST["Created_Time"])) {
     <meta name="format-detection" content="telephone=no">
     <!-- css
   ================================================== -->
-    <?php css() ?>
+    <?php css(); ?>
 
     <!-- scripts
   ================================================== -->
-    <?php load_common_page_scripts() ?>
+    <?php load_common_page_scripts(); ?>
 
 </head>
 
 <body>
     <div class="body">
         <!-- Site Header Wrapper -->
-        <?php load_common_page_header(2) ?>
+        <?php generate_header(); ?>
         <!-- Hero Area -->
         <div class="hero-area">
             <div class="page-banner parallax" style="background-image:url(images/inside9.jpg);">
@@ -197,8 +205,11 @@ if (isset($_POST["Created_Time"])) {
                     <div class="row">
                         <br><br>
                         <div class="col-md-6 mx-auto">
-                            <h1><?php echo $BLOG_TYPE ?> here:</h1>
-                            <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post" enctype="multipart/form-data">
+                            <h1>
+                                <?php echo $BLOG_TYPE ?> here:
+                            </h1>
+                            <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post"
+                                enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="Title">Title</label>
                                     <input value="<?php echo $result[0]['Title']; ?>" type="text" class="form-control"
@@ -213,8 +224,8 @@ if (isset($_POST["Created_Time"])) {
 
                                 <div class="form-group">
                                     <label for="Author">Author</label>
-                                    <input value="<?php echo $result[0]['Author']; ?>" type="text"
-                                        class="form-control" name="Author" id="Author">
+                                    <input value="<?php echo $result[0]['Author']; ?>" type="text" class="form-control"
+                                        name="Author" id="Author">
                                 </div>
 
                                 <div class="form-group">
@@ -244,12 +255,12 @@ if (isset($_POST["Created_Time"])) {
 
 
 
-     <!-- site footer -->
-    <?php load_common_page_footer() ?>
-    <!-- libraries loader -->
-    <?php lib() ?>
-    <!-- style switcher start -->
-    <?php style_switcher() ?>
+        <!-- site footer -->
+        <?php load_common_page_footer() ?>
+        <!-- libraries loader -->
+        <?php lib() ?>
+        <!-- style switcher start -->
+        <?php style_switcher() ?>
 
 
 </body>

@@ -5,7 +5,9 @@ if (!isset ($_SESSION)) {
 }
 
 include 'shared_resources.php';
-
+require_once './header/index.php';
+require_once './bootstrap.php';
+set_up_bootstrap();
 if (isset ($_SESSION['role'])) {
   $userRole = $_SESSION['role'];
 }
@@ -65,7 +67,7 @@ if (isset ($_SESSION['role'])) {
 <![endif]-->
   <div class="body">
     <!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
     <!-- Hero Area -->
     <?php
 

@@ -80,7 +80,7 @@
 <![endif]-->
 <div class="head">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
     <!-- Hero Area -->
     <div class="hero-area">
     	<div class="page-banner parallax" id="banner"  style="background-image:url(images/parallax5.jpg);">

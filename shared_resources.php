@@ -3,7 +3,9 @@
 use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
 require 'db_configuration.php';
-
+require_once './header/index.php';
+require_once './bootstrap.php';
+set_up_bootstrap();
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
     session_start();
