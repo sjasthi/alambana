@@ -79,7 +79,7 @@
       <div class="page-banner parallax" id="banner" style="background-image:url(images/inside7.jpg);">
         <div class="container">
           <div class="page-banner-text">
-            <h1 class="block-title">Blogs</h1>
+            <h1 class="block-title">Create a Blog</h1>
             <?php
             if (isset ($userRole) && $userRole === "admin") {
               // Display the "Change Image" button for admin users
