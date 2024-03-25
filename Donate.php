@@ -46,7 +46,7 @@ if (isset ($_SESSION['role'])) {
   <!-- SCRIPTS
 
   ================================================== -->
-  <style>
+  <!-- <style>
     body {
       font-size: 50px;
       /* Set the font size to make the text bigger */
@@ -55,7 +55,19 @@ if (isset ($_SESSION['role'])) {
       text-align: center;
       /* Center align the text */
     }
-  </style>
+    .modal-body {
+	    background:#f6f6f6;
+	    padding-left:40px;
+	    padding-right:40px;
+    }
+    .modal-header{
+	    position:relative;
+    }
+    .modal-footer{
+	    padding-left:70px;
+	    padding-right:70px;
+    }
+  </style> -->
 
   <?php load_common_page_scripts() ?>
 
@@ -73,7 +85,7 @@ if (isset ($_SESSION['role'])) {
       <div class="page-banner parallax" id="banner" style="background-image:url(images/parallax6.jpg);">
       <div class="container">
         <div class="page-banner-text">
-          <h1 class="block-title">About us></h1>
+          <h1 class="block-title">Donate Below</h1>
           <?php
           if (isset ($userRole) && $userRole === "admin") {
             // Display the "Change Image" button for admin users
@@ -183,7 +195,6 @@ if (isset ($_SESSION['role'])) {
           <p class="small">Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi.</p>
       </div>
     </div>
-
 
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>

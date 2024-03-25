@@ -65,6 +65,9 @@ function generate_header()
                     </ul>
                 </div>
             </li>
+            <li>
+                <a href="Donate.php">Donate Now</a>
+            </li>
         </ul>
         <div class="info-container">
             (951) 821-6051
