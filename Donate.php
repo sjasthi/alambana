@@ -69,15 +69,127 @@ if (isset ($_SESSION['role'])) {
     <!-- Site Header Wrapper -->
     <?php generate_header(); ?>
     <!-- Hero Area -->
-    <?php
+    <div class="hero-area">
+      <div class="page-banner parallax" id="banner" style="background-image:url(images/parallax6.jpg);">
+      <div class="container">
+        <div class="page-banner-text">
+          <h1 class="block-title">About us></h1>
+          <?php
+          if (isset ($userRole) && $userRole === "admin") {
+            // Display the "Change Image" button for admin users
+            echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+          }
+          ?>
+        </div>
+      </div>
+    </div>
 
-    $text = "To Be Implemented";
-    ?>
-    <p>
-      <?php echo $text; ?>
-    </p>
+    <script>
+      const imageUpload = document.getElementById('imageUpload');
+      const banner = document.getElementById('banner');
+
+      // Retrieve the stored image URL from local storage on page load
+      const storedImageUrl = localStorage.getItem('aboutBanner');
+      if (storedImageUrl) {
+        banner.style.backgroundImage = `url(${storedImageUrl})`;
+      }
+
+      imageUpload.addEventListener('change', function () {
+        const file = imageUpload.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            banner.style.backgroundImage = `url(${e.target.result})`;
+
+            // Store the selected image URL for Page 1 in local storage
+            localStorage.setItem('aboutBanner', e.target.result);
+          }:
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+    
+    <!-- Main Content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 donate-amount-option">
+            <h4>Choose an amount</h4>
+            <ul class="predefined-amount">
+              <li><label><input type="radio" name="donation-amount">$10</label></li>
+              <li><label><input type="radio" name="donation-amount">$20</label></li>
+              <li><label><input type="radio" name="donation-amount">$30</label></li>
+              <li><label><input type="radio" name="donation-amount">$50</label></li>
+              <li><label><input type="radio" name="donation-amount">$100</label></li>
+            </ul>
+          </div>
+          <span class="donation-choice-breaker">Or</span>
+          <div class="col-md-6 col-sm-6 donate-amount-option">
+            <h4>Enter your own</h4>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">$</span>
+              <input type="number" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 donation-form-infocol">
+            <h4>Address</h4>
+              <input type="text" class="form-control" placeholder="Address line 1">
+              <input type="text" class="form-control" placeholder="Address line 2">
+            <div class="row">
+              <div class="col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" placeholder="State/City">
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                <input type="text" class="form-control" placeholder="Zipcode">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-sm-3 col-xs-3">
+                <label>Country</label>
+              </div>
+              <div class="col-md-9 col-sm-9 col-xs-9">
+                <select class="selectpicker">
+                  <option>United States</option>
+                  <option>Australia</option>
+                  <option>Netherlands</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 donation-form-infocol">
+            <h4>Personal info</h4>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <input type="text" class="form-control" placeholder="Last name">
+              </div>
+            </div>
+            <input type="text" class="form-control" placeholder="Email address">
+            <input type="text" class="form-control" placeholder="Phone no.">
+            <label class="checkbox"><input type="checkbox"> Register me on this website</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer text-align-center">
+        <button type="button" class="btn btn-primary">Make your donation now</button>
+          <div class="spacer-20"></div>
+          <p class="small">Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi.</p>
+      </div>
+    </div>
 
 
+    <!-- Site Footer -->
+    <?php load_common_page_footer() ?>
+    <!-- donate form modal -->
+    <?php donate_dialog() ?>
+    <!-- Libraries Loader -->
     <?php lib() ?>
     <!-- Style Switcher Start -->
     <?php style_switcher() ?>
