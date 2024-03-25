@@ -26,6 +26,7 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
     $title = addslashes($_POST['title']);
     $description = addslashes($_POST['description']);
     $video_link = $_POST['video_link'];
+    $content = $_POST['content'];
 
     $fileNameArray = [];
     // Photo upload / copy temp image to destination 
@@ -49,7 +50,7 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
 
     // Modification to MySQL Database
 
-    $blog_id = create_blog($title, $description, $video_link, $user_id);
+    $blog_id = create_blog($title, $description, $content, $video_link, $user_id);
     if ($blog_id !== false) {
       foreach ($fileNameArray as $location) {
         $sql = "INSERT INTO pictures (blog_id, user_id, location) VALUES (

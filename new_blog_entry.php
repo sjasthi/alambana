@@ -1,23 +1,24 @@
 <?php
 
-  ob_start();
-  if(!isset($_SESSION)) { 
-      session_start();
-  } 
+ob_start();
+if (!isset ($_SESSION)) {
+  session_start();
+}
 
-  if (!isset($_SESSION['role'])){
-      header('Location:loginForm.php'); 
-  }
+if (!isset ($_SESSION['role'])) {
+  header('Location:loginForm.php');
+}
 
-  include 'shared_resources.php';
-  require_once "header/index.php";
-  require_once "bootstrap.php";
-  set_up_bootstrap();
-  ob_end_flush();
+include 'shared_resources.php';
+require_once "header/index.php";
+require_once "bootstrap.php";
+set_up_bootstrap();
+ob_end_flush();
 ?>
 
 <!DOCTYPE HTML>
 <html class="no-js">
+
 <head>
   <!-- Basic Page Needs
   ================================================== -->
@@ -30,7 +31,8 @@
   <meta name="author" content="">
   <!-- Mobile Specific Metas
   ================================================== -->
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <!-- CSS
   ================================================== -->
@@ -39,10 +41,10 @@
   ================================================== -->
   <?php load_common_page_scripts() ?>
   <script>
-    window.onload = function() {
+    window.onload = function () {
       show_new_post_form(); // Call the function upon page load
     };
-</script>
+  </script>
 
 </head>
 
@@ -54,23 +56,23 @@
     <div class="site-header-wrapper">
       <!-- Site Header Wrapper -->
       <?php generate_header() ?>
-	  <style>
+      <style>
         /* Style for the custom button label */
         .custom-file-upload {
-            display: inline-block;
-            padding: 6px 12px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            border: 1px solid #007bff;
-            border-radius: 5px;
+          display: inline-block;
+          padding: 6px 12px;
+          cursor: pointer;
+          background-color: #007bff;
+          color: #fff;
+          border: 1px solid #007bff;
+          border-radius: 5px;
         }
 
         /* Hide the actual file input element */
         #imageUpload {
-            display: none;
+          display: none;
         }
-    </style>
+      </style>
     </div>
 
 
@@ -91,43 +93,48 @@
         </div>
       </div>
     </div>
-	<script>
-		const imageUpload = document.getElementById('imageUpload');
-		const banner = document.getElementById('banner');
+    <script>
+      const imageUpload = document.getElementById('imageUpload');
+      const banner = document.getElementById('banner');
 
-		// Retrieve the stored image URL from local storage on page load
-		const storedImageUrl = localStorage.getItem('newBlogEntryBanner');
-		if (storedImageUrl) {
-			banner.style.backgroundImage = `url(${storedImageUrl})`;
-		}
+      // Retrieve the stored image URL from local storage on page load
+      const storedImageUrl = localStorage.getItem('newBlogEntryBanner');
+      if (storedImageUrl) {
+        banner.style.backgroundImage = `url(${storedImageUrl})`;
+      }
 
-		imageUpload.addEventListener('change', function () {
-			const file = imageUpload.files[0];
-			if (file && file.type.startsWith('image/')) {
-				const reader = new FileReader();
-				reader.onload = function (e) {
-					banner.style.backgroundImage = `url(${e.target.result})`;
+      imageUpload.addEventListener('change', function () {
+        const file = imageUpload.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            banner.style.backgroundImage = `url(${e.target.result})`;
 
-					// Store the selected image URL for Page 1 in local storage
-					localStorage.setItem('newBlogEntryBanner', e.target.result);
-				};
-				reader.readAsDataURL(file);
-			}
-		});
-	</script>
+            // Store the selected image URL for Page 1 in local storage
+            localStorage.setItem('newBlogEntryBanner', e.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
 
-<style>
-    #title {
-        resize: none; /* Disable resizing */
-        width: 300px; /* Set initial width */
-        height: 30px; /* Set initial height */
-    }
-    #blog_creation_form textarea {
-        resize: none; /* Disable resizing */
-        width: 500px; /* Set initial width */
-        height: 75px; /* Set initial height */
-    }
-</style>
+    <style>
+      #title {
+        resize: none;
+        /* Disable resizing */
+        width: 300px;
+        /* Set initial width */
+        height: 30px;
+        /* Set initial height */
+      }
+
+      #blog_creation_form textarea {
+        resize: none;
+        /* Disable resizing */
+        width: 500px;
+        /* Set initial width */
+      }
+    </style>
     <!-- Blog Post Section -->
     <div id="main-container">
       <div class="content">
@@ -143,7 +150,8 @@
                         }
                       ?-->
               <!-- Blog Form (Initially hidden) [Activates on button click] -->
-              <form id="blog_creation_form" action="create_post.php" method="POST" enctype="multipart/form-data" hidden="hidden">
+              <form id="blog_creation_form" action="create_post.php" method="POST" enctype="multipart/form-data"
+                hidden="hidden">
                 <div id=blog_creation_left>
                   <label>Blog Title</label>
                   <br>
@@ -152,6 +160,14 @@
                   <label for="description">Description</label>
                   <br>
                   <textarea name="description" rows="3" cols="100" maxlength="160" required></textarea>
+                  <br><br>
+                  <label>Video Link</label>
+                  <br>
+                  <input type="text" name="video_link" maxlength=100 placeholder="Optional">
+                  <br><br>
+                  <label for="content">Content</label>
+                  <br>
+                  <textarea name="content" rows="10" cols="100" required></textarea>
                 </div>
                 <div id=blog_creation_right>
                   <br>
@@ -159,17 +175,10 @@
                   <br>
                   <input type="file" name="file[]" accept="image/*" multiple="multiple">
                   <br>
-                  <label>Video Link</label>
-                  <br>
-                  <input type="text" name="video_link" maxlength=100 placeholder="Optional">
                 </div>
                 <br>
                 <input type="submit" class="btn btn-primary btn-lg" name="create_post" value="Publish">
               </form>
-              
-              
-            
-            
             </div>
           </div>
         </div>
@@ -184,4 +193,5 @@
     <?php style_switcher() ?>
 
 </body>
+
 </html>
