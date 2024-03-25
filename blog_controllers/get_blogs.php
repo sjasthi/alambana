@@ -1,6 +1,7 @@
 <?php
 require_once "blog_controllers/templates.php";
-require_once "comment_controllers/comment.php";
+require_once "comment_controllers/templates.php";
+require_once "comment_controllers/get_comments.php";
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
   session_start();
@@ -24,6 +25,9 @@ function get_blogs($start, $count)
 
   $result = $connection->query($sql);
   $connection->close();
+  ?>
+  <link rel="stylesheet" href="blog_controllers/styles.css" />
+  <?php
   if ($result->num_rows > 0) {
     while ($blog = $result->fetch_assoc()) {
       generate_blog($blog);
@@ -38,7 +42,6 @@ function get_blog($blog_id)
   if ($connection->connect_error) {
     die ("Connection failed: " . $connection->connect_error);
   }
-  echo $blog_id . "\n";
   $sql = "SELECT blogs.*,
         users.id AS user_id, 
         users.first_name, 
@@ -63,104 +66,29 @@ function get_blog($blog_id)
   $blog = ($result->fetch_all(MYSQLI_ASSOC))[0];
   increment_blog_page_visitor_count($blog_id);
   ?>
-  <div class="blog-container">
-    <div class="info-container">
-      <div class="author-container">
-        <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"] !== null ? $blog["user_picture_location"] : "./images/users_pictures/default_profile.png"); ?> /><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
-      </div>
-      <div class="time-container">
-        <?php echo htmlspecialchars($blog["modified_time"]) ?>
-      </div>
-    </div>
-    <div class="text-container">
-      <div class="title-container">
-        <?php echo htmlspecialchars($blog["title"]); ?>
-      </div>
-      <div class="description-container">
-        <?php echo htmlspecialchars($blog["description"]); ?>
-      </div>
-    </div>
-    Pictures:
-    <div>
-      <?php get_blog_pictures($blog_id); ?>
-    </div>
-    Content:
-    <div>
-      <?php echo htmlspecialchars($blog["content"]); ?>
-    </div>
-    Comments:
-    <div>
-      <?php
-      get_blog_comments($blog_id);
-      generate_new_comment_form();
-      ?>
-    </div>
-  </div>
+  <link rel="stylesheet" href="blog_controllers/styles.css" />
   <?php
+  generate_blog_view($blog);
+  generate_new_comment_form($blog_id);
+  get_blog_comments($blog_id); 
 }
-function get_blog_comments($blog_id)
-{
+function get_blog_count() {
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
     die ("Connection failed: " . $connection->connect_error);
   }
-
-  $sql = "SELECT 
-          comments.*, 
-          users.id AS user_id, 
-          users.first_name, 
-          users.last_name, 
-          users.picture_id, 
-          pictures.location AS user_picture_location 
-          FROM comments 
-          JOIN users ON comments.user_id = users.id 
-          JOIN pictures ON users.picture_id = pictures.id 
-          WHERE comments.blog_id = $blog_id 
-          ORDER BY comments.created_time ASC";
-  $result = $connection->query($sql);
-  $connection->close();
-  if ($result->num_rows > 0) {
-    // Output data of each row
-    while ($comment = $result->fetch_assoc()) {
-      ?>
-      <div>
-        Author:
-        <div>
-          <img alt="Profile Picture" src=<?php echo htmlspecialchars($comment["user_picture_location"]); ?> /><?php echo htmlspecialchars($comment["first_name"] . " " . $comment["last_name"]); ?><br />
-          <?php echo htmlspecialchars($comment["modified_time"]) ?>
-        </div>
-        Content:
-        <div>
-          <?php echo htmlspecialchars($comment["content"]); ?>
-        </div>
-      </div>
-      <?php
-    }
+  $sql = "SELECT COUNT(*) as count FROM blogs";
+  $statement = $connection->prepare($sql);
+  if (!$statement) {
+    die ("Error in preparing statement: " . $connection->error);
   }
-}
-
-function get_blog_pictures($blog_id)
-{
-  $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-  // Check connection
-  if ($connection->connect_error) {
-    die ("Connection failed: " . $connection->connect_error);
+  $success = $statement->execute();
+  if (!$success) {
+    die ("Error in executing statement: " . $statement->error);
   }
-
-  $sql = "SELECT * FROM pictures WHERE blog_id = $blog_id";
-  $result = $connection->query($sql);
-  $connection->close();
-  if ($result->num_rows > 0) {
-    // Output data of each row
-    while ($picture = $result->fetch_assoc()) {
-      ?>
-      <div>
-        <img alt="" src="<?php echo $picture['location']; ?>" />
-      </div>
-      <?php
-    }
-  }
+  $result = $statement->get_result();
+  return ($result->fetch_assoc())["count"];
 }
 
 # update Page Visitor Count

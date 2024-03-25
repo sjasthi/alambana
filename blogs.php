@@ -2,55 +2,34 @@
 if (!isset ($_SESSION)) {
   session_start();
 }
-
-include 'shared_resources.php';
+if (!isset ($_GET["page"])) {
+  header("Location: blogs.php?page=1");
+}
+if ($_GET["page"] < 1) {
+  header("Location: blogs.php?page=1");
+}
 include 'blog_controllers/get_blogs.php';
+include 'shared_resources.php';
 include 'feedback_fill.php';
 include 'create_comment_post.php';
 require_once './header/index.php';
 require_once './bootstrap.php';
-set_up_bootstrap();
+
 if (isset ($_SESSION['role'])) {
   $userRole = $_SESSION['role'];
 }
-
-
+$page_count = ceil(get_blog_count() / 10);
+if ($_GET["page"] > $page_count) {
+  //header("Location: blogs.php?page=$page_count");
+  echo "<script>window.location.href='blogs.php?page=$page_count';</script>";
+}
+set_up_bootstrap();
 // Check if the current page is blogs.php and current_page parameter is not set
 
 ?>
 
 <!DOCTYPE HTML>
 <html>
-
-<style>
-  .blog-container {
-    margin: 16px auto 16px auto;
-    max-width: 800px;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 3px solid lightblue;
-    border-radius: 16px;
-  }
-
-  .blog-container .info-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .blog-container .info-container .author-container img {
-    width: 36px;
-    height: 36px;
-    padding: 4px;
-    background-color: lightblue;
-    border-radius: 18px;
-  }
-
-  .blog-container .text-container {
-    width: 100%;
-  }
-</style>
 
 <head>
   <!-- Basic Page Needs
@@ -96,8 +75,58 @@ if (isset ($_SESSION['role'])) {
         </div>
       </div>
     </div>
-    <main>
-      <?php get_blogs(0, 10); ?>
+    <main style="text-align: center;">
+      <div class="pages-container">
+        <?php
+        for ($i = 1; $i <= $page_count; $i++) {
+          ?>
+          <a class="page-number-container-top-<?php echo $i; ?>">
+            <?php
+            if ($i != $_GET["page"]) {
+              echo "<p style='text-decoration: underline; margin: 4px; margin-top: 0;'>";
+            }
+            echo $i;
+            if ($i != $_GET["page"]) {
+              echo "</p>";
+            }
+            ?>
+          </a>
+          <script>
+            const pageNumber<?php echo $i; ?>TopContainer = document.getElementsByClassName("page-number-container-top-<?php echo $i; ?>")[0];
+            pageNumber<?php echo $i; ?>TopContainer.addEventListener("click", (event) => {
+              window.location.href = 'blogs.php?page=<?php echo $i; ?>';
+            });
+          </script>
+          <?php
+        }
+        ?>
+      </div>
+      <?php get_blogs(($_GET["page"] - 1) * 10, 10); ?>
+      <div class="pages-container">
+        <?php
+        for ($i = 1; $i <= $page_count; $i++) {
+          ?>
+          <a class="page-number-container-<?php echo $i; ?>">
+            <?php
+            if ($i != $_GET["page"]) {
+              echo "<p style='text-decoration: underline; margin: 4px; margin-top: 0;'>";
+            } else {
+              echo "<p style='margin: 4px; margin-top: 0;'>";
+            }
+            echo $i;
+            echo "</p>";
+            ?>
+          </a>
+          <script>
+            const pageNumber<?php echo $i; ?>Container = document.getElementsByClassName("page-number-container-<?php echo $i; ?>")[0];
+                      pageNumber<?php echo $i; ?>Container.addEventListener("click", (event) => {
+              window.location.href = 'blogs.php?page=<?php echo $i; ?>';
+            });
+          </script>
+          <?php
+        }
+        ?>
+      </div>
     </main>
     <!-- Site Footer -->
     <?php load_common_page_footer(); ?>

@@ -67,7 +67,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
   ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Include the favicon.ico file -->
-    <?php generateFaviconLink() ?>
+    <?php generateFaviconLink(); ?>
     <title>Aalambana - Blogs</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -79,10 +79,10 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
     <meta name="format-detection" content="telephone=no">
     <!-- css
   ================================================== -->
-    <?php css() ?>
+    <?php css(); ?>
     <!-- SCRIPTS
   ================================================== -->
-    <?php load_common_page_scripts() ?>
+    <?php load_common_page_scripts(); ?>
 </head>
 
 <body>
@@ -93,20 +93,30 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
         <?php generate_header(); ?>
         <!-- Banner Area -->
         <div class="hero-area">
-            <div
-                style="background-image:url(images/inside7.jpg);background-size: cover;background-repeat: no-repeat;height: 192px;width: 100%;height: 192px;">
-                <h1 style="color: white;padding-top: 48px;text-align: center;">Blogs</h1>
+            <div class="page-banner parallax" id="banner" style="background-image:url(images/inside7.jpg);">
+                <div class="container">
+                    <div class="page-banner-text">
+                        <h1 class="block-title">Blog</h1>
+                        <?php
+                        if (isset ($userRole) && $userRole === "admin") {
+                            // Display the "Change Image" button for admin users
+                            echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+                            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
         <main>
             <?php get_blog($_GET["id"]); ?>
         </main>
         <!-- Site Footer -->
-        <?php load_common_page_footer() ?>
+        <?php load_common_page_footer(); ?>
         <!-- Libraries Loader -->
-        <?php lib() ?>
+        <?php lib(); ?>
         <!-- Style Switcher Start -->
-        <?php style_switcher() ?>
+        <?php style_switcher(); ?>
 
 </body>
 

@@ -1,0 +1,10 @@
+.carousel-item img {
+    object-fit: contain;
+    width: 100%;
+    height: 416px;
+}
+
+#carouselExampleControls {
+    margin-top: 0;
+    background-color: black;
+}

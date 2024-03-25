@@ -395,13 +395,13 @@ if (isset ($_SESSION['role'])) {
             </script>
 
             <!-- site footer -->
-            <?php load_common_page_footer() ?>
+            <?php load_common_page_footer(); ?>
             <!-- donate form modal -->
-            <?php donate_dialog() ?>
+            <?php donate_dialog(); ?>
             <!-- libraries loader -->
-            <?php lib() ?>
+            <?php lib(); ?>
             <!-- style switcher start -->
-            <?php style_switcher() ?>
+            <?php style_switcher(); ?>
 
 </body>
 
