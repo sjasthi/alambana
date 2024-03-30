@@ -28,27 +28,29 @@ function generate_comment($comment)
 
 function generate_new_comment_form($blog_id)
 {
-    ?>
-    <div class="new-comment-container">
-        <textarea class="new-comment-textarea" rows="4" placeholder="Leave a comment for the author!"></textarea>
-        <button type="submit" class="new-comment-submit-button btn btn-primary">Post</button>
-    </div>
-    <script>
-        const newCommentTextAreaElement = document.getElementsByClassName("new-comment-textarea")[0];
-        const newCommentSubmitButtonElement = document.getElementsByClassName("new-comment-submit-button")[0];
-        newCommentSubmitButtonElement.addEventListener("click", (e) => {
-            $.ajax({
-                type: "POST",  //type of method
-                url: "comment_controllers/create_comment.php",  //your page
-                data: { content: newCommentTextAreaElement.value, user_id: <?php echo $_SESSION["id"]; ?>, blog_id: <?php echo $blog_id; ?> },// passing the values
-                success: function (res) {
-                    //do what you want here...
-                    window.location.href = "blog_view.php?id=<?php echo $blog_id; ?>";
-                }
+    if (isset ($_SESSION["id"])) {
+        ?>
+        <div class="new-comment-container">
+            <textarea class="new-comment-textarea" rows="4" placeholder="Leave a comment for the author!"></textarea>
+            <button type="submit" class="new-comment-submit-button btn btn-primary">Post</button>
+        </div>
+        <script>
+            const newCommentTextAreaElement = document.getElementsByClassName("new-comment-textarea")[0];
+            const newCommentSubmitButtonElement = document.getElementsByClassName("new-comment-submit-button")[0];
+            newCommentSubmitButtonElement.addEventListener("click", (e) => {
+                $.ajax({
+                    type: "POST",  //type of method
+                    url: "comment_controllers/create_comment.php",  //your page
+                    data: { content: newCommentTextAreaElement.value, user_id: <?php echo $_SESSION["id"]; ?>, blog_id: <?php echo $blog_id; ?> },// passing the values
+                    success: function (res) {
+                        //do what you want here...
+                        window.location.href = "blog_view.php?id=<?php echo $blog_id; ?>";
+                    }
+                });
             });
-        });
 
-    </script>
-    <?php
+        </script>
+        <?php
+    }
 }
 ?>

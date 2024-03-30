@@ -38,11 +38,11 @@ if (isset ($_SESSION['role'])) {
     <meta name="format-detection" content="telephone=no">
     <!-- css
   ================================================== -->
-    <?php css() ?>
+    <?php css(); ?>
 
     <!-- scripts
   ================================================== -->
-    <?php load_common_page_scripts() ?>
+    <?php load_common_page_scripts(); ?>
     <style>
         /* Style for the custom button label */
         .custom-file-upload {
@@ -68,6 +68,10 @@ if (isset ($_SESSION['role'])) {
             display: none;
         }
 
+        .carousel-item {
+            z-index: 0;
+        }
+
         .carousel-item img {
             object-fit: cover;
             width: 100%;
@@ -84,7 +88,7 @@ if (isset ($_SESSION['role'])) {
 
     <div class="body">
         <!-- site header wrapper -->
-        <?php generate_header() ?>
+        <?php generate_header(); ?>
         <!-- banner area -->
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -287,7 +291,7 @@ if (isset ($_SESSION['role'])) {
             </div>
             <div class="spacer-75"></div>
             <!-- latest blog posts Box channel -->
-            <?php //fill_blog_post_display_container()            ?>
+            <?php //fill_blog_post_display_container()              ?>
 
 
             <script type="text/javascript">
