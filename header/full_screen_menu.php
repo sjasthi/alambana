@@ -5,7 +5,7 @@ function generate_full_screen_menu()
     <div class="full-screen-menu">
         <div class="full-screen-menu-header">
             <button type="button" class="full-screen-menu-exit-button btn btn-secondary">Back</button>
-            <a href="#"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
+            <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
         </div>
         <ul>
             <li>

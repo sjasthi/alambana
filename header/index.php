@@ -71,7 +71,7 @@ function generate_header()
         </ul>
         <div class="info-container">
             (951) 821-6051
-            <a href="logInForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
+            <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
         </div>
         <div class="button-container">
             <div class="burger-bar"></div>
