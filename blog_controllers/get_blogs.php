@@ -11,7 +11,7 @@ function get_blogs($start, $count)
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die ("Connection failed: " . $connection->connect_error);
+    die("Connection failed: " . $connection->connect_error);
   }
   $sql = "SELECT blogs.*,
           users.first_name, 
@@ -35,12 +35,12 @@ function get_blogs($start, $count)
   }
 }
 
-function get_blog($blog_id)
+function get_blog($blog_id, $edit)
 {
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die ("Connection failed: " . $connection->connect_error);
+    die("Connection failed: " . $connection->connect_error);
   }
   $sql = "SELECT blogs.*,
         users.id AS user_id, 
@@ -55,12 +55,12 @@ function get_blog($blog_id)
 
   $statement = $connection->prepare($sql);
   if (!$statement) {
-    die ("Error in preparing statement: " . $connection->error);
+    die("Error in preparing statement: " . $connection->error);
   }
   $statement->bind_param("i", $blog_id);
   $success = $statement->execute();
   if (!$success) {
-    die ("Error in executing statement: " . $statement->error);
+    die("Error in executing statement: " . $statement->error);
   }
   $result = $statement->get_result();
   $blog = ($result->fetch_all(MYSQLI_ASSOC))[0];
@@ -68,24 +68,29 @@ function get_blog($blog_id)
   ?>
   <link rel="stylesheet" href="blog_controllers/styles.css" />
   <?php
-  generate_blog_view($blog);
-  generate_new_comment_form($blog_id);
-  get_blog_comments($blog_id); 
+  if (!$edit) {
+    generate_blog_view($blog);
+    generate_new_comment_form($blog_id);
+    get_blog_comments($blog_id);
+  } else {
+    generate_blog_edit($blog);
+  }
 }
-function get_blog_count() {
+function get_blog_count()
+{
   $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
   // Check connection
   if ($connection->connect_error) {
-    die ("Connection failed: " . $connection->connect_error);
+    die("Connection failed: " . $connection->connect_error);
   }
   $sql = "SELECT COUNT(*) as count FROM blogs";
   $statement = $connection->prepare($sql);
   if (!$statement) {
-    die ("Error in preparing statement: " . $connection->error);
+    die("Error in preparing statement: " . $connection->error);
   }
   $success = $statement->execute();
   if (!$success) {
-    die ("Error in executing statement: " . $statement->error);
+    die("Error in executing statement: " . $statement->error);
   }
   $result = $statement->get_result();
   return ($result->fetch_assoc())["count"];
@@ -99,7 +104,7 @@ function increment_blog_page_visitor_count($blog_id)
 
   // Check connection
   if ($connection->connect_error) {
-    die ("Connection failed: " . $connection->connect_error);
+    die("Connection failed: " . $connection->connect_error);
   }
 
   // Increment the visitor count in the database
@@ -148,14 +153,14 @@ function save_button_id($button_id)
 // Retrieve button_id from the session
 function get_saved_button_id()
 {
-  return isset ($_SESSION['saved_value']) ? $_SESSION['saved_value'] : null;
+  return isset($_SESSION['saved_value']) ? $_SESSION['saved_value'] : null;
 }
 function get_session_value()
 {
-  return isset ($_SESSION['update_server_page_list_number']) ? $_SESSION['update_server_page_list_number'] : 3;
+  return isset($_SESSION['update_server_page_list_number']) ? $_SESSION['update_server_page_list_number'] : 3;
 }
 
 function get_session_blog_id()
 {
-  return isset ($_SESSION['get_session_blog_id']) ? $_SESSION['get_session_blog_id'] : null;
+  return isset($_SESSION['get_session_blog_id']) ? $_SESSION['get_session_blog_id'] : null;
 }

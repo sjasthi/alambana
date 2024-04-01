@@ -227,9 +227,9 @@ $events = get_events( "", $offset, $eventsPerPage );
                         <h3 class="widgettitle">Event Categories</h3>
 						<ul>
 							<?php
-							$catagories = get_event_catagories();
-							foreach($catagories as $catagory) { ?>
-								<li data-option-value=".<?php echo str_replace( " ", "-", $catagory ); ?>"><a href="#"><span><?php echo $catagory; ?></span></a></li>
+							$categories = get_event_categories();
+							foreach($categories as $category) { ?>
+								<li data-option-value=".<?php echo str_replace( " ", "-", $category ); ?>"><a href="#"><span><?php echo $category; ?></span></a></li>
 							<?php } ?>
 						</ul>
                     </div>

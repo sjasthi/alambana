@@ -68,21 +68,21 @@ function event_count() {
 
 }
 
-// gets the catagories of events in the database
-function get_event_catagories() {
+// gets the categories of events in the database
+function get_event_categories() {
 	$connection = new mysqli( DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE );
 	if ( $connection -> connect_error ) {
       die("Connection failed: " . $connection -> connect_error);
     }
 
-	$sql = "SELECT events.catagory FROM events";
+	$sql = "SELECT events.category FROM events";
 
 	$result = $connection -> query( $sql );
 	$events = $result -> fetch_all( MYSQLI_ASSOC );
-	$event_catagories = array_unique( array_column( $events, 'catagory' ) );
+	$event_categories = array_unique( array_column( $events, 'category' ) );
 	$result -> free_result();
 	$connection -> close();
-	return sanitize( $event_catagories );
+	return sanitize( $event_categories );
 }
 
 // iterates through the query and sanitizes it with htmlspecialchars

@@ -71,5 +71,4 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
 
 mysqli_close($connection);
 
-header('Location: blogs.php');
-?>
+echo "<script>window.location.href='blogs.php';</script>"; //hacky but it works for now

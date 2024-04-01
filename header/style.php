@@ -101,8 +101,9 @@ function generate_header_styling()
             display: none;
             flex-direction: column;
             align-items: center;
-            font-size: 28px;
+            font-size: 20px;
             z-index: 4;
+            overflow-y: scroll;
         }
 
         .full-screen-menu ul {
@@ -122,7 +123,7 @@ function generate_header_styling()
         }
 
         .full-screen-menu ul li ul li {
-            font-size: 20px;
+            font-size: 16px;
         }
 
         .full-screen-menu-header {
@@ -133,7 +134,7 @@ function generate_header_styling()
         }
 
         .full-screen-menu button {
-            font-size: 20px;
+            font-size: 16px;
             margin: 8px 8px 0 8px;
         }
     </style>
