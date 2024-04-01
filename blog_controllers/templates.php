@@ -52,7 +52,7 @@ function generate_blog_view($blog)
                 </h2>
             </div>
             <?php
-            if ($_SESSION["id"] == $blog["user_id"] || $_SESSION["role"] === "Administrator") {
+            if (isset($_SESSION["id"]) && ($_SESSION["id"] == $blog["user_id"] || $_SESSION["role"] === "Administrator")) {
                 ?>
                 <a href="blog_edit.php?id=<?php echo $blog["id"]; ?>"><button type="button"
                         class="btn btn-info">Edit</button></a>
