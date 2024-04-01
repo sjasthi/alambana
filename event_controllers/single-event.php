@@ -7,8 +7,8 @@ if (!isset ($_SESSION)) {
 include 'shared_resources.php';
 include 'get_events.php';
 include 'time_formatting.php';
-require_once './header/index.php';
-require_once './bootstrap.php';
+require_once '../header/index.php';
+require_once '../bootstrap.php';
 set_up_bootstrap();
 $event = get_event_by_id($_GET['id']);
 ?>
