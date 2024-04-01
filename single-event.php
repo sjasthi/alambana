@@ -5,10 +5,10 @@ if (!isset ($_SESSION)) {
 }
 
 include 'shared_resources.php';
-include 'get_events.php';
-include 'time_formatting.php';
-require_once '../header/index.php';
-require_once '../bootstrap.php';
+include 'event_controllers/get_events.php';
+include 'event_controllers/time_formatting.php';
+require_once 'header/index.php';
+require_once 'bootstrap.php';
 set_up_bootstrap();
 $event = get_event_by_id($_GET['id']);
 ?>
@@ -33,20 +33,20 @@ $event = get_event_by_id($_GET['id']);
     <meta name="format-detection" content="telephone=no">
     <!-- CSS
   ================================================== -->
-    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="../css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-    <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <link href="../vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-    <link href="../vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="../vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
     <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-    <link href="../css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+    <link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
     <!-- Color Style -->
     <link class="alt" href="../colors/color1.css" rel="stylesheet" type="text/css">
-    <link href="../style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+    <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
     <!-- SCRIPTS
   ================================================== -->
-    <script src="../js/modernizr.js"></script><!-- Modernizr -->
+    <script src="js/modernizr.js"></script><!-- Modernizr -->
 </head>
 
 <body class="single-event">
@@ -76,7 +76,7 @@ $event = get_event_by_id($_GET['id']);
                                 <?php echo $event["title"]; ?>
                             </h3>
                             <div class="post-media">
-                                <img src="../<?php echo $event["pic_location"] ?>" alt="">
+                                <img src="<?php echo $event["pic_location"] ?>" alt="">
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
