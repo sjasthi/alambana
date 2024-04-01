@@ -51,8 +51,14 @@ function generate_blog_view($blog)
                     <?php echo htmlspecialchars($blog["title"]); ?>
                 </h2>
             </div>
-            <a href="blog_edit.php?id=<?php echo $blog["id"]; ?>"><button type="button"
-                    class="btn btn-info">Edit</button></a>
+            <?php
+            if ($_SESSION["id"] == $blog["user_id"] || $_SESSION["role"] === "Administrator") {
+                ?>
+                <a href="blog_edit.php?id=<?php echo $blog["id"]; ?>"><button type="button"
+                        class="btn btn-info">Edit</button></a>
+                <?php
+            }
+            ?>
         </div>
         <div class="text-container" style="margin-bottom: 8px;">
             <div class="description-container">
