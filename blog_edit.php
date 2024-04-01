@@ -13,20 +13,6 @@ set_up_bootstrap();
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }
-
-// Define the number of blogs per page (default to 3)
-$blogsPerPage = isset ($_GET['update_server_page_list_number']) ? intval($_GET['update_server_page_list_number']) : 3;
-
-// Get the current page number from the URL parameters, default to 1 if not set
-$current_page = isset ($_GET['current_page']) ? intval($_GET['current_page']) : 1; // intval ensures the variable is an integer for security
-
-
-// Check if the current page is blogs.php and current_page parameter is not set
-if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page'])) {
-    // Redirect to the same page with the current_page parameter
-    header('Location: blogs.php?current_page#1');//. $current_page);
-    exit(); // Ensure script stops execution after redirection
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -109,7 +95,7 @@ if (basename($_SERVER['PHP_SELF']) == 'blogs.php' && !isset ($_GET['current_page
             </div>
         </div>
         <main>
-            <?php get_blog($_GET["id"], false); ?>
+            <?php get_blog($_GET["id"], true); ?>
         </main>
         <!-- Site Footer -->
         <?php load_common_page_footer(); ?>
