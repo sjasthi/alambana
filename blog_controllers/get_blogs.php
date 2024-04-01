@@ -64,7 +64,9 @@ function get_blog($blog_id, $edit)
   }
   $result = $statement->get_result();
   $blog = ($result->fetch_all(MYSQLI_ASSOC))[0];
-  increment_blog_page_visitor_count($blog_id);
+  if (!$edit) {
+    increment_blog_page_visitor_count($blog_id);
+  }
   ?>
   <link rel="stylesheet" href="blog_controllers/styles.css" />
   <?php
@@ -73,7 +75,11 @@ function get_blog($blog_id, $edit)
     generate_new_comment_form($blog_id);
     get_blog_comments($blog_id);
   } else {
-    generate_blog_edit($blog);
+    if ($blog["user_id"] == $_SESSION["id"] || $_SESSION["role"] === "Administrator") {
+      generate_blog_edit($blog);
+    } else {
+      echo "<script>window.location.href = '".$_SERVER['HTTP_REFERER']."';</script>";
+    }
   }
 }
 function get_blog_count()
