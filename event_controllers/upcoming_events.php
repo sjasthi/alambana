@@ -6,8 +6,8 @@ if (!isset ($_SESSION)) {
 include 'shared_resources.php';
 include 'get_events.php';
 include 'time_formatting.php';
-require_once './header/index.php';
-require_once './bootstrap.php';
+require_once '../header/index.php';
+require_once '../bootstrap.php';
 set_up_bootstrap();
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
@@ -115,7 +115,7 @@ if (isset ($_SESSION['role'])) {
 
         <?php
         $events = get_events("upcoming", 0, 100);
-        $event_catagories = get_event_catagories();
+        $event_categories = get_event_categories();
         ?>
         <!-- Main Content -->
         <div id="main-container">
@@ -125,10 +125,10 @@ if (isset ($_SESSION['role'])) {
                         <ul class="nav nav-pills sort-source" data-sort-id="gallery" data-option-key="filter">
                             <li data-option-value="*" class="active"><a href="#"><i class="fa fa-th"></i> <span>Show
                                         All</span></a></li>
-                            <?php foreach ($event_catagories as $catagory) { ?>
-                                <li data-option-value=".<?php echo str_replace(" ", "-", $catagory); ?>"><a
+                            <?php foreach ($event_categories as $category) { ?>
+                                <li data-option-value=".<?php echo str_replace(" ", "-", $category); ?>"><a
                                         href="#"><span>
-                                            <?php echo $catagory; ?>
+                                            <?php echo $category; ?>
                                         </span></a></li>
                             <?php } ?>
                         </ul>
@@ -137,7 +137,7 @@ if (isset ($_SESSION['role'])) {
                         <ul class="sort-destination isotope gallery-items" data-sort-id="gallery">
                             <?php foreach ($events as $event) { ?>
                                 <li
-                                    class="col-md-4 col-sm-6 grid-item event-grid-item <?php echo str_replace(" ", "-", $event["catagory"]); ?> format-standard">
+                                    class="col-md-4 col-sm-6 grid-item event-grid-item <?php echo str_replace(" ", "-", $event["category"]); ?> format-standard">
                                     <div class="grid-item-inner">
                                         <a href="single-event.php?id=<?php echo $event["id"]; ?>" class="media-box">
                                             <img src="../<?php echo $event["pic_location"]; ?>" alt="">
