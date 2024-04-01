@@ -280,11 +280,7 @@ set_up_bootstrap();
 
                     <div class="spacer-20"></div>
 
-                    <div class="cta">
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal"
-                            data-target="#DonateModal">Donate Now</a>
-                        <p>Let's start doing your bit for the world. Donate a little.</p>
-                    </div>
+                   
 
                 </div>
             </div>

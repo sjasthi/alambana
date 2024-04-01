@@ -182,11 +182,6 @@ if (isset ($_SESSION['role'])) {
     <div id="main-container">
       <div class="content">
         <div class="container">
-          <section class="about-section">
-            <div class="body-container">
-              <h2>Photo Gallery</h2>
-            </div>
-          </section>
 
           <div class="gallery">
 

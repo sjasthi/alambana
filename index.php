@@ -81,6 +81,150 @@ if (isset ($_SESSION['role'])) {
         #carouselExampleControls {
             margin-top: 54px;
         }
+
+        .body-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+      
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
+        }
+        h2 {
+            color: black;
+        }
+        p {
+            line-height: 1.6;
+            color: black;
+        }
+        
+        .section-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .text {
+            flex: 1;
+        }
+
+        .image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h4 {
+        font-style: italic;
+        }
+
+        .button {
+            background-color: gray;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: blue;
+        }
+
+    
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        
+        .image-container {
+            margin: 10px;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-row img {
+            width: 100px;
+            height: 75px;
+            margin: 25px;
+        }
+
+        .image-class {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image {
+            flex: 0 0 30%;
+            text-align: center;
+        }
+
+        .images {
+            flex: 0 0 30%;
+            text-align: center;
+        }
+
+        .images img {
+            width: 25%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .images p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .images p b {
+            font-size: 18px;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -117,181 +261,86 @@ if (isset ($_SESSION['role'])) {
         </div>
         <!-- end hero slider -->
     </div>
-    <div class="accent-bg padding-tb20 cta-fw">
-        <div class="container">
-            <a href="community-support.php" class="btn btn-default btn-ghost btn-light btn-rounded pull-right">become a
-                volunteer</a>
-            <h4>let's start doing your bit for the world. Join us as a volunteer</h4>
-        </div>
-    </div>
+    
     <!-- main content -->
-    <div id="main-container">
-        <div class="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <h4 class="accent-color short">why to join</h4>
-                        <h1>your support can make a huge difference</h1>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <p>ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                            nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
-                            vulputate <a href="#">velit esse</a> molestie consequat. Donec vel mauris quam. Lorem
-                            ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.</p>
-                        <p>donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam. Lorem
-                            ipsum dolor sit amet, consectetur adipiscing elit. Nulla <a href="#">convallis egestas
-                                rhoncus</a>. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                    </div>
-                </div>
-                <div class="spacer-40"></div>
-                <!-- latest causes -->
-                <div class="carousel-wrapper">
-                    <div class="row">
-                        <ul class="owl-carousel carousel-fw" id="causes-slider" data-columns="5" data-autoplay=""
-                            data-pagination="yes" data-arrows="no" data-single-item="no" data-items-desktop="5"
-                            data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
-                            <li class="item">
-                                <div class="grid-item cause-grid-item small-business format-standard">
-                                    <div class="grid-item-inner">
-                                        <a href="causes-women.php" class="media-box">
-                                            <img src="images/causeg1.jpg" alt="">
-                                        </a>
-                                        <div class="grid-item-content">
-                                            <a class="cprogress" data-complete="88" data-color="f23827"
-                                                data-toggle="tooltip"
-                                                data-original-title="10 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="causes-women.php">help small shopkeepers
-                                                    of sunyani</a></h3>
-                                            <div class="meta-data">Donated $26400 / <span
-                                                    class="cause-target">$30000</span></div>
-                                        </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#DonateModal">Donate now</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="grid-item cause-grid-item small-business format-standard">
-                                    <div class="grid-item-inner">
-                                        <a href="causes-hunger.php" class="media-box">
-                                            <img src="images/causeg2.jpg" alt="">
-                                        </a>
-                                        <div class="grid-item-content">
-                                            <a class="cprogress" data-complete="52" data-color="f6bb42"
-                                                data-toggle="tooltip"
-                                                data-original-title="25 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="causes-hunger.php">help relocate the
-                                                    refugees</a></h3>
-                                            <div class="meta-data">Donated $21840 / <span
-                                                    class="cause-target">$40000</span></div>
-                                        </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#DonateModal">Donate now</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="grid-item cause-grid-item small-business format-standard">
-                                    <div class="grid-item-inner">
-                                        <a href="single-cause.php" class="media-box">
-                                            <img src="images/causeg5.jpg" alt="">
-                                        </a>
-                                        <div class="grid-item-content">
-                                            <a class="cprogress" data-complete="75" data-color="8cc152"
-                                                data-toggle="tooltip"
-                                                data-original-title="65 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="single-cause.php">save tigers from
-                                                    poachers</a></h3>
-                                            <div class="meta-data">Donated $15000 / <span
-                                                    class="cause-target">$20000</span></div>
-                                        </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#DonateModal">Donate now</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="grid-item cause-grid-item small-business format-standard">
-                                    <div class="grid-item-inner">
-                                        <a href="single-cause.php" class="media-box">
-                                            <img src="images/causeg6.jpg" alt="">
-                                        </a>
-                                        <div class="grid-item-content">
-                                            <a class="cprogress" data-complete="88" data-color="8cc152"
-                                                data-toggle="tooltip"
-                                                data-original-title="70 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="single-cause.php">help rebuild nepal</a>
-                                            </h3>
-                                            <div class="meta-data">Donated $176000 / <span
-                                                    class="cause-target">$200000</span></div>
-                                        </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#DonateModal">Donate now</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="grid-item cause-grid-item small-business format-standard">
-                                    <div class="grid-item-inner">
-                                        <a href="causes-education.php" class="media-box">
-                                            <img src="images/causeg3.jpg" alt="">
-                                        </a>
-                                        <div class="grid-item-content">
-                                            <a class="cprogress" data-complete="20" data-color="8cc152"
-                                                data-toggle="tooltip"
-                                                data-original-title="102 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="causes-education.php">education for
-                                                    everyone</a></h3>
-                                            <div class="meta-data">Donated $4000 / <span
-                                                    class="cause-target">$20000</span></div>
-                                        </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#DonateModal">Donate now</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item">
-                                <div class="grid-item cause-grid-item small-business format-standard">
-                                    <div class="grid-item-inner">
-                                        <a href="single-cause.php" class="media-box">
-                                            <img src="images/causeg4.jpg" alt="">
-                                        </a>
-                                        <div class="grid-item-content">
-                                            <a class="cprogress" data-complete="50" data-color="8cc152"
-                                                data-toggle="tooltip"
-                                                data-original-title="105 days left"><strong></strong></a>
-                                            <h3 class="post-title"><a href="single-cause.php">save water
-                                                    initiative</a></h3>
-                                            <div class="meta-data">Donated $5000 / <span
-                                                    class="cause-target">$10000</span></div>
-                                        </div>
-                                        <a href="#" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#DonateModal">Donate now</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="body-container">
+    <section>
+    <div class="section-content">
+        <div class="text">
+            <h2>Welcome to Aalambana Foundation</h2>
+            <h4>We will strive to bring together community members to serve the underprivileged better.</h4>
+            <p>Aalambana Foundation is making a positive and lasting impact by enabling women empowerment, supporting socioeconomically disadvantaged children, and undertaking community betterment activities by bringing like-minded individuals together. We do this by volunteering at multiple charities, food banks, shelters, rescue missions and by funding back to school drives, food drives, enrichment, development activities, medical camps, mentoring and education programs and providing scholarships.</p>
+        
+            <p><a href="about.php"><button class="button">Know More!</button></a></p></div>
+        <div class="image">
+        </br /> </br /> </br />
+            <img src="images/welcome.png">
+        </div>
+        
+    </div>
+    </section>
+    <div class="spacer-30"></div>
 
-            <div class="spacer-50"></div>
-            <!-- latest event posts Box channel -->
-            <?php fill_event_post_display_container(); ?>
-            <!-- latest blog posts comments Box channel -->
-            <div class="parallax parallax5 parallax-light text-align-center padding-tb100"
-                style="background-image:url(images/cover_image.jpg)">
-                <div class="container">
-                    <div class="carousel-wrapper">
-                        <div class="row">
-                            <?php fill_feedback_comments_carousel(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="spacer-75"></div>
-            <!-- latest blog posts Box channel -->
-            <?php //fill_blog_post_display_container()              ?>
+    <div class="cta">
+    <a href="community-support.php" class="btn btn-primary pull-right">Become a Volunteer</a>
+    <p>Let's start doing your bit for the world. Join us as a volunteer.</p>
+    </div>
+    <div class="spacer-20"></div>
+  
+    <div>
+    <h3>Photo Gallery</h3>
+    <div class="image-gallery">
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/Annadanam.png"></a>
+    </div>
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/Netralayam.png"></a>
+    </div>
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/1Netralayam.png"></a>
+    </div>
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/2Annadanam.png"></a>
+    </div>
+    </div>
+    <div class="image-gallery">
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/2Netralayam.png"></a>
+    </div>
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/1DBNO.jpg"></a>
+    </div>
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/3Netralayam.jpg"></a>
+    </div>
+    <div class="image-container">
+        <a href="gallery-caption-2cols.php"><img src="images/OCFoodBank.jpg"></a>
+    </div>
+</div>
+<div class="spacer-30"></div>
+<div class="image-class">
+    <div class="images">
+      <img src="images/blogIcon.png">
+      <p><b>Blogs</b></p>
+      <p>Register or login to connect and engage with the community through blogs by posting blogs and more.</p>
+    </div>
+  </div>
+<div class="spacer-30"></div>
+<div class="spacer-30"></div>
+<div>
+<h3>Some of the Organizations we Help</h3>
+    <div class="image-row">
+        <img src="images/org1.png">
+        <img src="images/org2.png">
+        <img src="images/org3.png">
+        <img src="images/org4.png">
+        <img src="images/org5.png">
+        <img src="images/org6.png">
+    </div>
+</div>
+<div class="spacer-30"></div>
+</div>
+
 
 
             <script type="text/javascript">
@@ -397,7 +446,7 @@ if (isset ($_SESSION['role'])) {
                     }
                 });
             </script>
-
+</div>
             <!-- site footer -->
             <?php load_common_page_footer(); ?>
             <!-- donate form modal -->
