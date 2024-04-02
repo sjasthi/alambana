@@ -64,7 +64,7 @@ if ( isset( $_SESSION['role'] ) ) {
             <?php generate_header(); ?>
 
             <div class="hero-area">
-                <div class="page-banner parallax" id="banner" style="background-image:url(images/event_banner.jpg);">
+                <div class="page-banner parallax" id="banner" style="background-image:url(images/cover_image.jpg);">
                     <div class="container">
                         <div class="page-banner-text">
                             <h1 class="block-title">Events</h1>
