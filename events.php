@@ -6,7 +6,7 @@ if ( !isset( $_SESSION ) ) {
 include 'shared_resources.php';
 include 'feedback_fill.php';
 include 'event_controllers/get_events.php';
-include 'event_controllers/event_view.php';
+include 'event_controllers/templates.php';
 require_once "header/index.php";
 require_once "bootstrap.php";
 
@@ -127,7 +127,7 @@ if ( isset( $_SESSION['role'] ) ) {
             </style>
             <?php
             // Define the number of events per page (default to 3)
-            $eventsPerPage = isset( $_GET['events_per_page'] ) ? ( int )$_GET['events_per_page'] : 3;
+            $eventsPerPage = isset( $_GET['events_per_page'] ) ? ( int )$_GET['events_per_page'] : 10;
             $view = isset( $_GET['view'] ) ? $_GET['view'] : "list";
 
             // Calculate the total number of pages
@@ -147,7 +147,7 @@ if ( isset( $_SESSION['role'] ) ) {
             <div id="main-container">
                 <div class="content">
                     <div class="container">
-                        <form action="" method="get">
+                        <form action="" method="get" <?php if( $view == "single-event" )  echo "hidden"; ?>>
                             <label for="events_per_page">Events per page:</label>
                             <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
                                 <?php for( $i = 1; $i < 11; $i++ ) { ?>
@@ -160,35 +160,17 @@ if ( isset( $_SESSION['role'] ) ) {
                                 <option value="grid" <?php if ($view == "grid") echo 'selected'; ?>>grid</option>
                                 <option value="calendar" <?php if ($view == "calendar") echo 'selected'; ?>>calendar</option>
                             </select>
-                        </form>
-                        <!-- Pagination Links -->
-                        <nav>
-                            <ul class="pagination pagination-lg">
-                                <!-- Previous Page Link -->
-                                <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
-                                <!-- Page Number Links -->
-                                <?php for ($i = 1; $i <= $totalPages; $i++) { ?><li <?php if ($i == $current_page) { echo 'class="active"'; } ?>><a href="?current_page=<?php echo $i; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>" ><?php echo $i; ?></a></li><?php } ?>
-                                <!-- Next Page Link -->
-                                <?php if ($current_page < $totalPages) { ?><li><a href="?current_page=<?php echo $current_page + 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">Next &raquo;</a></li><?php } ?>
-                            </ul>
-                        </nav>
+                        </form>                        
                         <?php
+                        pagination( $view, $current_page, $eventsPerPage, $totalPages );
                         switch( $view ) {
                             case "list": list_view( $categories, $events ); break;
                             case "grid": grid_view( $categories, $events ); break;
                             case "calendar": calandar_view( $categories, $events ); break;
-                        } ?>
-                        <!-- Pagination Links -->
-                        <nav>
-                            <ul class="pagination pagination-lg">
-                                <!-- Previous Page Link -->
-                                <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
-                                <!-- Page Number Links -->
-                                <?php for ($i = 1; $i <= $totalPages; $i++) { ?><li <?php if ($i == $current_page) { echo 'class="active"'; } ?>><a href="?current_page=<?php echo $i; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>" ><?php echo $i; ?></a></li><?php } ?>
-                                <!-- Next Page Link -->
-                                <?php if ($current_page < $totalPages) { ?><li><a href="?current_page=<?php echo $current_page + 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">Next &raquo;</a></li><?php } ?>
-                            </ul>
-                        </nav>
+                            case "single-event": single_event( $categories, $events, $_GET["id"] ); break;
+                        } 
+                        pagination( $view, $current_page, $eventsPerPage, $totalPages );
+                        ?>                        
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@ function grid_view( $categories, $events ) {
                 <li
                     class="col-md-4 col-sm-6 grid-item event-grid-item <?php echo str_replace(" ", "-", $event["category"]); ?> format-standard">
                     <div class="grid-item-inner">
-                        <a href="single-event.php?id=<?php echo $event["id"]; ?>" class="media-box">
+                        <a href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>" class="media-box">
                             <img src="<?php echo $event["pic_location"]; ?>" alt="">
                         </a>
                         <div class="grid-item-content">
@@ -39,7 +39,7 @@ function grid_view( $categories, $events ) {
                             <span class="meta-data">
                                 <?php echo format_date($event["event_date_start"], $event["event_date_end"]); ?>
                             </span>
-                            <h3 class="post-title"><a href="single-event.php?id=<?php echo $event["id"]; ?>">
+                            <h3 class="post-title"><a href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>">
                                     <?php echo $event["title"]; ?>
                                 </a></h3>
                             <ul class="list-group">
@@ -81,14 +81,13 @@ function list_view( $categories, $events ) {
                 ?> 
 
                 <?php if ( !empty( $event['pic_location'] ) ) { ?>
-                    <a href="single-event.php?id=<?php echo $event['id']; ?>" class="media-box">
+                    <a href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>" class="media-box">
                         <img src="<?php echo $event['pic_location']; ?>">
                     </a>
                 <?php } ?>
             </div>
             <?php } ?>
         </div>
-
         <!-- Sidebar -->
         <div class="col-md-4 sidebar-block">
             <div class="widget sidebar-widget widget_search" id="search_bar">
@@ -99,29 +98,28 @@ function list_view( $categories, $events ) {
                     </span>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4 sidebar-block">
             <div class="widget sidebar-widget widget_categories">
                 <h3 class="widgettitle">Event Categories</h3>
                 <ul>
                     <?php
-                    
                     foreach($categories as $category) { ?>
                         <li data-option-value=".<?php echo str_replace( " ", "-", $category ); ?>"><a href="#"><span><?php echo $category; ?></span></a></li>
                     <?php } ?>
                 </ul>
             </div>
-        </div>
-        <div class="col-md-4 sidebar-block">
-            <!-- Side blog List (Lastest Postings) -->
-            <?php // fill_blog_post_side_container_small() ?>
-        </div>
-        
-        <div class="widget widget_testimonials">
-            <h3 class="widgettitle">Stories of change</h3>
-            <div class="carousel-wrapper" style="background: none;">
-                <div class="row">
-                    <?php //fill_feedback_comments_carousel() ?>
+            <div class="widget recent_posts">
+                <h3 class="widgettitle">Latest Postings</h3>
+                <ul>
+                    <!-- Side blog List (Lastest Postings) -->
+                    <?php // fill_blog_post_side_container_small() ?>
+                </ul>
+            </div>
+            <div class="widget widget_testimonials">
+                <h3 class="widgettitle">Stories of change</h3>
+                <div class="carousel-wrapper" style="background: none;">
+                    <div class="row">
+                        <?php //fill_feedback_comments_carousel() ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -152,7 +150,7 @@ function calandar_view( $categories, $events ) {
                                 <?php echo format_date($event["event_date_start"], $event["event_date_end"]); ?>
                             </span>
                             <h4 class="post-title"><a
-                                    href="single-event.php?id=<?php echo $event["id"]; ?>">
+                                    href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>">
                                     <?php echo $event["title"]; ?>
                                 </a></h4>
                             <p>
@@ -222,8 +220,28 @@ function calandar_view( $categories, $events ) {
 <?php
 }
 
-function single_event( $categories, $events) {
-    ?>
+function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
+    <nav>
+        <ul class="pagination pagination-lg" <?php if( $view == "single-event" )  echo "hidden"; ?>>
+            <!-- Previous Page Link -->
+            <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
+            <!-- Page Number Links -->
+            <?php for ($i = 1; $i <= $totalPages; $i++) { ?><li <?php if ($i == $current_page) { echo 'class="active"'; } ?>><a href="?current_page=<?php echo $i; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>" ><?php echo $i; ?></a></li><?php } ?>
+            <!-- Next Page Link -->
+            <?php if ($current_page < $totalPages) { ?><li><a href="?current_page=<?php echo $current_page + 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">Next &raquo;</a></li><?php } ?>
+        </ul>
+    </nav>
+<?php 
+}
+
+function single_event( $categories, $events, $event_id) {
+foreach( $events as $single_event ) {
+    if( $single_event["id"] == $event_id ) {
+        $event = $single_event;
+    }
+}
+
+?>
     <div class="row">
         <div class="col-md-8 content-block">
             <h3>
@@ -348,9 +366,9 @@ function single_event( $categories, $events) {
             </div>
         </div>
     </div>
-<?php } ?>
-
 <?php
+}
+
 function transformYouTubeURL($url) {
     // Parse the URL to extract its components
     $parsedUrl = parse_url($url);
