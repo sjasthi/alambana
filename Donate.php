@@ -46,28 +46,23 @@ if (isset ($_SESSION['role'])) {
   <!-- SCRIPTS
 
   ================================================== -->
-  <!-- <style>
-    body {
-      font-size: 50px;
-      /* Set the font size to make the text bigger */
-      color: black;
-      /* Set the text color to black */
-      text-align: center;
-      /* Center align the text */
+  <style>
+    .donation-modal-content {
+      padding: 30px;
     }
     .modal-body {
 	    background:#f6f6f6;
 	    padding-left:40px;
 	    padding-right:40px;
     }
-    .modal-header{
+    .donation-modal-header{
 	    position:relative;
     }
-    .modal-footer{
+    .donation-modal-footer{
 	    padding-left:70px;
 	    padding-right:70px;
     }
-  </style> -->
+  </style>
 
   <?php load_common_page_scripts() ?>
 
@@ -83,16 +78,17 @@ if (isset ($_SESSION['role'])) {
     <!-- Hero Area -->
     <div class="hero-area">
       <div class="page-banner parallax" id="banner" style="background-image:url(images/parallax6.jpg);">
-      <div class="container">
-        <div class="page-banner-text">
-          <h1 class="block-title">Donate Below</h1>
-          <?php
-          if (isset ($userRole) && $userRole === "admin") {
-            // Display the "Change Image" button for admin users
-            echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
-            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
-          }
-          ?>
+        <div class="container">
+          <div class="page-banner-text">
+            <h1 class="block-title">Donate Below</h1>
+            <?php
+            if (isset ($userRole) && $userRole === "admin") {
+              // Display the "Change Image" button for admin users
+              echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+              echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+            }
+            ?>
+          </div>
         </div>
       </div>
     </div>
@@ -123,61 +119,17 @@ if (isset ($_SESSION['role'])) {
     </script>
     
     <!-- Main Content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="row">
-          <div class="col-md-6 col-sm-6 donate-amount-option">
-            <h4>Choose an amount</h4>
-            <ul class="predefined-amount">
-              <li><label><input type="radio" name="donation-amount">$10</label></li>
-              <li><label><input type="radio" name="donation-amount">$20</label></li>
-              <li><label><input type="radio" name="donation-amount">$30</label></li>
-              <li><label><input type="radio" name="donation-amount">$50</label></li>
-              <li><label><input type="radio" name="donation-amount">$100</label></li>
-            </ul>
-          </div>
-          <span class="donation-choice-breaker">Or</span>
-          <div class="col-md-6 col-sm-6 donate-amount-option">
-            <h4>Enter your own</h4>
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">$</span>
-              <input type="number" class="form-control">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6 col-sm-6 donation-form-infocol">
-            <h4>Address</h4>
-              <input type="text" class="form-control" placeholder="Address line 1">
-              <input type="text" class="form-control" placeholder="Address line 2">
-            <div class="row">
-              <div class="col-md-8 col-sm-8 col-xs-8">
-                <input type="text" class="form-control" placeholder="State/City">
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                <input type="text" class="form-control" placeholder="Zipcode">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-3">
-                <label>Country</label>
-              </div>
-              <div class="col-md-9 col-sm-9 col-xs-9">
-                <select class="selectpicker">
-                  <option>United States</option>
-                  <option>Australia</option>
-                  <option>Netherlands</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-6 donation-form-infocol">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="donation-modal-content">
+          <div class="donation-modal-header">
             <h4>Personal info</h4>
             <div class="row">
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <input type="text" class="form-control" placeholder="First name">
+                <form action="" method="POST">
+                  <input type="text" class="form-control" placeholder="First name">
+                </form>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <input type="text" class="form-control" placeholder="Last name">
@@ -185,16 +137,81 @@ if (isset ($_SESSION['role'])) {
             </div>
             <input type="text" class="form-control" placeholder="Email address">
             <input type="text" class="form-control" placeholder="Phone no.">
-            <label class="checkbox"><input type="checkbox"> Register me on this website</label>
+          </div>
+          <div class="donation-modal-body">
+            <div class="row">
+              <div class="add">
+                <h4>Address</h4>
+                <input type="text" class="form-control" placeholder="Address line 1">
+                <input type="text" class="form-control" placeholder="Address line 2">
+                <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-8">
+                    <input type="text" class="form-control" placeholder="State/City">
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                    <input type="text" class="form-control" placeholder="Zipcode">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <label>Country</label>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-xs-9">
+                    <select class="selectpicker">
+                      <option>United States</option>
+                      <option>Australia</option>
+                      <option>Netherlands</option>
+                    </select>
+                  </div>
+                  <label class="checkbox"><input type="checkbox"> Register me on this website</label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer text-align-center">
-        <button type="button" class="btn btn-primary">Make your donation now</button>
-          <div class="spacer-20"></div>
-          <p class="small">Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi.</p>
+      <div class="col-md-6">
+        <div class="donation-modal-content">
+          <div class="donation-modal-header">
+            <h4>Payment info</h4>
+            <ul class="predefined-amount">
+              <li><label><input type="radio" name="donation-amount">$10</label></li>
+              <li><label><input type="radio" name="donation-amount">$20</label></li>
+              <li><label><input type="radio" name="donation-amount">$30</label></li>
+              <li><label><input type="radio" name="donation-amount">$50</label></li>
+              <li><label><input type="radio" name="donation-amount">$100</label></li>
+              <li><label><input type="radio" name="donation-amount">Other</label></li>
+            </ul>
+          </div>
+          <div class="donation-modal-body">
+            <div class="form-group">
+              <label for="cardNumber">Card number</label>
+              <input type="text" class="form-control" id="cardNumber" placeholder="Card number">
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="cardExpiry">Expiry</label>
+                  <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="cardCVC">CVC</label>
+                  <input type="text" class="form-control" id="cardCVC" placeholder="CVC">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="donation-modal-footer text-align-center">
+            <button type="button" class="btn btn-primary">Make your donation now</button>
+            <div class="spacer-20"></div>
+            <p class="small">Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi. Aenean imperdiet lacus sit amet elit porta, et malesuada erat bibendum. Cras sed nunc massa. Quisque tempor dolor sit amet tellus malesuada, malesuada iaculis eros dignissim. Aenean vitae diam id lacus fringilla maximus. Mauris auctor efficitur nisl, non blandit urna fermentum nec. Vestibulum quam nisi, pretium a nibh sit amet, consectetur hendrerit mi.</p>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
     <!-- Site Footer -->
     <?php load_common_page_footer() ?>
