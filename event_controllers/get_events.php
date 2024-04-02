@@ -64,7 +64,7 @@ function event_count() {
 	$result -> free_result();
 	$connection -> close();
 
-	return sanitize( $count );
+	return sanitize( $count["COUNT(*)"] );
 
 }
 
