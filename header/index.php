@@ -66,7 +66,7 @@ function generate_header()
                 </div>
             </li>
             <li>
-                <a href="Donate.php">Donate Now</a>
+                <a href="donate.php">Donate Now</a>
             </li>
         </ul>
         <div class="info-container">

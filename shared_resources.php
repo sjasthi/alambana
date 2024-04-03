@@ -285,7 +285,7 @@ function load_common_page_header($headType = 1)
                             </ul>
                         </li>
                         <li><a href="typography.php">Typography</a></li>
-                        <li><a href="Donate.php">Donate Now</a></li>
+                        <li><a href="donate.php">Donate Now</a></li>
                     </ul>
 
                     <!-- Site Phone Number -->

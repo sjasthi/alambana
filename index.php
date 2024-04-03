@@ -240,7 +240,7 @@ if (isset ($_SESSION['role'])) {
                     <img class="d-block w-100" src="images/cover_image.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h3 class="text-light">Together - We Can Serve Better</h3>
-                        <button type="button" class="btn btn-primary">Donate Now</button>
+                        <a href="donate.php"><button type="button" class="btn btn-primary">Donate Now</button></a>
                     </div>
                 </div>
                 <div class="carousel-item">

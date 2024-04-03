@@ -64,7 +64,7 @@ function generate_full_screen_menu()
             </li>
             </li>
             <li>
-                <a href="Donate.php">Donate Now</a>
+                <a href="donate.php">Donate Now</a>
             </li>
         </ul>
     </div>
