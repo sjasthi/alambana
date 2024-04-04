@@ -62,6 +62,76 @@ if (isset ($_SESSION['role'])) {
         #imageUpload {
             display: none;
         }
+        .body-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+    p {
+        color: #666;
+        text-align: center;
+    }
+    .contact-info {
+        margin-bottom: 20px;
+    }
+    .contact-info p {
+        margin: 10px 0;
+    }
+    .contact-form {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .form-group textarea {
+        resize: vertical;
+        height: 150px;
+    }
+    .form-group button {
+        padding: 10px 20px;
+        background-color: blue;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color: #555;
+    }
+    .email-icon {
+    height: 18px;
+}
+.form-group label::after {
+    content: '*';
+    color: red;
+    margin-left: 4px;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
     </style>
 </head>
 
@@ -118,129 +188,42 @@ if (isset ($_SESSION['role'])) {
         <div id="main-container">
             <div class="content">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3 col-xs-6">
-                            <h4 class="block-title">Our Locations</h4>
-                            <a href="mailto:help@borntogive.com">aalambanafoundation@gmail.com</a>
-                            <!-- if need this will implement
-                        <a href="http://imithemes.com">http://borntogive.com</a> -->
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6">
-                            <address>
-                                561 Orion Rd.<br>
-                                Tustin,<br>
-                                CA - 92782<br>
-                                USA
-                                <br><br>
-                                <strong>TEL:</strong> (951) 821-6051<br>
-                            </address>
-                            <!-- If more location then use these: 
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                        <address>
-                            2500 Opera house.<br>
-                            Andheri East,<br>
-                            Mumbai - 400120<br>
-                            India
-                            <br><br>
-                            <strong>TEL:</strong> 1-800-7878-09<br>
-                            <strong>FAX:</strong> 1-800-7878-08
-                        </address>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                        <address>
-                            1380 Solvan City<br>
-                            Mechnilian,<br>
-                            London - 77042<br>
-                            UK
-                            <br><br>
-                            <strong>TEL:</strong> 1-800-7878-09<br>
-                            <strong>FAX:</strong> 1-800-7878-08
-                        </address>
-                    </div>
-                    -->
-                        </div>
-                    </div>
-                    <div class="spacer-75"></div>
-                    <div id="contact-map" style="width:100%;height:400px"></div>
-                    <div class="spacer-75"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 content-block">
-                                <form method="post" id="contactform" name="contactform" class="contact-form clearfix"
-                                    action="mail/contact.php">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <input type="text" id="fname" name="First Name"
-                                                    class="form-control input-lg" placeholder="First name*">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" id="lname" name="Last Name"
-                                                    class="form-control input-lg" placeholder="Last name">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" id="email" name="email"
-                                                    class="form-control input-lg" placeholder="Email*">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" id="phone" name="phone" class="form-control input-lg"
-                                                    placeholder="Phone">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="form-group">
-                                                <textarea cols="6" rows="8" id="comments" name="comments"
-                                                    class="form-control input-lg" placeholder="Message"></textarea>
-                                            </div>
-                                            <input id="submit" name="submit" type="submit"
-                                                class="btn btn-primary btn-lg pull-right" value="Submit now!">
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="clearfix"></div>
-                                <div id="message"></div>
-                            </div>
-
-                            <!-- Sidebar -->
-                            <div class="col-md-4 sidebar-block">
-                                <div class="widget widget_recent_causes">
-                                    <h3 class="widgettitle">Latest Causes</h3>
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="cause-thumb">
-                                                <img src="images/cause1.jpg" alt="" class="img-thumbnail">
-                                                <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                                    <strong></strong>
-                                                </div>
-                                            </a>
-                                            <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
-                                            <span class="meta-data">10 days left to achieve</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="cause-thumb">
-                                                <img src="images/cause5.jpg" alt="" class="img-thumbnail">
-                                                <div class="cProgress" data-complete="75" data-color="42b8d4">
-                                                    <strong></strong>
-                                                </div>
-                                            </a>
-                                            <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
-                                            <span class="meta-data">32 days left to achieve</span>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="cause-thumb">
-                                                <img src="images/cause6.jpg" alt="" class="img-thumbnail">
-                                                <div class="cProgress" data-complete="88" data-color="42b8d4">
-                                                    <strong></strong>
-                                                </div>
-                                            </a>
-                                            <h5><a href="single-cause.php">Help rebuild Nepal</a></h5>
-                                            <span class="meta-data">10 days left to achieve</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                <div id="contact" class="body-container">
+        <h1>We've been waiting for you</h1>
+        <p>We want to hear from you. Let us know how we can help.</p>
+        
+        <div class="contact-info">
+            <p><img src="images/call.png">&nbsp Phone: <a href="tel:+1 (951) 821-6051">+1 (951) 821-6051</a></p>
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img class="email-icon" src="images/email.png">&nbsp Email: <a href="mailto:aalambanafoundation@gmail.com">aalambanafoundation@gmail.com</a></p>
+        </div>
+        
+        <div class="contact-form">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" placeholder="a@a.uk" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="message" autocomplete="off" required></textarea>
+                </div>
+                <div class="form-group">
+                    <center>&nbsp&nbsp&nbsp<button type="submit">Submit</button>&nbsp&nbsp&nbsp<button type="reset">Reset</button></center>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+                    
+                    
                     </div>
                 </div>
             </div>
