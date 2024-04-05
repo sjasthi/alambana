@@ -21,7 +21,7 @@ function grid_view( $categories, $events ) {
                 <li
                     class="col-md-4 col-sm-6 grid-item event-grid-item <?php echo str_replace(" ", "-", $event["category"]); ?> format-standard">
                     <div class="grid-item-inner">
-                        <a href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>" class="media-box">
+                        <a href="events.php?id=<?php echo $event["id"] . "&view=single_event"; ?>" class="media-box">
                             <img src="<?php echo $event["pic_location"]; ?>" alt="">
                         </a>
                         <div class="grid-item-content">
@@ -39,7 +39,7 @@ function grid_view( $categories, $events ) {
                             <span class="meta-data">
                                 <?php echo format_date($event["event_date_start"], $event["event_date_end"]); ?>
                             </span>
-                            <h3 class="post-title"><a href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>">
+                            <h3 class="post-title"><a href="events.php?id=<?php echo $event["id"] . "&view=single_event"; ?>">
                                     <?php echo $event["title"]; ?>
                                 </a></h3>
                             <ul class="list-group">
@@ -81,7 +81,7 @@ function list_view( $categories, $events ) {
                 ?> 
 
                 <?php if ( !empty( $event['pic_location'] ) ) { ?>
-                    <a href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>" class="media-box">
+                    <a href="events.php?id=<?php echo $event["id"] . "&view=single_event"; ?>" class="media-box">
                         <img src="<?php echo $event['pic_location']; ?>">
                     </a>
                 <?php } ?>
@@ -150,7 +150,7 @@ function calandar_view( $categories, $events ) {
                                 <?php echo format_date($event["event_date_start"], $event["event_date_end"]); ?>
                             </span>
                             <h4 class="post-title"><a
-                                    href="events.php?id=<?php echo $event["id"] . "&view=single-event&events_per_page=1000"; ?>">
+                                    href="events.php?id=<?php echo $event["id"] . "&view=single_event"; ?>">
                                     <?php echo $event["title"]; ?>
                                 </a></h4>
                             <p>
@@ -222,7 +222,7 @@ function calandar_view( $categories, $events ) {
 
 function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
     <nav>
-        <ul class="pagination pagination-lg" <?php if( $view == "single-event" )  echo "hidden"; ?>>
+        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" )  echo "hidden"; ?>>
             <!-- Previous Page Link -->
             <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
             <!-- Page Number Links -->
@@ -235,12 +235,7 @@ function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
 }
 
 function single_event( $categories, $events, $event_id) {
-foreach( $events as $single_event ) {
-    if( $single_event["id"] == $event_id ) {
-        $event = $single_event;
-    }
-}
-
+    $event = get_event_by_id( $event_id );
 ?>
     <div class="row">
         <div class="col-md-8 content-block">
@@ -364,6 +359,75 @@ foreach( $events as $single_event ) {
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+<?php
+}
+
+function create_event() { ?>
+
+    <div class="row">
+        <a href="admin_events.php" class="btn btn-primary">Go to Events</a>
+    </div>
+
+    <div class="row">
+        <br><br>
+        <div class="col-md-6 mx-auto">
+            <h1>Add new Event</h1>
+            <form action="?submit_event=create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Event Title</label>
+                    <input type="text" class="form-control" name="title" id="title">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="Education">Education</option>
+                        <option value="Water">Water</option>
+                        <option value="Wild-Life">Wild-Life</option>
+                        <option value="Human-Rights">Human-Rights</option>
+                        <option value="Environment">Environment</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Event Description</label>
+                    <input type="text" class="form-control" name="description" id="description">
+                </div>
+
+                <div class="form-group">
+                    <label for="information">Event Information</label>
+                    <input type="text" class="form-control" name="information" id="information">
+                </div>
+
+                <div class="form-group">
+                    <label for="video_link">Video Link</label>
+                    <input type="text" class="form-control" name="video_link" id="video_link">
+                </div>
+
+                <div class="form-group">
+                    <label for="event_date_start">Event Start Date</label>
+                    <input type="datetime-local" class="form-control" name="event_date_start" id="event_date_start">
+
+                    <label for="event_date_end">Event End Date</label>
+                    <input type="datetime-local" class="form-control" name="event_date_end" id="event_date_end">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Event location</label>
+                    <input type="text" class="form-control" name="location" id="location">
+                </div>
+
+                <div class="form-group"> 
+                    <label for="img_file">Event Image</label>
+                    <input type="file" class="form-control" name="img_file" id="img_file">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name=submit" value="submit">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php';">Cancel</button>                </div>
+            </form>
         </div>
     </div>
 <?php

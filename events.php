@@ -5,8 +5,8 @@ if ( !isset( $_SESSION ) ) {
 
 include 'shared_resources.php';
 include 'feedback_fill.php';
-include 'event_controllers/get_events.php';
-include 'event_controllers/templates.php';
+include 'event_controllers/event_queries.php';
+include 'event_controllers/crud_templates.php';
 require_once "header/index.php";
 require_once "bootstrap.php";
 
@@ -32,10 +32,10 @@ if ( isset( $_SESSION['role'] ) ) {
         <?php css() ?>
 
         <style>
-                .event {
-                    margin-bottom: 30px; /* Adds space below each event */
-                    padding: 15px; /* Adds padding inside each event container */
-                    border-bottom: 1px solid #ccc; /* Adds a border line below each event */
+                _event {
+                    margin-bottom: 30px; /* Adds space below each_event */
+                    padding: 15px; /* Adds padding inside each_event container */
+                    border-bottom: 1px solid #ccc; /* Adds a border line below each_event */
                 }
             </style>
             <?php load_common_page_scripts() ?>
@@ -68,7 +68,7 @@ if ( isset( $_SESSION['role'] ) ) {
                     <div class="container">
                         <div class="page-banner-text">
                             <h1 class="block-title">Events</h1>
-                            <?php if (isset($userRole) && $userRole === "admin") {
+                            <?php if (isset($userRole) && $userRole == "Administrator") {
                                 // Display the "Change Image" button for admin users
                                 echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
                                 echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
@@ -126,9 +126,29 @@ if ( isset( $_SESSION['role'] ) ) {
                 }
             </style>
             <?php
+
+            // calls insert_event from the file event_queries.php if a post request has been submitted
+            if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
+                switch ( $_GET['submit_event'] ) {
+                    case 'create':
+                        insert_event( $_POST['title'], $_POST['description'], $_POST['category'], 
+                        $_POST['information'], $_POST['video_link'], $_POST['event_date_start'], 
+                        $_POST['event_date_end'], $_POST['location'], $_FILES['img_file'], (int)$_SESSION['id'] );
+                        break;
+                    case 'update':
+                        update_event();
+                        break;
+                }
+            }
+
             // Define the number of events per page (default to 3)
             $eventsPerPage = isset( $_GET['events_per_page'] ) ? ( int )$_GET['events_per_page'] : 10;
             $view = isset( $_GET['view'] ) ? $_GET['view'] : "list";
+
+            // if user role isnt set to Admin make create events page innacessable
+            if ( ( !isset($userRole) || $userRole != "Administrator" ) && $view == "create_event" ) {
+                $view = "list";
+            }
 
             // Calculate the total number of pages
             $totalEvents = event_count();
@@ -147,28 +167,44 @@ if ( isset( $_SESSION['role'] ) ) {
             <div id="main-container">
                 <div class="content">
                     <div class="container">
-                        <form action="" method="get" <?php if( $view == "single-event" )  echo "hidden"; ?>>
-                            <label for="events_per_page">Events per page:</label>
-                            <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
-                                <?php for( $i = 1; $i < 11; $i++ ) { ?>
-                                <option value="<?php echo $i; ?>" <?php if ( $eventsPerPage == $i ) echo 'selected'; ?>><?php echo $i; ?></option>
-                                <?php } ?>
-                            </select>
-                            <label for="view">View:</label>
-                            <select name="view" id="view" onchange="this.form.submit()">
-                                <option value="list" <?php if ($view == "list") echo 'selected'; ?>>list</option>
-                                <option value="grid" <?php if ($view == "grid") echo 'selected'; ?>>grid</option>
-                                <option value="calendar" <?php if ($view == "calendar") echo 'selected'; ?>>calendar</option>
-                            </select>
-                        </form>                        
+                        <form action="" method="get" <?php if( $view == "single_event" || $view == "create_event" )  echo "hidden"; ?>>
+                            
+                            <div class="form-group">
+                                <label for="events_per_page">Events per page:</label>
+                                <select name="events_per_page" id="events_per_page" onchange="this.form.submit()">
+                                    <?php for( $i = 1; $i <= 10; $i++ ) { ?>
+                                    <option value="<?php echo $i; ?>" <?php if ( $eventsPerPage == $i ) echo 'selected'; ?>><?php echo $i; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="view">View:</label>
+                                <select name="view" id="view" onchange="this.form.submit()">
+                                    <option value="list" <?php if ($view == "list") echo 'selected'; ?>>list</option>
+                                    <option value="grid" <?php if ($view == "grid") echo 'selected'; ?>>grid</option>
+                                    <option value="calendar" <?php if ($view == "calendar") echo 'selected'; ?>>calendar</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" <?php if ( !isset($userRole) || $userRole != "Administrator" )  echo "hidden"; ?>>
+                                <button class="btn btn-primary" name="view" id="view" value="create_event">Create New Event</button>
+                            </div>
+                            
+                        </form>      
+
                         <?php
+                        // add pagination above content
                         pagination( $view, $current_page, $eventsPerPage, $totalPages );
+                        // select the main content for a specified view
                         switch( $view ) {
                             case "list": list_view( $categories, $events ); break;
                             case "grid": grid_view( $categories, $events ); break;
                             case "calendar": calandar_view( $categories, $events ); break;
-                            case "single-event": single_event( $categories, $events, $_GET["id"] ); break;
+                            case "single_event": single_event( $categories, $events, $_GET["id"] ); break;
+                            case "create_event": create_event(); break;
                         } 
+                        // add pagination below content
                         pagination( $view, $current_page, $eventsPerPage, $totalPages );
                         ?>                        
                     </div>

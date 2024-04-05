@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-if ($_SESSION['role'] != 'admin') {
+if ($_SESSION['role'] == 'admin') {
     header('Location:admin_events.php');
 }
 include('shared_resources.php');

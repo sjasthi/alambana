@@ -90,4 +90,54 @@ function sanitize( $arr ) {
     return ( is_array( $arr ) ) ? array_map( 'sanitize', $arr ) : htmlspecialchars( $arr, ENT_QUOTES, 'UTF-8' );
 }
 
+function insert_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $img_file, $user_id ) {
+
+	$fileName = $img_file['name'];
+	$fileTMP = $img_file['tmp_name'];
+	$fileError = $img_file['error'];
+	$fileExt = explode('.', $fileName);
+	$fileActualExt = strtolower(end($fileExt));
+
+	if ($fileError === 0) {
+		$fileNewName = uniqid('', true).".".$fileActualExt;
+		$fileDestination = 'images/event_pictures/'.$fileNewName;
+		move_uploaded_file($fileTMP, $fileDestination);
+	
+
+		$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+		if ($connection->connect_error) {
+			die("Connection failed: " . $connection->connect_error);
+		}
+		$sql = "INSERT INTO events (title, description, category, information, video_link, event_date_start, event_date_end, location, user_id) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+		$statement = $connection->prepare($sql);
+		$statement->bind_param("ssssssssi", $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $user_id );
+		$result = $statement->execute();
+		if ($result === true) {
+			$last_id = mysqli_insert_id($connection);
+			$connection->close();
+
+			$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+			if ($connection->connect_error) {
+				die("Connection failed: " . $connection->connect_error);
+			}
+			$sql = "INSERT INTO pictures (user_id, event_id, location) VALUES ( ?, ?, ? )";
+			$statement = $connection->prepare($sql);
+			$statement->bind_param("iis", $user_id, $last_id, $fileDestination);
+			$result = $statement->execute();
+
+			$connection->close();
+			return $last_id;
+		} else {
+			$connection->close();
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+function update_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $user_id ) {
+
+}
+
 ?>
