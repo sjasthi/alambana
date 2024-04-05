@@ -9,7 +9,7 @@ if ($_SESSION['role'] != 'Administrator'){
 }
 
 include('shared_resources.php'); 
-require_once "event_controllers/get_events.php";
+require_once "event_controllers/event_queries.php";
 require_once "header/index.php";
 require_once "bootstrap.php";
 set_up_bootstrap();
