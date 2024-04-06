@@ -43,4 +43,21 @@ function format_date( $start_date, $end_date ) {
 	return $timeScheduled;
 }
 
+function form_value( $event_date ) {
+	$date_time = new DateTime($event_date);
+
+	$dayName = $date_time->format('l');// Get the day name
+	$day = $date_time->format('j');      // Day (01 to 31)
+	$month = $date_time->format('m');    // Month (Jan, Feb, Mar, etc.)
+	$year = $date_time->format('Y');     // Year (e.g., 2024)
+	
+	// Extract time components
+	$hour = $date_time->format('H');     // Hour (00 to 23)
+	$minute = $date_time->format('i');   // Minute (00 to 59)
+	$second = $date_time->format('s');   // Second (00 to 59)
+	$ampm = $date_time->format('a');     // AM or PM
+
+	return $year . "-" . $month . "-" . $day . "T" . $hour . ":" . $minute;
+}
+
 ?>

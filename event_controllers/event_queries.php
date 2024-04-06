@@ -103,7 +103,6 @@ function insert_event( $title, $description, $category, $information, $video_lin
 		$fileDestination = 'images/event_pictures/'.$fileNewName;
 		move_uploaded_file($fileTMP, $fileDestination);
 	
-
 		$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 		if ($connection->connect_error) {
 			die("Connection failed: " . $connection->connect_error);
@@ -136,8 +135,50 @@ function insert_event( $title, $description, $category, $information, $video_lin
 	}
 }
 
-function update_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $user_id ) {
+function update_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $img_file, $user_id, $event_id ) {
 
+	$fileName = $img_file['name'];
+	$fileTMP = $img_file['tmp_name'];
+	$fileError = $img_file['error'];
+	$fileExt = explode('.', $fileName);
+	$fileActualExt = strtolower(end($fileExt));
+
+	if ($fileError === 0) {
+		$fileNewName = uniqid('', true).".".$fileActualExt;
+		$fileDestination = 'images/event_pictures/'.$fileNewName;
+		move_uploaded_file($fileTMP, $fileDestination);
+	
+		$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+		if ($connection->connect_error) {
+			die("Connection failed: " . $connection->connect_error);
+		}
+		$sql = "UPDATE events SET title=?, description=?, category=?, information=?, video_link=?, event_date_start=?, event_date_end=?, modified_time=CURRENT_TIMESTAMP, location=? WHERE id=?";
+		$statement = $connection->prepare($sql);
+		$statement->bind_param("ssssssssi", $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $event_id );
+		$result = $statement->execute();
+		if ($result === true) {
+			$connection->close();
+			return true;
+		} else {
+			$connection->close();
+			return false;
+		}
+		
+		$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+		if ($connection->connect_error) {
+			die("Connection failed: " . $connection->connect_error);
+		}
+		$sql = "UPDATE pictures SET location = ? where event_id=?";
+		$statement = $connection->prepare($sql);
+		$statement->bind_param("si", $fileDestination, $event_id);
+		$result = $statement->execute();
+
+		$connection->close();
+		return $last_id;
+	
+	} else {
+		return false;
+	}
 }
 
 ?>

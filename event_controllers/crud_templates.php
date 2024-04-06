@@ -222,7 +222,7 @@ function calandar_view( $categories, $events ) {
 
 function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
     <nav>
-        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" )  echo "hidden"; ?>>
+        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" )  echo "hidden"; ?>>
             <!-- Previous Page Link -->
             <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
             <!-- Page Number Links -->
@@ -234,17 +234,20 @@ function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
 <?php 
 }
 
-function single_event( $categories, $events, $event_id) {
-    $event = get_event_by_id( $event_id );
-?>
+function single_event( $categories, $events, $event_id ) {
+    $event = get_event_by_id( $event_id ); 
+    if ( isset( $_SESSION['role'] ) ) { $userRole = $_SESSION['role']; } ?>
     <div class="row">
         <div class="col-md-8 content-block">
+
             <h3>
                 <?php echo $event["title"]; ?>
             </h3>
+            
             <div class="post-media">
                 <img src="<?php echo $event["pic_location"] ?>" alt="">
             </div>
+            
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <span class="event-date">
@@ -281,6 +284,15 @@ function single_event( $categories, $events, $event_id) {
             <p>
                 <?php echo $event["information"]; ?>
             </p>
+
+            <form action="" method="get">
+                <div class="form-group" <?php if ( !isset($userRole) || $userRole != "Administrator" )  echo "hidden"; ?>>
+                    <input type="hidden" name="id" value="<?php echo $event_id; ?>">
+                    <button class="btn btn-primary" name="view" id="view" value="edit_event">Edit</button>
+                    <button class="btn btn-primary" name="view" id="view" value="delete_event">Delete</button>
+                </div>
+            </form>
+
         </div>
 
         <!-- Sidebar -->
@@ -426,8 +438,135 @@ function create_event() { ?>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" name=submit" value="submit">Submit</button>
-                    <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php';">Cancel</button>                </div>
+                    <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php';">Cancel</button>                
+                </div>
             </form>
+        </div>
+    </div>
+<?php
+}
+
+function edit_event( $categories, $events, $event_id ) { 
+    $event = get_event_by_id( $event_id ); ?>
+    <div class="row">
+        <div class="col-md-8 content-block">
+            <form action="?submit_event=update" method="post" enctype="multipart/form-data">
+                <h3><input type="text" name="title" id="title" value="<?php echo $event["title"]; ?>"></h3>
+                <div class="post-media">
+                    <label>
+                        <img src="<?php echo $event["pic_location"] ?>" alt="">
+                        <input type="file" name="img_file" style="display:none" value="<?php echo $event["pic_location"] ?>" >
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <span class="meta-data">
+                            <br>
+                            <input type="datetime-local" class="form-control" name="event_date_start" id="event_date_start" value="<?php echo form_value( $event["event_date_start"] ); ?>">
+                            <input type="datetime-local" class="form-control" name="event_date_end" id="event_date_end" value="<?php echo form_value( $event["event_date_end"] ); ?>">
+                        </span>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <?php echo $event["attendees"]; ?><span class="badge">Attendees</span>
+                            </li>
+                            <li class="list-group-item">
+                                <input type="text" name="location" id="location" value="<?php echo $event["location"]; ?>"><span class="badge">Location</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="spacer-20"></div>
+                <p class="lead">
+                    <input type="text" name="description" id="description" value="<?php echo $event["description"]; ?>">
+                </p>
+                <p>
+                    <textarea name="information" id="information" rows="10" cols="84" ><?php echo $event["information"]; ?></textarea>
+                </p>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name=submit" value="submit">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php?view=single_event&id=<?php echo $event_id; ?>';">Cancel</button>                
+                </div>
+            </form>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4 sidebar-block">
+            <div class="widget widget_recent_causes">
+                <h3 class="widgettitle">Latest Causes</h3>
+                <ul>
+                    <li>
+                        <a href="#" class="cause-thumb">
+                            <img src="images/cause1.jpg" alt="" class="img-thumbnail">
+                            <div class="cProgress" data-complete="88" data-color="42b8d4">
+                                <strong></strong>
+                            </div>
+                        </a>
+                        <h5><a href="single-cause.php">Help small shopkeepers of Sunyani</a></h5>
+                        <span class="meta-data">10 days left to achieve</span>
+                    </li>
+                    <li>
+                        <a href="#" class="cause-thumb">
+                            <img src="images/cause5.jpg" alt="" class="img-thumbnail">
+                            <div class="cProgress" data-complete="75" data-color="42b8d4">
+                                <strong></strong>
+                            </div>
+                        </a>
+                        <h5><a href="single-cause.php">Save tigers from poachers</a></h5>
+                        <span class="meta-data">32 days left to achieve</span>
+                    </li>
+                    <li>
+                        <a href="#" class="cause-thumb">
+                            <img src="images/cause6.jpg" alt="" class="img-thumbnail">
+                            <div class="cProgress" data-complete="88" data-color="42b8d4">
+                                <strong></strong>
+                            </div>
+                        </a>
+                        <h5><a href="single-cause.php">Help rebuild Nepal</a></h5>
+                        <span class="meta-data">10 days left to achieve</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="widget sidebar-widget widget_categories">
+                <h3 class="widgettitle">Event Categories</h3>
+                <ul>
+                    <?php
+                    $categories = get_event_categories();
+                    foreach ($categories as $category) { ?>
+                        <li data-option-value=".<?php echo str_replace(" ", "-", $category); ?>"><a
+                                href="#"><span>
+                                    <?php echo $category; ?>
+                                </span></a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="widget recent_posts">
+                <h3 class="widgettitle">Latest Posts</h3>
+                <ul>
+                    <li>
+                        <a href="single-post.php" class="media-box">
+                            <img src="images/post1.jpg" alt="">
+                        </a>
+                        <h5><a href="single-post.php">A single person can change million lives</a></h5>
+                        <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
+                    </li>
+                    <li>
+                        <a href="single-post.php" class="media-box">
+                            <img src="images/post3.jpg" alt="">
+                        </a>
+                        <h5><a href="single-post.php">Donate your woolens this winter</a></h5>
+                        <span class="meta-data grid-item-meta">Posted on 11th Dec, 2015</span>
+                    </li>
+                    <li>
+                        <a href="single-post.php" class="media-box">
+                            <img src="images/post2.jpg" alt="">
+                        </a>
+                        <h5><a href="single-post.php">How to survive the tough path of life</a></h5>
+                        <span class="meta-data grid-item-meta">Posted on 06th Dec, 2015</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 <?php

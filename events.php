@@ -136,17 +136,19 @@ if ( isset( $_SESSION['role'] ) ) {
                         $_POST['event_date_end'], $_POST['location'], $_FILES['img_file'], (int)$_SESSION['id'] );
                         break;
                     case 'update':
-                        update_event();
+                        update_event( $_POST['title'], $_POST['description'],  $_POST['category'],  
+                        $_POST['information'],  $_POST['video_link'],  $_POST['event_date_start'],  
+                        $_POST['event_date_end'],  $_POST['location'],  $_POST['img_file'],  $_POST['id'],  );
                         break;
                 }
             }
 
             // Define the number of events per page (default to 3)
-            $eventsPerPage = isset( $_GET['events_per_page'] ) ? ( int )$_GET['events_per_page'] : 10;
+            $eventsPerPage = isset( $_GET['events_per_page'] ) ? ( int )$_GET['events_per_page'] : 3;
             $view = isset( $_GET['view'] ) ? $_GET['view'] : "list";
 
             // if user role isnt set to Admin make create events page innacessable
-            if ( ( !isset($userRole) || $userRole != "Administrator" ) && $view == "create_event" ) {
+            if ( ( !isset($userRole) || $userRole != "Administrator" ) && ($view == "create_event" || $view == "edit_event") ) {
                 $view = "list";
             }
 
@@ -167,7 +169,7 @@ if ( isset( $_SESSION['role'] ) ) {
             <div id="main-container">
                 <div class="content">
                     <div class="container">
-                        <form action="" method="get" <?php if( $view == "single_event" || $view == "create_event" )  echo "hidden"; ?>>
+                        <form action="" method="get" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" )  echo "hidden"; ?>>
                             
                             <div class="form-group">
                                 <label for="events_per_page">Events per page:</label>
@@ -198,11 +200,12 @@ if ( isset( $_SESSION['role'] ) ) {
                         pagination( $view, $current_page, $eventsPerPage, $totalPages );
                         // select the main content for a specified view
                         switch( $view ) {
-                            case "list": list_view( $categories, $events ); break;
-                            case "grid": grid_view( $categories, $events ); break;
-                            case "calendar": calandar_view( $categories, $events ); break;
+                            case "list": list_view( $categories, $events );                 break;
+                            case "grid": grid_view( $categories, $events );                 break;
+                            case "calendar": calandar_view( $categories, $events );            break;
                             case "single_event": single_event( $categories, $events, $_GET["id"] ); break;
                             case "create_event": create_event(); break;
+                            case "edit_event": edit_event( $categories, $events, $_GET["id"] ); break;
                         } 
                         // add pagination below content
                         pagination( $view, $current_page, $eventsPerPage, $totalPages );
