@@ -148,21 +148,7 @@ function update_event( $title, $description, $category, $information, $video_lin
         die("Connection failed: " . $connection->connect_error);
     }
 
-    // Check if there's an existing picture associated with the event
-    $sqlSelectPicture = "SELECT location FROM pictures WHERE event_id=?";
-    $statementSelectPicture = $connection->prepare($sqlSelectPicture);
-    $statementSelectPicture->bind_param("i", $event_id);
-    $statementSelectPicture->execute();
-    $resultSelectPicture = $statementSelectPicture->get_result();
-
-    if ($resultSelectPicture->num_rows > 0) {
-        $row = $resultSelectPicture->fetch_assoc();
-        $oldFileLocation = $row['location'];
-        if (file_exists($oldFileLocation)) {
-            unlink($oldFileLocation); // Delete the old picture file
-        }
-    }
-
+    
     // Update event information
     $sql = "UPDATE events SET title=?, description=?, category=?, information=?, video_link=?, event_date_start=?, event_date_end=?, modified_time=CURRENT_TIMESTAMP, location=? WHERE id=?";
     $statement = $connection->prepare($sql);
@@ -171,6 +157,22 @@ function update_event( $title, $description, $category, $information, $video_lin
 
     // Upload new picture
     if ($fileError === 0 && $fileName != "") {
+
+		// Check if there's an existing picture associated with the event
+		$sqlSelectPicture = "SELECT location FROM pictures WHERE event_id=?";
+		$statementSelectPicture = $connection->prepare($sqlSelectPicture);
+		$statementSelectPicture->bind_param("i", $event_id);
+		$statementSelectPicture->execute();
+		$resultSelectPicture = $statementSelectPicture->get_result();
+	
+		if ($resultSelectPicture->num_rows > 0) {
+			$row = $resultSelectPicture->fetch_assoc();
+			$oldFileLocation = $row['location'];
+			if (file_exists($oldFileLocation)) {
+				unlink($oldFileLocation); // Delete the old picture file
+			}
+		}	
+
         $fileNewName = uniqid('', true) . "." . $fileActualExt;
         $fileDestination = 'images/event_pictures/' . $fileNewName;
         move_uploaded_file($fileTMP, $fileDestination);

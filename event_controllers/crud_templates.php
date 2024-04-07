@@ -609,7 +609,7 @@ function remove_event($event_id) {
     $event = get_event_by_id( $event_id ); ?>
     <form action="?submit_event=delete" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="id">Are You Sure you want to delete Event: <?php echo $event['title'];?></label>
+            <label for="id">Are You Sure you want to delete Event: <?php echo $event['title'];?></label><br>
             <input type="hidden" name="id" id="id" value="<?php echo $event['id']; ?>">
             <button type="submit" class="btn btn-primary" name=submit" value="submit">Delete</button>
             <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php?view=single_event&id=<?php echo $event_id; ?>';">Cancel</button>
