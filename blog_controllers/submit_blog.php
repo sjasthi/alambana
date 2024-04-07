@@ -1,6 +1,6 @@
 <?php
-require 'db_configuration.php';
-require_once 'blog_controllers/create_blog.php';
+require_once '../db_configuration.php';
+require_once 'create_blog.php';
 
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
@@ -71,4 +71,4 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
 
 mysqli_close($connection);
 
-echo "<script>window.location.href='blogs.php';</script>"; //hacky but it works for now
+echo "<script>window.location.href='../blogs.php';</script>"; //hacky but it works for now

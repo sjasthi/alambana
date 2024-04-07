@@ -150,7 +150,7 @@ ob_end_flush();
                         }
                       ?-->
               <!-- Blog Form (Initially hidden) [Activates on button click] -->
-              <form id="blog_creation_form" action="create_post.php" method="POST" enctype="multipart/form-data"
+              <form id="blog_creation_form" action="blog_controllers/submit_blog.php" method="POST" enctype="multipart/form-data"
                 hidden="hidden">
                 <div id=blog_creation_left>
                   <label>Blog Title</label>

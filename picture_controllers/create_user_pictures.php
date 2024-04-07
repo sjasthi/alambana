@@ -17,7 +17,6 @@ if (isset($_SESSION['id'])) { // Verify SESSION
     // Only Valid Users Logged In
     $user_id = $_SESSION['id']; #echo $hash;
 }
-$blog_id = $_POST['blog_id'];
 $fileNameArray = [];
 for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
     $fileName = $_FILES['file']['name'][$i];
@@ -28,7 +27,7 @@ for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
 
     if ($fileError === 0) {
         $fileNewName = uniqid('', true) . "." . $fileActualExt;
-        $fileDestination = 'images/blog_pictures/' . $fileNewName;
+        $fileDestination = 'images/users_pictures/' . $fileNewName;
         move_uploaded_file($fileTMP, '../' . $fileDestination);
         array_push($fileNameArray, $fileDestination);
     } else {
@@ -37,8 +36,7 @@ for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
 }
 
 foreach ($fileNameArray as $location) {
-    $sql = "INSERT INTO pictures (blog_id, user_id, location) VALUES (
-        $blog_id,
+    $sql = "INSERT INTO pictures (user_id, location) VALUES (
         $user_id,
         '$location')";
     if (!mysqli_query($connection, $sql)) {

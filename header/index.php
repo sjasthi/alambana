@@ -60,7 +60,7 @@ function generate_header()
                             <a href="blogs.php" style="color: white;">View Blogs</a>
                         </li>
                         <li>
-                            <a href="new_blog_entry.php" style="color: white;">Post a Blog</a>
+                            <a href="blog_new.php" style="color: white;">Post a Blog</a>
                         </li>
                     </ul>
                 </div>
@@ -71,7 +71,17 @@ function generate_header()
         </ul>
         <div class="info-container">
             (951) 821-6051
-            <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
+            <?php
+            if (isset($_SESSION["id"])) {
+                ?>
+                <a href="profile.php"><button type="button" class="profile-button btn btn-primary">Profile</button></a>
+                <?php
+            } else {
+                ?>
+                <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
+                <?php
+            }
+            ?>
         </div>
         <div class="button-container">
             <div class="burger-bar"></div>

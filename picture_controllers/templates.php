@@ -42,7 +42,7 @@ function generate_picture_carousel_edit($pictures)
     ?>
     <div style="width: 100%; text-align: center;">
         <label>Add Image(s)</label>
-        <form method="POST" action="picture_controllers/create_pictures.php" enctype="multipart/form-data">
+        <form method="POST" action="picture_controllers/create_blog_pictures.php" enctype="multipart/form-data">
             <input type="hidden" name="blog_id" value="<?php echo $pictures[0]['blog_id'] ?>" />
             <input type="hidden" name="redirect" value="blog_view.php?id=<?php echo $pictures[0]['blog_id'] ?>" />
             <input type="file" name="file[]" accept="image/*" multiple="multiple" style="display: inline-block;">

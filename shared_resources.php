@@ -97,7 +97,7 @@ function load_common_page_scripts()
     <script>
         // New Blog Form Script
         function show_new_post_form() {
-            var targetPage = "new_blog_entry.php";
+            var targetPage = "blog_new.php";
 
             if (!isOnCurrentPage(targetPage)) {
                 redirectToPage(targetPage);
@@ -281,7 +281,7 @@ function load_common_page_header($headType = 1)
                         <li><a href="blogs.php">Blogs</a>
                             <ul>
                                 <li><a href="blogs.php">View Blogs</a></li>
-                                <li><a href="new_blog_entry.php">Post Blog</a></li>
+                                <li><a href="blog_new.php">Post Blog</a></li>
                             </ul>
                         </li>
                         <li><a href="typography.php">Typography</a></li>

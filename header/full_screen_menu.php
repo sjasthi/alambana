@@ -57,7 +57,7 @@ function generate_full_screen_menu()
                             <a href="blogs.php">View Blogs</a>
                         </li>
                         <li>
-                            <a href="new_blog_entry.php">Post a Blog</a>
+                            <a href="blog_new.php">Post a Blog</a>
                         </li>
                     </ul>
                 </div>
