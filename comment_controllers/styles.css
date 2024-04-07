@@ -45,6 +45,10 @@
 .comment-container .content-container {
     width: 100%;
     resize: none;
+    text-align: center;
+    border: none;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .new-comment-container {
