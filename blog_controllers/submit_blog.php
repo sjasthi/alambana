@@ -10,19 +10,19 @@ if ($status == PHP_SESSION_NONE) {
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 // should use $db global in db_configuration.php
 if ($connection->connect_error) {
-  die ("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
 }
 
 $user_id;
-if (isset ($_SESSION['id'])) { // Verify SESSION
+if (isset($_SESSION['id'])) { // Verify SESSION
   // Only Valid Users Logged In
   $user_id = $_SESSION['id']; #echo $hash;
 }
 
-if (!empty ($user_id)) { // Only Allow Users To Create Entry
+if (!empty($user_id)) { // Only Allow Users To Create Entry
 
   # Field Entries
-  if (isset ($_POST['create_post'])) {
+  if (isset($_POST['create_post'])) {
     $title = addslashes($_POST['title']);
     $description = addslashes($_POST['description']);
     $video_link = $_POST['video_link'];
@@ -41,7 +41,7 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
       if ($fileError === 0) {
         $fileNewName = uniqid('', true) . "." . $fileActualExt;
         $fileDestination = 'images/blog_pictures/' . $fileNewName;
-        move_uploaded_file($fileTMP, $fileDestination);
+        move_uploaded_file($fileTMP, "../" . $fileDestination);
         array_push($fileNameArray, $fileDestination);
       } else {
         echo "There was an error uploading your file.";
@@ -71,4 +71,4 @@ if (!empty ($user_id)) { // Only Allow Users To Create Entry
 
 mysqli_close($connection);
 
-echo "<script>window.location.href='../blogs.php';</script>"; //hacky but it works for now
+# echo "<script>window.location.href='../blogs.php';</script>"; //hacky but it works for now
