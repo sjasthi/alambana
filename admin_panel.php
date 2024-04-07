@@ -12,7 +12,7 @@ if ($_SESSION['role'] != 'Administrator') {
 #require 'db_configuration.php';
 include 'shared_resources.php';
 //include 'blog_fill.php';
-include 'event_fill.php';
+include 'event_controllers/event_fill.php';
 include 'user_fill.php';
 require_once "header/index.php";
 require_once "bootstrap.php";

@@ -1,5 +1,5 @@
 <?php
-include 'get_events.php';
+include 'event_queries.php';
 include 'time_formatting.php';
 # Event Page Fill Box Display [owl-carousel]
 function fill_event_post_display_container(){

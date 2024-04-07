@@ -47,7 +47,7 @@ function form_value( $event_date ) {
 	$date_time = new DateTime($event_date);
 
 	$dayName = $date_time->format('l');// Get the day name
-	$day = $date_time->format('j');      // Day (01 to 31)
+	$day = $date_time->format('d');      // Day (01 to 31)
 	$month = $date_time->format('m');    // Month (Jan, Feb, Mar, etc.)
 	$year = $date_time->format('Y');     // Year (e.g., 2024)
 	

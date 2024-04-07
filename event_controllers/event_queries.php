@@ -91,7 +91,7 @@ function sanitize( $arr ) {
 }
 
 function insert_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $img_file, $user_id ) {
-
+	
 	$fileName = $img_file['name'];
 	$fileTMP = $img_file['tmp_name'];
 	$fileError = $img_file['error'];
@@ -135,50 +135,103 @@ function insert_event( $title, $description, $category, $information, $video_lin
 	}
 }
 
-function update_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $img_file, $user_id, $event_id ) {
+function update_event( $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $img_file, $event_id ) {
 
 	$fileName = $img_file['name'];
-	$fileTMP = $img_file['tmp_name'];
-	$fileError = $img_file['error'];
-	$fileExt = explode('.', $fileName);
-	$fileActualExt = strtolower(end($fileExt));
+    $fileTMP = $img_file['tmp_name'];
+    $fileError = $img_file['error'];
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
 
-	if ($fileError === 0) {
-		$fileNewName = uniqid('', true).".".$fileActualExt;
-		$fileDestination = 'images/event_pictures/'.$fileNewName;
-		move_uploaded_file($fileTMP, $fileDestination);
-	
-		$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-		if ($connection->connect_error) {
-			die("Connection failed: " . $connection->connect_error);
-		}
-		$sql = "UPDATE events SET title=?, description=?, category=?, information=?, video_link=?, event_date_start=?, event_date_end=?, modified_time=CURRENT_TIMESTAMP, location=? WHERE id=?";
-		$statement = $connection->prepare($sql);
-		$statement->bind_param("ssssssssi", $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $event_id );
-		$result = $statement->execute();
-		if ($result === true) {
-			$connection->close();
-			return true;
-		} else {
-			$connection->close();
-			return false;
-		}
-		
-		$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
-		if ($connection->connect_error) {
-			die("Connection failed: " . $connection->connect_error);
-		}
-		$sql = "UPDATE pictures SET location = ? where event_id=?";
-		$statement = $connection->prepare($sql);
-		$statement->bind_param("si", $fileDestination, $event_id);
-		$result = $statement->execute();
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
 
-		$connection->close();
-		return $last_id;
-	
-	} else {
-		return false;
-	}
+    // Check if there's an existing picture associated with the event
+    $sqlSelectPicture = "SELECT location FROM pictures WHERE event_id=?";
+    $statementSelectPicture = $connection->prepare($sqlSelectPicture);
+    $statementSelectPicture->bind_param("i", $event_id);
+    $statementSelectPicture->execute();
+    $resultSelectPicture = $statementSelectPicture->get_result();
+
+    if ($resultSelectPicture->num_rows > 0) {
+        $row = $resultSelectPicture->fetch_assoc();
+        $oldFileLocation = $row['location'];
+        if (file_exists($oldFileLocation)) {
+            unlink($oldFileLocation); // Delete the old picture file
+        }
+    }
+
+    // Update event information
+    $sql = "UPDATE events SET title=?, description=?, category=?, information=?, video_link=?, event_date_start=?, event_date_end=?, modified_time=CURRENT_TIMESTAMP, location=? WHERE id=?";
+    $statement = $connection->prepare($sql);
+    $statement->bind_param("ssssssssi", $title, $description, $category, $information, $video_link, $event_date_start, $event_date_end, $location, $event_id);
+    $result = $statement->execute();
+
+    // Upload new picture
+    if ($fileError === 0 && $fileName != "") {
+        $fileNewName = uniqid('', true) . "." . $fileActualExt;
+        $fileDestination = 'images/event_pictures/' . $fileNewName;
+        move_uploaded_file($fileTMP, $fileDestination);
+
+        // Update picture location in the database
+        $sqlUpdatePicture = "UPDATE pictures SET location = ? WHERE event_id=?";
+        $statementUpdatePicture = $connection->prepare($sqlUpdatePicture);
+        $statementUpdatePicture->bind_param("si", $fileDestination, $event_id);
+        $resultUpdatePicture = $statementUpdatePicture->execute();
+    }
+
+    $connection->close();
+
+    if ($result === true) {
+        return true; // Update successful
+    } else {
+        return false; // Update failed
+    }
+}
+
+function delete_event($event_id) {
+
+	$connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+    if ($connection->connect_error) {
+        die("Connection failed: " . $connection->connect_error);
+    }
+
+    // Delete event picture if it exists
+    $sqlSelectPicture = "SELECT location FROM pictures WHERE event_id=?";
+    $statementSelectPicture = $connection->prepare($sqlSelectPicture);
+    $statementSelectPicture->bind_param("i", $event_id);
+    $statementSelectPicture->execute();
+    $resultSelectPicture = $statementSelectPicture->get_result();
+
+    if ($resultSelectPicture->num_rows > 0) {
+        $row = $resultSelectPicture->fetch_assoc();
+        $fileLocation = $row['location'];
+        if (file_exists($fileLocation)) {
+            unlink($fileLocation); // Delete the picture file
+        }
+    }
+
+    // Delete event record
+    $sqlDeleteEvent = "DELETE FROM events WHERE id=?";
+    $statementDeleteEvent = $connection->prepare($sqlDeleteEvent);
+    $statementDeleteEvent->bind_param("i", $event_id);
+    $resultDeleteEvent = $statementDeleteEvent->execute();
+
+    // Delete picture record
+    $sqlDeletePicture = "DELETE FROM pictures WHERE event_id=?";
+    $statementDeletePicture = $connection->prepare($sqlDeletePicture);
+    $statementDeletePicture->bind_param("i", $event_id);
+    $resultDeletePicture = $statementDeletePicture->execute();
+
+    $connection->close();
+
+    if ($resultDeleteEvent && $resultDeletePicture) {
+        return true; // Deletion successful
+    } else {
+        return false; // Deletion failed
+    }
 }
 
 ?>

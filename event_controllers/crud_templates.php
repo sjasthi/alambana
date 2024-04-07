@@ -222,7 +222,7 @@ function calandar_view( $categories, $events ) {
 
 function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
     <nav>
-        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" )  echo "hidden"; ?>>
+        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" || $view == "delete_event" )  echo "hidden"; ?>>
             <!-- Previous Page Link -->
             <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
             <!-- Page Number Links -->
@@ -250,6 +250,7 @@ function single_event( $categories, $events, $event_id ) {
             
             <div class="row">
                 <div class="col-md-6 col-sm-6">
+                    <span class="meta-data">Category: <?php echo $event['category']; ?></span>
                     <span class="event-date">
                         <span class="date">
                             <?php echo get_event_day($event["event_date_start"]); ?>
@@ -281,6 +282,7 @@ function single_event( $categories, $events, $event_id ) {
             <p class="lead">
                 <?php echo $event["description"]; ?>
             </p>
+            
             <p>
                 <?php echo $event["information"]; ?>
             </p>
@@ -410,7 +412,7 @@ function create_event() { ?>
 
                 <div class="form-group">
                     <label for="information">Event Information</label>
-                    <input type="text" class="form-control" name="information" id="information">
+                    <textarea name="information" class="form-control" id="information" rows="10" cols="61" ></textarea>
                 </div>
 
                 <div class="form-group">
@@ -433,7 +435,17 @@ function create_event() { ?>
 
                 <div class="form-group"> 
                     <label for="img_file">Event Image</label>
-                    <input type="file" class="form-control" name="img_file" id="img_file">
+                    <input type="file" accept="image/*" class="form-control" onchange="loadFile(event)" name="img_file" id="img_file">
+                        <img id="output"/>
+                        <script>
+                        var loadFile = function(event) {
+                            var output = document.getElementById('output');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                            output.onload = function() {
+                            URL.revokeObjectURL(output.src) // free memory
+                            }
+                        };
+                        </script>
                 </div>
 
                 <div class="form-group">
@@ -454,14 +466,31 @@ function edit_event( $categories, $events, $event_id ) {
                 <h3><input type="text" name="title" id="title" value="<?php echo $event["title"]; ?>"></h3>
                 <div class="post-media">
                     <label>
-                        <img src="<?php echo $event["pic_location"] ?>" alt="">
-                        <input type="file" name="img_file" style="display:none" value="<?php echo $event["pic_location"] ?>" >
+                        <input type="file" accept="image/*" style="display: none;" onchange="loadFile(event)" name="img_file" id="img_file">
+                        <img id="output" src="<?php echo $event["pic_location"] ?>"/>
+                        <script>
+                        var loadFile = function(event) {
+                            var output = document.getElementById('output');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                            output.onload = function() {
+                            URL.revokeObjectURL(output.src) // free memory
+                            }
+                        };
+                        </script>
                     </label>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
+                        <span class="meta-data">Category: 
+                            <select name="category" id="category">
+                                <option value="Education" <?php if ($event['category'] == "Education") echo 'selected'; ?>>Education</option>
+                                <option value="Water" <?php if ($event['category'] == "Water") echo 'selected'; ?>>Water</option>
+                                <option value="Wild-Life" <?php if ($event['category'] == "Wild-Life") echo 'selected'; ?>>Wild-Life</option>
+                                <option value="Human-Rights" <?php if ($event['category'] == "Human-Rights") echo 'selected'; ?>>Human-Rights</option>
+                                <option value="Environment" <?php if ($event['category'] == "Environment") echo 'selected'; ?>>Environment</option>
+                            </select>
+                        </span>
                         <span class="meta-data">
-                            <br>
                             <input type="datetime-local" class="form-control" name="event_date_start" id="event_date_start" value="<?php echo form_value( $event["event_date_start"] ); ?>">
                             <input type="datetime-local" class="form-control" name="event_date_end" id="event_date_end" value="<?php echo form_value( $event["event_date_end"] ); ?>">
                         </span>
@@ -482,12 +511,16 @@ function edit_event( $categories, $events, $event_id ) {
                     <input type="text" name="description" id="description" value="<?php echo $event["description"]; ?>">
                 </p>
                 <p>
+                    <input type="text" name="video_link" id="video_link" value="<?php echo $event["video_link"]; ?>">
+                </p>
+                <p>
                     <textarea name="information" id="information" rows="10" cols="84" ><?php echo $event["information"]; ?></textarea>
                 </p>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" name=submit" value="submit">Submit</button>
                     <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php?view=single_event&id=<?php echo $event_id; ?>';">Cancel</button>                
                 </div>
+                <input type="hidden" name="id" id="id" value="<?php echo $event['id']; ?>">
             </form>
         </div>
 
@@ -570,6 +603,19 @@ function edit_event( $categories, $events, $event_id ) {
         </div>
     </div>
 <?php
+}
+
+function remove_event($event_id) {
+    $event = get_event_by_id( $event_id ); ?>
+    <form action="?submit_event=delete" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="id">Are You Sure you want to delete Event: <?php echo $event['title'];?></label>
+            <input type="hidden" name="id" id="id" value="<?php echo $event['id']; ?>">
+            <button type="submit" class="btn btn-primary" name=submit" value="submit">Delete</button>
+            <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php?view=single_event&id=<?php echo $event_id; ?>';">Cancel</button>
+        </div>
+    </form>
+    <?php
 }
 
 function transformYouTubeURL($url) {
