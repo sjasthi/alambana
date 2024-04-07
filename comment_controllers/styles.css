@@ -33,6 +33,11 @@
     width: 100%;
 }
 
+.comment-container .content-container {
+    width: 100%;
+    resize: none;
+}
+
 .new-comment-container {
     margin: 16px auto 16px auto;
     max-width: 800px;

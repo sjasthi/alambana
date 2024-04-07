@@ -67,6 +67,7 @@ function get_blog($blog_id, $edit)
   if (!$edit) {
     increment_blog_page_visitor_count($blog_id);
   }
+  $connection->close();
   ?>
   <link rel="stylesheet" href="blog_controllers/styles.css" />
   <?php
@@ -99,6 +100,7 @@ function get_blog_count()
     die("Error in executing statement: " . $statement->error);
   }
   $result = $statement->get_result();
+  $connection->close();
   return ($result->fetch_assoc())["count"];
 }
 

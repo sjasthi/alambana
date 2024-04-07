@@ -56,7 +56,25 @@ function generate_blog_view($blog)
                 ?>
                 <a href="blog_edit.php?id=<?php echo $blog["id"]; ?>"><button type="button"
                         class="btn btn-info">Edit</button></a>
+                <button type="button" id="delete-blog-button" class="btn btn-danger">Delete</button>
+                <script>
+                    const deleteBlogButton = document.getElementById("delete-blog-button");
+                    deleteBlogButton.addEventListener("click", () => {
+                        let confirm = window.confirm("Are you sure you want to delete this blog?");
+                        if (confirm) {
+                            $.ajax({
+                                type: "POST",
+                                url: "blog_controllers/delete_blog.php",
+                                data: {id: <?php echo $blog["id"]; ?> },
+                                success: function (res) {
+                                    window.location.href = "blogs.php";
+                                }
+                            });
+                        }
+                    });
+                </script>
                 <?php
+
             }
             ?>
         </div>

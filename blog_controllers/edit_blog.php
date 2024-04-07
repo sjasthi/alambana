@@ -24,4 +24,5 @@ if ($_SESSION["role"] === "Administrator") {
   $statement->bind_param("ssssii", $_POST['title'], $_POST['video_link'], $_POST['description'], $_POST['content'], $_POST['blog_id'], $_SESSION["id"]);
   $result = $statement->execute();
 }
-header("Location: " . $_SERVER['HTTP_REFERER']);
+$connection->close();
+header("Location: ../blog_view.php?id=".$_POST["blog_id"]);
