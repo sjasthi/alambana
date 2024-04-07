@@ -23,6 +23,15 @@
     width: 100%;
 }
 
+.comment-container .edit-delete-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-container .edit-delete-container button:first-of-type {
+    border-top-right-radius: 12px;
+}
+
 .comment-container .info-container {
     display: flex;
     flex-direction: row;

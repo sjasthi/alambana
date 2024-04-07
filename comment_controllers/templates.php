@@ -19,7 +19,7 @@ function generate_comment($comment)
             <?php
             if (isset($_SESSION["id"]) && ($_SESSION["id"] == $comment["user_id"] || $_SESSION["role"] === "Administrator")) {
                 ?>
-                <div>
+                <div class="edit-delete-container">
                     <button type="button" id="edit-comment-<?php echo $comment["id"]; ?>-button"
                         class="btn btn-info">Edit</button>
                     <button type="button" id="delete-comment-<?php echo $comment["id"]; ?>-button"

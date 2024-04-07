@@ -54,9 +54,11 @@ function generate_blog_view($blog)
             <?php
             if (isset($_SESSION["id"]) && ($_SESSION["id"] == $blog["user_id"] || $_SESSION["role"] === "Administrator")) {
                 ?>
-                <a href="blog_edit.php?id=<?php echo $blog["id"]; ?>"><button type="button"
-                        class="btn btn-info">Edit</button></a>
-                <button type="button" id="delete-blog-button" class="btn btn-danger">Delete</button>
+                <div class="edit-delete-container">
+                    <a href="blog_edit.php?id=<?php echo $blog["id"]; ?>"><button type="button"
+                            class="btn btn-info">Edit</button></a>
+                    <button type="button" id="delete-blog-button" class="btn btn-danger">Delete</button>
+                </div>
                 <script>
                     const deleteBlogButton = document.getElementById("delete-blog-button");
                     deleteBlogButton.addEventListener("click", () => {
@@ -65,7 +67,7 @@ function generate_blog_view($blog)
                             $.ajax({
                                 type: "POST",
                                 url: "blog_controllers/delete_blog.php",
-                                data: {id: <?php echo $blog["id"]; ?> },
+                                data: { id: <?php echo $blog["id"]; ?> },
                                 success: function (res) {
                                     window.location.href = "blogs.php";
                                 }
