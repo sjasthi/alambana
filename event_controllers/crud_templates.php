@@ -222,7 +222,7 @@ function calandar_view( $categories, $events ) {
 
 function pagination( $view, $current_page, $eventsPerPage, $totalPages ) { ?>
     <nav>
-        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" || $view == "delete_event" )  echo "hidden"; ?>>
+        <ul class="pagination pagination-lg" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" )  echo "hidden"; ?>>
             <!-- Previous Page Link -->
             <?php if ($current_page > 1) { ?><li><a href="?current_page=<?php echo $current_page - 1; ?>&events_per_page=<?php echo $eventsPerPage; ?>&view=<?php echo $view; ?>">&laquo; Previous</a></li><?php }; ?>
             <!-- Page Number Links -->
@@ -286,15 +286,29 @@ function single_event( $categories, $events, $event_id ) {
             <p>
                 <?php echo $event["information"]; ?>
             </p>
-
-            <form action="" method="get">
-                <div class="form-group" <?php if ( !isset($userRole) || $userRole != "Administrator" )  echo "hidden"; ?>>
+            <div class="form-group" <?php if ( !isset($userRole) || $userRole != "Administrator" )  echo "hidden"; ?>>
+                <form action="" method="get">
                     <input type="hidden" name="id" value="<?php echo $event_id; ?>">
-                    <button class="btn btn-primary" name="view" id="view" value="edit_event">Edit</button>
-                    <button class="btn btn-primary" name="view" id="view" value="delete_event">Delete</button>
-                </div>
-            </form>
-
+                    <button class="btn btn-primary" type="submit" name="view" id="view" value="edit_event" >Edit</button>
+                    <button class="btn btn-primary" type="button" id="delete-event-button" >Delete</button>
+                    <script>
+                        const deleteEventButton = document.getElementById("delete-event-button");
+                        deleteEventButton.addEventListener("click", () => {
+                            let confirm = window.confirm("Are you sure you want to delete Event: <?php echo $event["title"]; ?>?");
+                            if (confirm) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "events.php?submit_event=delete",
+                                    data: { id: <?php echo $event_id; ?> },
+                                    success: function (res) {
+                                        window.location.href = "events.php";
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+                </form>
+			</div>
         </div>
 
         <!-- Sidebar -->
@@ -603,19 +617,6 @@ function edit_event( $categories, $events, $event_id ) {
         </div>
     </div>
 <?php
-}
-
-function remove_event($event_id) {
-    $event = get_event_by_id( $event_id ); ?>
-    <form action="?submit_event=delete" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="id">Are You Sure you want to delete Event: <?php echo $event['title'];?></label><br>
-            <input type="hidden" name="id" id="id" value="<?php echo $event['id']; ?>">
-            <button type="submit" class="btn btn-primary" name=submit" value="submit">Delete</button>
-            <button type="button" class="btn btn-primary" onclick="javascript:window.location='events.php?view=single_event&id=<?php echo $event_id; ?>';">Cancel</button>
-        </div>
-    </form>
-    <?php
 }
 
 function transformYouTubeURL($url) {

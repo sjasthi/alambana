@@ -149,7 +149,7 @@ if ( isset( $_SESSION['role'] ) ) {
             $view = isset( $_GET['view'] ) ? $_GET['view'] : "list";
 
             // if user role isnt set to Admin make create events page innacessable
-            if ( ( !isset($userRole) || $userRole != "Administrator" ) && ( $view == "create_event" || $view == "edit_event" || $view == "delete_event" ) ) {
+            if ( ( !isset($userRole) || $userRole != "Administrator" ) && ( $view == "create_event" || $view == "edit_event" ) ) {
                 $view = "list";
             }
 
@@ -170,7 +170,7 @@ if ( isset( $_SESSION['role'] ) ) {
             <div id="main-container">
                 <div class="content">
                     <div class="container">
-                        <form action="" method="get" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" || $view == "delete_event" )  echo "hidden"; ?>>
+                        <form action="" method="get" <?php if( $view == "single_event" || $view == "create_event" || $view == "edit_event" )  echo "hidden"; ?>>
                             
                             <div class="form-group">
                                 <label for="events_per_page">Events per page:</label>
@@ -207,7 +207,6 @@ if ( isset( $_SESSION['role'] ) ) {
                             case "single_event": single_event( $categories, $events, $_GET["id"] ); break;
                             case "create_event": create_event(); break;
                             case "edit_event": edit_event( $categories, $events, $_GET["id"] ); break;
-                            case "delete_event": remove_event( $_GET["id"] ); break;
                         } 
                         // add pagination below content
                         pagination( $view, $current_page, $eventsPerPage, $totalPages );
