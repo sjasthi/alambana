@@ -117,5 +117,6 @@
   }
 
   .blog-view-container .edit-delete-container a button {
+    border-top-right-radius: 12px;
     width: 100%;
   }
