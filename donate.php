@@ -8,6 +8,7 @@ $stripe_secret_key = "sk_test_51P0aNgRqID97Nih52PUAEMxPM2kOO3Gma8AaWKHkSCTf1AEbv
 
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
+    'submit_type' => 'donate',
     "success_url" => "http://localhost/alambana/success.php",
     "cancel_url" => "http://localhost/alambana",
     "locale" => "auto",
