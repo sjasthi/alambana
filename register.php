@@ -64,6 +64,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
                     header("location: loginForm.php?success=true");
                 } catch (Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    header("location: loginForm.php?success=false");
                 }
                 // send validation email
                 /*$email_subject = 'Signup | Validation';
@@ -92,6 +93,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
         // case where the sql insert failed
         else {
             echo "Error: " . $sql . "<br>" . mysqli_error($db);
+            header("location: loginForm.php?success=false");
         }
     }
 }

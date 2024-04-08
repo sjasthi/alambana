@@ -59,7 +59,7 @@ ob_flush();
     if (isset($_GET["success"])) {
       if ($_GET["success"]) {
         ?>
-        alert("Registration was successful!");
+        alert("Registration was successful! Please check your email for a validation link!");
         <?php
       } else {
         ?>
