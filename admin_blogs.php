@@ -11,8 +11,7 @@ if ($_SESSION['role'] != 'Administrator') {
 include ('shared_resources.php');
 include ('blog_fill.php');
 require_once "header/index.php";
-require_once "bootstrap.php";
-set_up_bootstrap();
+
 ob_end_flush();
 ?>
 <!DOCTYPE HTML>

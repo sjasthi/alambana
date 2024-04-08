@@ -10,8 +10,7 @@ if ($_SESSION['role'] != 'Administrator') {
 #require 'db_configuration.php';
 include ('shared_resources.php');
 require_once './header/index.php';
-require_once './bootstrap.php';
-set_up_bootstrap();
+
 ob_end_flush();
 ?>
 <!DOCTYPE html>

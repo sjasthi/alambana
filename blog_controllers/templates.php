@@ -169,4 +169,62 @@ function generate_blog_edit($blog)
     </div>
     <?php
 }
+
+function generate_new_blog_form()
+{
+    ?>
+    <style>
+        .blog-post-form {
+            margin: 16px auto 16px auto;
+            max-width: 800px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 3px solid lightblue;
+            border-radius: 16px;
+        }
+
+        .blog-post-form textarea {
+            resize: none;
+            width: calc(100% - 32px);
+        }
+
+        .blog-post-form input {
+            width: calc(100% - 32px);
+        }
+
+        .blog-post-form input[type="file"] {
+            width: auto;
+            margin: auto;
+        }
+    </style>
+    <div class="blog-post-form">
+        <form action="blog_controllers/submit_blog.php" method="POST" enctype="multipart/form-data">
+            <label>Blog Title</label>
+            <br>
+            <input id="title" type="text" name="title" maxlength=100 required>
+            <br><br>
+            <label for="description">Description</label>
+            <br>
+            <textarea name="description" rows="3" cols="100" maxlength="160" required></textarea>
+            <br><br>
+            <label>Video Link</label>
+            <br>
+            <input type="text" name="video_link" maxlength=2048 placeholder="Optional">
+            <br><br>
+            <label for="content">Content</label>
+            <br>
+            <textarea name="content" rows="10" cols="100" required></textarea>
+            <br>
+            <label>Image(s)</label>`
+            <br>
+            <input type="file" name="file[]" accept="image/*" multiple="multiple">
+            <br>
+            <br>
+            <input type="submit" class="btn btn-primary btn-lg" name="create_post" value="Publish">
+        </form>
+    </div>
+    <?php
+}
 ?>

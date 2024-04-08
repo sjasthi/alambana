@@ -13,12 +13,13 @@ function generate_header_styling()
             width: 100%;
             z-index: 2;
             top: 0;
+            right: 0;
         }
 
         .navbar .logo-container {
             width: 200px;
             max-width: 33%;
-            padding-left: 8px
+            padding-left: 8px;
         }
 
         .navbar .link-container {

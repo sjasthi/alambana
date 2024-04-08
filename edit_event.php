@@ -9,8 +9,7 @@ if (!isset ($_GET['Event_Id']) || !is_numeric($_GET['Event_Id'])) {
 //require 'db_configuration.php'; // Include your database configuration file
 include 'shared_resources.php';
 require_once './header/index.php';
-require_once './bootstrap.php';
-set_up_bootstrap();
+
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 
 if ($connection->connect_error) {

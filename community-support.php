@@ -8,8 +8,7 @@ include 'shared_resources.php';
 //include 'blog_fill.php';
 include 'feedback_fill.php';
 require_once "header/index.php";
-require_once "bootstrap.php";
-set_up_bootstrap();
+
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }

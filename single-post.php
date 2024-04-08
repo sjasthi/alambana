@@ -10,8 +10,7 @@ include 'create_post_story.php';
 include 'edit_post_story.php';
 include 'create_comment_post.php';
 require_once './header/index.php';
-require_once './bootstrap.php';
-set_up_bootstrap();
+
 $blogId = $_GET['blog_id']; // Get the Blog_Id from the URL parameter
 
 // DO NOT ALLOW ACCESS TO HIDDEN BLOG PAGES

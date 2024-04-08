@@ -4,8 +4,6 @@ ob_start();
 /* Main page with two forms: sign up and log in */
 include 'shared_resources.php';
 require_once "header/index.php";
-require_once "bootstrap.php";
-set_up_bootstrap();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset ($_POST['login'])) { //user logging in

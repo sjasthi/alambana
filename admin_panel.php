@@ -15,8 +15,7 @@ include 'shared_resources.php';
 include 'event_controllers/event_fill.php';
 include 'user_fill.php';
 require_once "header/index.php";
-require_once "bootstrap.php";
-set_up_bootstrap();
+
 ob_end_flush();
 ?>
 

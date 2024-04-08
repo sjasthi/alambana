@@ -1,8 +1,10 @@
 <?php
 require_once "full_screen_menu.php";
 require_once "style.php";
+require_once "shared_resources.php";
 function generate_header()
 {
+    css();
     generate_header_styling();
     ?>
 

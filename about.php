@@ -6,13 +6,11 @@ if (!isset ($_SESSION)) {
 
 include 'shared_resources.php';
 require_once "header/index.php";
-require_once "bootstrap.php";
 
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }
 
-set_up_bootstrap();
 ?>
 
 

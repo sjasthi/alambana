@@ -9,8 +9,7 @@ include 'feedback_fill.php';
 include 'blog_fill.php';
 include 'create_feedback_comment_post.php';
 require_once './header/index.php';
-require_once './bootstrap.php';
-set_up_bootstrap();
+
 //$feedbackId = $_GET['feedback_id']; // Get the feedback_Id from the URL parameter
 // DO NOT ALLOW ACCESS TO HIDDEN feedback PAGES
 //if (getfeedbackVisibilityStateFromDatabase($feedbackId)) header('Location:feedback.php'); 

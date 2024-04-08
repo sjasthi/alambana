@@ -13,8 +13,7 @@ include('shared_resources.php');
 ob_end_flush();
 
 require_once "header/index.php";
-require_once "bootstrap.php";
-set_up_bootstrap();
+
 // adding new event  
 if (isset($_POST["event_date"])) {
     $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);

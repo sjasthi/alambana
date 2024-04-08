@@ -4,8 +4,7 @@ use PhpOffice\PhpPresentation\Shape\Chart\Title;
 
 require 'db_configuration.php';
 require_once './header/index.php';
-require_once './bootstrap.php';
-set_up_bootstrap();
+
 $status = session_status();
 if ($status == PHP_SESSION_NONE) {
     session_start();
@@ -40,7 +39,27 @@ function css($pageClass = 0)
     <!-- Color Style -->
     <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
     <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+    <script>
+        <?php
+        require_once './vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js';
+        ?>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
+
+    <style>
+        <?php
+        require_once './vendor/twbs/bootstrap/dist/css/bootstrap.min.css';
+        ?>
+    </style>
     <?php
 
     // Login CSS
@@ -295,7 +314,7 @@ function load_common_page_header($headType = 1)
                     <!-- Site Sign On Button -->
                     <div class="fa-signin accent-bg padding-tb8 cta-fw">
                         <?php
-                        if (isset ($_SESSION['role'])) { // Verify SESSION
+                        if (isset($_SESSION['role'])) { // Verify SESSION
                             // Only Users Logged In
                             if ($_SESSION['role'] == 'user') {
                                 echo '<a href="logout.php" class="header-info-col btn-default btn-ghost btn-light btn-rounded small-button">Logout (' . $_SESSION['first_name'] . ')</a>';
@@ -543,7 +562,7 @@ function generateFaviconLink()
 function style_switcher()
 {
 
-    if (isset ($_SESSION['role'])) { // Verify SESSION
+    if (isset($_SESSION['role'])) { // Verify SESSION
 
         // Admin Logged In
         if ($_SESSION['role'] == 'admin') {
