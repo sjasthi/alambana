@@ -76,7 +76,7 @@ function generate_header()
             <?php
             if (isset($_SESSION["id"])) {
                 ?>
-                <a href="profile.php"><button type="button" class="profile-button btn btn-primary">Profile</button></a>
+                <a href="profile_edit.php"><button type="button" class="profile-button btn btn-primary">Profile</button></a>
                 <?php
             } else {
                 ?>

@@ -53,7 +53,7 @@ css();
         </a>
         <script>
           const pageNumber<?php echo $i; ?>TopContainer = document.getElementsByClassName("page-number-container-top-<?php echo $i; ?>")[0];
-          pageNumber<?php echo $i; ?>TopContainer.addEventListener("click", (event) => {
+            pageNumber<?php echo $i; ?>TopContainer.addEventListener("click", (event) => {
             window.location.href = 'blogs.php?page=<?php echo $i; ?>';
           });
         </script>
@@ -79,7 +79,7 @@ css();
         </a>
         <script>
           const pageNumber<?php echo $i; ?>Container = document.getElementsByClassName("page-number-container-<?php echo $i; ?>")[0];
-                                pageNumber<?php echo $i; ?>Container.addEventListener("click", (event) => {
+                                  pageNumber<?php echo $i; ?>Container.addEventListener("click", (event) => {
             window.location.href = 'blogs.php?page=<?php echo $i; ?>';
           });
         </script>
@@ -88,6 +88,12 @@ css();
       ?>
     </div>
   </main>
+  <!-- Site Footer -->
+  <?php load_common_page_footer(); ?>
+  <!-- Libraries Loader -->
+  <?php lib(); ?>
+  <!-- Style Switcher Start -->
+  <?php style_switcher(); ?>
 </body>
 
 </html>

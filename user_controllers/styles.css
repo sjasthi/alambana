@@ -1,0 +1,44 @@
+.profile-edit-form {
+    margin: 16px auto 16px auto;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 3px solid lightblue;
+    border-radius: 16px;
+}
+
+.profile-edit-form textarea {
+    resize: none;
+    width: calc(100% - 16px);
+    height: 128px;
+    text-align: center;
+    margin: 8px;
+}
+
+.profile-edit-form input {
+    width: calc(100% - 16px);
+    text-align: center;
+    margin: 8px;
+}
+
+.profile-edit-form select {
+    width: calc(100% - 16px);
+    margin: auto;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.profile-edit-form input[type="file"] {
+    width: auto;
+    margin: auto;
+}
+
+.author-picture-container {
+    object-fit: cover;
+    width: 60%;
+    margin: auto;
+    border-radius: 4px;
+    background-color: lightblue;
+}
