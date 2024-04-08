@@ -61,7 +61,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
                     ';
                     $mail->send();
                     echo 'Message has been sent';
-                    header("location: validation.php");
+                    header("location: loginForm.php?success=true");
                 } catch (Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }

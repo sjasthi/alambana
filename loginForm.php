@@ -6,10 +6,10 @@ include 'shared_resources.php';
 require_once "header/index.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if (isset ($_POST['login'])) { //user logging in
+  if (isset($_POST['login'])) { //user logging in
 
     require 'login.php';
-  } elseif (isset ($_POST['register'])) { //user registering
+  } elseif (isset($_POST['register'])) { //user registering
 
     require 'register.php';
   }
@@ -55,6 +55,19 @@ ob_flush();
       }
       return true;
     }
+    <?php
+    if (isset($_GET["success"])) {
+      if ($_GET["success"]) {
+        ?>
+        alert("Registration was successful!");
+        <?php
+      } else {
+        ?>
+        alert("Registration was failed!");
+        <?php
+      }
+    }
+    ?>
   </script>
 
 
