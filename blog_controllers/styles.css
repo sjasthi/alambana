@@ -109,6 +109,7 @@
   .blog-edit-container textarea {
     width: 100%;
     resize: none;
+    text-align: center;
   }
 
   .blog-view-container .edit-delete-container {
