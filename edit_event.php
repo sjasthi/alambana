@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_GET['Event_Id']) || !is_numeric($_GET['Event_Id'])) {
+if (!isset ($_GET['Event_Id']) || !is_numeric($_GET['Event_Id'])) {
     echo "Event not found";
     sleep(3);
     header("Location: admin_events.php");
@@ -8,13 +8,15 @@ if (!isset($_GET['Event_Id']) || !is_numeric($_GET['Event_Id'])) {
 }
 //require 'db_configuration.php'; // Include your database configuration file
 include 'shared_resources.php';
+require_once './header/index.php';
+
 $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
 
 if ($connection->connect_error) {
-    die("Connection failed: " . $connection->connect_error);
+    die ("Connection failed: " . $connection->connect_error);
 }
 // adding new event  
-if (isset($_POST["Event_Date"])) {
+if (isset ($_POST["Event_Date"])) {
 
     $Event_Id = $_GET['Event_Id'];
     $Title = $_POST['Title'];
@@ -132,7 +134,7 @@ if (isset($_POST["Event_Date"])) {
 <![endif]-->
     <div class="body">
         <!-- Site Header Wrapper -->
-        <?php load_common_page_header(2) ?>
+        <?php generate_header(); ?>
         <!-- Hero Area -->
         <div class="hero-area">
             <div class="page-banner parallax" style="background-image:url(images/inside9.jpg);">
@@ -205,12 +207,12 @@ if (isset($_POST["Event_Date"])) {
 
 
 
-     <!-- site footer -->
-    <?php load_common_page_footer() ?>
-    <!-- libraries loader -->
-    <?php lib() ?>
-    <!-- style switcher start -->
-    <?php style_switcher() ?>
+        <!-- site footer -->
+        <?php load_common_page_footer() ?>
+        <!-- libraries loader -->
+        <?php lib() ?>
+        <!-- style switcher start -->
+        <?php style_switcher() ?>
 </body>
 
 </html>

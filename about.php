@@ -1,51 +1,54 @@
-
 <?php
 
-  if(!isset($_SESSION)) { 
-      session_start();
-  } 
+if (!isset ($_SESSION)) {
+    session_start();
+}
 
-  include 'shared_resources.php';
-   
-  if (isset($_SESSION['role'])) {
+include 'shared_resources.php';
+require_once "header/index.php";
+
+if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
-  }
+}
+
 ?>
 
 
 
 <!DOCTYPE HTML>
 <html class="no-js">
+
 <head>
-<!-- Basic Page Needs
+    <!-- Basic Page Needs
   ================================================== -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>About Us</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<!-- Mobile Specific Metas
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>About Us</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
   ================================================== -->
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<!-- CSS
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!-- CSS
   ================================================== -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
-<link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
-<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-<link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
-<!-- Color Style -->
-<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
-<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
-<!-- SCRIPTS
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css">
+    <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
+    <link href="css/custom.css" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+    <!-- Color Style -->
+    <link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
+    <link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
+    <!-- SCRIPTS
   ================================================== -->
-  <?php load_common_page_scripts() ?>
-  
-  <style>
+    <?php load_common_page_scripts() ?>
+
+    <style>
         /* Style for the custom button label */
         .custom-file-upload {
             display: inline-block;
@@ -61,234 +64,233 @@
         #imageUpload {
             display: none;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .body-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 0;
+        }
+
+        .body-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cause {
+            display: flex;
+            margin-bottom: 50px;
+        }
+
+        .cause img {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+            border: 2px solid red;
+        }
+
+        .cause .description {
+            flex: 1;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        p {
+            line-height: 1.6;
+            color: black;
+        }
+
+        .about-section {
+            text-align: center;
+            border: none;
+            box-shadow: none;
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 18px;
+        }
+
+        h2,
+        h3 {
+            font-weight: bold;
+        }
+        .content {
+            padding: 32px 0;
+        }
     </style>
 </head>
+
 <body>
-<!--[if lt IE 7]>
-	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
-<div class="body">
-	<!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
-    <!-- Hero Area -->
-    <div class="hero-area">
-    	<div class="page-banner parallax" id="banner"  style="background-image:url(images/parallax6.jpg);">
-        	<div class="container">
-            	<div class="page-banner-text">
-        			<h1 class="block-title">About us</h1>
-					 <?php
-                        if (isset($userRole) && $userRole === "admin") {
+    <div class="body">
+        <!-- Site Header Wrapper -->
+        <?php generate_header(); ?>
+        <!-- Hero Area -->
+        <div class="hero-area">
+            <div class="page-banner parallax" id="banner" style="background-image:url(images/parallax6.jpg);">
+                <div class="container">
+                    <div class="page-banner-text">
+                        <h1 class="block-title">About us</h1>
+                        <?php
+                        if (isset ($userRole) && $userRole === "admin") {
                             // Display the "Change Image" button for admin users
-							echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+                            echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
                             echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
                         }
                         ?>
-                </div>
-            </div>
-        </div>
-    </div>
-	
-	<script>
-		const imageUpload = document.getElementById('imageUpload');
-		const banner = document.getElementById('banner');
-
-		// Retrieve the stored image URL from local storage on page load
-		const storedImageUrl = localStorage.getItem('aboutBanner');
-		if (storedImageUrl) {
-			banner.style.backgroundImage = `url(${storedImageUrl})`;
-		}
-
-		imageUpload.addEventListener('change', function () {
-			const file = imageUpload.files[0];
-			if (file && file.type.startsWith('image/')) {
-				const reader = new FileReader();
-				reader.onload = function (e) {
-					banner.style.backgroundImage = `url(${e.target.result})`;
-
-					// Store the selected image URL for Page 1 in local storage
-					localStorage.setItem('aboutBanner', e.target.result);
-				};
-				reader.readAsDataURL(file);
-			}
-		});
-	</script>
-
-
-    <!-- Main Content -->
-    <div id="main-container">
-    	<div class="content">
-        	<div class="container">
-        		<div class="row">
-                	<div class="col-md-4 col-sm-4">
-                        <div class="icon-box ibox-plain">
-                            <div class="ibox-icon">
-                                <i class="fa fa-windows"></i>
-                            </div>
-                            <h3>Boxed &amp; Wide Layouts</h3>
-                            <p>2 layout choices for Wide screen and Boxed layout with option to set patterns and images as background.</p>
-                        </div>
-                        <div class="spacer-20"></div>
-                        <div class="icon-box ibox-plain">
-                            <div class="ibox-icon">
-                                <i class="fa fa-navicon"></i>
-                            </div>
-                            <h3>Megamenu</h3>
-                            <p>The main menu is ready for the multi columns mega menu which can have any kind of HTML/TEXT inside.</p>
-                        </div>
-                        <div class="spacer-20"></div>
-                        <div class="icon-box ibox-plain">
-                            <div class="ibox-icon">
-                                <i class="fa fa-twitter"></i>
-                            </div>
-                            <h3>Twitter Widget</h3>
-                            <p>An easy to use Twitter feeds plugin is included in the template which can fetch any number of Tweets from your account.</p>
-                        </div>
-                   	</div>
-                    <div class="col-md-8 col-sm-8">
-						<p class="lead">Aalambana Foundation is a 501 (c)(3)  non-profit organization, founded in April 2020, with a focus on women empowerment, supporting socioeconomically disadvantaged children, and community betterment activities.</p>
-                        <div class="row">
-                        	<div class="col-md-4 col-sm-4">
-                            	<div class="grid-item">
-                                	<img src="images/event1.jpg" alt="">
-                                    <div class="grid-item-content">
-                                    	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        	<div class="col-md-4 col-sm-4">
-                            	<div class="grid-item">
-                                	<img src="images/event4.jpg" alt="">
-                                    <div class="grid-item-content">
-                                    	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        	<div class="col-md-4 col-sm-4">
-                            	<div class="grid-item">
-                                	<img src="images/event5.jpg" alt="">
-                                    <div class="grid-item-content">
-                                    	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               	</div>
-                
-                <div class="cta">
-                     <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#DonateModal">Donate Now</a>
-                	<p>Let's start doing your bit for the world. Donate a little.</p>
-                </div>
-                <div class="spacer-30"></div>
-                
-                <div class="row">
-                	<div class="col-md-5 col-sm-5">
-                		<h2>Our Staff &amp; Volunteers</h2>
-                        <hr class="sm">
-                       	<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                    </div>
-                    <div class="col-md-7 col-sm-7">
-                    	<div class="row">
-                        	<div class="col-ms-4 col-sm-4 col-xs-4">
-                                <ul class="carets">
-                                    <li>Adamu Makinwa</li>
-                                    <li>Casper Lundin</li>
-                                    <li>Thomas Gagné</li>
-                                    <li>Christina Morgan </li>
-                                    <li>Markovics Zoltán </li>
-                                    <li>Jacolien Hendriks</li>
-                                </ul>
-                           	</div>
-                        	<div class="col-ms-4 col-sm-4 col-xs-4">
-                                <ul class="carets">
-                                    <li>Isabela Barboza </li>
-                                    <li>Juhani Virtanen </li>
-                                    <li>Phan Châu</li>
-                                    <li>Kuzey Ünal</li>
-                                    <li>Juan Rubio</li>
-                                    <li>Marko Mlakar</li>
-                                </ul>
-                           	</div>
-                        	<div class="col-ms-4 col-sm-4 col-xs-4">
-                                <ul class="carets">
-                                    <li>Kelly Lambert</li>
-                                    <li>Walid Ahelluc</li>
-                                    <li>Ernst Graf</li>
-                                    <li>Lore Smets</li>
-                                    <li>Camiel de Graaf</li>
-                                    <li>Ladislau Berindei</li>
-                                </ul>
-                           	</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="spacer-20"></div>
-                <div class="row">
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Tayri awragh</h3>
-                                    <span class="meta-data">CEO/Founder</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/post1.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Howard Porter</h3>
-                                    <span class="meta-data">Education Campaigns Manager</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                              	</div>
-                            </div>
-                       	</div>
-                    </div>
-                	<div class="col-md-4 col-sm-4">
-                    	<div class="grid-item grid-staff-item">
-                            <div class="grid-item-inner">
-                              	<div class="media-box"><img src="images/staff2.jpg" alt=""></div>
-                              	<div class="grid-item-content">
-                                	<h3>Ayoub Ameqran</h3>
-                                    <span class="meta-data">Environment Campaigns Manager</span>
-                                	<ul class="social-icons-rounded social-icons-colored">
-                                    	<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                  	</ul>
-                                	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
-                              	</div>
-                            </div>
-                       	</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Site Footer -->
-    <?php load_common_page_footer() ?>
-    <!-- donate form modal -->
-    <?php donate_dialog() ?>
-    <!-- Libraries Loader -->
-    <?php lib() ?>
-    <!-- Style Switcher Start -->
-    <?php style_switcher() ?>
+
+        <script>
+            const imageUpload = document.getElementById('imageUpload');
+            const banner = document.getElementById('banner');
+
+            // Retrieve the stored image URL from local storage on page load
+            const storedImageUrl = localStorage.getItem('aboutBanner');
+            if (storedImageUrl) {
+                banner.style.backgroundImage = `url(${storedImageUrl})`;
+            }
+
+            imageUpload.addEventListener('change', function () {
+                const file = imageUpload.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        banner.style.backgroundImage = `url(${e.target.result})`;
+
+                        // Store the selected image URL for Page 1 in local storage
+                        localStorage.setItem('aboutBanner', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+
+
+        <!-- Main Content -->
+        <div id="main-container">
+            <div class="content">
+                <div class="container">
+                    <section class="about-section">
+                        <div class="body-container">
+                            <h2>Our Mission</h2>
+                            <p>We will strive to bring together community members to serve the underprivileged better.
+                            </p>
+                        </div>
+                    </section>
+
+
+                    <section>
+                        <h2>Welcome to Aalambana Foundation</h2>
+                        <p>Aalambana Foundation is a 501 (c)(3) non-profit organization, founded in April 2020, with a
+                            focus on women empowerment, supporting socioeconomically disadvantaged children, and
+                            community betterment activities.</p>
+                        <p>To date, Aalambana Foundation has made charitable donations that total more than $30,000.
+                            Some of the organizations that we support includes OC Food Bank, Wound Walk OC, Grandma’s
+                            House of Hope, Orange County Rescue Mission, South County Outreach, Nagai Narayanji Memorial
+                            Foundation and many others</p>
+                        <p>By funding orphanages, meals, grocercies, enrichment, back to school drives, food drives,
+                            enrichment, development activities, medical camps, mentoring and education programs and
+                            providing scholarships, Aalambana Foundation is making a positive and lasting impact on
+                            communities across many urban and rural areas</p>
+                        <p>Aalambana volunteers are fully committed to make a difference through meaningful advocacy,
+                            outreach and community service activities.</p>
+                        <p>Ultimately, we understand that every dollar that is donated to sponsor our activities
+                            represents a donor’s legacy, a dream for lasting change and a chance to bring that dream to
+                            life. We remain committed to support people from all walks of life regardless of race,
+                            religion, income levels, cultural and political beliefs.</p>
+                    </section>
+
+                    <div class="spacer-30"></div>
+
+                    <h2>Our Main Causes</h2>
+                    <br />
+                    <div class="cause">
+                        <img src="images/women_empowerment.jpg">
+                        <div class="description">
+                            <h3>Women Empowerment</h3>
+                            <p>Aalambana Foundation works to empower both women and girls by promoting gender equality,
+                                providing them with resources, offer education, including other initiatives to help them
+                                to be more independent and successful, and advocating against gender-based violence.</p>
+                        </div>
+                    </div>
+                    <div class="cause">
+                        <img src="images/Annadanam.png">
+                        <div class="description">
+                            <h3>Annadanam</h3>
+                            <p>Aalambana Foundation supports orphanages and shelters by funding them monthly through
+                                Annadanam, which involves offering food.</p>
+                        </div>
+                    </div>
+                    <div class="cause">
+                        <img src="images/Netralayam.png">
+                        <div class="description">
+                            <h3>Netralayam</h3>
+                            <p>Netralayam is an organization dedicated to providing shelter, education, and life skills
+                                training to visually impaired girls and women to help them find jobs and also become
+                                self-sufficient and independent. Aalambana Foundation sponsors monthly groceries for the
+                                residents of Netralayam.</p>
+                        </div>
+                    </div>
+                    <div class="cause">
+                        <img src="images/corrective-surgery.png">
+                        <div class="description">
+                            <h3>Corrective Surgeries</h3>
+                            <p>Aalambana Foundation collaborates with the Nagai Narayanji Memorial Foundation (NNMF) to
+                                identify, care for, and empower children with disabilities. Free screening camps are
+                                conducted regularly to identify children who would benefit from corrective surgery.
+                                Aalambana Foundation is committed to sponsoring these surgeries for some of those
+                                children.
+                        </div>
+                    </div>
+                    <div class="cause">
+                        <img src="images/community_service.jpg">
+                        <div class="description">
+                            <h3>Community Service Activities</h3>
+                            <p>They organize activities for the community to volunteer and participate that will benefit
+                                the community, such as food drives, school drives, and more.</p>
+                        </div>
+                    </div>
+
+                    <div class="spacer-20"></div>
+
+                   
+
+                </div>
+            </div>
+        </div>
+        <!-- Site Footer -->
+        <?php load_common_page_footer() ?>
+        <!-- donate form modal -->
+        <?php donate_dialog() ?>
+        <!-- Libraries Loader -->
+        <?php lib() ?>
+        <!-- Style Switcher Start -->
+        <?php style_switcher() ?>
 </body>
+
 </html>

@@ -4,11 +4,13 @@ if(!isset($_SESSION)) {
     session_start();
 } 
 
-if ($_SESSION['role'] != 'admin'){
+if ($_SESSION['role'] != 'Administrator'){
     header('Location:events.php'); 
 }
 
 include('shared_resources.php'); 
+require_once "event_controllers/event_queries.php";
+require_once "header/index.php";
 
 ob_end_flush();
 
@@ -129,7 +131,7 @@ if ($db->connect_error) {
     </style>
     
      <!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
     <!-- Main Content -->
     <div id="admin-container-id">
     	<div class="admin-content">
@@ -139,7 +141,7 @@ if ($db->connect_error) {
                     <!-- Admin Side Menu Panel -->
                     <?php admin_side_menu() ?>
                     <div style="padding-top: 100px; padding-left: 450px; width:100%">
-                        <a href="add_event.php" class="btn">Add new Event  </a>
+                        <a href="events.php?view=create_event" class="btn">Add new Event  </a>
                     </div>
 
                     <div class="toggle_columns" style="padding-top: 50px; padding-left: 450px; width:100%">
@@ -164,41 +166,32 @@ if ($db->connect_error) {
                             <tbody>
                                 <!-- Populate table with event data from the database -->
                                 <?php
-                                $sql = "SELECT * FROM events"; // Modify this query to fetch events data
-                                $result = $db->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
+                                    $events = get_events( "", 0, event_count() );
+                                        foreach( $events as $row ) {
                                         echo '<tr>
-                                        <td>' . $row["Event_Id"] . '</td>
-                                        <td>' . $row["Title"] . '</td>
-                                        <td>' . $row["Description"] . '</td>
-                                        <td>' . $row["Video_Link"] . '</td>
-                                        <td>' . $row["Event_Date"] . '</td>
-                                        <td>' . $row["Modified_Time"] . '</td>
-                                        <td>' . $row["Created_Time"] . '</td>
+                                        <td>' . $row["id"] . '</td>
+                                        <td>' . $row["title"] . '</td>
+                                        <td>' . $row["description"] . '</td>
+                                        <td>' . $row["video_link"] . '</td>
+                                        <td>' . $row["event_date_start"] . '</td>
+                                        <td>' . $row["modified_time"] . '</td>
+                                        <td>' . $row["created_time"] . '</td>
                                         <td class="button-container" >
                                             <form action="edit_event.php" method="get">
-                                                <input type="hidden" name="Event_Id" value="'. $row["Event_Id"] .'">
+                                                <input type="hidden" name="Event_Id" value="'. $row["id"] .'">
                                                 <input class="btn btn-sm btn-success btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Edit">
                                             </form>
                                             <form action="admin_delete_event.php" method="post">
-                                                <input type="hidden" name="Event_Id" value="'. $row["Event_Id"] .'">
+                                                <input type="hidden" name="Event_Id" value="'. $row["id"] .'">
                                                 <input class="btn btn-sm btn-danger btn-bold btn-text-shadow btn-background btn-border" type="submit" value="Delete">
                                             </form>
                                         </td>
                                     </tr>';
                                     }
-                                } else {
-                                    echo "0 results";
-                                }
-                                $db->close();
                                 ?>
                             </tbody>
                         </table>
                     </div>
-
-
                 </div>
             </div>
         </div>

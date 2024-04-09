@@ -1,0 +1,73 @@
+.comment-container {
+    margin: 16px auto 16px auto;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 3px solid lightblue;
+    border-radius: 16px;
+}
+
+.comment-container .info-container .author-picture-container {
+    object-fit: cover;
+    height: 48px;
+    width: 48px;
+    border-radius: 4px;
+    background-color: lightblue;
+    margin-left: 8px;
+    margin-top: 8px;
+}
+
+.comment-container .author-time-container {
+    width: 100%;
+}
+
+.comment-container .edit-delete-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-container .edit-delete-container button:first-of-type {
+    border-top-right-radius: 12px;
+}
+
+.comment-container .info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment-container .text-container {
+    width: 100%;
+}
+
+.comment-container .content-container {
+    width: 100%;
+    resize: none;
+    text-align: center;
+    border: none;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.new-comment-container {
+    margin: 16px auto 16px auto;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 3px solid lightblue;
+    border-radius: 16px;
+    padding: 4px;
+}
+
+.new-comment-container textarea {
+    border: none;
+    resize: none;
+}
+
+.new-comment-container button {
+    border-radius: 8px;
+}

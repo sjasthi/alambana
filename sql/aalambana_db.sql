@@ -255,7 +255,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
-  `email` varchar(75) NOT NULL,
+  `email` varchar(75) NOT NULL UNIQUE,
   `hash` varchar(200) NOT NULL,
   `active` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
@@ -279,7 +279,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `hash`, `active`,
 (17, 'admin', 'admin', 'admin@aalambana.org', '$2y$10$hrX3CNhfnU6HHRGUSqMgrup9w9rniZjevhWOvoHoJx3h02xw6pk5i', 'yes', 'admin', NULL, '0000-00-00', '0000-00-00', 'enabled'),
 (18, 'Deb', 'Holt', 'deb.holt@msn.com', '$2y$10$H0fNiNMEn5bKce8SSHILJuCT12WTLoSE.dJfZ94eh7FmUCgo9KBq6', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
 (19, 'Katie', 'Hall', 'k.hall13@gmail.com', '$2y$10$unCiGitfm3trxCp/w3AT3O0vzHZ/Zbgzh7fWWTV7pw6B1TE6Yn6Dy', 'yes', 'user', NULL, '0000-00-00', '0000-00-00', 'enabled'),
-(20, 'Ram', 'YalamanChilli', 'test@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'yes', 'admin', 22, '0000-00-00', '0000-00-00', 'enabled'),
+(20, 'Ram', 'YalamanChilli', 'test2@test.com', '$2y$10$PfqSBHUZLkUfrS1i4HFrD.WMet7ImU1Z3vHg8Jn108Hz.LfU4vBee', 'yes', 'admin', 22, '0000-00-00', '0000-00-00', 'enabled'),
 (21, 'Raju', 'Vatsavai', 'testing@test.com', '$2y$10$KIPooMP.raxiCdFl1u4AueYXqA9SfggwfqB6qUZzz02dS7QsXbEZ.', 'yes', 'admin', 23, '0000-00-00', '0000-00-00', 'enabled');
 
 -- --------------------------------------------------------

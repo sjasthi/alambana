@@ -43,10 +43,31 @@
 
   ================================================== -->
   <style>
-        body {
+        .head {
             font-size: 50px; /* Set the font size to make the text bigger */
             color: black;    /* Set the text color to black */
 			text-align: center; /* Center align the text */
+        }
+        .body {
+            font-size: 18px;
+            color: black;
+            text-align: center;
+            margin: 20px;
+        }
+        /* Style for the custom button label */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+        }
+
+        /* Hide the actual file input element */
+        #imageUpload {
+            display: none;
         }
     </style>
 
@@ -57,19 +78,64 @@
 <!--[if lt IE 7]>
 	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
-<div class="body">
+<div class="head">
 	<!-- Site Header Wrapper -->
-    <?php load_common_page_header(2) ?>
+    <?php generate_header(); ?>
     <!-- Hero Area -->
-	<?php
+    <div class="hero-area">
+    	<div class="page-banner parallax" id="banner"  style="background-image:url(images/parallax5.jpg);">
+        	<div class="container">
+            	<div class="page-banner-text">
+        			<h1 class="block-title">Typography</h1>
+					 <?php
+                        if (isset($userRole) && $userRole === "admin") {
+                            // Display the "Change Image" button for admin users
+							echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
+                            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
+                        }
+                        ?>
+                </div>
+            </div>
+        </div>
+    </div>
 	
-	$text = "To Be Implemented";
-	?>
-	<p><?php echo $text; ?></p>
+	<script>
+		const imageUpload = document.getElementById('imageUpload');
+		const banner = document.getElementById('banner');
+
+		// Retrieve the stored image URL from local storage on page load
+		const storedImageUrl = localStorage.getItem('aboutBanner');
+		if (storedImageUrl) {
+			banner.style.backgroundImage = `url(${storedImageUrl})`;
+		}
+
+		imageUpload.addEventListener('change', function () {
+			const file = imageUpload.files[0];
+			if (file && file.type.startsWith('image/')) {
+				const reader = new FileReader();
+				reader.onload = function (e) {
+					banner.style.backgroundImage = `url(${e.target.result})`;
+
+					// Store the selected image URL for Page 1 in local storage
+					localStorage.setItem('aboutBanner', e.target.result);
+				};
+				reader.readAsDataURL(file);
+			}
+		});
+	</script>
 
 
-    <?php lib() ?>
-    <!-- Style Switcher Start -->
-    <?php style_switcher() ?>
-</body>
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+
+    
+  <div class="body">
+    <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p> 
+    <br></br><br></br>
+    <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat </p>
+  </div>
+
+
+  </body>
 </html>

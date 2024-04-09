@@ -20,12 +20,12 @@ include 'shared_resources.php';
                 // Verify user submission against database
                 $email = $db->escape_string($_GET['email']);
                 $email_validation = $db->escape_string($_GET['email_validation']);
-                $sql = "SELECT email, active FROM users WHERE email='".$email."' AND active='".$email_validation."'";
+                $sql = "SELECT email, validation_code FROM users WHERE email='".$email."' AND validation_code='".$email_validation."'";
                 $match = run_sql($sql)->num_rows;
 
                 // valid match
                 if($match > 0) {
-                    $sql = "UPDATE users SET active='yes' WHERE email='".$email."' AND active='".$email_validation."'";
+                    $sql = "UPDATE users SET validation_code='VALIDATED' WHERE email='".$email."' AND validation_code='".$email_validation."'";
                     if (mysqli_query($db, $sql)) {
                         // account successfully activated
                         echo "Your account has been activated.</br>

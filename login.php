@@ -27,10 +27,9 @@ if ($result->num_rows == 0) { // User doesn't exist
 
     if (password_verify($_POST['password'], $user['hash'])) {
         $_SESSION['email'] = $user['email'];
-        $_SESSION['active'] = $user['active'];
 
         // (SU23-30) (Feature) user email validation
-        if (strcmp($_SESSION['active'], "yes") != 0) {
+        if (strcmp($user['validation_code'], "VALIDATED") != 0) {
             // email validation was not completed
             header("location: validation.php");
             exit();
@@ -40,9 +39,8 @@ if ($result->num_rows == 0) { // User doesn't exist
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['role'] = $user['role'];
-            $_SESSION['hash'] = $user['hash'];
             $_SESSION['logged_in'] = true;
-            if ($_SESSION['role'] == "admin") {
+            if ($_SESSION['role'] == "Administrator") {
                 header("location: admin_panel.php");
             } else {
                 header("location: index.php");

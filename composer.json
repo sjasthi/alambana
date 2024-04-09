@@ -1,0 +1,12 @@
+{
+    "name": "micha/alambana",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "stripe/stripe-php": "^13.17",
+        "twbs/bootstrap": "^5.3"
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}
