@@ -18,19 +18,7 @@ function generate_header()
             </li>
             <li id="about-link">
                 <a href="about.php">About</a>
-                <div class="about-dropdown">
-                    <ul style="list-style-type: none;">
-                        <li>
-                            <a href="team.php" style="color: white;">Team</a>
-                        </li>
-                        <li>
-                            <a href="our-impact.php" style="color: white;">Our Impact</a>
-                        </li>
-                        <li>
-                            <a href="contact.php" style="color: white;">Contact</a>
-                        <li>
-                    </ul>
-                </div>
+                
             </li>
             <li id="community-link">
                 <a href="community-support.php">Community</a>

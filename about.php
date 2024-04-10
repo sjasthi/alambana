@@ -74,6 +74,7 @@ if (isset ($_SESSION['role'])) {
             margin: 0 auto;
             padding: 20px;
             padding-top: 0;
+            text-align: center;
         }
 
         .body-container img {
@@ -98,9 +99,10 @@ if (isset ($_SESSION['role'])) {
         }
 
         section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 10px;
+            max-width: 1200px;
+            margin: 0px auto;
+            padding: 20px;
+            padding-top: 0;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -137,6 +139,37 @@ if (isset ($_SESSION['role'])) {
         .content {
             padding: 32px 0;
         }
+        .story-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px auto;
+    max-width: 800px;
+    margin-left: 250px;
+  }
+  .image {
+    flex: 1;
+    margin: 0 40px;
+    text-align: center;
+  }
+  .image img {
+    width: 200px; /* Adjust as needed */
+    height: 100px;
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+  
+  }
+  .image p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .image a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
     </style>
 </head>
 
@@ -281,6 +314,61 @@ if (isset ($_SESSION['role'])) {
                    
 
                 </div>
+                <div class="spacer-50"></div>
+                <div class="padding-tb45 parallax parallax-light parallax1 counters"
+                    style="background-image:url(images/inside6.jpg)">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="fact-ico"> <i class="fa fa-dollar fa-4x"></i> </div>
+                                <div class="timer" data-perc="9000"> <span class="count">1380089</span> </div>
+                                <span class="fact">Amount raised</span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="fact-ico"> <i class="fa fa-heart-o fa-4x"></i> </div>
+                                <div class="timer" data-perc="96"> <span class="count">36</span> </div>
+                                <span class="fact">Causes</span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="fact-ico"> <i class="fa fa-bar-chart-o fa-4x"></i> </div>
+                                <div class="timer" data-perc="1500"> <span class="count">1211</span> </div>
+                                <span class="fact">Total members</span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="fact-ico"> <i class="fa fa-hand-peace-o fa-4x"></i> </div>
+                                <div class="timer" data-perc="1500"> <span class="count">61098</span> </div>
+                                <span class="fact">People Impacted</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding-tb75 padding-b0">
+                    <div class="container">
+                        <div class="text-align-center">
+                            <h2 class="block-title block-title-center">Some of the success stories</h2>
+                        </div>
+                        <div class="spacer-20"></div>
+                        <div class="story-container">
+                            <div class="image">
+                            <a href="https://timesofindia.indiatimes.com/city/nagpur/los-angeles-to-walk-for-tribal-kids-in-maha/articleshow/103298759.cms" target="_blank">
+                                                <img src="images/1image.webp">
+                                                <p><b>Los Angeles to ‘walk’ for tribal kids in Maha</b></p></a>
+                            </div>
+                            <div class="image">
+                            <a href="https://timesofindia.indiatimes.com/city/nagpur/los-angeles-to-walk-for-tribal-kids-in-maha/articleshow/103298759.cms" target="_blank">
+                                                <img src="images/2image.webp">
+                                                <p><b>Birthday money saved in US funds ops of Gadchiroli kids</b></p></a>
+                            </div>
+                            <div class="image">
+                            <a href="https://www.nnmfindia.in/Felicitation_Walkathon_organized_Aalambana_Foundation.html" target="_blank">
+                                                <img src="images/3img.jpg">
+                                                <p><b>Felicitation and Walkathon organized by Aalambana Foundation</b></p></a>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="spacer-30"></div>
+            </div>
             </div>
         </div>
         <!-- Site Footer -->
