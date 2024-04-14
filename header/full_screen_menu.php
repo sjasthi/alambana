@@ -13,19 +13,7 @@ function generate_full_screen_menu()
             </li>
             <li>
                 <a href="about.php">About</a>
-                <div>
-                    <ul>
-                        <li>
-                            <a href="team.php">Team</a>
-                        </li>
-                        <li>
-                            <a href="our-impact.php">Our Impact</a>
-                        </li>
-                        <li>
-                            <a href="contact.php">Contact</a>
-                        <li>
-                    </ul>
-                </div>
+                
             </li>
             <li>
                 <a href="community-support.php">Community</a>
