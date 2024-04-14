@@ -12,6 +12,8 @@ require_once "header/index.php";
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }
+
+css();
 ?>
 
 <!DOCTYPE HTML>

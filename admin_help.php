@@ -1,15 +1,15 @@
 <?php
-
-if (!isset ($_SESSION)) {
+if (!isset($_SESSION)) {
 	session_start();
 }
 
 include 'shared_resources.php';
 require_once "header/index.php";
 
-if (isset ($_SESSION['role'])) {
+if (isset($_SESSION['role'])) {
 	$userRole = $_SESSION['role'];
 }
+css();
 ?>
 
 
@@ -42,7 +42,7 @@ if (isset ($_SESSION['role'])) {
 	<!-- Color Style -->
 	<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
 	<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
-	<?php load_common_page_scripts() ?>
+	<?php load_common_page_scripts(); ?>
 
 <body>
 	<?php generate_header(); ?>
