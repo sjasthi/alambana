@@ -99,7 +99,7 @@ if (isset ($_SESSION['role'])) {
         }
         p {
             line-height: 1.6;
-            color: black;
+            color: gray;
         }
         
         .section-content {
