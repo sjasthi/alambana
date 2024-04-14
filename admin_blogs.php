@@ -54,7 +54,7 @@ css();
         <script>
           const pageNumber<?php echo $i; ?>TopContainer = document.getElementsByClassName("page-number-container-top-<?php echo $i; ?>")[0];
               pageNumber<?php echo $i; ?>TopContainer.addEventListener("click", (event) => {
-            window.location.href = 'blogs.php?page=<?php echo $i; ?>';
+            window.location.href = 'admin_blogs.php?page=<?php echo $i; ?>';
           });
         </script>
         <?php
