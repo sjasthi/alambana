@@ -2106,7 +2106,8 @@ body.boxed .body{
 	background-color:#333;
 	padding:70px 0;
 }
-.site-footer-bottom{
+.site-footer-bottom {
+	position:initial;
 	background-color:#222;
 	padding:20px 0;
 	color:#999;

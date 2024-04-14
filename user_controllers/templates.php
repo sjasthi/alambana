@@ -4,6 +4,18 @@ function generate_profile_edit($user)
     ?>
     <div>
         <form class="profile-edit-form">
+            <?php
+            if ($user['role'] === "Administrator") {
+                ?>
+                <div style="font-size: 24px">
+                    <a href="admin_panel.php">
+                        Go To Admin Panel
+                    </a>
+                </div>
+                <br />
+                <?php
+            }
+            ?>
             First Name
             <input type="text" name="first_name" value="<?php echo $user["first_name"] ?>" />
             Last Name

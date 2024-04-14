@@ -118,6 +118,16 @@
   }
 
   .blog-view-container .edit-delete-container a button {
+    border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 100%;
+  }
+  .blog-view-container .edit-delete-container button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
     width: 100%;
   }

@@ -346,7 +346,7 @@ function load_common_page_footer($footType = 1)
             echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';
         } # Static Footer 
         ?>
-        <div class="container">
+        <div class="container" style="z-index: 2;">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
                     <div class="widget footer_widget">

@@ -1,63 +1,99 @@
 <?php
-ob_start();
-if (!isset ($_SESSION)) {
-  session_start();
+if (!isset($_GET["page"])) {
+  header("Location: admin_blogs.php?page=1");
 }
-
-if ($_SESSION['role'] != 'Administrator') {
-  header('Location:blogs.php');
+if ($_GET["page"] < 1) {
+  header("Location: admin_blogs.php?page=1");
 }
-
-include ('shared_resources.php');
-include ('blog_fill.php');
-require_once "header/index.php";
-
-ob_end_flush();
+session_start();
+require_once 'header/index.php';
+require_once 'shared_resources.php';
+require_once 'banner/index.php';
+require_once 'blog_controllers/get_blogs.php';
+$page_count = ceil(get_blog_count() / 10);
+css();
 ?>
+
 <!DOCTYPE HTML>
 <html>
 
 <head>
-  <!-- Basic Page Needs
-  ================================================== -->
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-  <!-- Include the favicon.ico file -->
-  <?php generateFaviconLink() ?>
-  <title>Blogs [admin]</title>
+  <meta http-equiv="Content-Type" content="text/html, charset=utf-8">
+  <title>Aalambana - Template</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="author" content="">
-  <!-- Mobile Specific Metas
-  ================================================== -->
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=false;">
   <meta name="format-detection" content="telephone=no">
-  <!-- CSS
-  ================================================== -->
-  <?php css(2) ?>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <!-- SCRIPTS
-  ================================================== -->
-  <?php load_common_page_scripts() ?>
-
-
 </head>
 
 <body>
-  <div>
-    <?php generate_header(); ?>
-    <main>
-      <?php get_blogs(1, 10); ?>
-    </main>
-    <!-- Site Footer -->
-    <?php load_common_page_footer(2) ?>
-    <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
-  </div>
-  <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a></div>
+  <!-- Site Header Wrapper -->
+  <?php
+  generate_header();
+  generate_banner("Blogs (Click to delete or edit)", "images/inside7.jpg");
+  ?>
+  <!-- Banner Area -->
+
+  <main>
+    <div class="pages-container">
+      <?php
+      for ($i = 1; $i <= $page_count; $i++) {
+        ?>
+        <a class="page-number-container-top-<?php echo $i; ?>">
+          <?php
+          if ($i != $_GET["page"]) {
+            echo "<p style='text-decoration: underline; margin: 4px; margin-top: 0;'>";
+          }
+          echo $i;
+          if ($i != $_GET["page"]) {
+            echo "</p>";
+          }
+          ?>
+        </a>
+        <script>
+          const pageNumber<?php echo $i; ?>TopContainer = document.getElementsByClassName("page-number-container-top-<?php echo $i; ?>")[0];
+              pageNumber<?php echo $i; ?>TopContainer.addEventListener("click", (event) => {
+            window.location.href = 'blogs.php?page=<?php echo $i; ?>';
+          });
+        </script>
+        <?php
+      }
+      ?>
+    </div>
+    <?php get_blogs(($_GET["page"] - 1) * 10, 10); ?>
+    <div class="pages-container">
+      <?php
+      for ($i = 1; $i <= $page_count; $i++) {
+        ?>
+        <a class="page-number-container-<?php echo $i; ?>">
+          <?php
+          if ($i != $_GET["page"]) {
+            echo "<p style='text-decoration: underline; margin: 4px; margin-top: 0;'>";
+          } else {
+            echo "<p style='margin: 4px; margin-top: 0;'>";
+          }
+          echo $i;
+          echo "</p>";
+          ?>
+        </a>
+        <script>
+          const pageNumber<?php echo $i; ?>Container = document.getElementsByClassName("page-number-container-<?php echo $i; ?>")[0];
+                                    pageNumber<?php echo $i; ?>Container.addEventListener("click", (event) => {
+            window.location.href = 'admin_blogs.php?page=<?php echo $i; ?>';
+          });
+        </script>
+        <?php
+      }
+      ?>
+    </div>
+  </main>
+  <!-- Site Footer -->
+  <?php load_common_page_footer(); ?>
   <!-- Libraries Loader -->
-  <?php lib() ?>
-  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <?php lib(); ?>
+  <!-- Style Switcher Start -->
+  <?php style_switcher(); ?>
 </body>
 
 </html>
