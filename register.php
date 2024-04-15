@@ -31,7 +31,7 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
 
         //insert user info into DB
         $sql = "INSERT INTO users (first_name, last_name, email, hash, validation_code, role)
-                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', '$email_validation', 'User')";
+                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', 'VALIDATED', 'User')"; //VALIDATED is a placeholder
 
         if (mysqli_query($db, $sql)) {
             // read config.ini
