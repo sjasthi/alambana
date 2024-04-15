@@ -222,7 +222,7 @@ $start = $count * ($_GET["page"] - 1);
     </div>
   </main>
   <!-- Site Footer -->
-  <?php load_common_page_footer(); ?>
+  <?php load_common_page_footer(2); ?>
   <!-- Libraries Loader -->
   <?php lib(); ?>
   <!-- Style Switcher Start -->

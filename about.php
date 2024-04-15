@@ -115,7 +115,7 @@ css();
 
         p {
             line-height: 1.6;
-            color: black;
+            color: gray;
         }
 
         .about-section {
