@@ -8,7 +8,7 @@ if ($_SESSION['role'] != 'Administrator') {
     header('Location:events.php');
 }
 
-include ('shared_resources.php');
+include 'shared_resources.php';
 require_once "event_controllers/event_queries.php";
 require_once "header/index.php";
 

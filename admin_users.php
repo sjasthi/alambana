@@ -153,9 +153,8 @@ if ($connection->connect_error) {
                             <tbody>
                                 <!-- Populate table with User data from the database -->
                                 <?php
-                                $sql = "SELECT users.id, users.first_name, users.last_name, users.email, users.status, user_photos.Location 
-                                        FROM users 
-                                        LEFT JOIN user_photos ON users.Picture_Id = user_photos.Picture_Id";
+                                $sql = "SELECT users.id, users.first_name, users.last_name, users.email, users.status
+                                        FROM users ";
                                 $result = $db->query($sql);
 
 
