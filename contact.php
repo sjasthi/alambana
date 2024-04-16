@@ -74,11 +74,12 @@ if (isset ($_SESSION['role'])) {
         text-align: center;
     }
     p {
-        color: #666;
-        text-align: center;
+        color: gray;
+        text-align: left;
     }
     .contact-info {
         margin-bottom: 20px;
+        text-align: center;
     }
     .contact-info p {
         margin: 10px 0;
@@ -189,11 +190,11 @@ a {
                 <div class="container">
                 <div id="contact" class="body-container">
         <h1>We've been waiting for you</h1>
-        <p>We want to hear from you. Let us know how we can help.</p>
+        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspWe want to hear from you. Let us know how we can help.</p>
         
         <div class="contact-info">
-            <p><img src="images/call.png">&nbsp Phone: <a href="tel:+1 (951) 821-6051">+1 (951) 821-6051</a></p>
-            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img class="email-icon" src="images/email.png">&nbsp Email: <a href="mailto:aalambanafoundation@gmail.com">aalambanafoundation@gmail.com</a></p>
+            <p><img src="images/call.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPhone: <a href="tel:+1 (951) 821-6051">+1 (951) 821-6051</a></p>
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img class="email-icon" src="images/email.png">&nbsp Email: <a href="mailto:aalambanafoundation@gmail.com">aalambanafoundation@gmail.com</a></p>
         </div>
         
         <div class="contact-form">
@@ -301,12 +302,16 @@ a {
                 }
                 google.maps.event.addDomListener(window, 'load', getGeocode);
             </script>
+
+        <div class = "f">
             <!-- Site Footer -->
             <?php load_common_page_footer() ?>
             <!-- Libraries Loader -->
             <?php lib() ?>
             <!-- Style Switcher Start -->
             <?php style_switcher() ?>
-</body>
+        </div>
+    </body>
+
 
 </html>
