@@ -145,7 +145,7 @@ css();
     align-items: center;
     margin: 40px auto;
     max-width: 800px;
-    margin-left: 250px;
+    margin-left: 170px;
   }
   .image {
     flex: 1;

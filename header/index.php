@@ -13,9 +13,7 @@ function generate_header()
             <a href="index.php"><img src="./images/logo.png" alt="Logo"></a>
         </div>
         <ul class="link-container">
-            <li>
-                <a href="index.php">Home</a>
-            </li>
+            
             <li id="about-link">
                 <a href="about.php">About</a>
                 
@@ -40,7 +38,7 @@ function generate_header()
                 <a href="events.php">Events</a>
             </li>
             <li>
-                <a href="gallery-caption-2cols.php">Gallery</a>
+                <a href="gallery.php">Gallery</a>
             </li>
             <li id="blogs-link">
                 <a href="blogs.php">Blogs</a>
