@@ -31,11 +31,11 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
 
         //insert user info into DB
         $sql = "INSERT INTO users (first_name, last_name, email, hash, validation_code, role)
-                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', '$email_validation', 'User')";
+                VALUES ('$first_name', '$last_name', '$email', '$hash_pass', 'VALIDATED', 'User')"; //VALIDATED is a placeholder
 
         if (mysqli_query($db, $sql)) {
             // read config.ini
-            $email_settings = parse_ini_file("smtp.ini");
+            /*$email_settings = parse_ini_file("smtp.ini");
             // case where unable to read config file
             if (!$email_settings) {
                 echo "failed to read smtp.ini";
@@ -60,12 +60,12 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
                     
                     ';
                     $mail->send();
-                    echo 'Message has been sent';
+                    echo 'Message has been sent';*/
                     header("location: loginForm.php?success=true");
-                } catch (Exception $e) {
+                /*} catch (Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                     header("location: loginForm.php?success=false");
-                }
+                }*/
                 // send validation email
                 /*$email_subject = 'Signup | Validation';
                 $email_message = '
@@ -87,8 +87,8 @@ if (isset($_POST['password']) && isset($_POST['email']) && isset($_POST['first_n
                 } else {
                     $last_error = error_get_last();
                     echo "Email failed with error: " . $last_error['message'];
-                }*/
-            }
+                }
+            }*/
         }
         // case where the sql insert failed
         else {
