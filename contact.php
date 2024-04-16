@@ -10,7 +10,6 @@ require_once "header/index.php";
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
 }
-css();
 ?>
 
 <!DOCTYPE HTML>
@@ -195,7 +194,7 @@ a {
         
         <div class="contact-info">
             <p><img src="images/call.png">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPhone: <a href="tel:+1 (951) 821-6051">+1 (951) 821-6051</a></p>
-            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img class="email-icon" src="images/email.png">&nbsp Email: <a href="mailto:aalambanafoundation@gmail.com">aalambanafoundation@gmail.com</a></p>
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img class="email-icon" src="images/email.png">&nbsp Email: <a href="mailto:aalambanafoundation@gmail.com">aalambanafoundation@gmail.com</a></p>
         </div>
         
         <div class="contact-form">
