@@ -13,24 +13,10 @@ function generate_header()
             <a href="index.php"><img src="./images/logo.png" alt="Logo"></a>
         </div>
         <ul class="link-container">
-            <li>
-                <a href="index.php">Home</a>
-            </li>
+            
             <li id="about-link">
                 <a href="about.php">About</a>
-                <div class="about-dropdown">
-                    <ul style="list-style-type: none;">
-                        <li>
-                            <a href="team.php" style="color: white;">Team</a>
-                        </li>
-                        <li>
-                            <a href="our-impact.php" style="color: white;">Our Impact</a>
-                        </li>
-                        <li>
-                            <a href="contact.php" style="color: white;">Contact</a>
-                        <li>
-                    </ul>
-                </div>
+                
             </li>
             <li id="community-link">
                 <a href="community-support.php">Community</a>
@@ -52,7 +38,7 @@ function generate_header()
                 <a href="events.php">Events</a>
             </li>
             <li>
-                <a href="gallery-caption-2cols.php">Gallery</a>
+                <a href="gallery.php">Gallery</a>
             </li>
             <li id="blogs-link">
                 <a href="blogs.php">Blogs</a>

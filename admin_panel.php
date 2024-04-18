@@ -11,7 +11,7 @@ if ($_SESSION['role'] != 'Administrator') {
 #require 'bin/functions.php';
 #require 'db_configuration.php';
 include 'shared_resources.php';
-//include 'blog_fill.php';
+require_once 'blog_controllers/get_blogs.php';
 include 'event_controllers/event_fill.php';
 include 'user_fill.php';
 require_once "header/index.php";
@@ -26,7 +26,7 @@ ob_end_flush();
     <!-- Basic Page Needs
   ================================================== -->
     <!-- Include the favicon.ico file -->
-    <?php generateFaviconLink() ?>
+    <?php generateFaviconLink(); ?>
     <title>Admin Panel</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -38,11 +38,11 @@ ob_end_flush();
     <meta name="format-detection" content="telephone=no">
     <!-- CSS
   ================================================== -->
-    <?php css(2) ?>
+    <?php css(2); ?>
 
     <!-- SCRIPTS
   ================================================== -->
-    <?php load_common_page_scripts() ?>
+    <?php load_common_page_scripts(); ?>
 
 </head>
 
@@ -51,7 +51,7 @@ ob_end_flush();
 
     </style>
     <!-- Site Header Wrapper -->
-    <?php generate_header() ?>
+    <?php generate_header(); ?>
     <!-- Main Content -->
     <div id="admin-container-id">
         <div class="admin-content">
@@ -82,8 +82,8 @@ ob_end_flush();
                                 <div class="card"
                                     style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
                                     <div class="box">
-                                        <h1>
-                                            <?php //echo getAll__blog_comment_count() ?>
+                                    <h1>
+                                            <?php echo get_blog_count(); ?>
                                         </h1>
                                         <h3>Blogs</h3>
                                     </div>
@@ -120,7 +120,7 @@ ob_end_flush();
                             <div class="content-2">
                                 <div class="box">
                                     <div class="title">
-                                        <h2>Recent Blogs</h2>
+                                        <h2>Donations</h2>
                                         <a href="#" class="btn">View All</a>
                                     </div>
                                     <table>

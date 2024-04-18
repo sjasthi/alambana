@@ -260,11 +260,7 @@ function load_common_page_header($headType = 1)
 
                         <li><a href="index.php">Home</a></li>
                         <li><a href="about.php">About</a>
-                            <ul>
-                                <li><a href="team.php">Team</a></li>
-                                <li><a href="our-impact.php">Our Impact</a></li>
-                                <li><a href="contact.php">Contact</a></li>
-                            </ul>
+                            
                         </li>
                         <li><a href="community-support.php">Community</a>
                             <ul>
@@ -350,7 +346,7 @@ function load_common_page_footer($footType = 1)
             echo '<div class="site-footer-bottom" style="background-image:url(images/parallax3.jpg)">';
         } # Static Footer 
         ?>
-        <div class="container">
+        <div class="container" style="z-index: 2;">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
                     <div class="widget footer_widget">
@@ -364,10 +360,6 @@ function load_common_page_footer($footType = 1)
                         <ul class="social-icons-rounded social-icons-colored">
                             <li class="facebook"><a href="https://www.facebook.com/aalambanafb"><i
                                         class="fa fa-facebook-f"></i></a></li>
-                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                            <li class="vimeo"><a href="#"><i class="fa fa-vimeo"></i></a></li>
                             <li class="instagram"><a
                                     href="https://www.instagram.com/aalambana.foundation/?igshid=klesjehfy70r"><i
                                         class="fa fa-instagram"></i></a></li>
@@ -376,18 +368,18 @@ function load_common_page_footer($footType = 1)
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <div class="widget footer_widget widget_links">
-                        <h4 class="widgettitle">Blogroll</h4>
+                        <h4 class="widgettitle">Quick Links</h4>
                         <ul>
-                            <li><a href="our-impact.php">Become a volunteer</a></li>
-                            <li><a href="about.php">Our mission</a></li>
-                            <li><a href="community-event.php">Success stories</a></li>
-                            <li><a href="team.php">Meet our team</a></li>
+                            <li><a href="community-support.php" style="text-decoration: none;">Community</a></li>
+                            <li><a href="events.php" style="text-decoration: none;">Events</a></li>
+                            <li><a href="gallery.php" style="text-decoration: none;">Gallery</a></li>
+                            <li><a href="blogs.php" style="text-decoration: none;">Blogs</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <div class="widget footer_widget">
-                        <h4 class="widgettitle">Contact Us</h4>
+                        <h4 class="widgettitle"><a href="contact.php">Contact Us</a></h4>
                         <p style="color: white;">
                             Aalambana Foundation - CA Office<br>
                             561 Orion Rd.<br>

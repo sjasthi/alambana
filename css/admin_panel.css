@@ -21,18 +21,6 @@ h2 {
 h3 {
     color: #999;
 }
-.btn {
-    background: #42b8d4;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-}
-.btn:hover {
-    color: #42b8d4;
-    background: white;
-    padding: 3px 8px;
-    border: 2px solid #42b8d4;
-}
 .title {
     display: flex;
     align-items: center;
@@ -55,6 +43,7 @@ td {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    z-index: 0;
 }
 .a-side-menu .a-brand-name {
     height: 10vh;
@@ -151,16 +140,16 @@ td {
 }
 
 
-.a-side-menu img {
-    //width: 250px;
-    //height: 150px;
+/*.a-side-menu img {
+    width: 250px;
+    height: 150px;
     background: white;
-    //margin: 20px 10px;
-    //display: flex;
-    //align-items: center;
-    //justify-content: space-around;
-    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}*/
 .a-container.content .cards {
     padding: 20px 15px;
     display: flex;

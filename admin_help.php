@@ -1,15 +1,15 @@
 <?php
-
-if (!isset ($_SESSION)) {
+if (!isset($_SESSION)) {
 	session_start();
 }
 
 include 'shared_resources.php';
 require_once "header/index.php";
 
-if (isset ($_SESSION['role'])) {
+if (isset($_SESSION['role'])) {
 	$userRole = $_SESSION['role'];
 }
+css();
 ?>
 
 
@@ -42,7 +42,7 @@ if (isset ($_SESSION['role'])) {
 	<!-- Color Style -->
 	<link class="alt" href="colors/color1.css" rel="stylesheet" type="text/css">
 	<link href="style-switcher/css/style-switcher.css" rel="stylesheet" type="text/css">
-	<?php load_common_page_scripts() ?>
+	<?php load_common_page_scripts(); ?>
 
 <body>
 	<?php generate_header(); ?>
@@ -50,8 +50,6 @@ if (isset ($_SESSION['role'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-	<h2 id="title">Aalambana Admin Help Center</strong></h2>
 	<style>
 		/* Style for the custom button label */
 		.custom-file-upload {
@@ -64,7 +62,8 @@ if (isset ($_SESSION['role'])) {
 			border-radius: 5px;
 		}
 
-		body {
+		.body {
+			margin-top: 96px;
 			text-align: center;
 			/* Center align the text in the body */
 		}
@@ -86,15 +85,18 @@ if (isset ($_SESSION['role'])) {
 			/* Add margin to the buttons for spacing */
 		}
 	</style>
-	</head>
-	<!-- admin documentation  -->
-	<p>To access admin interface, users have to be logged in as an admin to see the admin button <button type="submit"
-			name="submit" class="btn btn-primary btn-md align-items-center custom-file-upload">Admin</button> at the top
-		of the page in the tool bar.</p>
-	<p>You can change page Banner's by clicking on this button <button type="submit" name="submit"
-			class="btn btn-primary btn-md align-items-center custom-file-upload">Change Banner Image</button> on each of
-		the pages. </p>
 
+	</head>
+		<div class= "body">
+			<h2 id="title">Aalambana Admin Help Center</strong></h2>
+			<!-- admin documentation  -->
+			<p>To access admin interface, users have to be logged in as an admin to see the admin button <button type="submit"
+					name="submit" class="btn btn-primary btn-md align-items-center custom-file-upload">Admin</button> at the top
+				of the page in the tool bar.</p>
+			<p>You can change page Banner's by clicking on this button <button type="submit" name="submit"
+					class="btn btn-primary btn-md align-items-center custom-file-upload">Change Banner Image</button> on each of
+				the pages. </p>
+		</div>
 
 
 
@@ -113,10 +115,8 @@ if (isset ($_SESSION['role'])) {
 		<div id="wrapper" style="min-height: 46vh; position: relative;">
 			<!-- Your page content goes here -->
 		</div>
-
-		<?php load_common_page_footer() ?>
 	</body>
 
-</body>
+	<?php load_common_page_footer() ?>
 
 </html>

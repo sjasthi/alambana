@@ -8,24 +8,10 @@ function generate_full_screen_menu()
             <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
         </div>
         <ul>
-            <li>
-                <a href="index.php">Home</a>
-            </li>
+            
             <li>
                 <a href="about.php">About</a>
-                <div>
-                    <ul>
-                        <li>
-                            <a href="team.php">Team</a>
-                        </li>
-                        <li>
-                            <a href="our-impact.php">Our Impact</a>
-                        </li>
-                        <li>
-                            <a href="contact.php">Contact</a>
-                        <li>
-                    </ul>
-                </div>
+                
             </li>
             <li>
                 <a href="community-support.php">Community</a>
@@ -47,7 +33,7 @@ function generate_full_screen_menu()
                 <a href="events.php">Events</a>
             </li>
             <li>
-                <a href="gallery-caption-2cols.php">Gallery</a>
+                <a href="gallery.php">Gallery</a>
             </li>
             <li>
                 <a href="blogs.php">Blogs</a>

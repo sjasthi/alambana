@@ -25,4 +25,4 @@ if ($_SESSION["role"] === "Administrator") {
   $result = $statement->execute();
 }
 $connection->close();
-header("Location: ../blog_view.php?id=".$_POST["blog_id"]);
+echo "<script>window.location.href='../blog_view.php?id=".$_POST["blog_id"]."';</script>";

@@ -35,6 +35,7 @@ function generate_header_styling()
 
         .navbar a {
             color: white;
+            text-decoration: none;
         }
 
         .button-container {

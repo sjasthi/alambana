@@ -37,10 +37,10 @@ if ($connection->connect_error) {
         content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <!-- CSS ================================================== -->
-    <?php css(2) ?>
+    <?php css(2); ?>
 
     <!-- SCRIPTS ================================================== -->
-    <?php load_common_page_scripts() ?>
+    <?php load_common_page_scripts(); ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
@@ -153,9 +153,8 @@ if ($connection->connect_error) {
                             <tbody>
                                 <!-- Populate table with User data from the database -->
                                 <?php
-                                $sql = "SELECT users.id, users.first_name, users.last_name, users.email, users.status, user_photos.Location 
-                                        FROM users 
-                                        LEFT JOIN user_photos ON users.Picture_Id = user_photos.Picture_Id";
+                                $sql = "SELECT users.id, users.first_name, users.last_name, users.email, users.status
+                                        FROM users ";
                                 $result = $db->query($sql);
 
 
