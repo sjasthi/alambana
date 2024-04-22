@@ -7,6 +7,16 @@ require_once 'header/index.php';
 require_once 'banner/index.php';
 require_once 'user_controllers/get_user.php';
 
+if (!isset($_GET["user_id"])) {
+  $_GET["user_id"] = $_SESSION["id"];
+}
+if ($_SESSION["role"] === "User" && $_SESSION["id"] !== $_GET["user_id"]) {
+  ?>
+  <script>
+    window.location.href = "profile_view.php?user_id=<?php echo $_GET["user_id"]; ?>";
+  </script>
+  <?php
+}
 css();
 ?>
 
@@ -30,7 +40,7 @@ css();
   ?>
   <main>
     <?php
-    get_profile($_SESSION["id"]);
+    get_profile($_GET["user_id"], true);
     ?>
   </main>
   <!-- Site Footer -->
