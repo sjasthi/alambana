@@ -3,31 +3,32 @@ require_once "picture_controllers/get_pictures.php";
 function generate_blog($blog)
 {
     ?>
-    <a href="blog_view.php?id=<?php echo $blog["id"]; ?>">
-        <div class="blog-container">
-            <div class="info-container">
-                <div class="author-picture-container">
-                    <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"] !== null ? $blog["user_picture_location"] : "./images/users_pictures/default_profile.png"); ?> />
+    <div class="blog-container">
+        <div class="info-container">
+
+            <div class="author-picture-container">
+                <img alt="Profile Picture" src=<?php echo htmlspecialchars($blog["user_picture_location"] !== null ? $blog["user_picture_location"] : "./images/users_pictures/default_profile.png"); ?> />
+            </div>
+            <div class="author-time-container">
+                <div class="author-container">
+                    <a
+                        href="profile_view.php?user_id=<?php echo $blog["user_id"] ?>"><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?></a><br />
                 </div>
-                <div class="author-time-container">
-                    <div class="author-container">
-                        <?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
-                    </div>
-                    <div class="time-container">
-                        <?php echo htmlspecialchars($blog["modified_time"]) ?>
-                    </div>
-                </div>
-                <div class="title-container">
-                    <?php echo htmlspecialchars($blog["title"]); ?>
+                <div class="time-container">
+                    <?php echo htmlspecialchars($blog["modified_time"]) ?>
                 </div>
             </div>
-            <div class="text-container">
-                <div class="description-container">
-                    <?php echo htmlspecialchars($blog["description"]); ?>
-                </div>
+
+            <div class="title-container" onClick="window.location.href='blog_view.php?id=<?php echo $blog["id"] ?>';">
+                <?php echo htmlspecialchars($blog["title"]); ?>
             </div>
         </div>
-    </a>
+        <div class="text-container" onClick="window.location.href='blog_view.php?id=<?php echo $blog["id"] ?>';">
+            <div class="description-container">
+                <?php echo htmlspecialchars($blog["description"]); ?>
+            </div>
+        </div>
+    </div>
     <?php
 }
 function generate_blog_view($blog)
@@ -40,7 +41,8 @@ function generate_blog_view($blog)
             </div>
             <div class="author-time-container">
                 <div class="author-container">
-                    <?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
+                    <a
+                        href="profile_view.php?user_id=<?php echo $blog["user_id"] ?>"><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?></a><br />
                 </div>
                 <div class="time-container">
                     <?php echo htmlspecialchars($blog["modified_time"]) ?>
@@ -124,7 +126,8 @@ function generate_blog_edit($blog)
                 </div>
                 <div class="author-time-container">
                     <div class="author-container">
-                        <?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?><br />
+                        <a
+                            href="profile_view.php?user_id=<?php echo $blog["user_id"] ?>"><?php echo htmlspecialchars($blog["first_name"] . " " . $blog["last_name"]); ?></a><br />
                     </div>
                     <div class="time-container">
                         <?php echo htmlspecialchars($blog["modified_time"]) ?>

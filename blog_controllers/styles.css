@@ -19,6 +19,7 @@
   }
 
   .blog-container .title-container {
+    cursor: pointer;
     width: 100%;
   }
 

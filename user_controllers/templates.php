@@ -29,7 +29,7 @@ function generate_profile_edit($user)
             </select>
             <br />
             <?php
-            if ($user['role'] === "Administrator") {
+            if ($_SESSION['role'] === "Administrator") {
                 ?>
                 <div style="font-size: 24px">
                     <a href="admin_panel.php">
@@ -69,14 +69,15 @@ function generate_profile_view($user)
             Email
             <input type="text" value="<?php echo $user["email"]; ?>" disabled />
             Role
-            <select name="role" value="<?php echo $user["role"]; ?>" disabled>
-                <option value="User">User</option>
-                <option value="Moderator">Moderator</option>
-                <option value="Administrator">Administrator</option>
+            <select name="role" disabled>
+                <option value="User" <?php echo $user["role"] === "User" ? "selected " : "" ?>>User</option>
+                <option value="Moderator" <?php echo $user["role"] === "Moderator" ? "selected " : "" ?>>Moderator</option>
+                <option value="Administrator" <?php echo $user["role"] === "Administrator" ? "selected " : "" ?>>Administrator
+                </option>
             </select>
             <br />
             <?php
-            if ($user['role'] === "Administrator") {
+            if ($_SESSION['role'] === "Administrator") {
                 ?>
                 <div style="font-size: 24px">
                     <a href="admin_panel.php">
