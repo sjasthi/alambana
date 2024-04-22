@@ -112,6 +112,7 @@ if (isset ($_SESSION['role'])) {
 
         .text {
             flex: 1;
+            padding-left: 10px;
         }
 
         .image {
