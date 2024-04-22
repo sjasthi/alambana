@@ -242,7 +242,10 @@ if (isset ($_SESSION['role'])) {
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="images/parallax6.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="images/slide2.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="text-light">make a difference for people who needs it the most</h3>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="images/slide3.jpg" alt="Third slide">
