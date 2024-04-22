@@ -370,10 +370,10 @@ function load_common_page_footer($footType = 1)
                     <div class="widget footer_widget widget_links">
                         <h4 class="widgettitle">Quick Links</h4>
                         <ul>
-                            <li><a href="community-support.php">Community</a></li>
-                            <li><a href="events.php">Events</a></li>
-                            <li><a href="gallery-caption-2cols.php">Gallery</a></li>
-                            <li><a href="blogs.php">Blogs</a></li>
+                            <li><a href="community-support.php" style="text-decoration: none;">Community</a></li>
+                            <li><a href="events.php" style="text-decoration: none;">Events</a></li>
+                            <li><a href="gallery.php" style="text-decoration: none;">Gallery</a></li>
+                            <li><a href="blogs.php" style="text-decoration: none;">Blogs</a></li>
                         </ul>
                     </div>
                 </div>

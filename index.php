@@ -86,9 +86,10 @@ if (isset ($_SESSION['role'])) {
         }
       
         section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 10px;
+            max-width: 1200px;
+            margin: 0px auto;
+            padding: 20px;
+            padding-top: 0;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -241,7 +242,10 @@ if (isset ($_SESSION['role'])) {
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="images/parallax6.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="images/slide2.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="text-light">make a difference for people who needs it the most</h3>
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="images/slide3.jpg" alt="Third slide">
@@ -288,30 +292,30 @@ if (isset ($_SESSION['role'])) {
     <h3>Photo Gallery</h3>
     <div class="image-gallery">
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/Annadanam.png"></a>
+        <a href="gallery.php"><img src="images/Annadanam.png"></a>
     </div>
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/Netralayam.png"></a>
+        <a href="gallery.php"><img src="images/Netralayam.png"></a>
     </div>
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/1Netralayam.png"></a>
+        <a href="gallery.php"><img src="images/1Netralayam.png"></a>
     </div>
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/2Annadanam.png"></a>
+        <a href="gallery.php"><img src="images/2Annadanam.png"></a>
     </div>
     </div>
     <div class="image-gallery">
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/2Netralayam.png"></a>
+        <a href="gallery.php"><img src="images/2Netralayam.png"></a>
     </div>
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/1DBNO.jpg"></a>
+        <a href="gallery.php"><img src="images/1DBNO.jpg"></a>
     </div>
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/3Netralayam.jpg"></a>
+        <a href="gallery.php"><img src="images/3Netralayam.jpg"></a>
     </div>
     <div class="image-container">
-        <a href="gallery-caption-2cols.php"><img src="images/OCFoodBank.jpg"></a>
+        <a href="gallery.php"><img src="images/OCFoodBank.jpg"></a>
     </div>
 </div>
 <div class="spacer-30"></div>

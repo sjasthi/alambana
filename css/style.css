@@ -2708,6 +2708,7 @@ body.boxed .body{
 	position:relative;
 	color:#5e5e5e;
 }
+
 .widget_recent_posts li:before, .widget_recent_posts li:after, .widget_recent_causes li:before, .widget_recent_causes li:after{
   display: table;
   content: " ";

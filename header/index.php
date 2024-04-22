@@ -13,9 +13,7 @@ function generate_header()
             <a href="index.php"><img src="./images/logo.png" alt="Logo"></a>
         </div>
         <ul class="link-container">
-            <li>
-                <a href="index.php">Home</a>
-            </li>
+            
             <li id="about-link">
                 <a href="about.php">About</a>
                 
@@ -40,7 +38,7 @@ function generate_header()
                 <a href="events.php">Events</a>
             </li>
             <li>
-                <a href="gallery-caption-2cols.php">Gallery</a>
+                <a href="gallery.php">Gallery</a>
             </li>
             <li id="blogs-link">
                 <a href="blogs.php">Blogs</a>
@@ -59,7 +57,7 @@ function generate_header()
                 <a href="donate.php">Donate Now</a>
             </li>
         </ul>
-        <div class="info-container">
+        <div class="info-container"><i class="fa fa-phone"></i>
             (951) 821-6051
             <?php
             if (isset($_SESSION["id"])) {
@@ -68,7 +66,7 @@ function generate_header()
                 <?php
             } else {
                 ?>
-                <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-primary">Sign in</button></a>
+                <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-default btn-ghost btn-light btn-rounded small-button">Sign in</button></a>
                 <?php
             }
             ?>
