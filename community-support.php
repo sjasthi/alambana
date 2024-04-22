@@ -255,14 +255,14 @@ css();
                             <?php //fill_blog_post_side_container_small() ?>
                         </div>
 
-                        <div class="widget widget_testimonials">
+                        <!-- <div class="widget widget_testimonials">
                             <h3 class="widgettitle">Stories of change</h3>
                             <div class="carousel-wrapper">
                                 <div class="row">
-                                    <?php fill_feedback_comments_carousel() ?>
+                                    <?php //fill_feedback_comments_carousel() ?>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
