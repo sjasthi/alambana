@@ -4,7 +4,8 @@ function generate_header_styling()
     ?>
     <style>
         .navbar {
-            background-color: rgb(102, 221, 247);
+            /* background-color: rgb(102, 221, 247); */
+            background-color: #42b8d4;
             color: white;
             display: flex;
             flex-direction: row;

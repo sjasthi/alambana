@@ -219,7 +219,7 @@ css();
                                 </li>
                             </ul>
                             <!-- Page Pagination -->
-                            <nav>
+                            <!-- <nav>
                                 <ul class="pagination pagination-lg">
                                     <li>
                                         <a href="#" aria-label="Previous">
@@ -235,7 +235,7 @@ css();
                                         </a>
                                     </li>
                                 </ul>
-                            </nav>
+                            </nav> -->
                         </div>
                         <div class="col-md-4 sidebar-block">
                             <div class="widget sidebar-widget widget_categories">
