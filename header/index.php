@@ -20,7 +20,7 @@ function generate_header()
             </li>
             <li id="community-link">
                 <a href="community-support.php">Community</a>
-                <!-- <div class="community-dropdown">
+                <div class="community-dropdown">
                     <ul style="list-style-type: none;">
                         <li>
                             <a href="causes-education.php" style="color: white;">Education</a>
@@ -32,7 +32,7 @@ function generate_header()
                             <a href="causes-women.php" style="color: white;">Woman's Empowerment</a>
                         <li>
                     </ul>
-                </div> -->
+                </div>
             </li>
             <li>
                 <a href="events.php">Events</a>

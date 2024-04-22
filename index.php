@@ -249,7 +249,7 @@ if (isset ($_SESSION['role'])) {
                     <div class="carousel-caption d-none d-md-block">
                         <div class="flex-caption-text text-align-center">
                             <h2 class="text-light">Make a difference for people who needs it the most</h2>
-                            <a href="donate.php"><button type="button" class="btn btn-primary">Donate Now</button></a>
+                            <a href="donate.php"><button type="button" class="btn btn-primary">Start the Change</button></a>
                         </div>
                     </div>
                 </div>
@@ -258,7 +258,7 @@ if (isset ($_SESSION['role'])) {
                     <div class="carousel-caption d-none d-md-block">
                         <div class="flex-caption-text text-align-center">
                             <h2 class="text-light">Make a donation Today</h2>
-                            <a href="donate.php"><button type="button" class="btn btn-primary">Donate Now</button></a>
+                            <a href="donate.php"><button type="button" class="btn btn-primary">Start with little</button></a>
                         </div>
                     </div>
                 </div>
