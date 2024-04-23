@@ -18,3 +18,6 @@ Table of Contents
 | Cause categories under Community tab are not clickable | no |  |
 | Admin/User Panel | no | 1. Settings lead to nowhere |
 | Shortcodes and Typography | no | 1. not Implemented |
+| Home | yes |  |
+| Contact | no | 1. Submitting a contact form after filling out leads to nowhere<br> 2. Submitting a contact form after filling out doesn't redirect into another page |
+| Donation |  |  |
