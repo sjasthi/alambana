@@ -4,7 +4,8 @@ function generate_header_styling()
     ?>
     <style>
         .navbar {
-            background-color: rgb(102, 221, 247);
+            /* background-color: rgb(102, 221, 247); */
+            background-color: #42b8d4;
             color: white;
             display: flex;
             flex-direction: row;
@@ -19,7 +20,7 @@ function generate_header_styling()
         .navbar .logo-container {
             width: 200px;
             max-width: 33%;
-            padding-left: 8px;
+            padding-left: 15px;
         }
 
         .navbar .link-container {
@@ -139,6 +140,11 @@ function generate_header_styling()
             font-size: 16px;
             margin: 8px 8px 0 8px;
         }
+
+       .sign-in-button {
+        padding-top: 1px;
+        padding-bottom: 1px;
+       }
     </style>
     <?php
 }

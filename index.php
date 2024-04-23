@@ -112,6 +112,7 @@ if (isset ($_SESSION['role'])) {
 
         .text {
             flex: 1;
+            padding-left: 10px;
         }
 
         .image {
@@ -237,15 +238,29 @@ if (isset ($_SESSION['role'])) {
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="images/cover_image.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3 class="text-light">Together - We Can Serve Better</h3>
-                        <a href="donate.php"><button type="button" class="btn btn-primary">Donate Now</button></a>
+                        <div class="flex-caption-text text-align-center">
+                            <h2 class="text-light">Together - We Can Serve Better</h2>
+                            <a href="donate.php"><button type="button" class="btn btn-primary">Donate Now</button></a>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="images/parallax6.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="images/slide2.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="flex-caption-text text-align-center">
+                            <h2 class="text-light">Make a difference for people who needs it the most</h2>
+                            <a href="donate.php"><button type="button" class="btn btn-primary">Start the Change</button></a>
+                        </div>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="images/slide3.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="images/slide6.jpg" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="flex-caption-text text-align-center">
+                            <h2 class="text-light">Make a donation Today</h2>
+                            <a href="donate.php"><button type="button" class="btn btn-primary">Start with little</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

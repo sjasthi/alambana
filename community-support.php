@@ -219,7 +219,7 @@ css();
                                 </li>
                             </ul>
                             <!-- Page Pagination -->
-                            <nav>
+                            <!-- <nav>
                                 <ul class="pagination pagination-lg">
                                     <li>
                                         <a href="#" aria-label="Previous">
@@ -235,7 +235,7 @@ css();
                                         </a>
                                     </li>
                                 </ul>
-                            </nav>
+                            </nav> -->
                         </div>
                         <div class="col-md-4 sidebar-block">
                             <div class="widget sidebar-widget widget_categories">
@@ -255,14 +255,14 @@ css();
                             <?php //fill_blog_post_side_container_small() ?>
                         </div>
 
-                        <div class="widget widget_testimonials">
+                        <!-- <div class="widget widget_testimonials">
                             <h3 class="widgettitle">Stories of change</h3>
                             <div class="carousel-wrapper">
                                 <div class="row">
-                                    <?php fill_feedback_comments_carousel() ?>
+                                    <?php //fill_feedback_comments_carousel() ?>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

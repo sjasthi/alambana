@@ -7,6 +7,9 @@ require_once 'header/index.php';
 require_once 'banner/index.php';
 require_once 'user_controllers/get_user.php';
 
+if (!isset($_GET["user_id"])) {
+  $_GET["user_id"] = $_SESSION["id"];
+}
 css();
 ?>
 
@@ -30,7 +33,7 @@ css();
   ?>
   <main>
     <?php
-    get_profile($_GET["id"]);
+    get_profile($_GET["user_id"], false);
     ?>
   </main>
   <!-- Site Footer -->
