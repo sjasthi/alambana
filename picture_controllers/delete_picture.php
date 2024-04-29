@@ -26,3 +26,4 @@ $sql = "DELETE FROM pictures WHERE id=?";
 $statement = $connection->prepare($sql);
 $statement->bind_param("i", $_GET['id']);
 $result = $statement->execute();
+$connection->close();

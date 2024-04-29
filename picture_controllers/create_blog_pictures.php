@@ -47,6 +47,6 @@ foreach ($fileNameArray as $location) {
         echo "\n" . $sql;
     }
 }
-
+$connection->close();
 header("Location: blogs.php");
 ?>

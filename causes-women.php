@@ -6,8 +6,8 @@ if (!isset ($_SESSION)) {
 
 include 'shared_resources.php';
 //include 'blog_fill.php';
-include 'feedback_fill.php';
 require_once "header/index.php";
+require_once "banner/index.php";
 
 if (isset ($_SESSION['role'])) {
     $userRole = $_SESSION['role'];
@@ -34,8 +34,6 @@ if (isset ($_SESSION['role'])) {
     <!-- SCRIPTS
   ================================================== -->
     <?php load_common_page_scripts() ?>
-
-    <?php generate_header(); ?>
 
     <style>
         /* Style for the custom button label */
@@ -64,24 +62,9 @@ if (isset ($_SESSION['role'])) {
 <![endif]-->
     <div class="body">
         <!-- Site Header Wrapper -->
-        <?php generate_header() ?>
+        <?php generate_header(); ?>
         <!-- Hero Area -->
-        <div class="hero-area">
-            <div class="page-banner parallax" id="banner" style="background-image:url(images/women.jpg);">
-                <div class="container">
-                    <div class="page-banner-text">
-                        <h1 class="block-title">Woman Empower</h1>
-                        <?php
-                        if (isset ($userRole) && $userRole === "admin") {
-                            // Display the "Change Image" button for admin users
-                            echo '<label for="imageUpload" class="custom-file-upload">Change Banner Image</label>';
-                            echo '<input type="file" id="imageUpload" accept="image/*" multiple="multiple">';
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php generate_banner("Empowering Women", "images/women.jpg"); ?>
 
         <script>
             const imageUpload = document.getElementById('imageUpload');

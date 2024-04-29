@@ -2,8 +2,11 @@
 DEFINE('DATABASE_HOST', 'localhost');
 DEFINE('DATABASE_DATABASE', 'aalambana_db2');
 DEFINE('DATABASE_USER', 'root');
-DEFINE('DATABASE_PASSWORD', '');
-
+DEFINE('DATABASE_PASSWORD', 'password');
+//DEFINE('DATABASE_HOST', 'localhost');
+//DEFINE('DATABASE_DATABASE', 'icsbinco_aalambana_db');
+//DEFINE('DATABASE_USER', 'icsbinco_aalambana_admin');
+//DEFINE('DATABASE_PASSWORD', 'iLoveMetro!23');
 
 
 $db = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);

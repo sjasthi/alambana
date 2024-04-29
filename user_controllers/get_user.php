@@ -41,3 +41,25 @@ function get_profile($id, $edit)
         generate_profile_view($user);
     }
 }
+
+function getUserCount() {
+    $connection = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_DATABASE);
+    // Check connection
+    if ($connection->connect_error) {
+      die("Connection failed: " . $connection->connect_error);
+    }
+  
+    $sql = "SELECT COUNT(*) AS user_count FROM users";
+    $result = $connection->query($sql);
+  
+    $users = 0;
+  
+    // Fetch the count directly
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $users = $row['user_count'];
+    }
+  
+    $connection->close();
+    return $users;
+}

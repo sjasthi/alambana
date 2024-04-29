@@ -5,7 +5,6 @@ if (!isset ($_SESSION)) {
 }
 
 include 'shared_resources.php';
-include 'feedback_fill.php';
 require_once "header/index.php";
 
 if (isset ($_SESSION['role'])) {
@@ -191,7 +190,7 @@ if (isset ($_SESSION['role'])) {
                         </div>
                         <div class="carousel-wrapper">
                             <div class="row">
-                                <?php fill_feedback_comments_carousel() ?>
+                                [under construction]
                             </div>
                         </div>
                     </div>
