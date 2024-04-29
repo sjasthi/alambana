@@ -62,11 +62,11 @@ function generate_header()
             <?php
             if (isset($_SESSION["id"])) {
                 ?>
-                <a href="profile_edit.php"><button type="button" class="profile-button btn btn-primary">Profile</button></a>
+                <a href="profile_edit.php"><button type="button" class="profile-button btn btn-primary" style="border-radius: 8px; border: 2px solid white">Profile</button></a>
                 <?php
             } else {
                 ?>
-                <a href="loginForm.php"><button type="button" class="sign-in-button btn btn-default btn-ghost btn-light btn-rounded small-button">Sign in</button></a>
+                <a href="loginForm.php"><button type="button" class="profile-button btn btn-primary" style="border-radius: 8px; border: 2px solid white">Sign in</button></a>
                 <?php
             }
             ?>
