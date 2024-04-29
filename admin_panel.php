@@ -13,7 +13,7 @@ if ($_SESSION['role'] != 'Administrator') {
 include 'shared_resources.php';
 require_once 'blog_controllers/get_blogs.php';
 include 'event_controllers/event_fill.php';
-include 'user_fill.php';
+include 'user_controllers/get_user.php';
 require_once "header/index.php";
 
 ob_end_flush();
@@ -107,7 +107,7 @@ ob_end_flush();
                                     style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 50px;">
                                     <div class="box">
                                         <h1>
-                                            <?php echo getAll__user_count() ?>
+                                            <?php echo getUserCount() ?>
                                         </h1>
                                         <h3>Users</h3>
                                     </div>

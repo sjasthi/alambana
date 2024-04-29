@@ -6,7 +6,6 @@ if (!isset ($_SESSION)) {
 
 include 'shared_resources.php';
 //include 'blog_fill.php';
-include 'feedback_fill.php';
 require_once "header/index.php";
 
 if (isset ($_SESSION['role'])) {

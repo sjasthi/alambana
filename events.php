@@ -4,7 +4,6 @@ if ( !isset( $_SESSION ) ) {
 } 
 
 include 'shared_resources.php';
-include 'feedback_fill.php';
 include 'event_controllers/event_queries.php';
 include 'event_controllers/crud_templates.php';
 require_once "header/index.php";

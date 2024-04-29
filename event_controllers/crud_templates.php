@@ -118,7 +118,7 @@ function list_view( $categories, $events ) {
                 <h3 class="widgettitle">Stories of change</h3>
                 <div class="carousel-wrapper" style="background: none;">
                     <div class="row">
-                        <?php //fill_feedback_comments_carousel() ?>
+                        [under construction]
                     </div>
                 </div>
             </div>
